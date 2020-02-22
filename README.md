@@ -1,2 +1,2 @@
-# app-template
-NodeJS app or module templates
+# App Template
+
