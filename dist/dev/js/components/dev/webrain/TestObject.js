@@ -15,7 +15,7 @@ var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var TestObject =
 /*#__PURE__*/
@@ -40,10 +40,10 @@ function (_ObservableClass) {
   }
 
   return TestObject;
-}(_index.ObservableClass);
+}(_webrain.ObservableClass);
 
 exports.TestObject = TestObject;
-new _index.CalcObjectBuilder(TestObject.prototype).writable('value1').writable('value2').calc('sum', (0, _index.connectorFactory)({
+new _webrain.CalcObjectBuilder(TestObject.prototype).writable('value1').writable('value2').calc('sum', (0, _webrain.connectorFactory)({
   buildRule: function buildRule(c) {
     return c.connect('val1', function (b) {
       return b.p('value1');
@@ -51,7 +51,7 @@ new _index.CalcObjectBuilder(TestObject.prototype).writable('value1').writable('
       return b.p('value2');
     });
   }
-}), (0, _index.calcPropertyFactory)({
+}), (0, _webrain.calcPropertyFactory)({
   dependencies: function dependencies(d) {
     return d.invalidateOn(function (b) {
       return b.propertyAny();
@@ -60,7 +60,7 @@ new _index.CalcObjectBuilder(TestObject.prototype).writable('value1').writable('
   calcFunc: function calcFunc(state) {
     state.value = state.input.val1 + state.input.val2;
   }
-})).calc('time', null, (0, _index.calcPropertyFactory)({
+})).calc('time', null, (0, _webrain.calcPropertyFactory)({
   dependencies: function dependencies(d) {
     return d.invalidateOn(function (b) {
       return b.propertyAny();

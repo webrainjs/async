@@ -44,7 +44,7 @@ var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _localStorage = require("../../../main/browser/helpers/localStorage");
 
@@ -72,13 +72,13 @@ var calcNodeId = function calcNodeId(object, key, keyType) {
     return null;
   }
 
-  var objectId = (0, _index.getObjectUniqueId)(object);
+  var objectId = (0, _webrain.getObjectUniqueId)(object);
 
   if (objectId == null) {
     return null; // throw new Error(`getObjectUniqueId(${object}) == null`)
   }
 
-  var keyId = (0, _index.getObjectUniqueId)(key);
+  var keyId = (0, _webrain.getObjectUniqueId)(key);
 
   if (keyId) {
     key = "{" + keyId + "}";
@@ -88,7 +88,7 @@ var calcNodeId = function calcNodeId(object, key, keyType) {
 };
 
 var calcEdgeId = function calcEdgeId(fromId, toId, type, key, keyType) {
-  var keyId = (0, _index.getObjectUniqueId)(key);
+  var keyId = (0, _webrain.getObjectUniqueId)(key);
 
   if (keyId) {
     key = "{" + keyId + "}";
@@ -326,7 +326,7 @@ function (_ObservableClass) {
         keyType = 0;
       }
 
-      if (from.object instanceof _index.CalcProperty) {
+      if (from.object instanceof _webrain.CalcProperty) {
         from.key = null;
         from.keyType = null;
       }
@@ -468,7 +468,7 @@ function (_ObservableClass) {
         return;
       }
 
-      _index.Debugger.Instance.calculatedObservable.subscribe(function (e) {
+      _webrain.Debugger.Instance.calculatedObservable.subscribe(function (e) {
         // console.log('calculatedObservable', e)
         (0, _setTimeout2.default)(function () {
           _this2.setNode({
@@ -482,7 +482,7 @@ function (_ObservableClass) {
         });
       }, 'WebrainGraph calculatedObservable');
 
-      _index.Debugger.Instance.errorObservable.subscribe(function (e) {
+      _webrain.Debugger.Instance.errorObservable.subscribe(function (e) {
         (0, _setTimeout2.default)(function () {
           _this2.setNode({
             object: e.target,
@@ -589,7 +589,7 @@ function (_ObservableClass) {
       // }, 'WebrainGraph dependencyObservable')
 
 
-      _index.Debugger.Instance.deepSubscribeObservable.subscribe(function (e) {
+      _webrain.Debugger.Instance.deepSubscribeObservable.subscribe(function (e) {
         (0, _setTimeout2.default)(function () {
           var fromId;
           var toId;
@@ -602,16 +602,16 @@ function (_ObservableClass) {
           var nodeType;
           var edgeType;
 
-          if (e.target instanceof _index.CalcProperty) {
+          if (e.target instanceof _webrain.CalcProperty) {
             edgeType = _Edge.EdgeType.Dependency; // nodeType = NodeType.CalcProperty
-          } else if (e.target instanceof _index.Connector) {
+          } else if (e.target instanceof _webrain.Connector) {
             edgeType = _Edge.EdgeType.Connect;
             nodeType = _Node.NodeType.Connector;
           } else {
             edgeType = _Edge.EdgeType.DeepSubscribe;
           }
 
-          if ((!e.oldIsLeaf || nodeType !== _Node.NodeType.Connector || typeof e.oldValue !== 'undefined') && (e.changeType & _index.ValueChangeType.Unsubscribe) !== 0) {
+          if ((!e.oldIsLeaf || nodeType !== _Node.NodeType.Connector || typeof e.oldValue !== 'undefined') && (e.changeType & _webrain.ValueChangeType.Unsubscribe) !== 0) {
             fromId = _this2.getNodeId({
               object: e.parent,
               type: null,
@@ -628,7 +628,7 @@ function (_ObservableClass) {
             });
           }
 
-          if ((!e.newIsLeaf || nodeType !== _Node.NodeType.Connector || typeof e.newValue !== 'undefined') && (e.changeType & _index.ValueChangeType.Subscribe) !== 0) {
+          if ((!e.newIsLeaf || nodeType !== _Node.NodeType.Connector || typeof e.newValue !== 'undefined') && (e.changeType & _webrain.ValueChangeType.Subscribe) !== 0) {
             _this2.setEdge({
               type: e.newIsLeaf ? edgeType : _Edge.EdgeType.DeepSubscribe,
               key: e.key,
@@ -747,7 +747,7 @@ function (_ObservableClass) {
     }
   }]);
   return WebrainGraph;
-}(_index.ObservableClass); // see graphic: https://www.desmos.com/calculator/cdxbsjigvu
+}(_webrain.ObservableClass); // see graphic: https://www.desmos.com/calculator/cdxbsjigvu
 
 
 exports.WebrainGraph = WebrainGraph;
@@ -764,7 +764,7 @@ function calcOpacityCalcTime(calcTime, halfOpacityForCalcTime) {
   return (1 - Math.exp(-calcTime * ln2 / halfOpacityForCalcTime)) * (1 - opacityMin) + opacityMin;
 }
 
-new _index.CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writable('highlightMode').writable('searchPattern', {
+new _webrain.CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writable('highlightMode').writable('searchPattern', {
   setOptions: {
     afterChange: function afterChange(value) {
       if (value) {
@@ -774,13 +774,13 @@ new _index.CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writa
   }
 }).readable('nodes', {
   factory: function factory() {
-    return new _common.WebrainObservableMap(new _index.ObjectMap());
+    return new _common.WebrainObservableMap(new _webrain.ObjectMap());
   }
 }).readable('edges', {
   factory: function factory() {
-    return new _common.WebrainObservableMap(new _index.ObjectMap());
+    return new _common.WebrainObservableMap(new _webrain.ObjectMap());
   }
-}).calc('visData', (0, _index.connectorFactory)({
+}).calc('visData', (0, _webrain.connectorFactory)({
   name: 'WebrainGraph.Connector.visData' + _common.WebrainGraphObjectsId,
   buildRule: function buildRule(c) {
     return c.connect('nodes', function (b) {
@@ -793,7 +793,7 @@ new _index.CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writa
       return b.p('searchPattern');
     });
   }
-}), (0, _index.calcPropertyFactory)({
+}), (0, _webrain.calcPropertyFactory)({
   name: 'WebrainGraph.visData' + _common.WebrainGraphObjectsId,
   dependencies: function dependencies(d) {
     return d.invalidateOn(function (b) {
@@ -1003,14 +1003,14 @@ new _index.CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writa
             group = value.groups.nodes[groupId];
             item = group[0];
             _context10.next = 57;
-            return (0, _index.resolvePath)(item)(function (o) {
+            return (0, _webrain.resolvePath)(item)(function (o) {
               return o.updateId;
             })();
 
           case 57:
             itemUpdateId = _context10.sent;
             age = currentUpdateId - itemUpdateId;
-            opacity = _calcOpacity(item.name, item.object, itemUpdateId, item.object instanceof _index.CalcProperty ? item.object.timeTotalStat : null);
+            opacity = _calcOpacity(item.name, item.object, itemUpdateId, item.object instanceof _webrain.CalcProperty ? item.object.timeTotalStat : null);
             visData = item.getVisData({
               opacity: opacity,
               age: age
@@ -1051,7 +1051,7 @@ new _index.CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writa
             _group = value.groups.edges[_groupId];
             _item = _group[0];
             _context10.next = 74;
-            return (0, _index.resolvePath)(_item)(function (o) {
+            return (0, _webrain.resolvePath)(_item)(function (o) {
               return o.updateId;
             })();
 
@@ -1180,12 +1180,12 @@ function isWebrainInternalObject(object) {
     return false;
   }
 
-  if (object instanceof _Node.Node || object instanceof _Edge.Edge || object instanceof WebrainGraph || object instanceof _common.WebrainMap || object instanceof _common.WebrainObservableMap || object instanceof _index.ConnectorState || object instanceof _index.CalcPropertyState // || object instanceof Connector
+  if (object instanceof _Node.Node || object instanceof _Edge.Edge || object instanceof WebrainGraph || object instanceof _common.WebrainMap || object instanceof _common.WebrainObservableMap || object instanceof _webrain.ConnectorState || object instanceof _webrain.CalcPropertyState // || object instanceof Connector
   ) {
       return true;
     }
 
-  var name = object instanceof _index.CalcProperty && object.state.name || object instanceof _index.Connector && object.connectorState.name;
+  var name = object instanceof _webrain.CalcProperty && object.state.name || object instanceof _webrain.Connector && object.connectorState.name;
 
   if (name && (0, _indexOf.default)(name).call(name, _common.WebrainGraphObjectsId) >= 0) {
     return true;

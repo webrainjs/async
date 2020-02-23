@@ -46,14 +46,14 @@
 				var args = new Array(len);
 
 				for (var i = 0; i < len; i++) {
-					let arg = arguments[i];
+					var arg = arguments[i];
 					arg = (typeof PromiseRejectionEvent !== 'undefined'
 						? arg instanceof PromiseRejectionEvent && arg.reason
 						: arg.reason)
 						|| arg;
 
 					if (arg instanceof Error) {
-						const obj = {};
+						var obj = {};
 						for (var key in arg) {
 							obj[key] = arg[key];
 						}
@@ -95,7 +95,7 @@
 			// Suppress serviceWorker.register errors for non https protocol, because electron allowServiceWorkers is not worked
 			// see: https://github.com/electron/electron/issues/9663
 
-			// const origRegister = navigator.serviceWorker.register;
+			// var origRegister = navigator.serviceWorker.register;
 			// navigator.serviceWorker.register = function () {
 			// 	if (!window.location.href.startsWith('https:')) {
 			// 		return origRegister
@@ -120,8 +120,11 @@
 
 	<script>
 		(function() {
-			const indexFile = 'index.html';
-			if (window.location.href.endsWith('/', indexFile)) {
+			var indexFile = 'index.html';
+			function endsWith(str, suffix) {
+				return str.indexOf(suffix, str.length - suffix.length) !== -1;
+			}
+			if (endsWith(window.location.href, '/' + indexFile)) {
 				window.history.pushState({}, null, window.location.href.substring(0, window.location.href.length - indexFile.length));
 			}
 		})();

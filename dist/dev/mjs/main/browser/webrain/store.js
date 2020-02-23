@@ -1,5 +1,5 @@
 // @ts-ignore
-import { createFunction } from 'webrain/src/main/common/index.ts';
+import { createFunction } from 'webrain';
 
 class ReadableStore {
   constructor(object, propertyName) {

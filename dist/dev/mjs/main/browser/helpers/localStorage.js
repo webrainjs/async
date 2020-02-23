@@ -1,5 +1,5 @@
 /* tslint:disable:no-empty */
-import { deepSubscribe, DeferredCalc, ObjectSerializer } from 'webrain/src/main/common/index.ts';
+import { deepSubscribe, DeferredCalc, ObjectSerializer } from 'webrain';
 export const localStorageWrapper = typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local && {
   getItem: key => new Promise(resolve => {
     chrome.storage.local.get([key], result => resolve(result[key]));

@@ -17,7 +17,7 @@ var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _common = require("./common");
 
@@ -145,10 +145,10 @@ function (_ObservableClass) {
     }
   }]);
   return Edge;
-}(_index.ObservableClass);
+}(_webrain.ObservableClass);
 
 exports.Edge = Edge;
-new _index.CalcObjectBuilder(Edge.prototype).writable('count').writable('value', {
+new _webrain.CalcObjectBuilder(Edge.prototype).writable('count').writable('value', {
   setOptions: {
     equalsFunc: function equalsFunc() {
       return false;
@@ -164,7 +164,7 @@ new _index.CalcObjectBuilder(Edge.prototype).writable('count').writable('value',
 }).calc('updateId', function (o) {
   return o;
 }, // connect to self
-(0, _index.calcPropertyFactory)({
+(0, _webrain.calcPropertyFactory)({
   name: 'Edge.updateId' + _common.WebrainGraphObjectsId,
   dependencies: function dependencies(d) {
     return d.invalidateOn(function (b) {

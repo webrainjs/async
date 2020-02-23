@@ -1,4 +1,4 @@
-import { Subject } from 'webrain/src/main/common/index.ts';
+import { Subject } from 'webrain';
 import { HttpDataType, NetworkErrorType } from './contracts/http';
 import { prepareHttpRequest } from './helpers';
 import { NetworkError } from './NetworkError';

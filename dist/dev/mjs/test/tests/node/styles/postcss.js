@@ -39,7 +39,7 @@ describe('node > styles > postcss', function () {
 		`, path.resolve(stylesDir, '__fake__.js'));
   }
 
-  it('themes', async function () {
+  xit('themes', async function () {
     const css = await themeToCss('./themes.js', '');
     assert.ok(css);
     assert.strictEqual(typeof css, 'string', css); // console.log(css)

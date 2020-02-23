@@ -1,4 +1,4 @@
-import {IObservable} from 'webrain/src/main/common/index.ts'
+import {IObservable} from 'webrain'
 import {
 	IHttpRequest,
 	INetworkError,

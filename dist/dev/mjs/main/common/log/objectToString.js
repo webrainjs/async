@@ -1,4 +1,4 @@
-import { getObjectUniqueId } from 'webrain/src/main/common/helpers/object-unique-id.ts';
+import { getObjectUniqueId } from 'webrain';
 
 function filter(obj) {
   if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {

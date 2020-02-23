@@ -5,7 +5,7 @@ import {
 	ISubject,
 	ObservableClass,
 	Subject,
-} from 'webrain/src/main/common/index.ts'
+} from 'webrain'
 import {storeWindowState} from '../localStorage'
 
 export function windowIsDestroyed(win: Window) {

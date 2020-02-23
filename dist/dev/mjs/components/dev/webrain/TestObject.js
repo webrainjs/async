@@ -1,4 +1,4 @@
-import { CalcObjectBuilder, calcPropertyFactory, connectorFactory, ObservableClass } from 'webrain/src/main/common/index.ts';
+import { CalcObjectBuilder, calcPropertyFactory, connectorFactory, ObservableClass } from 'webrain';
 export class TestObject extends ObservableClass {
   constructor(...args) {
     super(...args);

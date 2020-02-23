@@ -1,4 +1,4 @@
-import { BehaviorSubject, CalcObjectBuilder, ObservableClass, Subject } from 'webrain/src/main/common/index.ts';
+import { BehaviorSubject, CalcObjectBuilder, ObservableClass, Subject } from 'webrain';
 import { storeWindowState } from '../localStorage';
 export function windowIsDestroyed(win) {
   try {

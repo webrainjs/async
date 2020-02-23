@@ -44,7 +44,7 @@ describe('node > styles > postcss', function () {
     return jsToCss("\n\t\t\timport style from '" + filename + "'\n\t\t\texport default style('" + componentId + "')\n\t\t", _path.default.resolve(stylesDir, '__fake__.js'));
   }
 
-  it('themes',
+  xit('themes',
   /*#__PURE__*/
   (0, _asyncToGenerator2.default)(
   /*#__PURE__*/

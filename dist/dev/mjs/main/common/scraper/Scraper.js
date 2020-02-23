@@ -1,4 +1,4 @@
-import { Subject } from 'webrain/src/main/common/index.ts';
+import { Subject } from 'webrain';
 import { prepareHttpRequest } from '../api/helpers';
 import { NetworkError } from '../api/NetworkError';
 export class Scraper {

@@ -1,4 +1,4 @@
-import { CalcObjectBuilder, ObservableClass, Subject } from 'webrain/src/main/common/index.ts';
+import { CalcObjectBuilder, ObservableClass, Subject } from 'webrain';
 import { windowIsDestroyed } from './helpers';
 export class WindowState extends ObservableClass {
   constructor(win) {

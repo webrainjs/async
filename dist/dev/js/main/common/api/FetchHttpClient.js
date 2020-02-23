@@ -19,7 +19,7 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpe
 
 var _promise = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/promise"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _http = require("./contracts/http");
 
@@ -53,9 +53,9 @@ function () {
         _fetch = _ref$fetch === void 0 ? fetch : _ref$fetch;
 
     (0, _classCallCheck2.default)(this, FetchHttpClient);
-    this._loadingSubject = new _index.Subject();
-    this._loadedSubject = new _index.Subject();
-    this._errorSubject = new _index.Subject();
+    this._loadingSubject = new _webrain.Subject();
+    this._loadedSubject = new _webrain.Subject();
+    this._errorSubject = new _webrain.Subject();
     this._fetch = _fetch;
   } // region events
   // region loading

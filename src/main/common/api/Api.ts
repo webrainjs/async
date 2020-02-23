@@ -1,4 +1,4 @@
-import {IObservable, ISubject, Subject} from 'webrain/src/main/common/index.ts'
+import {IObservable, ISubject, Subject} from 'webrain'
 import {IApi, IApiRequest, IApiRequestArgs, IApiResponse} from './contracts/api'
 import {HttpDataType, IHttpClient, INetworkError, NetworkErrorType} from './contracts/http'
 import {prepareHttpRequest} from './helpers'

@@ -1,3 +1,5 @@
+
+
 /* eslint-disable no-process-env */
 module.exports = {
 	appId      : 'com.app-template',
@@ -15,7 +17,7 @@ module.exports = {
 	},
 	tests: {
 		intern: {
-			serverIp: '192.168.0.102',
+
 		},
 	},
 }

@@ -1,5 +1,5 @@
 <script context="module">
-	import { connectorFactory } from 'webrain/src/main/common/index.ts'
+	import { connectorFactory } from 'webrain'
 	import {TestObject} from "./TestObject";
 
 	const createConnector = connectorFactory({

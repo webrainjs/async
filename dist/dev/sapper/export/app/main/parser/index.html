@@ -27,14 +27,14 @@
 				var args = new Array(len);
 
 				for (var i = 0; i < len; i++) {
-					let arg = arguments[i];
+					var arg = arguments[i];
 					arg = (typeof PromiseRejectionEvent !== 'undefined'
 						? arg instanceof PromiseRejectionEvent && arg.reason
 						: arg.reason)
 						|| arg;
 
 					if (arg instanceof Error) {
-						const obj = {};
+						var obj = {};
 						for (var key in arg) {
 							obj[key] = arg[key];
 						}
@@ -68,7 +68,7 @@
 			// Suppress serviceWorker.register errors for non https protocol, because electron allowServiceWorkers is not worked
 			// see: https://github.com/electron/electron/issues/9663
 
-			// const origRegister = navigator.serviceWorker.register;
+			// var origRegister = navigator.serviceWorker.register;
 			// navigator.serviceWorker.register = function () {
 			// 	if (!window.location.href.startsWith('https:')) {
 			// 		return origRegister
@@ -80,8 +80,11 @@
 			// 	return origRegister.apply(navigator.serviceWorker, arguments);
 			// };
 		})(); </script> <link href=client/styles.css rel=stylesheet> <link href=manifest.json rel=manifest> <link href=favicon.ico rel=icon type=image/x-icon> <script> (function() {
-			const indexFile = 'index.html';
-			if (window.location.href.endsWith('/', indexFile)) {
+			var indexFile = 'index.html';
+			function endsWith(str, suffix) {
+				return str.indexOf(suffix, str.length - suffix.length) !== -1;
+			}
+			if (endsWith(window.location.href, '/' + indexFile)) {
 				window.history.pushState({}, null, window.location.href.substring(0, window.location.href.length - indexFile.length));
 			}
-		})(); </script> <link href=client/main.3150615964.css rel=stylesheet><link href=client/_layout.c9c866e0.css rel=stylesheet><link href=client/client.b24ea231.css rel=stylesheet><link href=client/parser.f967e965.css rel=stylesheet> <noscript id=sapper-head-start></noscript><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> <main class="svelte-1edzxth fill font-base"> <div class="svelte-1phbjsm flex flex__item--fit fill flex--vertical window"> <div class="svelte-1phbjsm flex titlebar window__titlebar"> <div class="svelte-1phbjsm flex flex__item--fill flex--align-center titlebar__title"> <span class="svelte-1phbjsm text">App Template Dev v0.0.1</span> </div> <div class="svelte-1phbjsm flex flex__item--fit titlebar__buttons"> <a class="svelte-1phbjsm flex titlebar__button button-dev" href=dev> <span class="svelte-1phbjsm text">&lt;/></span> </a> <span style=display:none></span> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-minimize"> </span> </button> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-maximize"> </span> </button> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-restore"> </span> </button> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-close"> </span> </button> </div> </div> <div class="svelte-1phbjsm flex flex__item--fill window__content"> <div class="flex fill flex--vertical svelte-1edzxth"> <div class="svelte-1edzxth flex__item--fit nav scroll-horizontal scrollbar--collapsed"> <nav class="svelte-1edzxth nav__content scroll__content"> <ul class="svelte-1edzxth nav__list"> <li class=svelte-1edzxth> <a class="svelte-1edzxth nav__item nav__item--selected" href=main/parser> <span class="svelte-1edzxth text">Parser</span> </a> </li> </ul> </nav> </div> <div class="svelte-1edzxth flex__item--fill scroll-vertical"> <main class="svelte-hrmlp6 fill"> <span class="text svelte-hrmlp6">Main page</span> </main> </div> </div> </div> </div> </main> </div> <script>__SAPPER__={baseUrl:"/app",preloaded:[void 0,{},{}]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/service-worker.js');(function(){try{eval("async function x(){}");var main="/app/client/client.b24ea231.js"}catch(e){main="/app/client/legacy/client.b598e8a3.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/app/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> 
+		})(); </script> <link href=client/main.3150615964.css rel=stylesheet><link href=client/_layout.ba29b98d.css rel=stylesheet><link href=client/client.6a27e0ac.css rel=stylesheet><link href=client/parser.3d337824.css rel=stylesheet> <noscript id=sapper-head-start></noscript><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> <main class="svelte-1edzxth fill font-base"> <div class="svelte-1phbjsm flex flex__item--fit fill flex--vertical window"> <div class="svelte-1phbjsm flex titlebar window__titlebar"> <div class="svelte-1phbjsm flex flex__item--fill flex--align-center titlebar__title"> <span class="svelte-1phbjsm text">App Template Dev v0.0.1</span> </div> <div class="svelte-1phbjsm flex flex__item--fit titlebar__buttons"> <a class="svelte-1phbjsm flex titlebar__button button-dev" href=dev> <span class="svelte-1phbjsm text">&lt;/></span> </a> <span style=display:none></span> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-minimize"> </span> </button> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-maximize"> </span> </button> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-restore"> </span> </button> <button class="svelte-1phbjsm flex titlebar__button collapsed"> <span class="svelte-1phbjsm ghost icon-inline titlebar__button__icon icon-window-close"> </span> </button> </div> </div> <div class="svelte-1phbjsm flex flex__item--fill window__content"> <div class="flex fill flex--vertical svelte-1edzxth"> <div class="svelte-1edzxth flex__item--fit nav scroll-horizontal scrollbar--collapsed"> <nav class="svelte-1edzxth nav__content scroll__content"> <ul class="svelte-1edzxth nav__list"> <li class=svelte-1edzxth> <a class="svelte-1edzxth nav__item nav__item--selected" href=main/parser> <span class="svelte-1edzxth text">Parser</span> </a> </li> </ul> </nav> </div> <div class="svelte-1edzxth flex__item--fill scroll-vertical"> <main class="svelte-hrmlp6 fill"> <span class="text svelte-hrmlp6">Main page</span> </main> </div> </div> </div> </div> </main> </div> <script>__SAPPER__={baseUrl:"/app",preloaded:[void 0,{},{}]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/service-worker.js');(function(){try{eval("async function x(){}");var main="/app/client/client.6a27e0ac.js"}catch(e){main="/app/client/legacy/client.1f341216.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/app/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> 

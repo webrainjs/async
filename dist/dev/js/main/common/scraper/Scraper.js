@@ -15,7 +15,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/createClass"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _helpers = require("../api/helpers");
 
@@ -28,7 +28,7 @@ function () {
     var urlBase = _ref.urlBase,
         httpClient = _ref.httpClient;
     (0, _classCallCheck2.default)(this, Scraper);
-    this._networkErrorSubject = new _index.Subject();
+    this._networkErrorSubject = new _webrain.Subject();
     this.urlBase = urlBase;
     this.httpClient = httpClient;
   } // region networkErrorObservable

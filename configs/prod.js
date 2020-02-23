@@ -13,7 +13,6 @@ module.exports = {
 	type  : 'prod',
 	tests : {
 		intern: {
-			serverIp  : base.tests.intern.serverIp,
 			staticPort: 3014,
 			serverPort: 3024,
 			socketPort: 3034,

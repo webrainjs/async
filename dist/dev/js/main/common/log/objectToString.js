@@ -17,7 +17,7 @@ var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-st
 
 var _isNan = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/number/is-nan"));
 
-var _objectUniqueId = require("webrain/src/main/common/helpers/object-unique-id.ts");
+var _webrain = require("webrain");
 
 function filter(obj) {
   if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {
@@ -74,7 +74,7 @@ function objectToString(object) {
         if (obj.constructor) {
           buffer.push('<');
           buffer.push(obj.constructor.name);
-          var id = (0, _objectUniqueId.getObjectUniqueId)(obj);
+          var id = (0, _webrain.getObjectUniqueId)(obj);
 
           if (id) {
             buffer.push('-');
@@ -112,7 +112,7 @@ function objectToString(object) {
         buffer.push('<');
         buffer.push(obj.constructor.name);
 
-        var _id = (0, _objectUniqueId.getObjectUniqueId)(obj);
+        var _id = (0, _webrain.getObjectUniqueId)(obj);
 
         if (_id) {
           buffer.push('-');

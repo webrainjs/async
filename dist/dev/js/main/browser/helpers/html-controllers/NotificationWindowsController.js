@@ -21,7 +21,7 @@ var _getPrototypeOf3 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _WindowController = require("./WindowController");
 
@@ -115,7 +115,7 @@ function (_ObservableClass) {
     }
   }]);
   return NotificationWindowsController;
-}(_index.ObservableClass);
+}(_webrain.ObservableClass);
 
 var notificationWindowsController = new NotificationWindowsController();
 exports.notificationWindowsController = notificationWindowsController;

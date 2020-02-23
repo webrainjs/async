@@ -27,14 +27,14 @@
 				var args = new Array(len);
 
 				for (var i = 0; i < len; i++) {
-					let arg = arguments[i];
+					var arg = arguments[i];
 					arg = (typeof PromiseRejectionEvent !== 'undefined'
 						? arg instanceof PromiseRejectionEvent && arg.reason
 						: arg.reason)
 						|| arg;
 
 					if (arg instanceof Error) {
-						const obj = {};
+						var obj = {};
 						for (var key in arg) {
 							obj[key] = arg[key];
 						}
@@ -68,7 +68,7 @@
 			// Suppress serviceWorker.register errors for non https protocol, because electron allowServiceWorkers is not worked
 			// see: https://github.com/electron/electron/issues/9663
 
-			// const origRegister = navigator.serviceWorker.register;
+			// var origRegister = navigator.serviceWorker.register;
 			// navigator.serviceWorker.register = function () {
 			// 	if (!window.location.href.startsWith('https:')) {
 			// 		return origRegister
@@ -80,8 +80,11 @@
 			// 	return origRegister.apply(navigator.serviceWorker, arguments);
 			// };
 		})(); </script> <link href=client/styles.css rel=stylesheet> <link href=manifest.json rel=manifest> <link href=favicon.ico rel=icon type=image/x-icon> <script> (function() {
-			const indexFile = 'index.html';
-			if (window.location.href.endsWith('/', indexFile)) {
+			var indexFile = 'index.html';
+			function endsWith(str, suffix) {
+				return str.indexOf(suffix, str.length - suffix.length) !== -1;
+			}
+			if (endsWith(window.location.href, '/' + indexFile)) {
 				window.history.pushState({}, null, window.location.href.substring(0, window.location.href.length - indexFile.length));
 			}
-		})(); </script> <link href=client/main.3150615964.css rel=stylesheet><link href=client/client.b24ea231.css rel=stylesheet> <noscript id=sapper-head-start></noscript><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> </div> <script>__SAPPER__={baseUrl:"/app",preloaded:[void 0]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/service-worker.js');(function(){try{eval("async function x(){}");var main="/app/client/client.b24ea231.js"}catch(e){main="/app/client/legacy/client.b598e8a3.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/app/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> 
+		})(); </script> <link href=client/main.3150615964.css rel=stylesheet><link href=client/client.6a27e0ac.css rel=stylesheet> <noscript id=sapper-head-start></noscript><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> </div> <script>__SAPPER__={baseUrl:"/app",preloaded:[void 0]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/service-worker.js');(function(){try{eval("async function x(){}");var main="/app/client/client.6a27e0ac.js"}catch(e){main="/app/client/legacy/client.1f341216.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/app/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> 

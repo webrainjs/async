@@ -1,4 +1,4 @@
-import { CalcObjectBuilder, CalcProperty, calcPropertyFactory, CalcPropertyState, Connector, connectorFactory, ConnectorState, Debugger, getObjectUniqueId, ObjectMap, ObservableClass, resolvePath, ValueChangeType } from 'webrain/src/main/common/index.ts';
+import { CalcObjectBuilder, CalcProperty, calcPropertyFactory, CalcPropertyState, Connector, connectorFactory, ConnectorState, Debugger, getObjectUniqueId, ObjectMap, ObservableClass, resolvePath, ValueChangeType } from 'webrain';
 import { localStorageWrapper } from '../../../main/browser/helpers/localStorage';
 import { getDisplayName, NoValue, updateId, WebrainGraphObjectsId, WebrainMap, WebrainObservableMap } from './common';
 import { Edge, EdgeType } from './Edge';

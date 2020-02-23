@@ -2676,8 +2676,8 @@
 
   var engineUserAgent = getBuiltIn('navigator', 'userAgent') || '';
 
-  var process = global_1.process;
-  var versions = process && process.versions;
+  var process$1 = global_1.process;
+  var versions = process$1 && process$1.versions;
   var v8 = versions && versions.v8;
   var match, version;
 
@@ -2977,7 +2977,7 @@
   var location = global_1.location;
   var set$1 = global_1.setImmediate;
   var clear = global_1.clearImmediate;
-  var process$1 = global_1.process;
+  var process$2 = global_1.process;
   var MessageChannel = global_1.MessageChannel;
   var Dispatch = global_1.Dispatch;
   var counter = 0;
@@ -3026,9 +3026,9 @@
       delete queue[id];
     };
     // Node.js 0.8-
-    if (classofRaw(process$1) == 'process') {
+    if (classofRaw(process$2) == 'process') {
       defer = function (id) {
-        process$1.nextTick(runner(id));
+        process$2.nextTick(runner(id));
       };
     // Sphere (JS game engine) Dispatch API
     } else if (Dispatch && Dispatch.now) {
@@ -3074,9 +3074,9 @@
 
 
   var MutationObserver = global_1.MutationObserver || global_1.WebKitMutationObserver;
-  var process$2 = global_1.process;
+  var process$3 = global_1.process;
   var Promise = global_1.Promise;
-  var IS_NODE = classofRaw(process$2) == 'process';
+  var IS_NODE = classofRaw(process$3) == 'process';
   // Node.js 11 shows ExperimentalWarning on getting `queueMicrotask`
   var queueMicrotaskDescriptor = getOwnPropertyDescriptor$2(global_1, 'queueMicrotask');
   var queueMicrotask = queueMicrotaskDescriptor && queueMicrotaskDescriptor.value;
@@ -3087,7 +3087,7 @@
   if (!queueMicrotask) {
     flush = function () {
       var parent, fn;
-      if (IS_NODE && (parent = process$2.domain)) parent.exit();
+      if (IS_NODE && (parent = process$3.domain)) parent.exit();
       while (head) {
         fn = head.fn;
         head = head.next;
@@ -3105,7 +3105,7 @@
     // Node.js
     if (IS_NODE) {
       notify = function () {
-        process$2.nextTick(flush);
+        process$3.nextTick(flush);
       };
     // browsers with MutationObserver, except iOS - https://github.com/zloirock/core-js/issues/339
     } else if (MutationObserver && !engineIsIos) {
@@ -3209,11 +3209,11 @@
   var PromiseConstructor = nativePromiseConstructor;
   var TypeError$1 = global_1.TypeError;
   var document$2 = global_1.document;
-  var process$3 = global_1.process;
+  var process$4 = global_1.process;
   var $fetch$1 = getBuiltIn('fetch');
   var newPromiseCapability$1 = newPromiseCapability.f;
   var newGenericPromiseCapability = newPromiseCapability$1;
-  var IS_NODE$1 = classofRaw(process$3) == 'process';
+  var IS_NODE$1 = classofRaw(process$4) == 'process';
   var DISPATCH_EVENT = !!(document$2 && document$2.createEvent && global_1.dispatchEvent);
   var UNHANDLED_REJECTION = 'unhandledrejection';
   var REJECTION_HANDLED = 'rejectionhandled';
@@ -3329,7 +3329,7 @@
       if (IS_UNHANDLED) {
         result = perform(function () {
           if (IS_NODE$1) {
-            process$3.emit('unhandledRejection', value, promise);
+            process$4.emit('unhandledRejection', value, promise);
           } else dispatchEvent(UNHANDLED_REJECTION, promise, value);
         });
         // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should
@@ -3346,7 +3346,7 @@
   var onHandleUnhandled = function (promise, state) {
     task$1.call(global_1, function () {
       if (IS_NODE$1) {
-        process$3.emit('rejectionHandled', promise);
+        process$4.emit('rejectionHandled', promise);
       } else dispatchEvent(REJECTION_HANDLED, promise, state.value);
     });
   };
@@ -3430,7 +3430,7 @@
         var reaction = newPromiseCapability$1(speciesConstructor(this, PromiseConstructor));
         reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
         reaction.fail = typeof onRejected == 'function' && onRejected;
-        reaction.domain = IS_NODE$1 ? process$3.domain : undefined;
+        reaction.domain = IS_NODE$1 ? process$4.domain : undefined;
         state.parent = true;
         state.reactions.push(reaction);
         if (state.state != PENDING) notify$1(this, state, false);
@@ -5080,6 +5080,24 @@
 
   var keys$1 = entryVirtual('Array').keys;
 
+  var keys$2 = keys$1;
+
+  var ArrayPrototype$4 = Array.prototype;
+
+  var DOMIterables$1 = {
+    DOMTokenList: true,
+    NodeList: true
+  };
+
+  var keys_1 = function (it) {
+    var own = it.keys;
+    return it === ArrayPrototype$4 || (it instanceof Array && own === ArrayPrototype$4.keys)
+      // eslint-disable-next-line no-prototype-builtins
+      || DOMIterables$1.hasOwnProperty(classof(it)) ? keys$2 : own;
+  };
+
+  var keys$3 = keys_1;
+
   var freezing = !fails(function () {
     return Object.isExtensible(Object.preventExtensions({}));
   });
@@ -5405,13 +5423,19 @@
     return function Set() { return init(this, arguments.length ? arguments[0] : undefined); };
   }, collectionStrong);
 
+  var set$2 = path.Set;
+
+  var set$3 = set$2;
+
+  var set$4 = set$3;
+
   var concat = entryVirtual('Array').concat;
 
-  var ArrayPrototype$4 = Array.prototype;
+  var ArrayPrototype$5 = Array.prototype;
 
   var concat_1 = function (it) {
     var own = it.concat;
-    return it === ArrayPrototype$4 || (it instanceof Array && own === ArrayPrototype$4.concat) ? concat : own;
+    return it === ArrayPrototype$5 || (it instanceof Array && own === ArrayPrototype$5.concat) ? concat : own;
   };
 
   var concat$1 = concat_1;
@@ -5437,11 +5461,11 @@
 
   var map = entryVirtual('Array').map;
 
-  var ArrayPrototype$5 = Array.prototype;
+  var ArrayPrototype$6 = Array.prototype;
 
   var map_1 = function (it) {
     var own = it.map;
-    return it === ArrayPrototype$5 || (it instanceof Array && own === ArrayPrototype$5.map) ? map : own;
+    return it === ArrayPrototype$6 || (it instanceof Array && own === ArrayPrototype$6.map) ? map : own;
   };
 
   var map$1 = map_1;
@@ -5467,11 +5491,11 @@
 
   var filter = entryVirtual('Array').filter;
 
-  var ArrayPrototype$6 = Array.prototype;
+  var ArrayPrototype$7 = Array.prototype;
 
   var filter_1 = function (it) {
     var own = it.filter;
-    return it === ArrayPrototype$6 || (it instanceof Array && own === ArrayPrototype$6.filter) ? filter : own;
+    return it === ArrayPrototype$7 || (it instanceof Array && own === ArrayPrototype$7.filter) ? filter : own;
   };
 
   var filter$1 = filter_1;
@@ -5799,11 +5823,11 @@
 
   var splice = entryVirtual('Array').splice;
 
-  var ArrayPrototype$7 = Array.prototype;
+  var ArrayPrototype$8 = Array.prototype;
 
   var splice_1 = function (it) {
     var own = it.splice;
-    return it === ArrayPrototype$7 || (it instanceof Array && own === ArrayPrototype$7.splice) ? splice : own;
+    return it === ArrayPrototype$8 || (it instanceof Array && own === ArrayPrototype$8.splice) ? splice : own;
   };
 
   var splice$1 = splice_1;
@@ -5827,11 +5851,11 @@
 
   var some = entryVirtual('Array').some;
 
-  var ArrayPrototype$8 = Array.prototype;
+  var ArrayPrototype$9 = Array.prototype;
 
   var some_1 = function (it) {
     var own = it.some;
-    return it === ArrayPrototype$8 || (it instanceof Array && own === ArrayPrototype$8.some) ? some : own;
+    return it === ArrayPrototype$9 || (it instanceof Array && own === ArrayPrototype$9.some) ? some : own;
   };
 
   var some$1 = some_1;
@@ -7108,11 +7132,11 @@
 
   var indexOf$1 = entryVirtual('Array').indexOf;
 
-  var ArrayPrototype$9 = Array.prototype;
+  var ArrayPrototype$a = Array.prototype;
 
   var indexOf_1 = function (it) {
     var own = it.indexOf;
-    return it === ArrayPrototype$9 || (it instanceof Array && own === ArrayPrototype$9.indexOf) ? indexOf$1 : own;
+    return it === ArrayPrototype$a || (it instanceof Array && own === ArrayPrototype$a.indexOf) ? indexOf$1 : own;
   };
 
   var indexOf$2 = indexOf_1;
@@ -7188,31 +7212,1230 @@
 
   var isNan$2 = isNan$1;
 
-  var onFreeze = internalMetadata.onFreeze;
+  var slice$4 = [].slice;
+  var factories = {};
 
-  var nativeFreeze = Object.freeze;
-  var FAILS_ON_PRIMITIVES$2 = fails(function () { nativeFreeze(1); });
+  var construct = function (C, argsLength, args) {
+    if (!(argsLength in factories)) {
+      for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']';
+      // eslint-disable-next-line no-new-func
+      factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
+    } return factories[argsLength](C, args);
+  };
 
-  // `Object.freeze` method
-  // https://tc39.github.io/ecma262/#sec-object.freeze
-  _export({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES$2, sham: !freezing }, {
-    freeze: function freeze(it) {
-      return nativeFreeze && isObject(it) ? nativeFreeze(onFreeze(it)) : it;
-    }
+  // `Function.prototype.bind` method implementation
+  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
+  var functionBind = Function.bind || function bind(that /* , ...args */) {
+    var fn = aFunction(this);
+    var partArgs = slice$4.call(arguments, 1);
+    var boundFunction = function bound(/* args... */) {
+      var args = partArgs.concat(slice$4.call(arguments));
+      return this instanceof boundFunction ? construct(fn, args.length, args) : fn.apply(that, args);
+    };
+    if (isObject(fn.prototype)) boundFunction.prototype = fn.prototype;
+    return boundFunction;
+  };
+
+  // `Function.prototype.bind` method
+  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
+  _export({ target: 'Function', proto: true }, {
+    bind: functionBind
   });
 
-  var freeze = path.Object.freeze;
+  var bind$1 = entryVirtual('Function').bind;
+
+  var FunctionPrototype = Function.prototype;
+
+  var bind_1 = function (it) {
+    var own = it.bind;
+    return it === FunctionPrototype || (it instanceof Function && own === FunctionPrototype.bind) ? bind$1 : own;
+  };
+
+  var bind$2 = bind_1;
+
+  var bind$3 = bind$2;
 
   var defineProperty$8 = defineProperty_1;
 
   var defineProperty$9 = defineProperty$8;
 
+  var getIteratorMethod_1 = getIteratorMethod;
+
+  var getIteratorMethod$1 = getIteratorMethod_1;
+
+  function isIterable$2(value) {
+    return value != null && typeof getIteratorMethod$1(value) === 'function';
+  }
+  function isIterator(value) {
+    return value != null && typeof getIteratorMethod$1(value) === 'function' && typeof value.next === 'function';
+  }
+  function typeToDebugString(type) {
+    return type == null ? type + '' : type && type.name || type.toString();
+  } // tslint:disable-next-line:no-empty no-shadowed-variable
+
+  var EMPTY = function EMPTY() {};
+  function checkIsFuncOrNull(func) {
+    // PROF: 66 - 0.1%
+    if (func != null && typeof func !== 'function') {
+      throw new Error("Value is not a function or null/undefined: " + func);
+    }
+
+    return func;
+  }
+
+  var allowCreateFunction = function () {
+    try {
+      var func = new Function('a', 'b', 'return a + b');
+      return !!func;
+    } catch (err) {
+      return false;
+    }
+  }();
+
+  var createFunctionCache = {}; // tslint:disable-next-line:ban-types
+
+  function createFunction(alternativeFuncFactory) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var id = args[args.length - 1] + '';
+    var func = createFunctionCache[id];
+
+    if (!func) {
+      createFunctionCache[id] = func = allowCreateFunction ? Function.apply(void 0, args) : alternativeFuncFactory();
+    }
+
+    return func;
+  }
+  function equalsObjects(o1, o2) {
+    if (o1 === o2) {
+      return true;
+    }
+
+    if (o1 && typeof o1 === 'object' && typeof o1.equals === 'function') {
+      return o1.equals(o2);
+    }
+
+    if (o2 && typeof o2 === 'object' && typeof o2.equals === 'function') {
+      return o2.equals(o1);
+    }
+
+    return false;
+  }
+
+  function isThenable$1(value) {
+    return value != null && typeof value.then === 'function';
+  }
+  function isAsync(value) {
+    return isThenable$1(value) || isIterator(value);
+  }
+  var ResolveResult;
+
+  (function (ResolveResult) {
+    ResolveResult[ResolveResult["None"] = 0] = "None";
+    ResolveResult[ResolveResult["Immediate"] = 1] = "Immediate";
+    ResolveResult[ResolveResult["Deferred"] = 2] = "Deferred";
+    ResolveResult[ResolveResult["Error"] = 4] = "Error";
+    ResolveResult[ResolveResult["ImmediateError"] = 5] = "ImmediateError";
+    ResolveResult[ResolveResult["DeferredError"] = 6] = "DeferredError";
+  })(ResolveResult || (ResolveResult = {}));
+
+  function resolveIterator(iterator, isError, onImmediate, onDeferred, customResolveValue) {
+    if (!isIterator(iterator)) {
+      return ResolveResult.None;
+    }
+
+    function iterate(nextValue, isThrow, nextOnImmediate, nextOnDeferred) {
+      var body = function body() {
+        while (true) {
+          var iteratorResult = void 0;
+
+          if (isThrow) {
+            isThrow = false;
+            iteratorResult = iterator.throw(nextValue);
+          } else {
+            iteratorResult = iterator.next(nextValue);
+          }
+
+          if (iteratorResult.done) {
+            nextOnImmediate(iteratorResult.value, isError);
+            return isError ? ResolveResult.ImmediateError : ResolveResult.Immediate;
+          }
+
+          var result = _resolveValue(iteratorResult.value, false, function (o, nextIsError) {
+            nextValue = o;
+            isThrow = nextIsError;
+          }, function (o, nextIsError) {
+            iterate(o, nextIsError, nextOnDeferred, nextOnDeferred);
+          }, customResolveValue);
+
+          if ((result & ResolveResult.Deferred) !== 0) {
+            return result;
+          }
+        }
+      };
+
+      try {
+        return body();
+      } catch (err) {
+        nextOnImmediate(err, true);
+        return ResolveResult.ImmediateError;
+      }
+    }
+
+    return iterate(void 0, false, onImmediate, onDeferred);
+  }
+  function resolveThenable(thenable, isError, onImmediate, onDeferred) {
+    if (!isThenable$1(thenable)) {
+      return ResolveResult.None;
+    }
+
+    var result = isError ? ResolveResult.DeferredError : ResolveResult.Deferred;
+    var deferred;
+    (thenable.thenLast || thenable.then).call(thenable, function (value) {
+      if (deferred) {
+        onDeferred(value, isError);
+      } else {
+        result = isError ? ResolveResult.ImmediateError : ResolveResult.Immediate;
+        onImmediate(value, isError);
+      }
+    }, function (err) {
+      if (deferred) {
+        onDeferred(err, true);
+      } else {
+        result = ResolveResult.ImmediateError;
+        onImmediate(err, true);
+      }
+    });
+    deferred = true;
+    return result;
+  }
+
+  function _resolveValue(value, isError, onImmediate, onDeferred, customResolveValue) {
+    var nextOnImmediate = function nextOnImmediate(o, nextIsError) {
+      if (nextIsError) {
+        isError = true;
+      }
+
+      value = o;
+    };
+
+    var nextOnDeferred = function nextOnDeferred(val, nextIsError) {
+      _resolveValue(val, isError || nextIsError, onDeferred, onDeferred, customResolveValue);
+    };
+
+    while (true) {
+      {
+        var result = resolveThenable(value, isError, nextOnImmediate, nextOnDeferred);
+
+        if ((result & ResolveResult.Deferred) !== 0) {
+          return result;
+        }
+
+        if ((result & ResolveResult.Immediate) !== 0) {
+          continue;
+        }
+      }
+      {
+        var _result = resolveIterator(value, isError, nextOnImmediate, nextOnDeferred, customResolveValue);
+
+        if ((_result & ResolveResult.Deferred) !== 0) {
+          return _result;
+        }
+
+        if ((_result & ResolveResult.Immediate) !== 0) {
+          continue;
+        }
+      }
+
+      if (value != null && customResolveValue != null) {
+        var newValue = customResolveValue(value);
+
+        if (newValue !== value) {
+          value = newValue;
+          continue;
+        }
+      }
+
+      onImmediate(value, isError);
+      return isError ? ResolveResult.ImmediateError : ResolveResult.Immediate;
+    }
+  }
+
+  function resolveValue(value, onImmediate, onDeferred, customResolveValue) {
+    return _resolveValue(value, false, onImmediate, onDeferred, customResolveValue);
+  }
+  function resolveValueFunc(func, onImmediate, onDeferred, customResolveValue) {
+    try {
+      return resolveValue(func(), onImmediate, onDeferred, customResolveValue);
+    } catch (err) {
+      onImmediate(err, true);
+      return ResolveResult.ImmediateError;
+    }
+  }
+
+  var ThenableSyncStatus;
+
+  (function (ThenableSyncStatus) {
+    ThenableSyncStatus["Resolving"] = "Resolving";
+    ThenableSyncStatus["Resolved"] = "Resolved";
+    ThenableSyncStatus["Rejected"] = "Rejected";
+  })(ThenableSyncStatus || (ThenableSyncStatus = {}));
+
+  function createResolved(value, customResolveValue) {
+    var thenable = new ThenableSync(null, customResolveValue);
+    thenable.resolve(value);
+    return thenable;
+  }
+  function createRejected(error, customResolveValue) {
+    var thenable = new ThenableSync(null, customResolveValue);
+    thenable.reject(error);
+    return thenable;
+  }
+  var ThenableSync =
+  /*#__PURE__*/
+  function () {
+    function ThenableSync(executor, customResolveValue) {
+      _classCallCheck(this, ThenableSync);
+
+      if (customResolveValue != null) {
+        this._customResolveValue = customResolveValue;
+      }
+
+      if (executor) {
+        try {
+          var _context, _context2;
+
+          executor(bind$3(_context = this.resolve).call(_context, this), bind$3(_context2 = this.reject).call(_context2, this));
+        } catch (err) {
+          this.reject(err);
+        }
+      }
+    } // region resolve
+
+
+    _createClass(ThenableSync, [{
+      key: "resolve",
+      value: function resolve(value) {
+        if (this._status != null) {
+          throw new Error("Multiple call resolve/reject() is forbidden; status = " + this._status);
+        }
+
+        this._resolve(value);
+      }
+    }, {
+      key: "_resolve",
+      value: function _resolve(value) {
+        var _this = this;
+
+        var _status = this._status;
+
+        if (_status != null && _status !== ThenableSyncStatus.Resolving) {
+          throw new Error("Multiple call resolve/reject() is forbidden; status = " + _status);
+        }
+
+        var result = resolveValue(value, function (o, e) {
+          if (e) {
+            _this._reject(o);
+          } else {
+            value = o;
+          }
+        }, function (o, e) {
+          if (e) {
+            _this._reject(o);
+          } else {
+            _this._resolve(o);
+          }
+        }, this._customResolveValue);
+
+        if ((result & ResolveResult.Deferred) !== 0) {
+          this._status = ThenableSyncStatus.Resolving;
+          return;
+        }
+
+        if ((result & ResolveResult.Error) !== 0) {
+          return;
+        }
+
+        this._status = ThenableSyncStatus.Resolved;
+        this._value = value;
+        var _onfulfilled = this._onfulfilled;
+
+        if (_onfulfilled) {
+          this._onfulfilled = void 0;
+          this._onrejected = void 0;
+
+          for (var i = 0, len = _onfulfilled.length; i < len; i++) {
+            _onfulfilled[i](value);
+          }
+        }
+      } // endregion
+      // region reject
+
+    }, {
+      key: "reject",
+      value: function reject(error) {
+        if (this._status != null) {
+          throw new Error("Multiple call resolve/reject() is forbidden; status = " + this._status);
+        }
+
+        this._reject(error);
+      }
+    }, {
+      key: "_reject",
+      value: function _reject(error) {
+        var _this2 = this;
+
+        var _status = this._status;
+
+        if (_status != null && _status !== ThenableSyncStatus.Resolving) {
+          throw new Error("Multiple call resolve/reject() is forbidden; status = " + _status);
+        }
+
+        var result = resolveValue(error, function (o) {
+          error = o;
+        }, function (o) {
+          _this2._reject(o);
+        }, this._customResolveValue);
+
+        if ((result & ResolveResult.Deferred) !== 0) {
+          this._status = ThenableSyncStatus.Resolving;
+          return;
+        }
+
+        this._status = ThenableSyncStatus.Rejected;
+        this._error = error;
+        var _onrejected = this._onrejected;
+
+        if (_onrejected) {
+          this._onfulfilled = void 0;
+          this._onrejected = void 0;
+
+          for (var i = 0, len = _onrejected.length; i < len; i++) {
+            _onrejected[i](error);
+          }
+        }
+      } // endregion
+      // region then
+
+    }, {
+      key: "_then",
+      value: function _then(onfulfilled, onrejected, lastExpression, customResolveValue) {
+        var reject = function reject(error) {
+          if (!onrejected) {
+            if (lastExpression) {
+              throw error;
+            }
+
+            return ThenableSync.createRejected(error, customResolveValue);
+          }
+
+          var isError;
+
+          error = function () {
+            try {
+              return onrejected(error);
+            } catch (err) {
+              isError = true;
+              return err;
+            }
+          }();
+
+          var result = resolveAsync(error, null, null, !lastExpression, customResolveValue);
+
+          if (isThenable$1(result)) {
+            return isError ? result.then(function (o) {
+              return createRejected(o, customResolveValue);
+            }) : result;
+          }
+
+          if (lastExpression) {
+            if (!isError) {
+              return result;
+            }
+
+            throw result;
+          }
+
+          return isError ? createRejected(result, customResolveValue) : createResolved(result, customResolveValue);
+        };
+
+        switch (this._status) {
+          case ThenableSyncStatus.Resolved:
+            {
+              var _value = this._value;
+
+              if (!onfulfilled) {
+                return lastExpression ? _value : this;
+              }
+
+              var isError;
+
+              _value = function () {
+                try {
+                  return onfulfilled(_value);
+                } catch (err) {
+                  isError = true;
+                  return err;
+                }
+              }();
+
+              if (isError) {
+                var result = resolveAsync(_value, null, null, !lastExpression, customResolveValue);
+
+                if (isThenable$1(result)) {
+                  return result.then(function (o) {
+                    return reject(o);
+                  }, onrejected);
+                }
+
+                return reject(result);
+              } else {
+                var _result = resolveAsync(_value, null, onrejected, !lastExpression, customResolveValue);
+
+                return lastExpression || isThenable$1(_result) ? _result : createResolved(_result, customResolveValue);
+              }
+            }
+
+          case ThenableSyncStatus.Rejected:
+            if (!onrejected && !lastExpression && (!customResolveValue || customResolveValue === this._customResolveValue)) {
+              return this;
+            }
+
+            return reject(this._error);
+
+          default:
+            {
+              if (!onfulfilled && !onrejected && (!customResolveValue || customResolveValue === this._customResolveValue)) {
+                return this;
+              }
+
+              var _result2 = new ThenableSync(null, customResolveValue);
+
+              var _onrejected = this._onrejected;
+
+              if (!_onrejected) {
+                this._onrejected = _onrejected = [];
+              }
+
+              var rejected = onrejected ? function (value) {
+                var isError;
+
+                value = function () {
+                  try {
+                    return onrejected(value);
+                  } catch (err) {
+                    isError = true;
+                    return err;
+                  }
+                }();
+
+                if (isError) {
+                  _result2.reject(value);
+                } else {
+                  _result2.resolve(value);
+                }
+              } : function (value) {
+                _result2.reject(value);
+              };
+
+              _onrejected.push(rejected);
+
+              var _onfulfilled = this._onfulfilled;
+
+              if (!_onfulfilled) {
+                this._onfulfilled = _onfulfilled = [];
+              }
+
+              _onfulfilled.push(onfulfilled ? function (value) {
+                var isError;
+
+                value = function () {
+                  try {
+                    return onfulfilled(value);
+                  } catch (err) {
+                    isError = true;
+                    return err;
+                  }
+                }();
+
+                if (isError) {
+                  resolveValue(value, rejected, rejected, customResolveValue);
+                } else {
+                  _result2.resolve(value);
+                }
+              } : function (value) {
+                _result2.resolve(value);
+              });
+
+              return _result2;
+            }
+        }
+      }
+    }, {
+      key: "then",
+      value: function then(onfulfilled, onrejected, customResolveValue) {
+        return this._then(onfulfilled, onrejected, false, customResolveValue === false ? null : customResolveValue || this._customResolveValue);
+      }
+    }, {
+      key: "thenLast",
+      value: function thenLast(onfulfilled, onrejected, customResolveValue) {
+        return this._then(onfulfilled, onrejected, true, customResolveValue === false ? null : customResolveValue || this._customResolveValue);
+      } // endregion
+      // region static helpers
+      // endregion
+
+    }]);
+
+    return ThenableSync;
+  }();
+  ThenableSync.createResolved = createResolved;
+  ThenableSync.createRejected = createRejected;
+  ThenableSync.isThenable = isThenable$1;
+  ThenableSync.resolve = resolveAsync;
+  function resolveAsync(input, onfulfilled, onrejected, dontThrowOnImmediateError, customResolveValue) {
+    // Optimization
+    if (!onfulfilled && !isAsync(input)) {
+      if (input != null && customResolveValue) {
+        var newInput = customResolveValue(input);
+
+        if (input === newInput) {
+          return input;
+        }
+
+        input = newInput;
+      } else {
+        return input;
+      }
+    }
+
+    return _resolveAsync(input, onfulfilled, onrejected, dontThrowOnImmediateError, customResolveValue);
+  }
+
+  function _resolveAsync(input, onfulfilled, onrejected, dontThrowOnImmediateError, customResolveValue) {
+    var result;
+    var isError;
+
+    var onResult = function onResult(o, e) {
+      result = o;
+      isError = e;
+    };
+
+    var thenable;
+
+    var createThenable = function createThenable() {
+      if (!thenable) {
+        thenable = new ThenableSync(function (resolve, reject) {
+          onResult = function onResult(o, e) {
+            if (e) {
+              reject(o);
+            } else {
+              resolve(o);
+            }
+          };
+        }, customResolveValue);
+      }
+
+      return thenable;
+    };
+
+    var resolveOnResult = function resolveOnResult(o, e) {
+      var handler = e ? onrejected : onfulfilled;
+
+      if (handler) {
+        if ((resolveValueFunc(function () {
+          return handler(o);
+        }, function (o2, e2) {
+          onResult(o2, e2);
+        }, function (o2, e2) {
+          onResult(o2, e2);
+        }, customResolveValue) & ResolveResult.Deferred) !== 0) {
+          result = createThenable();
+        }
+      } else {
+        onResult(o, e);
+      }
+    };
+
+    if ((resolveValue(input, resolveOnResult, resolveOnResult, customResolveValue) & ResolveResult.Deferred) !== 0) {
+      return createThenable();
+    }
+
+    if (isError) {
+      if (dontThrowOnImmediateError) {
+        return ThenableSync.createRejected(result, customResolveValue);
+      }
+
+      throw result;
+    }
+
+    return result;
+  }
+
+  var webrainOptions = {
+    equalsFunc: function equalsFunc(oldValue, newValue) {
+      if (oldValue instanceof Date) {
+        return newValue instanceof Date && oldValue.getTime() === newValue.getTime();
+      }
+
+      return equalsObjects(oldValue, newValue);
+    },
+    debugInfo: true
+  };
+
+  var Observable =
+  /*#__PURE__*/
+  function () {
+    function Observable() {
+      _classCallCheck(this, Observable);
+    }
+
+    _createClass(Observable, [{
+      key: "call",
+      value: function call(func) {
+        return func(this);
+      }
+    }]);
+
+    return Observable;
+  }();
+
+  Observable.prototype.autoConnect = function (connectPredicate, connectFunc) {
+    var disconnect;
+    return this.subscribe(function (value) {
+      if (connectPredicate && connectPredicate(value) || !connectPredicate && value) {
+        if (!disconnect) {
+          disconnect = connectFunc();
+        }
+      } else if (disconnect) {
+        disconnect();
+      }
+    });
+  };
+
+  function subject(base) {
+    // eslint-disable-next-line no-shadow
+    // tslint:disable-next-line:no-shadowed-variable
+    return (
+      /*#__PURE__*/
+      function (_base) {
+        _inherits(Subject, _base);
+
+        function Subject() {
+          _classCallCheck(this, Subject);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(Subject).apply(this, arguments));
+        }
+
+        _createClass(Subject, [{
+          key: "subscribe",
+          value: function subscribe(subscriber, description) {
+            var _this = this;
+
+            if (!subscriber) {
+              return null;
+            }
+
+            if (description) {
+              subscriber.description = description;
+            }
+
+            var _subscribers = this._subscribers;
+
+            if (!_subscribers) {
+              this._subscribers = [subscriber];
+            } else {
+              _subscribers[_subscribers.length] = subscriber;
+            }
+
+            return function () {
+              if (!subscriber) {
+                return;
+              } // tslint:disable-next-line:no-shadowed-variable
+
+
+              var _subscribers = _this._subscribers;
+              var len = _subscribers.length;
+
+              var index = indexOf$3(_subscribers).call(_subscribers, subscriber);
+
+              if (index >= 0) {
+                if (_this._subscribersInProcess === _subscribers) {
+                  var subscribers = new Array(len - 1);
+
+                  for (var i = 0; i < index; i++) {
+                    subscribers[i] = _subscribers[i];
+                  }
+
+                  for (var _i = index + 1; _i < len; _i++) {
+                    subscribers[_i - 1] = _subscribers[_i];
+                  }
+
+                  _this._subscribers = subscribers;
+                } else {
+                  for (var _i2 = index + 1; _i2 < len; _i2++) {
+                    _subscribers[_i2 - 1] = _subscribers[_i2];
+                  }
+
+                  _subscribers.length = len - 1;
+                }
+              }
+
+              subscriber = null;
+            };
+          }
+        }, {
+          key: "emit",
+          value: function emit(value) {
+            var _subscribers = this._subscribers;
+
+            if (!_subscribers) {
+              return this;
+            }
+
+            if (this._subscribersInProcess !== _subscribers) {
+              this._subscribersInProcess = _subscribers;
+            }
+
+            for (var i = 0, len = _subscribers.length; i < len; i++) {
+              _subscribers[i](value);
+            }
+
+            if (this._subscribersInProcess === _subscribers) {
+              this._subscribersInProcess = null;
+            }
+
+            return this;
+          }
+        }, {
+          key: "hasSubscribers",
+          get: function get() {
+            return !!(this._subscribers && this._subscribers.length);
+          }
+        }, {
+          key: "subscribersCount",
+          get: function get() {
+            return this._subscribers && this._subscribers.length;
+          }
+        }]);
+
+        return Subject;
+      }(base)
+    );
+  }
+  var Subject = subject(Observable); // export function createSubjectClass(base, ...extensions) {
+  // 	for (const extension of extensions) {
+  // 		base = extension(base)
+  // 	}
+  //
+  // 	return base
+  // }
+
+  function behavior(base) {
+    return (
+      /*#__PURE__*/
+      function (_base) {
+        _inherits(Behavior, _base);
+
+        function Behavior(value) {
+          var _this;
+
+          _classCallCheck(this, Behavior);
+
+          _this = _possibleConstructorReturn(this, _getPrototypeOf(Behavior).call(this));
+
+          if (typeof value !== 'undefined') {
+            _this.value = value;
+          }
+
+          return _this;
+        }
+
+        _createClass(Behavior, [{
+          key: "subscribe",
+          value: function subscribe(subscriber, description) {
+            var _this2 = this;
+
+            if (!subscriber) {
+              return null;
+            }
+
+            if (description) {
+              subscriber.description = description;
+            }
+
+            var unsubscribe = _get(_getPrototypeOf(Behavior.prototype), "subscribe", this).call(this, subscriber);
+
+            var value = this.value;
+
+            if (typeof value !== 'undefined') {
+              subscriber(value);
+            }
+
+            return function () {
+              var _unsubscribe = unsubscribe;
+
+              if (!_unsubscribe) {
+                return;
+              }
+
+              unsubscribe = null;
+
+              try {
+                // eslint-disable-next-line no-shadow
+                // tslint:disable-next-line:no-shadowed-variable
+                var _value = _this2.value,
+                    unsubscribeValue = _this2.unsubscribeValue;
+
+                if (typeof unsubscribeValue !== 'undefined' && unsubscribeValue !== _value) {
+                  subscriber(unsubscribeValue);
+                }
+              } finally {
+                _unsubscribe();
+              }
+            };
+          }
+        }, {
+          key: "emit",
+          value: function emit(value) {
+            this.value = value;
+
+            _get(_getPrototypeOf(Behavior.prototype), "emit", this).call(this, value);
+
+            return this;
+          }
+        }]);
+
+        return Behavior;
+      }(base)
+    );
+  }
+  var BehaviorSubject = behavior(Subject);
+
+  // tslint:disable-next-line:no-shadowed-variable
+
+  function createHasSubscribersSubjectDefault(hasSubscribers) {
+    var subject = new BehaviorSubject(hasSubscribers);
+    subject.unsubscribeValue = null;
+    return subject;
+  }
+
+  function hasSubscribers(base, createHasSubscribersSubject) {
+    if (createHasSubscribersSubject === void 0) {
+      createHasSubscribersSubject = createHasSubscribersSubjectDefault;
+    }
+
+    return (
+      /*#__PURE__*/
+      function (_base) {
+        _inherits(HasSubscribers, _base);
+
+        function HasSubscribers() {
+          _classCallCheck(this, HasSubscribers);
+
+          return _possibleConstructorReturn(this, _getPrototypeOf(HasSubscribers).apply(this, arguments));
+        }
+
+        _createClass(HasSubscribers, [{
+          key: "subscribe",
+          value: function subscribe(subscriber, description) {
+            var _this = this;
+
+            if (!subscriber) {
+              return null;
+            }
+
+            if (description) {
+              subscriber.description = description;
+            } // eslint-disable-next-line no-shadow
+            // tslint:disable-next-line:no-shadowed-variable
+
+
+            var hasSubscribers = this.hasSubscribers;
+
+            var unsubscribe = _get(_getPrototypeOf(HasSubscribers.prototype), "subscribe", this).call(this, subscriber);
+
+            if (!hasSubscribers && this._hasSubscribersSubject && this.hasSubscribers) {
+              this._hasSubscribersSubject.emit(true);
+            }
+
+            return function () {
+              // eslint-disable-next-line no-shadow
+              // tslint:disable-next-line:no-shadowed-variable
+              var hasSubscribers = _this.hasSubscribers;
+              unsubscribe();
+
+              if (hasSubscribers && _this._hasSubscribersSubject && !_this.hasSubscribers) {
+                _this._hasSubscribersSubject.emit(false);
+              }
+            };
+          }
+        }, {
+          key: "hasSubscribersObservable",
+          get: function get() {
+            var _hasSubscribersSubject = this._hasSubscribersSubject;
+
+            if (!_hasSubscribersSubject) {
+              this._hasSubscribersSubject = _hasSubscribersSubject = createHasSubscribersSubject(this.hasSubscribers);
+            }
+
+            return _hasSubscribersSubject;
+          }
+        }]);
+
+        return HasSubscribers;
+      }(base)
+    );
+  }
+  var HasSubscribersSubject = hasSubscribers(Subject);
+  var HasSubscribersBehaviorSubject = hasSubscribers(BehaviorSubject);
+
+  // 	if (inputItems == null) {
+  // 		return output
+  // 	}
+  //
+  // 	if (Array.isArray(inputItems)) {
+  // 		for (const item of inputItems) {
+  // 			expandAndDistinct(item, output, map)
+  // 		}
+  // 		return output
+  // 	}
+  //
+  // 	if (!map[inputItems]) {
+  // 		map[inputItems] = true
+  // 		output[output.length] = inputItems
+  // 	}
+  //
+  // 	return output
+  // }
+
+  var PropertyChangedSubject =
+  /*#__PURE__*/
+  function (_HasSubscribersSubjec) {
+    _inherits(PropertyChangedSubject, _HasSubscribersSubjec);
+
+    function PropertyChangedSubject(object) {
+      var _this;
+
+      _classCallCheck(this, PropertyChangedSubject);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(PropertyChangedSubject).call(this));
+      _this._object = object;
+      return _this;
+    }
+
+    _createClass(PropertyChangedSubject, [{
+      key: "onPropertyChanged",
+      value: function onPropertyChanged() {
+        for (var i = 0, len = arguments.length; i < len; i++) {
+          var event = i < 0 || arguments.length <= i ? undefined : arguments[i];
+
+          if (event == null) {
+            event = {};
+          }
+
+          if (typeof event !== 'object') {
+            var value = this._object[event];
+            event = {
+              name: event,
+              oldValue: value,
+              newValue: value
+            };
+          }
+
+          this.emit(event);
+        }
+
+        return this;
+      }
+    }]);
+
+    return PropertyChangedSubject;
+  }(HasSubscribersSubject);
+  var PropertyChangedObject =
+  /*#__PURE__*/
+  function () {
+    /** @internal */
+    function PropertyChangedObject() {
+      _classCallCheck(this, PropertyChangedObject);
+
+      defineProperty$9(this, '__meta', {
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: {}
+      });
+    }
+    /** @internal */
+
+
+    _createClass(PropertyChangedObject, [{
+      key: "_setUnsubscriber",
+      value: function _setUnsubscriber(propertyName, unsubscribe) {
+        var __meta = this.__meta;
+        var unsubscribers = __meta.unsubscribers;
+
+        if (unsubscribers) {
+          var oldUnsubscribe = unsubscribers[propertyName];
+
+          if (unsubscribe !== oldUnsubscribe) {
+            if (oldUnsubscribe) {
+              unsubscribers[propertyName] = unsubscribe;
+              oldUnsubscribe();
+            } else if (unsubscribe) {
+              unsubscribers[propertyName] = unsubscribe;
+            }
+          }
+        } else if (unsubscribe) {
+          var _meta$unsubscribers;
+
+          __meta.unsubscribers = (_meta$unsubscribers = {}, _meta$unsubscribers[propertyName] = unsubscribe, _meta$unsubscribers);
+        }
+      } // region propertyChanged
+
+    }, {
+      key: "propertyChanged",
+      get: function get() {
+        var propertyChanged = this.__meta.propertyChanged;
+
+        if (!propertyChanged) {
+          this.__meta.propertyChanged = propertyChanged = new PropertyChangedSubject(this);
+        }
+
+        return propertyChanged;
+      }
+    }, {
+      key: "propertyChangedIfCanEmit",
+      get: function get() {
+        var _this$__meta = this.__meta,
+            propertyChangedDisabled = _this$__meta.propertyChangedDisabled,
+            propertyChanged = _this$__meta.propertyChanged;
+        return !propertyChangedDisabled && propertyChanged && propertyChanged.hasSubscribers ? propertyChanged : null;
+      } // endregion
+
+    }]);
+
+    return PropertyChangedObject;
+  }();
+
+  var ObservableClass =
+  /*#__PURE__*/
+  function (_PropertyChangedObjec) {
+    _inherits(ObservableClass, _PropertyChangedObjec);
+
+    /** @internal */
+    function ObservableClass() {
+      var _this;
+
+      _classCallCheck(this, ObservableClass);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(ObservableClass).call(this));
+
+      defineProperty$9(_assertThisInitialized(_this), '__fields', {
+        configurable: false,
+        enumerable: false,
+        writable: false,
+        value: {}
+      });
+
+      return _this;
+    }
+
+    return ObservableClass;
+  }(PropertyChangedObject);
+  /** @internal */
+
+  function _setExt(name, getValue, setValue, options, object, newValue) {
+    if (!options) {
+      return _set(name, getValue, setValue, object, newValue);
+    }
+
+    var oldValue = getValue ? getValue.call(object) : object.__fields[name];
+    var equalsFunc = options.equalsFunc || webrainOptions.equalsFunc;
+
+    if (oldValue === newValue || equalsFunc && equalsFunc.call(object, oldValue, newValue)) {
+      return false;
+    }
+
+    var fillFunc = options.fillFunc;
+
+    if (fillFunc && oldValue != null && newValue != null && fillFunc.call(object, oldValue, newValue)) {
+      return false;
+    }
+
+    var convertFunc = options.convertFunc;
+
+    if (convertFunc) {
+      newValue = convertFunc.call(object, oldValue, newValue);
+    } // if (oldValue === newValue) {
+    // 	return false
+    // }
+
+
+    var beforeChange = options.beforeChange;
+
+    if (beforeChange) {
+      beforeChange.call(object, oldValue, newValue);
+    }
+
+    if (setValue) {
+      setValue.call(object, newValue);
+    } else {
+      object.__fields[name] = newValue;
+    }
+
+    if (!options || !options.suppressPropertyChanged) {
+      var propertyChangedIfCanEmit = object.propertyChangedIfCanEmit;
+
+      if (propertyChangedIfCanEmit) {
+        propertyChangedIfCanEmit.onPropertyChanged({
+          name: name,
+          oldValue: oldValue,
+          newValue: newValue
+        });
+      }
+    }
+
+    var afterChange = options.afterChange;
+
+    if (afterChange) {
+      afterChange.call(object, oldValue, newValue);
+    }
+
+    return true;
+  }
+  /** @internal */
+
+  function _set(name, getValue, setValue, object, newValue) {
+    var oldValue = getValue.call(object);
+
+    if (oldValue === newValue || webrainOptions.equalsFunc && webrainOptions.equalsFunc.call(object, oldValue, newValue)) {
+      return false;
+    }
+
+    setValue.call(object, newValue);
+    var _object$__meta = object.__meta,
+        propertyChangedDisabled = _object$__meta.propertyChangedDisabled,
+        propertyChanged = _object$__meta.propertyChanged;
+
+    if (!propertyChangedDisabled && propertyChanged) {
+      propertyChanged.emit({
+        name: name,
+        oldValue: oldValue,
+        newValue: newValue
+      });
+    }
+
+    return true;
+  }
+
   var nativeIsFrozen = Object.isFrozen;
-  var FAILS_ON_PRIMITIVES$3 = fails(function () { nativeIsFrozen(1); });
+  var FAILS_ON_PRIMITIVES$2 = fails(function () { nativeIsFrozen(1); });
 
   // `Object.isFrozen` method
   // https://tc39.github.io/ecma262/#sec-object.isfrozen
-  _export({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES$3 }, {
+  _export({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES$2 }, {
     isFrozen: function isFrozen(it) {
       return isObject(it) ? nativeIsFrozen ? nativeIsFrozen(it) : false : true;
     }
@@ -7224,11 +8447,255 @@
 
   var isFrozen$2 = isFrozen$1;
 
+  var toStringTag = wellKnownSymbolWrapped.f('toStringTag');
+
+  var toStringTag$1 = toStringTag;
+
+  var toStringTag$2 = toStringTag$1;
+
+  function mergeMapWrappers(merge, base, older, newer, preferCloneOlder, preferCloneNewer, options) {
+    var changed = false;
+    var addItems = [];
+
+    var fill = function fill(olderItem, newerItem) {
+      var setItem = EMPTY;
+      merge(EMPTY, olderItem, newerItem, function (o) {
+        setItem = o;
+      }, preferCloneOlder, preferCloneNewer, options);
+
+      if (setItem === EMPTY) {
+        throw new Error('setItem === NONE');
+      }
+
+      return setItem;
+    };
+
+    if (older === newer) {
+      // [- n n]
+      newer.forEachKeys(function (key) {
+        if (!base.has(key)) {
+          addItems.push([key, fill(EMPTY, newer.get(key))]);
+        }
+      });
+    } else {
+      // [- - n]
+      newer.forEachKeys(function (key) {
+        if (!base.has(key) && !older.has(key)) {
+          addItems.push([key, fill(EMPTY, newer.get(key))]);
+        }
+      }); // [- o *]
+
+      older.forEachKeys(function (key) {
+        if (!base.has(key)) {
+          if (!newer.has(key)) {
+            addItems.push([key, fill(older.get(key), EMPTY)]);
+          } else {
+            addItems.push([key, fill(older.get(key), newer.get(key))]);
+          }
+        }
+      });
+    }
+
+    var deleteItems = []; // [b * *]
+
+    base.forEachKeys(function (key) {
+      changed = merge(base.get(key), older.has(key) ? older.get(key) : EMPTY, newer.has(key) ? newer.get(key) : EMPTY, function (o) {
+        if (o === EMPTY) {
+          deleteItems.push(key);
+        } else {
+          base.set(key, o);
+        }
+      }, preferCloneOlder, preferCloneNewer, options) || changed;
+    });
+    var len = deleteItems.length;
+
+    if (len > 0) {
+      changed = true;
+
+      for (var i = len - 1; i >= 0; i--) {
+        base.delete(deleteItems[i]);
+      }
+    }
+
+    len = addItems.length;
+
+    if (len > 0) {
+      changed = true;
+
+      for (var _i = 0; _i < len; _i++) {
+        base.set.apply(base, addItems[_i]);
+      }
+    }
+
+    return changed;
+  }
+  var MergeObjectWrapper =
+  /*#__PURE__*/
+  function () {
+    function MergeObjectWrapper(object, keyAsValue) {
+      _classCallCheck(this, MergeObjectWrapper);
+
+      this._object = object;
+
+      if (keyAsValue) {
+        this._keyAsValue = true;
+      }
+    }
+
+    _createClass(MergeObjectWrapper, [{
+      key: "delete",
+      value: function _delete(key) {
+        delete this._object[key];
+      }
+    }, {
+      key: "forEachKeys",
+      value: function forEachKeys(callbackfn) {
+        var _object = this._object;
+
+        for (var key in _object) {
+          if (Object.prototype.hasOwnProperty.call(_object, key)) {
+            callbackfn(key);
+          }
+        }
+      }
+    }, {
+      key: "get",
+      value: function get(key) {
+        return this._keyAsValue ? key : this._object[key];
+      }
+    }, {
+      key: "has",
+      value: function has(key) {
+        return Object.prototype.hasOwnProperty.call(this._object, key);
+      }
+    }, {
+      key: "set",
+      value: function set(key, value) {
+        this._object[key] = this._keyAsValue ? true : value;
+      }
+    }]);
+
+    return MergeObjectWrapper;
+  }();
+  var MergeMapWrapper =
+  /*#__PURE__*/
+  function () {
+    function MergeMapWrapper(map) {
+      _classCallCheck(this, MergeMapWrapper);
+
+      this._map = map;
+    }
+
+    _createClass(MergeMapWrapper, [{
+      key: "delete",
+      value: function _delete(key) {
+        this._map.delete(key);
+      }
+    }, {
+      key: "forEachKeys",
+      value: function forEachKeys(callbackfn) {
+        for (var _iterator = keys$3(_context = this._map).call(_context), _isArray = isArray$3(_iterator), _i2 = 0, _iterator = _isArray ? _iterator : getIterator$1(_iterator);;) {
+          var _context;
+
+          var _ref;
+
+          if (_isArray) {
+            if (_i2 >= _iterator.length) break;
+            _ref = _iterator[_i2++];
+          } else {
+            _i2 = _iterator.next();
+            if (_i2.done) break;
+            _ref = _i2.value;
+          }
+
+          var key = _ref;
+          callbackfn(key);
+        }
+      }
+    }, {
+      key: "get",
+      value: function get(key) {
+        return this._map.get(key);
+      }
+    }, {
+      key: "has",
+      value: function has(key) {
+        return this._map.has(key);
+      }
+    }, {
+      key: "set",
+      value: function set(key, value) {
+        this._map.set(key, value);
+      }
+    }]);
+
+    return MergeMapWrapper;
+  }();
+  function createMergeMapWrapper(target, source, arrayOrIterableToMap) {
+    if (source[toStringTag$2] === 'Map') {
+      return new MergeMapWrapper(source);
+    }
+
+    if (arrayOrIterableToMap && (isArray$3(source) || isIterable$2(source))) {
+      return createMergeMapWrapper(target, arrayOrIterableToMap(source), null);
+    }
+
+    if (source.constructor === Object) {
+      return new MergeObjectWrapper(source);
+    }
+
+    throw new Error(target.constructor.name + " cannot be merge with " + source.constructor.name);
+  } // 10039 cycles
+
+  function mergeMaps(createSourceMapWrapper, merge, base, older, newer, preferCloneOlder, preferCloneNewer, options) {
+    var baseWrapper = createSourceMapWrapper(base, base);
+    var olderWrapper = older === base ? baseWrapper : createSourceMapWrapper(base, older);
+    var newerWrapper = newer === base ? baseWrapper : newer === older ? olderWrapper : createSourceMapWrapper(base, newer);
+    return mergeMapWrappers(merge, baseWrapper, olderWrapper, newerWrapper, preferCloneOlder, preferCloneNewer, options);
+  }
+
+  // `Map` constructor
+  // https://tc39.github.io/ecma262/#sec-map-objects
+  var es_map = collection('Map', function (init) {
+    return function Map() { return init(this, arguments.length ? arguments[0] : undefined); };
+  }, collectionStrong);
+
+  var map$3 = path.Map;
+
+  var map$4 = map$3;
+
+  var map$5 = map$4;
+
+  var onFreeze = internalMetadata.onFreeze;
+
+  var nativeFreeze = Object.freeze;
+  var FAILS_ON_PRIMITIVES$3 = fails(function () { nativeFreeze(1); });
+
+  // `Object.freeze` method
+  // https://tc39.github.io/ecma262/#sec-object.freeze
+  _export({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES$3, sham: !freezing }, {
+    freeze: function freeze(it) {
+      return nativeFreeze && isObject(it) ? nativeFreeze(onFreeze(it)) : it;
+    }
+  });
+
+  var freeze = path.Object.freeze;
+
+  var freeze$1 = freeze;
+
+  var freeze$2 = freeze$1;
+
   var nextObjectId = 1;
   function getNextObjectId() {
     return nextObjectId++;
   }
   var UNIQUE_ID_PROPERTY_NAME = '458d576952bc489ab45e98ac7f296fd9';
+  function hasObjectUniqueId(object) {
+    return object != null && Object.prototype.hasOwnProperty.call(object, UNIQUE_ID_PROPERTY_NAME);
+  }
+  function canHaveUniqueId(object) {
+    return !isFrozen$2(object) || hasObjectUniqueId(object);
+  }
   function getObjectUniqueId(object) {
     // PROF: 129 - 0.3%
     if (object == null) {
@@ -7256,6 +8723,5580 @@
 
     return uniqueId;
   } // tslint:disable-next-line:ban-types
+
+  function fillCollection(collection, arrayOrIterable, add) {
+    if (isArray$3(arrayOrIterable)) {
+      for (var i = 0, len = arrayOrIterable.length; i < len; i++) {
+        add(collection, arrayOrIterable[i]);
+      }
+    } else {
+      for (var _iterator = arrayOrIterable, _isArray = isArray$3(_iterator), _i = 0, _iterator = _isArray ? _iterator : getIterator$1(_iterator);;) {
+        var _ref;
+
+        if (_isArray) {
+          if (_i >= _iterator.length) break;
+          _ref = _iterator[_i++];
+        } else {
+          _i = _iterator.next();
+          if (_i.done) break;
+          _ref = _i.value;
+        }
+
+        var item = _ref;
+        add(collection, item);
+      }
+    }
+
+    return collection;
+  }
+  function fillSet(set, arrayOrIterable) {
+    return fillCollection(set, arrayOrIterable, function (c, o) {
+      return c.add(o);
+    });
+  }
+  function fillMap(map, arrayOrIterable) {
+    return fillCollection(map, arrayOrIterable, function (c, o) {
+      return c.set.apply(c, o);
+    });
+  }
+  function fillObjectKeys(object, arrayOrIterable) {
+    return fillCollection(object, arrayOrIterable, function (c, o) {
+      return c[o] = true;
+    });
+  }
+
+  var typeMetaPropertyNameBase = '043a558080e94cbda1add09753c28772';
+  var typeMetaPropertyNameIndex = 0;
+  var TypeMetaCollection =
+  /*#__PURE__*/
+  function () {
+    // noinspection JSUnusedLocalSymbols
+    function TypeMetaCollection(proto) {
+      _classCallCheck(this, TypeMetaCollection);
+
+      this._typeMetaPropertyName = typeMetaPropertyNameBase + typeMetaPropertyNameIndex++;
+
+      if (proto) {
+        this._proto = proto;
+      }
+    }
+
+    _createClass(TypeMetaCollection, [{
+      key: "getMeta",
+      value: function getMeta(type) {
+        var meta;
+        var _typeMetaPropertyName = this._typeMetaPropertyName;
+
+        if (Object.prototype.hasOwnProperty.call(type, _typeMetaPropertyName)) {
+          meta = type[_typeMetaPropertyName];
+        }
+
+        if (typeof meta === 'undefined') {
+          var _proto = this._proto;
+
+          if (_proto) {
+            return _proto.getMeta(type);
+          }
+        }
+
+        return meta;
+      }
+    }, {
+      key: "putType",
+      value: function putType(type, meta) {
+        if (!type || typeof type !== 'function') {
+          throw new Error("type (" + type + ") should be function");
+        }
+
+        var _typeMetaPropertyName = this._typeMetaPropertyName;
+        var prevMeta;
+
+        if (Object.prototype.hasOwnProperty.call(type, _typeMetaPropertyName)) {
+          prevMeta = type[_typeMetaPropertyName];
+          delete type[_typeMetaPropertyName];
+        }
+
+        defineProperty$9(type, _typeMetaPropertyName, {
+          configurable: true,
+          enumerable: false,
+          writable: false,
+          value: meta
+        });
+
+        return prevMeta;
+      }
+    }, {
+      key: "deleteType",
+      value: function deleteType(type) {
+        var _typeMetaPropertyName = this._typeMetaPropertyName;
+        var prevMeta;
+
+        if (Object.prototype.hasOwnProperty.call(type, _typeMetaPropertyName)) {
+          prevMeta = type[_typeMetaPropertyName];
+          delete type[_typeMetaPropertyName];
+        }
+
+        return prevMeta;
+      }
+    }]);
+
+    return TypeMetaCollection;
+  }();
+  var TypeMetaCollectionWithId =
+  /*#__PURE__*/
+  function (_TypeMetaCollection) {
+    _inherits(TypeMetaCollectionWithId, _TypeMetaCollection);
+
+    function TypeMetaCollectionWithId(proto) {
+      var _this;
+
+      _classCallCheck(this, TypeMetaCollectionWithId);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(TypeMetaCollectionWithId).call(this, proto));
+      _this._typeMap = {};
+      return _this;
+    }
+
+    _createClass(TypeMetaCollectionWithId, [{
+      key: "getType",
+      value: function getType(uuid) {
+        var type = this._typeMap[uuid];
+
+        if (typeof type === 'undefined') {
+          var _proto = this._proto;
+
+          if (_proto) {
+            return _proto.getType(uuid);
+          }
+        }
+
+        return type;
+      }
+    }, {
+      key: "putType",
+      value: function putType(type, meta) {
+        var uuid = meta && meta.uuid;
+
+        if (!uuid || typeof uuid !== 'string') {
+          throw new Error("meta.uuid (" + uuid + ") should be a string with length > 0");
+        }
+
+        var prevType = this._typeMap[uuid];
+
+        if (prevType && prevType !== type) {
+          throw new Error("Same uuid (" + uuid + ") used for different types: " + (typeToDebugString(prevType) + ", " + typeToDebugString(type)));
+        }
+
+        var prevMeta = _get(_getPrototypeOf(TypeMetaCollectionWithId.prototype), "putType", this).call(this, type, meta);
+
+        this._typeMap[uuid] = type;
+        return prevMeta;
+      }
+    }, {
+      key: "deleteType",
+      value: function deleteType(typeOrUuid) {
+        var uuid;
+        var type;
+
+        if (typeof typeOrUuid === 'function') {
+          var meta = this.getMeta(typeOrUuid);
+          uuid = meta && meta.uuid;
+          type = typeOrUuid;
+        } else if (typeof typeOrUuid === 'string') {
+          type = this.getType(typeOrUuid);
+          uuid = typeOrUuid;
+        } else {
+          throw new Error("typeOrUuid (" + (typeOrUuid == null ? typeOrUuid : typeof typeOrUuid) + ") is not a Function or String");
+        }
+
+        var prevMeta = _get(_getPrototypeOf(TypeMetaCollectionWithId.prototype), "deleteType", this).call(this, type);
+
+        delete this._typeMap[uuid];
+        return prevMeta;
+      }
+    }]);
+
+    return TypeMetaCollectionWithId;
+  }(TypeMetaCollection);
+
+  var MergeSetWrapper =
+  /*#__PURE__*/
+  function () {
+    function MergeSetWrapper(set) {
+      _classCallCheck(this, MergeSetWrapper);
+
+      this._set = set;
+    }
+
+    _createClass(MergeSetWrapper, [{
+      key: "delete",
+      value: function _delete(key) {
+        this._set.delete(key);
+      }
+    }, {
+      key: "forEachKeys",
+      value: function forEachKeys(callbackfn) {
+        for (var _iterator = this._set, _isArray = isArray$3(_iterator), _i = 0, _iterator = _isArray ? _iterator : getIterator$1(_iterator);;) {
+          var _ref;
+
+          if (_isArray) {
+            if (_i >= _iterator.length) break;
+            _ref = _iterator[_i++];
+          } else {
+            _i = _iterator.next();
+            if (_i.done) break;
+            _ref = _i.value;
+          }
+
+          var key = _ref;
+          callbackfn(key);
+        }
+      }
+    }, {
+      key: "get",
+      value: function get(key) {
+        return key;
+      }
+    }, {
+      key: "has",
+      value: function has(key) {
+        return this._set.has(key);
+      }
+    }, {
+      key: "set",
+      value: function set(key, value) {
+        this._set.add(value);
+      }
+    }]);
+
+    return MergeSetWrapper;
+  }();
+  function createMergeSetWrapper(target, source, arrayOrIterableToSet) {
+    if (source[toStringTag$2] === 'Set') {
+      return new MergeSetWrapper(source);
+    }
+
+    if (arrayOrIterableToSet && (isArray$3(source) || isIterable$2(source))) {
+      return createMergeSetWrapper(target, arrayOrIterableToSet(source), null);
+    }
+
+    if (source.constructor === Object) {
+      return new MergeObjectWrapper(source, true);
+    }
+
+    throw new Error(target.constructor.name + " cannot be merge with " + source.constructor.name);
+  }
+
+  var ValueState =
+  /*#__PURE__*/
+  function () {
+    function ValueState(mergerState, target, preferClone, selfAsValue, refs) {
+      _classCallCheck(this, ValueState);
+
+      this.mergerState = mergerState;
+      this.target = target;
+      this.preferClone = preferClone;
+      this.selfAsValue = selfAsValue;
+      this.refs = refs;
+      var options = this.mergerState.options;
+      this.type = options && options.valueType || target.constructor;
+    }
+
+    _createClass(ValueState, [{
+      key: "resolveRef",
+      value: function resolveRef() {
+        if (this._isRef == null) {
+          if (this.selfAsValue) {
+            this._isRef = false;
+          } else {
+            var ref = this.getRef();
+
+            if (ref) {
+              this.target = ref;
+              this._isRef = true;
+            } else {
+              this._isRef = false;
+            }
+          }
+        }
+      }
+    }, {
+      key: "getRef",
+      value: function getRef() {
+        var refs = this.refs;
+
+        if (refs) {
+          var id = getObjectUniqueId(this.target);
+
+          if (id != null) {
+            var ref = refs[id];
+            return ref;
+          }
+        }
+
+        return null;
+      }
+    }, {
+      key: "setRef",
+      value: function setRef(refObj) {
+        var id = getObjectUniqueId(this.target);
+
+        if (id != null) {
+          var refs = this.refs;
+
+          if (refs == null) {
+            this.refs = refs = [];
+          }
+
+          refs[id] = refObj;
+        }
+      }
+    }, {
+      key: "canMerge",
+      value: function canMerge(source, target) {
+        var canMerge = this.merger.canMerge;
+
+        if (canMerge) {
+          if (target == null) {
+            target = this.target;
+
+            if (this.isRef || source.isRef) {
+              return target === source.target ? null : false;
+            }
+          }
+
+          var result = canMerge(target, source.target);
+
+          if (result == null) {
+            return null;
+          }
+
+          if (typeof result !== 'boolean') {
+            throw new Error("Unknown canMerge() result (" + result.constructor.name + ") for " + this.type.name);
+          }
+
+          return result;
+        }
+
+        return this.target.constructor === source.constructor;
+      }
+    }, {
+      key: "isRef",
+      get: function get() {
+        this.resolveRef();
+        return this._isRef;
+      }
+    }, {
+      key: "meta",
+      get: function get() {
+        var _meta = this._meta;
+
+        if (!_meta) {
+          _meta = this.mergerState.mergerVisitor.getMeta(this.type);
+
+          if (!_meta) {
+            throw new Error("Class (" + (this.type && this.type.name) + ") have no type meta");
+          }
+
+          this._meta = _meta;
+        }
+
+        return _meta;
+      }
+    }, {
+      key: "merger",
+      get: function get() {
+        var _merger = this._merger;
+
+        if (!_merger) {
+          var meta = this.meta;
+          _merger = meta.merger;
+
+          if (!_merger) {
+            throw new Error("Class (" + (this.type && this.type.name) + ") type meta have no merger");
+          }
+
+          this._merger = _merger;
+        }
+
+        return _merger;
+      }
+    }, {
+      key: "merge",
+      get: function get() {
+        var merger = this.merger;
+
+        if (!merger.merge) {
+          throw new Error("Class (" + (this.type && this.type.name) + ") merger have no merge method");
+        }
+
+        return merger.merge;
+      }
+    }, {
+      key: "mustBeCloned",
+      get: function get() {
+        var _mustBeCloned = this._mustBeCloned;
+
+        if (_mustBeCloned == null) {
+          var options = this.mergerState.options;
+          var valueType = options && options.valueType;
+          var metaPreferClone = this.meta.preferClone;
+
+          if (typeof metaPreferClone === 'function') {
+            metaPreferClone = metaPreferClone(this.target);
+          }
+
+          this._mustBeCloned = _mustBeCloned = (metaPreferClone != null ? metaPreferClone : this.preferClone && !this.isRef && !this.mergerState.mergerVisitor.getStatus(this.target)) || valueType && valueType !== this.target.constructor;
+        }
+
+        return _mustBeCloned;
+      }
+    }, {
+      key: "cloneInstance",
+      get: function get() {
+        var _this = this;
+
+        var _cloneInstance = this._cloneInstance;
+
+        if (_cloneInstance == null) {
+          var target = this.target,
+              type = this.type;
+          var options = this.mergerState.options;
+
+          _cloneInstance = (options && options.valueFactory || this.meta.valueFactory || function () {
+            return (!options || !options.valueType || _this.target.constructor === (options && options.valueType)) && new type();
+          })(target);
+
+          if (!_cloneInstance) {
+            throw new Error("Class (" + typeToDebugString(type) + ") cannot be clone");
+          }
+
+          if (_cloneInstance === target) {
+            throw new Error("Clone result === Source for (" + typeToDebugString(type) + ")");
+          }
+
+          if (_cloneInstance.constructor !== type) {
+            throw new Error("Clone type !== (" + typeToDebugString(type) + ")");
+          }
+
+          this._cloneInstance = _cloneInstance;
+        }
+
+        return _cloneInstance;
+      }
+    }, {
+      key: "clone",
+      get: function get() {
+        var _this2 = this;
+
+        var _clone = this._clone;
+
+        if (_clone == null) {
+          var target = this.target;
+
+          if (this.mustBeCloned) {
+            _clone = this.cloneInstance;
+            var canMergeResult = this.canMerge(this, _clone);
+
+            switch (canMergeResult) {
+              case null:
+                break;
+
+              case true:
+                var _this$mergerState = this.mergerState,
+                    mergerVisitor = _this$mergerState.mergerVisitor,
+                    options = _this$mergerState.options;
+                this.setRef(_clone); // mergerVisitor.setStatus(_clone, ObjectStatus.Cloned)
+
+                var preferClone = this.preferClone,
+                    refs = this.refs;
+                this.merge(mergerVisitor.getNextMerge(preferClone, preferClone, refs, refs, refs, options), _clone, target, target, function () {
+                  throw new Error("Class (" + _this2.type.name + ") cannot be merged with clone");
+                }, preferClone, preferClone // options,
+                );
+                break;
+
+              case false:
+                if (this.merger.merge) {
+                  throw new Error("Class (" + this.type.name + ") cannot be merged with clone");
+                }
+
+                break;
+            }
+          } else {
+            _clone = target;
+          }
+
+          this._clone = _clone;
+        }
+
+        return _clone;
+      }
+    }]);
+
+    return ValueState;
+  }();
+
+  var MergeState =
+  /*#__PURE__*/
+  function () {
+    // noinspection DuplicatedCode
+    function MergeState(mergerVisitor, base, older, newer, set, preferCloneBase, preferCloneOlder, preferCloneNewer, refsBase, refsOlder, refsNewer, options) {
+      _classCallCheck(this, MergeState);
+
+      this.mergerVisitor = mergerVisitor;
+      this.base = base;
+      this.older = older;
+      this.newer = newer;
+      this.set = set;
+      this.preferCloneBase = preferCloneBase;
+      this.preferCloneOlder = preferCloneOlder;
+      this.preferCloneNewer = preferCloneNewer;
+      this.refsBase = refsBase;
+      this.refsOlder = refsOlder;
+      this.refsNewer = refsNewer;
+      this.options = options;
+    }
+
+    _createClass(MergeState, [{
+      key: "fillOlderNewer",
+      value: function fillOlderNewer() {
+        var olderState = this.olderState,
+            newerState = this.newerState; // this.mergerVisitor.setStatus(olderState.clone, ObjectStatus.Merged)
+        // const idNewer = getObjectUniqueId(newerState.target as any)
+        // if (idNewer != null) {
+        // 	refsNewer[idNewer] = olderState.clone
+        // }
+
+        var older = olderState.clone;
+        newerState.setRef(older);
+        var options = this.options,
+            set = this.set,
+            preferCloneNewer = this.preferCloneNewer,
+            refsOlder = this.refsOlder,
+            refsNewer = this.refsNewer;
+        var isSet;
+        var result = olderState.merge(this.mergerVisitor.getNextMerge(preferCloneNewer, preferCloneNewer, refsOlder, refsNewer, refsNewer, options), older, newerState.target, newerState.target, set ? function (o) {
+          // if (idNewer != null) {
+          // 	refsNewer[idNewer] = o
+          // }
+          set(o);
+          isSet = true;
+        } : function () {
+          throw new Error("Class " + olderState.type.name + " does not need cloning." + 'You should use "preferClone: false" in merger options for this class');
+        }, preferCloneNewer, preferCloneNewer // options,
+        );
+
+        if (isSet) {
+          return;
+        }
+
+        if (result || newerState.mustBeCloned) {
+          set(older);
+          return;
+        }
+
+        set(newerState.target);
+      }
+    }, {
+      key: "mergeWithBase",
+      value: function mergeWithBase(olderState, newerState) {
+        var baseState = this.baseState;
+        var base = baseState.clone; // baseState.setRef(base)
+
+        olderState.setRef(base);
+        newerState.setRef(base);
+        var options = this.options,
+            set = this.set;
+        var refsBase = baseState.refs;
+        var preferCloneOlder = olderState.preferClone,
+            refsOlder = olderState.refs;
+        var preferCloneNewer = newerState.preferClone,
+            refsNewer = newerState.refs;
+        var isSet;
+        var result = baseState.merge(this.mergerVisitor.getNextMerge(preferCloneOlder, preferCloneNewer, refsBase, refsOlder, refsNewer, options), base, olderState.target, newerState.target, // for String() etc., that cannot be changed
+        set ? function (o) {
+          baseState.setRef(o);
+          olderState.setRef(o);
+          newerState.setRef(o);
+          set(o);
+          isSet = true;
+        } : function () {
+          if (baseState.mustBeCloned) {
+            throw new Error("Class " + baseState.type.name + " does not need cloning." + 'You should use "preferClone: false" in merger options for this class');
+          } else {
+            isSet = true;
+          }
+        }, preferCloneOlder, preferCloneNewer // options,
+        );
+
+        if (isSet) {
+          return !!set;
+        }
+
+        if (!result) {
+          return false;
+        }
+
+        if (baseState.mustBeCloned) {
+          set(base);
+        }
+
+        return true;
+      }
+    }, {
+      key: "baseState",
+      get: function get() {
+        var _baseState = this._baseState;
+
+        if (_baseState == null) {
+          var options = this.options;
+          this._baseState = _baseState = new ValueState(this, this.base, this.preferCloneBase, options && options.selfAsValueBase, this.refsBase);
+        }
+
+        return _baseState;
+      },
+      set: function set(value) {
+        this._baseState = value;
+      }
+    }, {
+      key: "olderState",
+      get: function get() {
+        var _olderState = this._olderState;
+
+        if (_olderState == null) {
+          var options = this.options;
+          this._olderState = _olderState = new ValueState(this, this.older, this.preferCloneOlder, options && options.selfAsValueOlder, this.refsOlder);
+        }
+
+        return _olderState;
+      },
+      set: function set(value) {
+        this._olderState = value;
+      }
+    }, {
+      key: "newerState",
+      get: function get() {
+        var _newerState = this._newerState;
+
+        if (_newerState == null) {
+          var options = this.options;
+          this._newerState = _newerState = new ValueState(this, this.newer, this.preferCloneNewer, options && options.selfAsValueNewer, this.refsNewer);
+        }
+
+        return _newerState;
+      },
+      set: function set(value) {
+        this._newerState = value;
+      }
+    }]);
+
+    return MergeState;
+  }();
+
+  function mergePreferClone(o1, o2) {
+    if (o1 || o2) {
+      return true;
+    }
+
+    return o1 == null ? o2 : o1;
+  }
+
+  var ObjectStatus;
+
+  (function (ObjectStatus) {
+    ObjectStatus[ObjectStatus["Cloned"] = 1] = "Cloned";
+    ObjectStatus[ObjectStatus["Merged"] = 2] = "Merged";
+  })(ObjectStatus || (ObjectStatus = {}));
+
+  var MergerVisitor =
+  /*#__PURE__*/
+  function () {
+    // public refs: IRef[]
+    function MergerVisitor(getMeta) {
+      _classCallCheck(this, MergerVisitor);
+
+      this.getMeta = getMeta;
+    }
+
+    _createClass(MergerVisitor, [{
+      key: "getStatus",
+      value: function getStatus(object) {
+        var statuses = this.statuses;
+
+        if (!statuses) {
+          return null;
+        }
+
+        var id = getObjectUniqueId(object);
+
+        if (id == null) {
+          throw new Error("object is primitive: " + object);
+        }
+
+        return statuses[id];
+      }
+    }, {
+      key: "setStatus",
+      value: function setStatus(object, status) {
+        var statuses = this.statuses;
+
+        if (!statuses) {
+          this.statuses = statuses = [];
+        }
+
+        var id = getObjectUniqueId(object);
+
+        if (id == null) {
+          throw new Error("object is primitive: " + object);
+        }
+
+        statuses[id] = status;
+        return object;
+      } // noinspection JSUnusedLocalSymbols
+
+    }, {
+      key: "getNextMerge",
+      value: function getNextMerge(preferCloneOlder, preferCloneNewer, refsBase, refsOlder, refsNewer, options) {
+        var _this3 = this;
+
+        return function (next_base, next_older, next_newer, next_set, next_preferCloneOlder, next_preferCloneNewer, next_options) {
+          return _this3.merge(next_base, next_older, next_newer, next_set, next_preferCloneOlder == null ? preferCloneOlder : next_preferCloneOlder, next_preferCloneNewer == null ? preferCloneNewer : next_preferCloneNewer, next_options, // next_options == null || next_options === options
+          // 	? options
+          // 	: (options == null ? next_options : {
+          // 		...options,
+          // 		...next_options,
+          // 	}),
+          refsBase, refsOlder, refsNewer);
+        };
+      }
+    }, {
+      key: "merge",
+      value: function merge(base, older, newer, set, preferCloneOlder, preferCloneNewer, options, refsBase, refsOlder, refsNewer) {
+        var preferCloneBase = null;
+
+        if (base === newer) {
+          if (base === older) {
+            return false;
+          }
+
+          preferCloneBase = preferCloneNewer;
+          preferCloneNewer = preferCloneOlder;
+          newer = older;
+        }
+
+        if (isPrimitive(newer)) {
+          if (set) {
+            set(newer);
+            return true;
+          }
+
+          return false;
+        }
+
+        if (base === older) {
+          preferCloneBase = preferCloneOlder = mergePreferClone(preferCloneBase, preferCloneOlder);
+        }
+
+        if (older === newer) {
+          preferCloneOlder = preferCloneNewer = mergePreferClone(preferCloneOlder, preferCloneNewer);
+        }
+
+        var mergeState = new MergeState(this, base, older, newer, set, preferCloneBase, preferCloneOlder, preferCloneNewer, refsBase, refsOlder, refsNewer, options); // region refs
+
+        if (!isPrimitive(base) && mergeState.baseState.isRef) {
+          mergeState.newerState.resolveRef();
+
+          if (mergeState.baseState.target === mergeState.newerState.target) {
+            if (!isPrimitive(older)) {
+              mergeState.olderState.resolveRef();
+
+              if (mergeState.baseState.target === mergeState.olderState.target) {
+                return false;
+              }
+            }
+
+            mergeState.baseState = mergeState.newerState;
+            mergeState.newerState = mergeState.olderState;
+            newer = mergeState.newerState.target;
+          }
+
+          if (!isPrimitive(older)) {
+            mergeState.olderState.resolveRef();
+
+            if (mergeState.baseState.target === mergeState.olderState.target) {
+              mergeState.olderState.preferClone = mergePreferClone(mergeState.baseState.preferClone, mergeState.olderState.preferClone);
+              mergeState.baseState = mergeState.olderState;
+            }
+
+            older = mergeState.olderState.target;
+          }
+
+          base = mergeState.baseState.target;
+        }
+
+        if (!isPrimitive(older)) {
+          mergeState.olderState.resolveRef();
+          mergeState.newerState.resolveRef();
+
+          if ((mergeState.olderState.isRef || mergeState.newerState.isRef) && mergeState.olderState.target === mergeState.newerState.target) {
+            mergeState.newerState.preferClone = mergePreferClone(mergeState.olderState.preferClone, mergeState.newerState.preferClone);
+            mergeState.olderState = mergeState.newerState;
+          }
+
+          older = mergeState.olderState.target;
+          newer = mergeState.newerState.target;
+        } // endregion
+
+
+        var fillOlderNewer = function fillOlderNewer() {
+          switch (mergeState.olderState.canMerge(mergeState.newerState)) {
+            case null:
+              if (mergeState.olderState.mustBeCloned) {
+                set(mergeState.newerState.clone);
+              } else {
+                if (mergeState.newerState.mustBeCloned) {
+                  set(mergeState.olderState.target);
+                } else {
+                  set(mergeState.newerState.target);
+                }
+              }
+
+              break;
+
+            case false:
+              set(mergeState.newerState.clone);
+              break;
+
+            case true:
+              mergeState.fillOlderNewer();
+              return true;
+          }
+        };
+
+        if (isPrimitive(base)) {
+          if (set) {
+            if (isPrimitive(older) || older === newer) {
+              set(mergeState.newerState.clone);
+            } else {
+              fillOlderNewer();
+            }
+
+            return true;
+          }
+
+          return false;
+        }
+
+        if (!set && mergeState.baseState.mustBeCloned) {
+          return false;
+        }
+
+        if (isPrimitive(older)) {
+          switch (mergeState.baseState.canMerge(mergeState.newerState)) {
+            case null:
+              if (set) {
+                set(older);
+                return true;
+              }
+
+              break;
+
+            case false:
+              if (set) {
+                set(mergeState.newerState.clone);
+                return true;
+              }
+
+              break;
+
+            case true:
+              if (!mergeState.mergeWithBase(mergeState.newerState, mergeState.newerState)) {
+                if (set) {
+                  set(older);
+                  return true;
+                }
+
+                return false;
+              }
+
+              return true;
+          }
+
+          return false;
+        }
+
+        switch (mergeState.baseState.canMerge(mergeState.newerState)) {
+          case false:
+            if (set) {
+              fillOlderNewer();
+              return true;
+            }
+
+            return false;
+
+          case null:
+            switch (mergeState.baseState.canMerge(mergeState.olderState)) {
+              case null:
+                return false;
+
+              case false:
+                if (set) {
+                  set(mergeState.olderState.clone);
+                  return true;
+                }
+
+                return false;
+
+              case true:
+                return mergeState.mergeWithBase(mergeState.olderState, mergeState.olderState);
+            }
+
+            throw new Error('Unreachable code');
+        }
+
+        switch (mergeState.baseState.canMerge(mergeState.olderState)) {
+          case null:
+            return mergeState.mergeWithBase(mergeState.newerState, mergeState.newerState);
+          // if (!mergeState.mergeWithBase(mergeState.newerState, mergeState.newerState)) {
+          // 	if (set) {
+          // 		throw new Error('base != newer; base == older; base == newer')
+          // 	}
+          // 	return false
+          // }
+          // return true
+
+          case false:
+            if (!mergeState.mergeWithBase(mergeState.newerState, mergeState.newerState)) {
+              if (set) {
+                set(mergeState.olderState.clone);
+                return true;
+              }
+
+              return false;
+            }
+
+            return true;
+
+          case true:
+            return mergeState.mergeWithBase(mergeState.olderState, mergeState.newerState);
+        }
+
+        throw new Error('Unreachable code');
+      }
+    }]);
+
+    return MergerVisitor;
+  }(); // endregion
+  // region TypeMetaMergerCollection
+
+  var TypeMetaMergerCollection =
+  /*#__PURE__*/
+  function (_TypeMetaCollection) {
+    _inherits(TypeMetaMergerCollection, _TypeMetaCollection);
+
+    function TypeMetaMergerCollection(_temp) {
+      var _this4;
+
+      var _ref = _temp === void 0 ? {} : _temp,
+          proto = _ref.proto,
+          customMeta = _ref.customMeta;
+
+      _classCallCheck(this, TypeMetaMergerCollection);
+
+      _this4 = _possibleConstructorReturn(this, _getPrototypeOf(TypeMetaMergerCollection).call(this, proto || TypeMetaMergerCollection.default));
+      _this4.customMeta = customMeta;
+      return _this4;
+    }
+
+    _createClass(TypeMetaMergerCollection, [{
+      key: "getMeta",
+      value: function getMeta(type) {
+        return this.customMeta && this.customMeta(type) || _get(_getPrototypeOf(TypeMetaMergerCollection.prototype), "getMeta", this).call(this, type);
+      }
+    }, {
+      key: "putMergeableType",
+      value: function putMergeableType(type, meta) {
+        return this.putType(type, TypeMetaMergerCollection.makeTypeMetaMerger(type, meta));
+      }
+    }], [{
+      key: "makeTypeMetaMerger",
+      value: function makeTypeMetaMerger(type, meta) {
+        return _extends({
+          valueFactory: function valueFactory() {
+            return new type();
+          }
+        }, meta, {
+          merger: _extends({
+            canMerge: function canMerge(target, source) {
+              return target._canMerge ? target._canMerge(source) : target.constructor === source.constructor;
+            },
+            merge: function merge(_merge, base, older, newer, set, preferCloneOlder, preferCloneNewer, options) {
+              return base._merge(_merge, older, newer, preferCloneOlder, preferCloneNewer, options);
+            }
+          }, meta ? meta.merger : {})
+        });
+      }
+    }]);
+
+    return TypeMetaMergerCollection;
+  }(TypeMetaCollection);
+  TypeMetaMergerCollection.default = new TypeMetaMergerCollection();
+  function registerMergeable(type, meta) {
+    TypeMetaMergerCollection.default.putMergeableType(type, meta);
+  }
+  function registerMerger(type, meta) {
+    TypeMetaMergerCollection.default.putType(type, meta);
+  }
+
+  function createPrimitiveTypeMetaMerger(meta) {
+    return _extends({
+      preferClone: false
+    }, meta, {
+      merger: _extends({
+        merge: function merge(_merge2, base, older, newer, set) {
+          set(newer.valueOf());
+          return true;
+        }
+      }, meta ? meta.merger : {})
+    });
+  }
+
+  function registerMergerPrimitive(type, meta) {
+    registerMerger(type, createPrimitiveTypeMetaMerger(meta));
+  } // endregion
+  // region ObjectMerger
+
+  var primitiveTypeMetaMerger = createPrimitiveTypeMetaMerger();
+  var observableObjectProperties = ['propertyChanged'];
+  var ObjectMerger =
+  /*#__PURE__*/
+  function () {
+    function ObjectMerger(typeMeta) {
+      var _context;
+
+      _classCallCheck(this, ObjectMerger);
+
+      this.typeMeta = new TypeMetaMergerCollection({
+        proto: typeMeta
+      });
+      this.merge = bind$3(_context = this.merge).call(_context, this);
+    }
+
+    _createClass(ObjectMerger, [{
+      key: "merge",
+      value: function merge(base, older, newer, set, preferCloneOlder, preferCloneNewer, options) {
+        var _this5 = this;
+
+        var merger = new MergerVisitor(function (type) {
+          return _this5.typeMeta.getMeta(type);
+        });
+        var mergedValue = merger.merge(base, older, newer, set, preferCloneOlder, preferCloneNewer, options);
+        return mergedValue;
+      }
+    }]);
+
+    return ObjectMerger;
+  }(); // endregion
+  // region Primitive Mergers
+  // Handled in MergerVisitor:
+
+  ObjectMerger.default = new ObjectMerger();
+  ObjectMerger.observableOnly = new ObjectMerger(new TypeMetaMergerCollection({
+    customMeta: function customMeta(type) {
+      var prototype = type.prototype;
+
+      for (var i = 0, len = observableObjectProperties.length; i < len; i++) {
+        if (Object.prototype.hasOwnProperty.call(prototype, observableObjectProperties[i])) {
+          return primitiveTypeMetaMerger;
+        }
+      }
+
+      return null;
+    }
+  }));
+
+  function isPrimitive(value) {
+    return !canHaveUniqueId(value) || typeof value === 'function'; // value == null
+    // || typeof value === 'number'
+    // || typeof value === 'boolean'
+  }
+
+  registerMerger(String, {
+    merger: {
+      canMerge: function canMerge(target, source) {
+        target = target.valueOf();
+        source = source.valueOf();
+
+        if (typeof source !== 'string') {
+          return false;
+        }
+
+        if (target === source) {
+          return null;
+        }
+
+        return true;
+      },
+      merge: function merge(_merge3, base, older, newer, set) {
+        // base = base.valueOf()
+        // older = older.valueOf()
+        // newer = newer.valueOf()
+        // if (base === newer) {
+        // 	if (base === older) {
+        // 		return false
+        // 	}
+        // 	set(older)
+        // 	return true
+        // }
+        set(newer.valueOf());
+        return true;
+      }
+    },
+    preferClone: false
+  });
+  registerMergerPrimitive(Number);
+  registerMergerPrimitive(Boolean);
+  registerMergerPrimitive(Array);
+  registerMergerPrimitive(Error); // endregion
+  // region Array
+  // @ts-ignore
+  // registerMerger<any[], any[]>(Array, {
+  // 	merger: {
+  // 		canMerge(target: any[], source: any[]): boolean {
+  // 			return Array.isArray(source)
+  // 		},
+  // 		merge(
+  // 			merge: IMergeValue,
+  // 			base: any[],
+  // 			older: any[],
+  // 			newer: any[],
+  // 			set?: (value: any[]) => void,
+  // 			preferCloneOlder?: boolean,
+  // 			preferCloneNewer?: boolean,
+  // 			options?: IMergeOptions,
+  // 		): boolean {
+  // 			let changed = false
+  // 			const lenBase = base.length
+  // 			const lenOlder = older.length
+  // 			const lenNewer = newer.length
+  // 			for (let i = 0; i < lenNewer; i++) {
+  // 				if (i < lenBase) {
+  // 					if (i < lenOlder) {
+  // 						changed = merge(base[i], older[i], newer[i], o => base[i] = o, preferCloneOlder, preferCloneNewer)
+  // 							|| changed
+  // 					} else {
+  // 						changed = merge(base[i], newer[i], newer[i], o => base[i] = o, preferCloneNewer, preferCloneNewer)
+  // 							|| changed
+  // 					}
+  // 				} else if (i < lenOlder) {
+  // 					changed = merge(EMPTY, older[i], newer[i], o => base[i] = o, preferCloneOlder, preferCloneNewer)
+  // 						|| changed
+  // 				} else {
+  // 					changed = merge(EMPTY, newer[i], newer[i], o => base[i] = o, preferCloneNewer, preferCloneNewer)
+  // 						|| changed
+  // 				}
+  // 			}
+  // 		},
+  // 	},
+  // 	preferClone: o => Array.isFrozen(o) ? true : null,
+  // })
+  // endregion
+  // region Object
+
+  registerMerger(Object, {
+    merger: {
+      canMerge: function canMerge(target, source) {
+        return source.constructor === Object;
+      },
+      merge: function merge(_merge4, base, older, newer, set, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(createMergeMapWrapper, _merge4, base, older, newer, preferCloneOlder, preferCloneNewer, options);
+      }
+    },
+    preferClone: function preferClone(o) {
+      return isFrozen$2(o) ? true : null;
+    }
+  }); // endregion
+  // region Date
+
+  registerMerger(Date, {
+    merger: {
+      canMerge: function canMerge(target, source) {
+        if (source.constructor !== Date) {
+          return false;
+        }
+
+        return target.getTime() === source.getTime() ? null : false;
+      }
+    },
+    valueFactory: function valueFactory(source) {
+      return new Date(source);
+    }
+  }); // endregion
+  // region Set
+
+  registerMerger(set$4, {
+    merger: {
+      canMerge: function canMerge(target, source) {
+        return source.constructor === Object || source[toStringTag$2] === 'Set' || isArray$3(source) || isIterable$2(source);
+      },
+      merge: function merge(_merge5, base, older, newer, set, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return createMergeSetWrapper(target, source, function (arrayOrIterable) {
+            return fillSet(new set$4(), arrayOrIterable);
+          });
+        }, _merge5, base, older, newer, preferCloneOlder, preferCloneNewer, options);
+      }
+    } // valueFactory: (source: Set<any>) => new Set(source),
+
+  }); // endregion
+  // region Map
+
+  registerMerger(map$5, {
+    merger: {
+      // tslint:disable-next-line:no-identical-functions
+      canMerge: function canMerge(target, source) {
+        return source.constructor === Object || source[toStringTag$2] === 'Map' || isArray$3(source) || isIterable$2(source);
+      },
+      merge: function merge(_merge6, base, older, newer, set, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return createMergeMapWrapper(target, source, function (arrayOrIterable) {
+            return fillMap(new map$5(), arrayOrIterable);
+          });
+        }, _merge6, base, older, newer, preferCloneOlder, preferCloneNewer, options);
+      }
+    } // valueFactory: (source: Map<any, any>) => new Map(source),
+
+  }); // endregion
+
+  var bind$4 = bind_1;
+
+  var bind$5 = bind$4;
+
+  var nativeConstruct = getBuiltIn('Reflect', 'construct');
+
+  // `Reflect.construct` method
+  // https://tc39.github.io/ecma262/#sec-reflect.construct
+  // MS Edge supports only 2 arguments and argumentsList argument is optional
+  // FF Nightly sets third argument as `new.target`, but does not create `this` from it
+  var NEW_TARGET_BUG = fails(function () {
+    function F() { /* empty */ }
+    return !(nativeConstruct(function () { /* empty */ }, [], F) instanceof F);
+  });
+  var ARGS_BUG = !fails(function () {
+    nativeConstruct(function () { /* empty */ });
+  });
+  var FORCED$5 = NEW_TARGET_BUG || ARGS_BUG;
+
+  _export({ target: 'Reflect', stat: true, forced: FORCED$5, sham: FORCED$5 }, {
+    construct: function construct(Target, args /* , newTarget */) {
+      aFunction(Target);
+      anObject(args);
+      var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
+      if (ARGS_BUG && !NEW_TARGET_BUG) return nativeConstruct(Target, args, newTarget);
+      if (Target == newTarget) {
+        // w/o altered newTarget, optimization for 0-4 arguments
+        switch (args.length) {
+          case 0: return new Target();
+          case 1: return new Target(args[0]);
+          case 2: return new Target(args[0], args[1]);
+          case 3: return new Target(args[0], args[1], args[2]);
+          case 4: return new Target(args[0], args[1], args[2], args[3]);
+        }
+        // w/o altered newTarget, lot of arguments case
+        var $args = [null];
+        $args.push.apply($args, args);
+        return new (functionBind.apply(Target, $args))();
+      }
+      // with altered newTarget, not support built-in constructors
+      var proto = newTarget.prototype;
+      var instance = objectCreate(isObject(proto) ? proto : Object.prototype);
+      var result = Function.apply.call(Target, instance, args);
+      return isObject(result) ? result : instance;
+    }
+  });
+
+  var construct$1 = path.Reflect.construct;
+
+  var construct$2 = construct$1;
+
+  var construct$3 = construct$2;
+
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !construct$3) return false;
+    if (construct$3.sham) return false;
+    if (typeof Proxy === "function") return true;
+
+    try {
+      Date.prototype.toString.call(construct$3(Date, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function _construct(Parent, args, Class) {
+    if (isNativeReflectConstruct()) {
+      _construct = construct$3;
+    } else {
+      _construct = function _construct(Parent, args, Class) {
+        var a = [null];
+        a.push.apply(a, args);
+
+        var Constructor = bind$5(Function).apply(Parent, a);
+
+        var instance = new Constructor();
+        if (Class) _setPrototypeOf(instance, Class.prototype);
+        return instance;
+      };
+    }
+
+    return _construct.apply(null, arguments);
+  }
+
+  var _marked =
+  /*#__PURE__*/
+  regenerator.mark(deSerializeIterableOrdered);
+
+  var SerializerVisitor =
+  /*#__PURE__*/
+  function () {
+    function SerializerVisitor(typeMeta) {
+      var _context;
+
+      _classCallCheck(this, SerializerVisitor);
+
+      this._typeMeta = typeMeta;
+      this.serialize = bind$3(_context = this.serialize).call(_context, this);
+    }
+
+    _createClass(SerializerVisitor, [{
+      key: "addType",
+      value: function addType(uuid) {
+        // tslint:disable-next-line:prefer-const
+        var types = this.types,
+            typesMap = this.typesMap;
+
+        if (!typesMap) {
+          this.typesMap = typesMap = {};
+          this.types = types = [];
+        }
+
+        var typeIndex = typesMap[uuid];
+
+        if (typeIndex == null) {
+          typeIndex = types.length;
+          types[typeIndex] = uuid;
+          typesMap[uuid] = typeIndex;
+        }
+
+        return typeIndex;
+      }
+    }, {
+      key: "addObject",
+      value: function addObject(object, serialize) {
+        // tslint:disable-next-line:prefer-const
+        var objects = this.objects,
+            objectsMap = this.objectsMap;
+
+        if (!objectsMap) {
+          this.objectsMap = objectsMap = [];
+          this.objects = objects = [];
+        }
+
+        var id = getObjectUniqueId(object);
+        var ref = objectsMap[id];
+
+        if (ref == null) {
+          var index = objects.length;
+          ref = {
+            id: index
+          };
+          objectsMap[id] = ref;
+          var data = {};
+          objects[index] = data;
+          serialize(data);
+        }
+
+        return ref;
+      }
+    }, {
+      key: "serializeObject",
+      value: function serializeObject(out, value, options) {
+        var meta = this._typeMeta.getMeta(options && options.valueType || value.constructor);
+
+        if (!meta) {
+          throw new Error("Class (" + value.constructor.name + ") have no type meta");
+        }
+
+        var uuid = meta.uuid;
+
+        if (!uuid) {
+          throw new Error("Class (" + value.constructor.name + ") type meta have no uuid");
+        }
+
+        var serializer = meta.serializer;
+
+        if (!serializer) {
+          throw new Error("Class (" + value.constructor.name + ") type meta have no serializer");
+        }
+
+        if (!serializer.serialize) {
+          throw new Error("Class (" + value.constructor.name + ") serializer have no serialize method");
+        }
+
+        out.type = this.addType(uuid);
+        out.data = serializer.serialize(this.getNextSerialize(options), value, options);
+      } // noinspection JSUnusedLocalSymbols
+
+    }, {
+      key: "getNextSerialize",
+      value: function getNextSerialize(options) {
+        var _this = this;
+
+        return function (next_value, next_options) {
+          return _this.serialize(next_value, next_options // next_options == null || next_options === options
+          // 	? options
+          // 	: (options == null ? next_options : {
+          // 		...options,
+          // 		...next_options,
+          // 	}),
+          );
+        };
+      }
+    }, {
+      key: "serialize",
+      value: function serialize(value, options) {
+        var _this2 = this;
+
+        if (value == null || typeof value === 'number' || typeof value === 'string' || typeof value === 'boolean') {
+          return value;
+        }
+
+        return this.addObject(value, function (out) {
+          _this2.serializeObject(out, value, options);
+        });
+      }
+    }]);
+
+    return SerializerVisitor;
+  }(); // tslint:disable-next-line:no-shadowed-variable no-empty
+
+  var LOCKED = function LOCKED() {};
+
+  var DeSerializerVisitor =
+  /*#__PURE__*/
+  function () {
+    function DeSerializerVisitor(typeMeta, types, objects) {
+      var _context2;
+
+      _classCallCheck(this, DeSerializerVisitor);
+
+      this._countDeserialized = 0;
+      this._typeMeta = typeMeta;
+      this._types = types;
+      this._objects = objects;
+      var len = objects.length;
+      var instances = new Array(len);
+
+      for (var i = 0; i < len; i++) {
+        instances[i] = null;
+      }
+
+      this._instances = instances;
+      this.deSerialize = bind$3(_context2 = this.deSerialize).call(_context2, this);
+    }
+
+    _createClass(DeSerializerVisitor, [{
+      key: "assertEnd",
+      value: function assertEnd() {
+        var _types = this._types,
+            _objects = this._objects,
+            _instances = this._instances,
+            _typeMeta = this._typeMeta;
+
+        var getDebugObject = function getDebugObject(deserialized, id) {
+          var object = _objects[id];
+          var uuid = _types[object.type];
+
+          var type = _typeMeta.getType(uuid); // noinspection HtmlUnknownTag
+
+
+          return {
+            type: type == null ? "<Type not found: " + uuid + ">" : type.name,
+            data: object.data,
+            deserialized: deserialized == null ? deserialized : deserialized.constructor.name
+          };
+        };
+
+        if (this._countDeserialized !== _instances.length) {
+          var _context3, _context4;
+
+          throw new Error(_instances.length - this._countDeserialized + " instances is not deserialized\r\n" + stringify$2(map$2(_context3 = filter$2(_context4 = map$2(_instances).call(_instances, function (o, i) {
+            return [o, i];
+          })).call(_context4, function (o) {
+            return !o[0] || o[0] === LOCKED || ThenableSync.isThenable(o[0]);
+          })).call(_context3, function (o) {
+            return getDebugObject(o[0], o[1]);
+          })));
+        }
+      } // noinspection JSUnusedLocalSymbols
+
+    }, {
+      key: "getNextDeSerialize",
+      value: function getNextDeSerialize(options) {
+        var _this3 = this;
+
+        return function (next_serializedValue, next_onfulfilled, next_options) {
+          return _this3.deSerialize(next_serializedValue, next_onfulfilled, next_options // next_options == null || next_options === options
+          // 	? options
+          // 	: (options == null ? next_options : {
+          // 		...options,
+          // 		...next_options,
+          // 	}),
+          );
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize(serializedValue, _onfulfilled, options) {
+        var _this4 = this;
+
+        if (_onfulfilled) {
+          var input_onfulfilled = _onfulfilled;
+
+          _onfulfilled = function onfulfilled(value) {
+            var result = input_onfulfilled(value);
+            _onfulfilled = null;
+            return result;
+          };
+        }
+
+        if (serializedValue == null || typeof serializedValue === 'number' || typeof serializedValue === 'string' || typeof serializedValue === 'boolean') {
+          if (_onfulfilled) {
+            return ThenableSync.resolve(_onfulfilled(serializedValue));
+          }
+
+          return serializedValue;
+        }
+
+        var id = serializedValue.id;
+
+        if (id != null) {
+          var cachedInstance = this._instances[id];
+
+          if (cachedInstance) {
+            if (cachedInstance === LOCKED) {
+              this._instances[id] = cachedInstance = new ThenableSync();
+            }
+
+            if (_onfulfilled) {
+              if (cachedInstance instanceof ThenableSync) {
+                cachedInstance.thenLast(_onfulfilled);
+              } else {
+                return ThenableSync.resolve(_onfulfilled(cachedInstance));
+              }
+            }
+
+            return cachedInstance;
+          }
+
+          this._instances[id] = LOCKED;
+          serializedValue = this._objects[id];
+        }
+
+        var type = options && options.valueType;
+
+        if (!type) {
+          var typeIndex = serializedValue.type;
+
+          if (typeof typeIndex !== 'number') {
+            throw new Error("Serialized value have no type field: " + stringify$2(serializedValue, null, 4));
+          }
+
+          var uuid = this._types[typeIndex];
+
+          if (typeof uuid !== 'string') {
+            throw new Error("type uuid not found for index (" + typeIndex + "): " + stringify$2(serializedValue, null, 4));
+          }
+
+          type = this._typeMeta.getType(uuid);
+
+          if (!type) {
+            throw new Error("type not found for uuid (" + uuid + "): " + stringify$2(serializedValue, null, 4));
+          }
+        }
+
+        var meta = this._typeMeta.getMeta(type);
+
+        if (!meta) {
+          throw new Error("Class (" + typeToDebugString(type) + ") have no type meta");
+        }
+
+        var serializer = meta.serializer;
+
+        if (!serializer) {
+          throw new Error("Class (" + typeToDebugString(type) + ") type meta have no serializer");
+        }
+
+        if (!serializer.deSerialize) {
+          throw new Error("Class (" + typeToDebugString(type) + ") serializer have no deSerialize method");
+        }
+
+        var factory = options && options.valueFactory || meta.valueFactory || function () {
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          return _construct(type, args);
+        };
+
+        if (id != null && !factory) {
+          throw new Error("valueFactory not found for " + typeToDebugString(type) + ". " + 'Any object serializers should have valueFactory');
+        }
+
+        var instance;
+        var iteratorOrValue = serializer.deSerialize(this.getNextDeSerialize(options), serializedValue.data, function () {
+          if (!factory) {
+            throw new Error('Multiple call valueFactory is forbidden');
+          }
+
+          instance = factory.apply(void 0, arguments);
+          factory = null;
+          return instance;
+        }, options);
+
+        var resolveInstance = function resolveInstance(value) {
+          var cachedInstance = _this4._instances[id];
+          _this4._instances[id] = value;
+
+          if (cachedInstance instanceof ThenableSync) {
+            cachedInstance.resolve(value);
+          }
+        };
+
+        var resolveValue = function resolveValue(value) {
+          if (id != null) {
+            if (!factory && instance !== value) {
+              throw new Error("valueFactory instance !== return value in serializer for " + typeToDebugString(type));
+            }
+
+            resolveInstance(value);
+            _this4._countDeserialized++;
+          }
+
+          if (_onfulfilled) {
+            return ThenableSync.resolve(_onfulfilled(value));
+          }
+
+          return value;
+        };
+
+        var valueOrThenFunc = ThenableSync.resolve(iteratorOrValue, resolveValue);
+
+        if (id != null && !factory && ThenableSync.isThenable(valueOrThenFunc)) {
+          resolveInstance(instance);
+
+          if (_onfulfilled) {
+            return ThenableSync.resolve(_onfulfilled(instance));
+          }
+
+          return instance;
+        }
+
+        return valueOrThenFunc;
+      }
+    }]);
+
+    return DeSerializerVisitor;
+  }(); // endregion
+  // region TypeMetaSerializerCollection
+
+  var TypeMetaSerializerCollection =
+  /*#__PURE__*/
+  function (_TypeMetaCollectionWi) {
+    _inherits(TypeMetaSerializerCollection, _TypeMetaCollectionWi);
+
+    function TypeMetaSerializerCollection(proto) {
+      _classCallCheck(this, TypeMetaSerializerCollection);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(TypeMetaSerializerCollection).call(this, proto || TypeMetaSerializerCollection.default));
+    }
+
+    _createClass(TypeMetaSerializerCollection, [{
+      key: "putSerializableType",
+      value: function putSerializableType(type, meta) {
+        return this.putType(type, TypeMetaSerializerCollection.makeTypeMetaSerializer(type, meta));
+      }
+    }], [{
+      key: "makeTypeMetaSerializer",
+      value: function makeTypeMetaSerializer(type, meta) {
+        return _extends({
+          uuid: type.uuid
+        }, meta, {
+          serializer: _extends({
+            serialize: function serialize(_serialize, value, options) {
+              return value.serialize(_serialize, options);
+            },
+            deSerialize:
+            /*#__PURE__*/
+            regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory, options) {
+              var value;
+              return regenerator.wrap(function deSerialize$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      value = valueFactory();
+                      _context5.next = 3;
+                      return value.deSerialize(_deSerialize, serializedValue, options);
+
+                    case 3:
+                      return _context5.abrupt("return", value);
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, deSerialize);
+            })
+          }, meta ? meta.serializer : {})
+        });
+      }
+    }]);
+
+    return TypeMetaSerializerCollection;
+  }(TypeMetaCollectionWithId);
+  TypeMetaSerializerCollection.default = new TypeMetaSerializerCollection();
+  function registerSerializable(type, meta) {
+    TypeMetaSerializerCollection.default.putSerializableType(type, meta);
+  }
+  function registerSerializer(type, meta) {
+    TypeMetaSerializerCollection.default.putType(type, meta);
+  } // endregion
+  // region ObjectSerializer
+
+  var ObjectSerializer =
+  /*#__PURE__*/
+  function () {
+    function ObjectSerializer(typeMeta) {
+      _classCallCheck(this, ObjectSerializer);
+
+      this.typeMeta = new TypeMetaSerializerCollection(typeMeta);
+    }
+
+    _createClass(ObjectSerializer, [{
+      key: "serialize",
+      value: function serialize(value, options) {
+        var serializer = new SerializerVisitor(this.typeMeta);
+        var serializedValue = serializer.serialize(value, options);
+
+        if (!serializedValue || typeof serializedValue !== 'object') {
+          return serializedValue;
+        }
+
+        var serializedData = {
+          data: serializedValue
+        };
+
+        if (serializer.types) {
+          serializedData.types = serializer.types;
+        }
+
+        if (serializer.objects) {
+          serializedData.objects = serializer.objects;
+        }
+
+        return serializedData;
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize(serializedValue, options) {
+        if (!serializedValue || typeof serializedValue !== 'object') {
+          return serializedValue;
+        }
+
+        var types = serializedValue.types,
+            objects = serializedValue.objects,
+            data = serializedValue.data;
+
+        if (!isArray$3(types)) {
+          throw new Error("serialized value types field is not array: " + types);
+        }
+
+        var deSerializer = new DeSerializerVisitor(this.typeMeta, types, objects);
+        var value = deSerializer.deSerialize(data, null, options);
+        deSerializer.assertEnd();
+        return value;
+      }
+    }]);
+
+    return ObjectSerializer;
+  }(); // endregion
+  // region Primitive Serializers
+  // Handled in SerializerVisitor:
+  // undefined
+  // null
+  // number
+  // string
+  // boolean
+  // region Helpers
+
+  ObjectSerializer.default = new ObjectSerializer();
+  function serializeArray(serialize, value, length) {
+    if (length == null) {
+      length = value.length;
+    }
+
+    var serializedValue = [];
+
+    for (var i = 0; i < length; i++) {
+      serializedValue[i] = serialize(value[i]);
+    }
+
+    return serializedValue;
+  }
+  function deSerializeArray(deSerialize, serializedValue, value) {
+    var _loop = function _loop(i, _len2) {
+      var index = i;
+
+      if (ThenableSync.isThenable(deSerialize(serializedValue[index], function (o) {
+        value[index] = o;
+      }))) {
+        value[index] = null;
+      }
+    };
+
+    for (var i = 0, _len2 = serializedValue.length; i < _len2; i++) {
+      _loop(i);
+    }
+
+    return value;
+  }
+  function serializeIterable(serialize, value) {
+    var serializedValue = [];
+
+    for (var _iterator = value, _isArray = isArray$3(_iterator), _i = 0, _iterator = _isArray ? _iterator : getIterator$1(_iterator);;) {
+      var _ref;
+
+      if (_isArray) {
+        if (_i >= _iterator.length) break;
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) break;
+        _ref = _i.value;
+      }
+
+      var item = _ref;
+      serializedValue.push(serialize(item));
+    }
+
+    return serializedValue;
+  }
+  function deSerializeIterableOrdered(serializedValue, add) {
+    var i, _len3;
+
+    return regenerator.wrap(function deSerializeIterableOrdered$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            i = 0, _len3 = serializedValue.length;
+
+          case 1:
+            if (!(i < _len3)) {
+              _context6.next = 7;
+              break;
+            }
+
+            _context6.next = 4;
+            return add(serializedValue[i]);
+
+          case 4:
+            i++;
+            _context6.next = 1;
+            break;
+
+          case 7:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _marked);
+  }
+  // region Object
+
+  function serializeObject(serialize, value, options) {
+    var keepUndefined = options && options.objectKeepUndefined;
+    var serializedValue = {};
+
+    for (var key in value) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) {
+        var item = value[key];
+
+        if (keepUndefined || typeof item !== 'undefined') {
+          serializedValue[key] = serialize(item);
+        }
+      }
+    }
+
+    return serializedValue;
+  }
+  function deSerializeObject(deSerialize, serializedValue, value) {
+    var _loop2 = function _loop2(key) {
+      if (Object.prototype.hasOwnProperty.call(serializedValue, key)) {
+        // tslint:disable-next-line:no-collapsible-if
+        if (ThenableSync.isThenable(deSerialize(serializedValue[key], function (o) {
+          value[key] = o;
+        }))) {
+          value[key] = null;
+        }
+      }
+    };
+
+    for (var key in serializedValue) {
+      _loop2(key);
+    }
+
+    return value;
+  } // noinspection SpellCheckingInspection
+
+  registerSerializer(Object, {
+    uuid: '88968a59178c4e73a99f801e8cdfc37d',
+    serializer: {
+      serialize: function serialize(_serialize2, value, options) {
+        return serializeObject(_serialize2, value, options);
+      },
+      deSerialize: function (_deSerialize2) {
+        function deSerialize(_x, _x2, _x3) {
+          return _deSerialize2.apply(this, arguments);
+        }
+
+        deSerialize.toString = function () {
+          return _deSerialize2.toString();
+        };
+
+        return deSerialize;
+      }(function (deSerialize, serializedValue, valueFactory) {
+        var value = valueFactory();
+        return deSerializeObject(deSerialize, serializedValue, value);
+      })
+    },
+    valueFactory: function valueFactory() {
+      return {};
+    }
+  }); // endregion
+  // region Primitive as object
+
+  function serializePrimitiveAsObject(serialize, object) {
+    var value = object.valueOf();
+
+    if (value === object) {
+      throw new Error("value is not primitive as object: " + (value && value.constructor.name));
+    }
+
+    return value; // return {
+    // 	value: serialize(value),
+    // 	object: serializeObject(serialize, object, options) as any,
+    // }
+  }
+  function deSerializePrimitiveAsObject(deSerialize, serializedValue, valueFactory) {
+    var object = valueFactory(serializedValue); // deSerializeObject(deSerialize, serializedValue.object as any, object)
+
+    return object;
+  }
+  var primitiveAsObjectSerializer = {
+    serialize: serializePrimitiveAsObject,
+    deSerialize: deSerializePrimitiveAsObject
+  }; // @ts-ignore
+  // noinspection SpellCheckingInspection
+
+  registerSerializer(String, {
+    uuid: '96104fd7d6f84a32b8f2feaa4f3666d8',
+    serializer: primitiveAsObjectSerializer
+  }); // @ts-ignore
+
+  registerSerializer(Number, {
+    uuid: 'dea0de4018014025b6a4b6f6c7a4fa11',
+    serializer: primitiveAsObjectSerializer
+  }); // @ts-ignore
+
+  registerSerializer(Boolean, {
+    uuid: 'e8d1ac82a0fa4431a23e3d8f954f736f',
+    serializer: primitiveAsObjectSerializer
+  }); // endregion
+  // region Array
+
+  registerSerializer(Array, {
+    uuid: 'f8c84ed084634f45b14a228967dfb0de',
+    serializer: {
+      serialize: function serialize(_serialize3, value, options) {
+        if (options && options.arrayAsObject) {
+          return serializeObject(_serialize3, value, options);
+        }
+
+        return serializeArray(_serialize3, value, options && options.arrayLength);
+      },
+      deSerialize: function (_deSerialize3) {
+        function deSerialize(_x4, _x5, _x6, _x7) {
+          return _deSerialize3.apply(this, arguments);
+        }
+
+        deSerialize.toString = function () {
+          return _deSerialize3.toString();
+        };
+
+        return deSerialize;
+      }(function (deSerialize, serializedValue, valueFactory, options) {
+        var value = valueFactory();
+
+        if (options && options.arrayAsObject) {
+          return deSerializeObject(deSerialize, serializedValue, value);
+        }
+
+        return deSerializeArray(deSerialize, serializedValue, value);
+      })
+    },
+    valueFactory: function valueFactory() {
+      return [];
+    }
+  }); // endregion
+  // region Set
+
+  registerSerializer(set$4, {
+    uuid: '17b11d99ce034349969e4f9291d0778c',
+    serializer: {
+      serialize: function serialize(_serialize4, value) {
+        return serializeIterable(_serialize4, value);
+      },
+      deSerialize: function (_deSerialize4) {
+        var _marked2 =
+        /*#__PURE__*/
+        regenerator.mark(deSerialize);
+
+        function deSerialize(_x8, _x9, _x10) {
+          var _args3 = arguments;
+          return regenerator.wrap(function deSerialize$(_context7) {
+            while (1) {
+              switch (_context7.prev = _context7.next) {
+                case 0:
+                  return _context7.delegateYield(_deSerialize4.apply(this, _args3), "t0", 1);
+
+                case 1:
+                  return _context7.abrupt("return", _context7.t0);
+
+                case 2:
+                case "end":
+                  return _context7.stop();
+              }
+            }
+          }, _marked2, this);
+        }
+
+        deSerialize.toString = function () {
+          return _deSerialize4.toString();
+        };
+
+        return deSerialize;
+      }(
+      /*#__PURE__*/
+      regenerator.mark(function _callee(deSerialize, serializedValue, valueFactory) {
+        var value;
+        return regenerator.wrap(function _callee$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                value = valueFactory();
+                _context8.next = 3;
+                return deSerializeIterableOrdered(serializedValue, function (o) {
+                  return deSerialize(o, function (val) {
+                    value.add(val);
+                  });
+                });
+
+              case 3:
+                return _context8.abrupt("return", value);
+
+              case 4:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee);
+      }))
+    } // valueFactory: () => new Set(),
+
+  }); // endregion
+  // region Map
+
+  registerSerializer(map$5, {
+    uuid: 'fdf40f2159b74cb2804f3d18ebb19b57',
+    serializer: {
+      serialize: function serialize(_serialize5, value) {
+        return serializeIterable(function (item) {
+          return [_serialize5(item[0]), _serialize5(item[1])];
+        }, value);
+      },
+      deSerialize: function (_deSerialize5) {
+        var _marked3 =
+        /*#__PURE__*/
+        regenerator.mark(deSerialize);
+
+        function deSerialize(_x11, _x12, _x13) {
+          var _args5 = arguments;
+          return regenerator.wrap(function deSerialize$(_context9) {
+            while (1) {
+              switch (_context9.prev = _context9.next) {
+                case 0:
+                  return _context9.delegateYield(_deSerialize5.apply(this, _args5), "t0", 1);
+
+                case 1:
+                  return _context9.abrupt("return", _context9.t0);
+
+                case 2:
+                case "end":
+                  return _context9.stop();
+              }
+            }
+          }, _marked3, this);
+        }
+
+        deSerialize.toString = function () {
+          return _deSerialize5.toString();
+        };
+
+        return deSerialize;
+      }(
+      /*#__PURE__*/
+      regenerator.mark(function _callee2(deSerialize, serializedValue, valueFactory) {
+        var value;
+        return regenerator.wrap(function _callee2$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                value = valueFactory();
+                _context10.next = 3;
+                return deSerializeIterableOrdered(serializedValue, function (item) {
+                  return deSerialize(item[0], function (key) {
+                    return deSerialize(item[1], function (val) {
+                      value.set(key, val);
+                    });
+                  });
+                });
+
+              case 3:
+                return _context10.abrupt("return", value);
+
+              case 4:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee2);
+      }))
+    } // valueFactory: () => new Map(),
+
+  }); // endregion
+  // region Date
+
+  registerSerializer(Date, {
+    uuid: '7a6c01dba6b84822a9a586e4d3a4460b',
+    serializer: {
+      serialize: function serialize(_serialize6, value) {
+        return value.getTime();
+      },
+      deSerialize: function (_deSerialize6) {
+        function deSerialize(_x14, _x15, _x16) {
+          return _deSerialize6.apply(this, arguments);
+        }
+
+        deSerialize.toString = function () {
+          return _deSerialize6.toString();
+        };
+
+        return deSerialize;
+      }(function (deSerialize, serializedValue, valueFactory) {
+        return valueFactory(serializedValue);
+      })
+    } // valueFactory: (value: number|string|Date) => new Date(value),
+
+  }); // endregion
+  // endregion
+
+  var ObservableObject =
+  /*#__PURE__*/
+  function (_ObservableClass) {
+    _inherits(ObservableObject, _ObservableClass);
+
+    function ObservableObject() {
+      _classCallCheck(this, ObservableObject);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(ObservableObject).apply(this, arguments));
+    }
+
+    return ObservableObject;
+  }(ObservableClass);
+  registerMerger(ObservableObject, {
+    merger: {
+      canMerge: function canMerge(target, source) {
+        return source instanceof Object;
+      },
+      merge: function merge(_merge, base, older, newer, set, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return new MergeObjectWrapper(source);
+        }, _merge, base, older, newer, preferCloneOlder, preferCloneNewer, options);
+      }
+    },
+    preferClone: function preferClone(o) {
+      return isFrozen$2(o) ? true : null;
+    }
+  });
+  registerSerializer(ObservableObject, {
+    uuid: '1380d053394748e58406c1c0e62a2be9',
+    serializer: {
+      serialize: function serialize(_serialize, value, options) {
+        return serializeObject(_serialize, value, options);
+      },
+      deSerialize: function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var value = valueFactory();
+        return deSerializeObject(_deSerialize, serializedValue, value);
+      }
+    },
+    valueFactory: function valueFactory() {
+      return new ObservableObject();
+    }
+  });
+
+  /* tslint:disable:no-shadowed-variable */
+  var now;
+
+  if (typeof performance !== 'undefined' && performance.now) {
+    var _context;
+
+    now = bind$3(_context = performance.now).call(_context, performance);
+  } else {
+    var start = process.hrtime();
+
+    now = function now() {
+      var end = process.hrtime(start);
+      return end[0] * 1000 + end[1] / 1000000;
+    };
+  }
+
+  var VALUE_PROPERTY_DEFAULT = '';
+
+  var Debugger =
+  /*#__PURE__*/
+  function () {
+    function Debugger() {
+      _classCallCheck(this, Debugger);
+
+      this._dependencySubject = new Subject();
+      this._connectorSubject = new Subject();
+      this._invalidatedSubject = new Subject();
+      this._calculatedSubject = new Subject();
+      this._deepSubscribeSubject = new Subject();
+      this._deepSubscribeLastValueSubject = new Subject();
+      this._errorSubject = new Subject();
+    } // region onDependencyChanged
+
+
+    _createClass(Debugger, [{
+      key: "onDependencyChanged",
+      value: function onDependencyChanged(target, value, parent, key, keyType) {
+        if (this._dependencySubject.hasSubscribers) {
+          this._dependencySubject.emit({
+            target: target,
+            value: value,
+            parent: parent,
+            key: key,
+            keyType: keyType
+          });
+        }
+      } // endregion
+      // region onConnectorChanged
+
+    }, {
+      key: "onConnectorChanged",
+      value: function onConnectorChanged(target, targetKey, value, parent, key, keyType) {
+        if (this._connectorSubject.hasSubscribers) {
+          this._connectorSubject.emit({
+            target: target,
+            targetKey: targetKey,
+            value: value,
+            parent: parent,
+            key: key,
+            keyType: keyType
+          });
+        }
+      } // endregion
+      // region onInvalidated
+
+    }, {
+      key: "onInvalidated",
+      value: function onInvalidated(target, value) {
+        if (this._invalidatedSubject.hasSubscribers) {
+          this._invalidatedSubject.emit({
+            target: target,
+            value: value
+          });
+        }
+      } // endregion
+      // region onCalculated
+
+    }, {
+      key: "onCalculated",
+      value: function onCalculated(target, oldValue, newValue) {
+        if (this._calculatedSubject.hasSubscribers) {
+          this._calculatedSubject.emit({
+            target: target,
+            newValue: newValue,
+            oldValue: oldValue
+          });
+        }
+      } // endregion
+      // region onDeepSubscribe
+
+    }, {
+      key: "onDeepSubscribe",
+      value: function onDeepSubscribe(key, oldValue, newValue, parent, changeType, keyType, propertiesPath, rule, oldIsLeaf, newIsLeaf, target) {
+        if (this._deepSubscribeSubject.hasSubscribers) {
+          this._deepSubscribeSubject.emit({
+            key: key,
+            oldValue: oldValue,
+            newValue: newValue,
+            parent: parent,
+            changeType: changeType,
+            keyType: keyType,
+            propertiesPath: propertiesPath,
+            rule: rule,
+            oldIsLeaf: oldIsLeaf,
+            newIsLeaf: newIsLeaf,
+            target: target
+          });
+        }
+      } // endregion
+      // region onDeepSubscribeLastValue
+
+    }, {
+      key: "onDeepSubscribeLastValue",
+      value: function onDeepSubscribeLastValue(unsubscribedValue, subscribedValue, target) {
+        if (this._deepSubscribeLastValueSubject.hasSubscribers) {
+          this._deepSubscribeLastValueSubject.emit({
+            unsubscribedValue: unsubscribedValue,
+            subscribedValue: subscribedValue,
+            target: target
+          });
+        }
+      } // endregion
+      // region onError
+
+    }, {
+      key: "onError",
+      value: function onError(target, newValue, oldValue, err) {
+        if (this._errorSubject.hasSubscribers) {
+          this._errorSubject.emit({
+            target: target,
+            newValue: newValue,
+            oldValue: oldValue,
+            error: err
+          });
+        }
+      } // endregion
+
+    }, {
+      key: "dependencyObservable",
+      get: function get() {
+        return this._dependencySubject;
+      }
+    }, {
+      key: "connectorObservable",
+      get: function get() {
+        return this._connectorSubject;
+      }
+    }, {
+      key: "invalidatedObservable",
+      get: function get() {
+        return this._invalidatedSubject;
+      }
+    }, {
+      key: "calculatedObservable",
+      get: function get() {
+        return this._calculatedSubject;
+      }
+    }, {
+      key: "deepSubscribeObservable",
+      get: function get() {
+        return this._deepSubscribeSubject;
+      }
+    }, {
+      key: "deepSubscribeLastValueHasSubscribers",
+      get: function get() {
+        return this._deepSubscribeLastValueSubject.hasSubscribers;
+      }
+    }, {
+      key: "deepSubscribeLastValueObservable",
+      get: function get() {
+        return this._deepSubscribeLastValueSubject;
+      }
+    }, {
+      key: "errorObservable",
+      get: function get() {
+        return this._errorSubject;
+      }
+    }]);
+
+    return Debugger;
+  }();
+  Debugger.Instance = new Debugger();
+
+  // `Date.now` method
+  // https://tc39.github.io/ecma262/#sec-date.now
+  _export({ target: 'Date', stat: true }, {
+    now: function now() {
+      return new Date().getTime();
+    }
+  });
+
+  var now$1 = path.Date.now;
+
+  var now$2 = now$1;
+
+  var now$3 = now$2;
+
+  var timingDefault = {
+    now: now$3,
+    setTimeout: typeof window === 'undefined' ? setTimeout$2 : bind$3(setTimeout$2).call(setTimeout$2, window),
+    clearTimeout: typeof window === 'undefined' ? clearTimeout : bind$3(clearTimeout).call(clearTimeout, window)
+  };
+
+  // Is slower than simple object
+  // export class PropertyChangedEvent<TValue> implements IPropertyChangedEvent {
+  // 	public name: string
+  // 	public oldValue: TValue
+  // 	public newValue: TValue
+  //
+  // 	constructor(name, oldValue: TValue, newValue: TValue) {
+  // 		this.name = name
+  // 		this.oldValue = oldValue
+  // 		this.newValue = newValue
+  // 	}
+  // }
+  var PropertyChangedEvent =
+  /*#__PURE__*/
+  function () {
+    function PropertyChangedEvent(name, oldValue, getNewValue) {
+      _classCallCheck(this, PropertyChangedEvent);
+
+      this.name = name;
+      this.oldValue = oldValue;
+      this._getNewValue = getNewValue;
+    }
+
+    _createClass(PropertyChangedEvent, [{
+      key: "newValue",
+      get: function get() {
+        return this._getNewValue();
+      }
+    }]);
+
+    return PropertyChangedEvent;
+  }();
+
+  var ObservableObjectBuilder =
+  /*#__PURE__*/
+  function () {
+    function ObservableObjectBuilder(object) {
+      _classCallCheck(this, ObservableObjectBuilder);
+
+      this.object = object || new ObservableClass();
+    }
+
+    _createClass(ObservableObjectBuilder, [{
+      key: "writable",
+      value: function writable(name, options, initValue) {
+        var _ref = options || {},
+            setOptions = _ref.setOptions,
+            hidden = _ref.hidden;
+
+        var object = this.object;
+        var __fields = object.__fields;
+
+        if (__fields) {
+          __fields[name] = object[name];
+        } else if (typeof initValue !== 'undefined') {
+          throw new Error("You can't set initValue for prototype writable property");
+        } // optimization
+
+
+        var getValue = options && options.getValue || createFunction(function () {
+          return function () {
+            return this.__fields[name];
+          };
+        }, "return this.__fields[\"" + name + "\"]");
+        var setValue = options && options.setValue || createFunction(function () {
+          return function (v) {
+            this.__fields[name] = v;
+          };
+        }, 'v', "this.__fields[\"" + name + "\"] = v");
+
+        var _set2 = setOptions ? bind$3(_setExt).call(_setExt, null, name, getValue, setValue, setOptions) : bind$3(_set).call(_set, null, name, getValue, setValue);
+
+        defineProperty$9(object, name, {
+          configurable: true,
+          enumerable: !hidden,
+          get: function get() {
+            return getValue.call(this);
+          },
+          set: function set(newValue) {
+            _set2(this, newValue);
+          }
+        });
+
+        if (__fields && typeof initValue !== 'undefined') {
+          var value = __fields[name];
+
+          if (webrainOptions.equalsFunc ? !webrainOptions.equalsFunc.call(object, value, initValue) : value !== initValue) {
+            object[name] = initValue;
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: "readable",
+      value: function readable(name, options, initValue) {
+        return this.updatable(name, options, initValue);
+      }
+    }, {
+      key: "updatable",
+      value: function updatable(name, options, initValue) {
+        var hidden = options && options.hidden;
+        var object = this.object;
+        var __fields = object.__fields;
+
+        if (__fields) {
+          __fields[name] = object[name];
+        }
+
+        var factory = options && options.factory;
+
+        if (!factory && !__fields && typeof initValue !== 'undefined') {
+          factory = function factory(o) {
+            return o;
+          };
+        }
+
+        var update = options && options.update; // optimization
+
+        var getValue = options && options.getValue || createFunction(function () {
+          return function () {
+            return this.__fields[name];
+          };
+        }, "return this.__fields[\"" + name + "\"]");
+        var setValue;
+
+        if (update || factory) {
+          setValue = options && options.setValue || createFunction(function () {
+            return function (v) {
+              this.__fields[name] = v;
+            };
+          }, 'v', "this.__fields[\"" + name + "\"] = v");
+        }
+
+        var setOnUpdate;
+
+        if (update) {
+          // tslint:disable-next-line
+          var setOptions = options && options.setOptions;
+          setOnUpdate = setOptions ? bind$3(_setExt).call(_setExt, null, name, getValue, setValue, setOptions) : bind$3(_set).call(_set, null, name, getValue, setValue);
+        }
+
+        var setOnInit;
+
+        if (factory) {
+          var _setOptions = _extends({}, options && options.setOptions, {
+            suppressPropertyChanged: true
+          });
+
+          setOnInit = _setOptions ? bind$3(_setExt).call(_setExt, null, name, getValue, setValue, _setOptions) : bind$3(_set).call(_set, null, name, getValue, setValue);
+        }
+
+        var createInstanceProperty = function createInstanceProperty(instance) {
+          var attributes = {
+            configurable: true,
+            enumerable: !hidden,
+            get: function get() {
+              return getValue.call(this);
+            }
+          };
+
+          if (update) {
+            attributes.set = function (value) {
+              var newValue = update.call(this, value);
+
+              if (typeof newValue !== 'undefined') {
+                setOnUpdate(this, newValue);
+              }
+            };
+          }
+
+          defineProperty$9(instance, name, attributes);
+        };
+
+        var initializeValue = options && options.init;
+
+        if (factory) {
+          var init = function init() {
+            var factoryValue = factory.call(this, initValue);
+            createInstanceProperty(this);
+
+            if (initializeValue) {
+              initializeValue.call(this, factoryValue);
+            }
+
+            return factoryValue;
+          };
+
+          var initAttributes = {
+            configurable: true,
+            enumerable: !hidden,
+            get: function get() {
+              var factoryValue = init.call(this);
+
+              if (typeof factoryValue !== 'undefined') {
+                var oldValue = getValue.call(this);
+
+                if (webrainOptions.equalsFunc ? !webrainOptions.equalsFunc.call(this, oldValue, factoryValue) : oldValue !== factoryValue) {
+                  setOnInit(this, factoryValue);
+                }
+              }
+
+              return factoryValue;
+            }
+          };
+
+          if (update) {
+            initAttributes.set = function (value) {
+              // tslint:disable:no-dead-store
+              var factoryValue = init.call(this);
+              var newValue = update.call(this, value);
+
+              if (typeof newValue !== 'undefined') {
+                var oldValue = getValue.call(this);
+
+                if (webrainOptions.equalsFunc ? !webrainOptions.equalsFunc.call(this, oldValue, newValue) : oldValue !== newValue) {
+                  setOnInit(this, newValue);
+                }
+              }
+            };
+          }
+
+          defineProperty$9(object, name, initAttributes);
+
+          if (__fields) {
+            var oldValue = __fields[name];
+            var propertyChangedIfCanEmit = object.propertyChangedIfCanEmit;
+
+            if (propertyChangedIfCanEmit) {
+              propertyChangedIfCanEmit.onPropertyChanged(new PropertyChangedEvent(name, oldValue, function () {
+                return object[name];
+              }));
+            }
+          }
+        } else {
+          createInstanceProperty(object);
+
+          if (__fields && typeof initValue !== 'undefined') {
+            var _oldValue = __fields[name];
+
+            if (initializeValue) {
+              initializeValue.call(this, initValue);
+            }
+
+            if (webrainOptions.equalsFunc ? !webrainOptions.equalsFunc.call(object, _oldValue, initValue) : _oldValue !== initValue) {
+              __fields[name] = initValue;
+              var _propertyChangedIfCanEmit = object.propertyChangedIfCanEmit;
+
+              if (_propertyChangedIfCanEmit) {
+                _propertyChangedIfCanEmit.onPropertyChanged({
+                  name: name,
+                  oldValue: _oldValue,
+                  newValue: initValue
+                });
+              }
+            }
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(name) {
+        var object = this.object;
+        var oldValue = object[name];
+
+        object._setUnsubscriber(name, null);
+
+        delete object[name];
+        var __fields = object.__fields;
+
+        if (__fields) {
+          delete __fields[name];
+
+          if (typeof oldValue !== 'undefined') {
+            var propertyChangedIfCanEmit = object.propertyChangedIfCanEmit;
+
+            if (propertyChangedIfCanEmit) {
+              propertyChangedIfCanEmit.onPropertyChanged({
+                name: name,
+                oldValue: oldValue
+              });
+            }
+          }
+        }
+
+        return this;
+      }
+    }]);
+
+    return ObservableObjectBuilder;
+  }(); // Test:
+  // export const obj = new ObservableObjectBuilder()
+  // 	.writable<number, 'prop1'>('prop1')
+  // 	.readable<string, 'prop2'>('prop2')
+  // 	.readable<string, 'prop3'>('prop3')
+  // 	.delete('prop3')
+  // 	.object
+  //
+  // export const x = obj.prop1 + obj.prop2 + obj.propertyChanged + obj.prop3
+  // const builder = new ObservableObjectBuilder(true as any)
+  //
+  // export function writable<T = any>(
+  // 	options?: IWritableFieldOptions,
+  // 	initValue?: T,
+  // ) {
+  // 	return (target: ObservableClass, propertyKey: string, descriptor: PropertyDescriptor) => {
+  // 		builder.object = target
+  // 		builder.writable(propertyKey, options, initValue)
+  // 	}
+  // }
+  //
+  // export function readable<T = any>(
+  // 	options?: IReadableFieldOptions<T>,
+  // 	initValue?: T,
+  // ) {
+  // 	return (target: ObservableClass, propertyKey: string) => {
+  // 		builder.object = target
+  // 		builder.readable(propertyKey, options, initValue)
+  // 	}
+  // }
+  // class Class extends ObservableClass {
+  // 	@writable()
+  // 	public prop: number
+  //
+  // 	@readable()
+  // 	public prop2: number
+  // }
+
+  var CalcPropertyState =
+  /*#__PURE__*/
+  function (_ObservableClass) {
+    _inherits(CalcPropertyState, _ObservableClass);
+
+    function CalcPropertyState(calcOptions, initValue) {
+      var _this;
+
+      _classCallCheck(this, CalcPropertyState);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(CalcPropertyState).call(this));
+      _this.calcOptions = calcOptions;
+      _this.value = initValue;
+      return _this;
+    }
+
+    return CalcPropertyState;
+  }(ObservableClass);
+  new ObservableObjectBuilder(CalcPropertyState.prototype).writable('input').writable('value');
+  // const test: RuleGetValueFunc<CalcProperty<any, { test1: { test2: 123 } }, any>, number> =
+  // 	o => o['@last']['@last']['@last'].test1['@last']['@wait'].test2['@last']
+
+  var ValueChangeType;
+
+  (function (ValueChangeType) {
+    ValueChangeType[ValueChangeType["None"] = 0] = "None";
+    ValueChangeType[ValueChangeType["Unsubscribe"] = 1] = "Unsubscribe";
+    ValueChangeType[ValueChangeType["Subscribe"] = 2] = "Subscribe";
+    ValueChangeType[ValueChangeType["Changed"] = 3] = "Changed";
+  })(ValueChangeType || (ValueChangeType = {}));
+
+  var ValueKeyType;
+
+  (function (ValueKeyType) {
+    ValueKeyType[ValueKeyType["Property"] = 0] = "Property";
+    ValueKeyType[ValueKeyType["ValueProperty"] = 1] = "ValueProperty";
+    ValueKeyType[ValueKeyType["MapKey"] = 2] = "MapKey";
+    ValueKeyType[ValueKeyType["CollectionAny"] = 3] = "CollectionAny";
+    ValueKeyType[ValueKeyType["ChangeCount"] = 4] = "ChangeCount";
+  })(ValueKeyType || (ValueKeyType = {}));
+
+  var RuleType;
+
+  (function (RuleType) {
+    RuleType[RuleType["Nothing"] = 0] = "Nothing";
+    RuleType[RuleType["Never"] = 1] = "Never";
+    RuleType[RuleType["Action"] = 2] = "Action";
+    RuleType[RuleType["If"] = 3] = "If";
+    RuleType[RuleType["Any"] = 4] = "Any";
+    RuleType[RuleType["Repeat"] = 5] = "Repeat";
+  })(RuleType || (RuleType = {}));
+
+  var RuleRepeatAction;
+
+  (function (RuleRepeatAction) {
+    RuleRepeatAction[RuleRepeatAction["Never"] = 0] = "Never";
+    RuleRepeatAction[RuleRepeatAction["Next"] = 1] = "Next";
+    RuleRepeatAction[RuleRepeatAction["Fork"] = 2] = "Fork";
+    RuleRepeatAction[RuleRepeatAction["All"] = 3] = "All";
+  })(RuleRepeatAction || (RuleRepeatAction = {}));
+
+  var INCORRECT_ITERATION$1 = !checkCorrectnessOfIteration(function (iterable) {
+    Array.from(iterable);
+  });
+
+  // `Array.from` method
+  // https://tc39.github.io/ecma262/#sec-array.from
+  _export({ target: 'Array', stat: true, forced: INCORRECT_ITERATION$1 }, {
+    from: arrayFrom
+  });
+
+  var from_1 = path.Array.from;
+
+  var from_1$1 = from_1;
+
+  var from_1$2 = from_1$1;
+
+  function ruleTypeToString(ruleType) {
+    switch (ruleType) {
+      case RuleType.Never:
+        return 'Never';
+
+      case RuleType.Action:
+        return 'Action';
+
+      case RuleType.Any:
+        return 'Any';
+
+      case RuleType.If:
+        return 'If';
+
+      case RuleType.Nothing:
+        return 'Nothing';
+
+      case RuleType.Repeat:
+        return 'Repeat';
+
+      default:
+        throw new Error('Unknown RuleType: ' + ruleType);
+    }
+  }
+
+  function ruleToString(rule, customDescription, nestedRulesStr) {
+    var description = customDescription || this.description || ruleTypeToString(this.type);
+    return "" + description + (nestedRulesStr ? '(' + nestedRulesStr + ')' : '') + (this.next ? ' > ' + this.next : '');
+  }
+
+  var Rule =
+  /*#__PURE__*/
+  function () {
+    function Rule(type, description) {
+      _classCallCheck(this, Rule);
+
+      this.type = type;
+
+      if (description != null) {
+        this.description = description;
+      }
+    }
+
+    _createClass(Rule, [{
+      key: "clone",
+      value: function clone() {
+        var type = this.type,
+            subType = this.subType,
+            description = this.description,
+            next = this.next,
+            toString = this.toString;
+        var clone = {
+          type: type,
+          subType: subType,
+          description: description,
+          toString: toString
+        };
+
+        if (next != null) {
+          clone.next = next.clone();
+        }
+
+        return clone;
+      }
+    }, {
+      key: "toString",
+      value: function toString() {
+        return ruleToString();
+      }
+    }]);
+
+    return Rule;
+  }();
+  var RuleNothing =
+  /*#__PURE__*/
+  function (_Rule) {
+    _inherits(RuleNothing, _Rule);
+
+    function RuleNothing() {
+      var _this;
+
+      _classCallCheck(this, RuleNothing);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(RuleNothing).call(this, RuleType.Nothing));
+      _this.description = 'nothing';
+      return _this;
+    }
+
+    return RuleNothing;
+  }(Rule);
+  RuleNothing.instance = freeze$2(new RuleNothing());
+  var RuleNever =
+  /*#__PURE__*/
+  function (_Rule2) {
+    _inherits(RuleNever, _Rule2);
+
+    function RuleNever() {
+      var _this2;
+
+      _classCallCheck(this, RuleNever);
+
+      _this2 = _possibleConstructorReturn(this, _getPrototypeOf(RuleNever).call(this, RuleType.Never));
+      _this2.description = 'never';
+      return _this2;
+    }
+
+    _createClass(RuleNever, [{
+      key: "clone",
+      value: function clone() {
+        return this;
+      }
+    }, {
+      key: "next",
+      get: function get() {
+        return null;
+      } // tslint:disable-next-line:no-empty
+      ,
+      set: function set(value) {}
+    }]);
+
+    return RuleNever;
+  }(Rule);
+  RuleNever.instance = freeze$2(new RuleNever());
+
+  // `Number.MAX_SAFE_INTEGER` constant
+  // https://tc39.github.io/ecma262/#sec-number.max_safe_integer
+  _export({ target: 'Number', stat: true }, {
+    MAX_SAFE_INTEGER: 0x1FFFFFFFFFFFFF
+  });
+
+  var MATCH = wellKnownSymbol('match');
+
+  // `IsRegExp` abstract operation
+  // https://tc39.github.io/ecma262/#sec-isregexp
+  var isRegexp = function (it) {
+    var isRegExp;
+    return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classofRaw(it) == 'RegExp');
+  };
+
+  var notARegexp = function (it) {
+    if (isRegexp(it)) {
+      throw TypeError("The method doesn't accept regular expressions");
+    } return it;
+  };
+
+  var MATCH$1 = wellKnownSymbol('match');
+
+  var correctIsRegexpLogic = function (METHOD_NAME) {
+    var regexp = /./;
+    try {
+      '/./'[METHOD_NAME](regexp);
+    } catch (e) {
+      try {
+        regexp[MATCH$1] = false;
+        return '/./'[METHOD_NAME](regexp);
+      } catch (f) { /* empty */ }
+    } return false;
+  };
+
+  var nativeStartsWith = ''.startsWith;
+  var min$3 = Math.min;
+
+  var CORRECT_IS_REGEXP_LOGIC = correctIsRegexpLogic('startsWith');
+
+  // `String.prototype.startsWith` method
+  // https://tc39.github.io/ecma262/#sec-string.prototype.startswith
+  _export({ target: 'String', proto: true, forced:  !CORRECT_IS_REGEXP_LOGIC }, {
+    startsWith: function startsWith(searchString /* , position = 0 */) {
+      var that = String(requireObjectCoercible(this));
+      notARegexp(searchString);
+      var index = toLength(min$3(arguments.length > 1 ? arguments[1] : undefined, that.length));
+      var search = String(searchString);
+      return nativeStartsWith
+        ? nativeStartsWith.call(that, search, index)
+        : that.slice(index, index + search.length) === search;
+    }
+  });
+
+  var startsWith = entryVirtual('String').startsWith;
+
+  // `String.prototype.repeat` method implementation
+  // https://tc39.github.io/ecma262/#sec-string.prototype.repeat
+  var stringRepeat = ''.repeat || function repeat(count) {
+    var str = String(requireObjectCoercible(this));
+    var result = '';
+    var n = toInteger(count);
+    if (n < 0 || n == Infinity) throw RangeError('Wrong number of repetitions');
+    for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
+    return result;
+  };
+
+  // `String.prototype.repeat` method
+  // https://tc39.github.io/ecma262/#sec-string.prototype.repeat
+  _export({ target: 'String', proto: true }, {
+    repeat: stringRepeat
+  });
+
+  var repeat = entryVirtual('String').repeat;
+
+  var ANY = '*';
+
+  var ListChangedType;
+
+  (function (ListChangedType) {
+    ListChangedType[ListChangedType["Removed"] = 0] = "Removed";
+    ListChangedType[ListChangedType["Added"] = 1] = "Added";
+    ListChangedType[ListChangedType["Set"] = 2] = "Set";
+    ListChangedType[ListChangedType["Resorted"] = 3] = "Resorted";
+    ListChangedType[ListChangedType["Moved"] = 4] = "Moved";
+  })(ListChangedType || (ListChangedType = {})); // export interface IObservableList<T> extends IListChanged<T>, IList<T> {
+  // }
+
+  var MapChangedType;
+
+  (function (MapChangedType) {
+    MapChangedType[MapChangedType["Removed"] = 0] = "Removed";
+    MapChangedType[MapChangedType["Added"] = 1] = "Added";
+    MapChangedType[MapChangedType["Set"] = 2] = "Set";
+  })(MapChangedType || (MapChangedType = {}));
+
+  var SetChangedType;
+
+  (function (SetChangedType) {
+    SetChangedType[SetChangedType["Removed"] = 0] = "Removed";
+    SetChangedType[SetChangedType["Added"] = 1] = "Added";
+  })(SetChangedType || (SetChangedType = {}));
+
+  function getFirstExistProperty(object, propertyNames) {
+    for (var i = 0, len = propertyNames.length; i < len; i++) {
+      var propertyName = propertyNames[i];
+
+      if ( propertyName in object ) {
+        return propertyName;
+      }
+    }
+
+    return null;
+  }
+
+  function subscribeObjectValue(propertyNames, object, immediateSubscribe, changeItem, propertiesPath, rule) {
+    if (!(object instanceof Object)) {
+      changeItem(null, void 0, object, ValueChangeType.Subscribe, null);
+      return null;
+    }
+
+    if (object.constructor === Object || isArray$3(object)) {
+      changeItem(null, void 0, object, ValueChangeType.Subscribe, null);
+      return function () {
+        changeItem(null, object, void 0, ValueChangeType.Unsubscribe, null);
+      };
+    }
+
+    var subscribePropertyName;
+
+    var getSubscribePropertyName = function getSubscribePropertyName() {
+      if ( !(VALUE_PROPERTY_DEFAULT in object) ) {
+        return null;
+      }
+
+      var propertyName = getFirstExistProperty(object, propertyNames);
+
+      if (propertyName == null) {
+        return VALUE_PROPERTY_DEFAULT;
+      }
+
+      return propertyName;
+    };
+
+    var subscribeProperty = function subscribeProperty(propertyName, isFirst) {
+      subscribePropertyName = propertyName;
+
+      if (propertyName == null) {
+        changeItem(null, void 0, object, ValueChangeType.Subscribe, null);
+      } else {
+        var value = object[propertyName];
+
+        if (typeof value !== 'undefined') {
+          changeItem(propertyName, void 0, value, ValueChangeType.Subscribe, ValueKeyType.ValueProperty);
+        }
+
+        if (isFirst) {
+          changeItem(propertyName, void 0, void 0, ValueChangeType.Subscribe, ValueKeyType.ValueProperty);
+        }
+      }
+    };
+
+    var unsubscribeProperty = function unsubscribeProperty(isLast) {
+      if (subscribePropertyName == null) {
+        changeItem(null, object, void 0, ValueChangeType.Unsubscribe, null);
+      } else {
+        if (isLast) {
+          changeItem(subscribePropertyName, void 0, void 0, ValueChangeType.Unsubscribe, ValueKeyType.ValueProperty);
+        }
+
+        var value = object[subscribePropertyName];
+
+        if (typeof value !== 'undefined') {
+          changeItem(subscribePropertyName, value, void 0, ValueChangeType.Unsubscribe, ValueKeyType.ValueProperty);
+        }
+      }
+
+      subscribePropertyName = null;
+    };
+
+    var propertyChanged = object.propertyChanged;
+    var unsubscribe;
+    var subscribed;
+
+    if (propertyChanged) {
+      unsubscribe = checkIsFuncOrNull(propertyChanged.subscribe(function (_ref2) {
+        var name = _ref2.name,
+            oldValue = _ref2.oldValue,
+            newValue = _ref2.newValue;
+
+        if (!subscribed || !unsubscribe && oldValue === newValue) {
+          return;
+        }
+
+        var newSubscribePropertyName = getSubscribePropertyName();
+
+        if (name === subscribePropertyName) {
+          if (subscribePropertyName === newSubscribePropertyName && subscribePropertyName != null && unsubscribe != null && typeof oldValue !== 'undefined' && typeof newValue !== 'undefined') {
+            changeItem(subscribePropertyName, oldValue, newValue, ValueChangeType.Changed, ValueKeyType.ValueProperty);
+            return;
+          }
+
+          if (typeof oldValue !== 'undefined') {
+            changeItem(subscribePropertyName, oldValue, void 0, ValueChangeType.Unsubscribe, ValueKeyType.ValueProperty);
+          }
+        } else if (subscribePropertyName !== newSubscribePropertyName) {
+          unsubscribeProperty(false);
+        } else {
+          return;
+        }
+
+        if (unsubscribe != null) {
+          subscribeProperty(newSubscribePropertyName, false);
+        }
+      }, {
+        propertiesPath: propertiesPath,
+        rule: rule
+      }));
+    }
+
+    if (immediateSubscribe) {
+      subscribeProperty(getSubscribePropertyName(), true);
+    } else if (unsubscribe == null) {
+      return null;
+    }
+
+    subscribed = true;
+    return function () {
+      var _unsubscribe;
+
+      if (unsubscribe) {
+        _unsubscribe = unsubscribe;
+        unsubscribe = null;
+      }
+
+      unsubscribeProperty(true);
+
+      if (_unsubscribe) {
+        _unsubscribe();
+      }
+    };
+  } // endregion
+
+  function subscribeObject(propertyNames, propertyPredicate, object, immediateSubscribe, changeItem, propertiesPath, rule) {
+    if (!(object instanceof Object)) {
+      return null;
+    }
+
+    var propertyChanged = object.propertyChanged;
+    var unsubscribe;
+    var subscribed;
+
+    if (propertyChanged) {
+      unsubscribe = checkIsFuncOrNull(propertyChanged.subscribe(function (_ref3) {
+        var name = _ref3.name,
+            oldValue = _ref3.oldValue,
+            newValue = _ref3.newValue;
+
+        if (!subscribed || !unsubscribe && oldValue === newValue) {
+          return;
+        } // PROF: 623 - 1.3%
+
+
+        if (!propertyPredicate || propertyPredicate(name, object)) {
+          if (unsubscribe && typeof oldValue !== 'undefined' && typeof newValue !== 'undefined') {
+            changeItem(name, oldValue, newValue, ValueChangeType.Changed, ValueKeyType.Property);
+          } else {
+            if (typeof oldValue !== 'undefined') {
+              changeItem(name, oldValue, void 0, ValueChangeType.Unsubscribe, ValueKeyType.Property);
+            }
+
+            if (unsubscribe && typeof newValue !== 'undefined') {
+              changeItem(name, void 0, newValue, ValueChangeType.Subscribe, ValueKeyType.Property);
+            }
+          }
+        }
+      }, {
+        propertiesPath: propertiesPath,
+        rule: rule
+      }));
+    }
+
+    var forEach = function forEach(isSubscribe) {
+      if (propertyNames == null) {
+        for (var propertyName in object) {
+          if ( (!propertyPredicate || propertyPredicate(propertyName, object))) {
+            if (isSubscribe) {
+              changeItem(propertyName, void 0, object[propertyName], ValueChangeType.Subscribe, ValueKeyType.Property);
+            } else {
+              changeItem(propertyName, object[propertyName], void 0, ValueChangeType.Unsubscribe, ValueKeyType.Property);
+            }
+          }
+        }
+      } else {
+        if (isArray$3(propertyNames)) {
+          for (var i = 0, len = propertyNames.length; i < len; i++) {
+            var _propertyName = propertyNames[i];
+
+            if (!isSubscribe) {
+              changeItem(_propertyName, void 0, void 0, ValueChangeType.Unsubscribe, ValueKeyType.Property);
+            }
+
+            if ( _propertyName in object ) {
+              var value = object[_propertyName];
+
+              if (typeof value !== 'undefined') {
+                if (isSubscribe) {
+                  changeItem(_propertyName, void 0, value, ValueChangeType.Subscribe, ValueKeyType.Property);
+                } else {
+                  changeItem(_propertyName, value, void 0, ValueChangeType.Unsubscribe, ValueKeyType.Property);
+                }
+              }
+            }
+
+            if (isSubscribe) {
+              changeItem(_propertyName, void 0, void 0, ValueChangeType.Subscribe, ValueKeyType.Property);
+            }
+          }
+        } else {
+          if (!isSubscribe) {
+            changeItem(propertyNames, void 0, void 0, ValueChangeType.Unsubscribe, ValueKeyType.Property);
+          }
+
+          if ( propertyNames in object ) {
+            var _value = object[propertyNames];
+
+            if (typeof _value !== 'undefined') {
+              if (isSubscribe) {
+                changeItem(propertyNames, void 0, _value, ValueChangeType.Subscribe, ValueKeyType.Property);
+              } else {
+                changeItem(propertyNames, _value, void 0, ValueChangeType.Unsubscribe, ValueKeyType.Property);
+              }
+            }
+          }
+
+          if (isSubscribe) {
+            changeItem(propertyNames, void 0, void 0, ValueChangeType.Subscribe, ValueKeyType.Property);
+          }
+        }
+      }
+    };
+
+    if (immediateSubscribe) {
+      forEach(true);
+    } else if (unsubscribe == null) {
+      return null;
+    }
+
+    subscribed = true;
+    return function () {
+      var _unsubscribe;
+
+      if (unsubscribe) {
+        _unsubscribe = unsubscribe;
+        unsubscribe = null;
+      }
+
+      forEach(false);
+
+      if (_unsubscribe) {
+        _unsubscribe();
+      }
+    };
+  } // endregion
+  // region subscribeMap
+
+
+  function subscribeMap(keys, keyPredicate, object, immediateSubscribe, changeItem, propertiesPath, rule) {
+    if (!object || object[toStringTag$2] !== 'Map' && !(object instanceof map$5)) {
+      return null;
+    }
+
+    var mapChanged = object.mapChanged;
+    var unsubscribe;
+    var subscribed;
+
+    if (mapChanged) {
+      unsubscribe = checkIsFuncOrNull(mapChanged.subscribe(function (_ref6) {
+        var type = _ref6.type,
+            key = _ref6.key,
+            oldValue = _ref6.oldValue,
+            newValue = _ref6.newValue;
+
+        if (!subscribed || !unsubscribe && oldValue === newValue) {
+          return;
+        }
+
+        if (!keyPredicate || keyPredicate(key, object)) {
+          switch (type) {
+            case MapChangedType.Added:
+              if (unsubscribe) {
+                changeItem(key, void 0, newValue, ValueChangeType.Subscribe, ValueKeyType.MapKey);
+              }
+
+              break;
+
+            case MapChangedType.Removed:
+              changeItem(key, oldValue, void 0, ValueChangeType.Unsubscribe, ValueKeyType.MapKey);
+              break;
+
+            case MapChangedType.Set:
+              if (unsubscribe) {
+                changeItem(key, oldValue, newValue, ValueChangeType.Changed, ValueKeyType.MapKey);
+              } else {
+                changeItem(key, oldValue, void 0, ValueChangeType.Unsubscribe, ValueKeyType.MapKey);
+              }
+
+              break;
+          }
+        }
+      }, {
+        propertiesPath: propertiesPath,
+        rule: rule
+      }));
+    }
+
+    var forEach = function forEach(isSubscribe) {
+      if (keys) {
+        for (var i = 0, len = keys.length; i < len; i++) {
+          var key = keys[i];
+
+          if (!isSubscribe) {
+            changeItem(key, void 0, void 0, ValueChangeType.Unsubscribe, ValueKeyType.MapKey);
+          }
+
+          if (object.has(key)) {
+            if (isSubscribe) {
+              changeItem(key, void 0, object.get(key), ValueChangeType.Subscribe, ValueKeyType.MapKey);
+            } else {
+              changeItem(key, object.get(key), void 0, ValueChangeType.Unsubscribe, ValueKeyType.MapKey);
+            }
+          }
+
+          if (isSubscribe) {
+            changeItem(key, void 0, void 0, ValueChangeType.Subscribe, ValueKeyType.MapKey);
+          }
+        }
+      } else {
+        for (var _iterator2 = object, _isArray2 = isArray$3(_iterator2), _i4 = 0, _iterator2 = _isArray2 ? _iterator2 : getIterator$1(_iterator2);;) {
+          var _ref7;
+
+          if (_isArray2) {
+            if (_i4 >= _iterator2.length) break;
+            _ref7 = _iterator2[_i4++];
+          } else {
+            _i4 = _iterator2.next();
+            if (_i4.done) break;
+            _ref7 = _i4.value;
+          }
+
+          var entry = _ref7;
+
+          if (!keyPredicate || keyPredicate(entry[0], object)) {
+            if (isSubscribe) {
+              changeItem(entry[0], void 0, entry[1], ValueChangeType.Subscribe, ValueKeyType.MapKey);
+            } else {
+              changeItem(entry[0], entry[1], void 0, ValueChangeType.Unsubscribe, ValueKeyType.MapKey);
+            }
+          }
+        }
+      }
+    };
+
+    if (immediateSubscribe) {
+      forEach(true);
+    } else if (unsubscribe == null) {
+      return null;
+    }
+
+    subscribed = true;
+    return function () {
+      var _unsubscribe;
+
+      if (unsubscribe) {
+        _unsubscribe = unsubscribe;
+        unsubscribe = null;
+      }
+
+      forEach(false);
+
+      if (_unsubscribe) {
+        _unsubscribe();
+      }
+    };
+  } // endregion
+  // endregion
+  // region RuleSubscribeObject
+
+
+  function createPropertyPredicate(propertyNames) {
+    if (!propertyNames || !propertyNames.length) {
+      return null;
+    }
+
+    if (propertyNames.length === 1) {
+      var propertyName = propertyNames[0] + '';
+
+      if (propertyName === ANY) {
+        return null;
+      }
+
+      return function (propName) {
+        // PROF: 226 - 0.5%
+        return propName === propertyName;
+      };
+    } else {
+      var propertyNamesMap = {};
+
+      for (var i = 0, len = propertyNames.length; i < len; i++) {
+        var _propertyName2 = propertyNames[i] + '';
+
+        if (_propertyName2 === ANY) {
+          return null;
+        }
+
+        propertyNamesMap[_propertyName2] = true;
+      }
+
+      return function (propName) {
+        return !!propertyNamesMap[propName];
+      };
+    }
+  }
+
+  var SubscribeObjectType;
+
+  (function (SubscribeObjectType) {
+    SubscribeObjectType[SubscribeObjectType["Property"] = 0] = "Property";
+    SubscribeObjectType[SubscribeObjectType["ValueProperty"] = 1] = "ValueProperty";
+  })(SubscribeObjectType || (SubscribeObjectType = {}));
+
+  var RuleSubscribe =
+  /*#__PURE__*/
+  function (_Rule) {
+    _inherits(RuleSubscribe, _Rule);
+
+    function RuleSubscribe(description) {
+      _classCallCheck(this, RuleSubscribe);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(RuleSubscribe).call(this, RuleType.Action, description));
+    }
+
+    _createClass(RuleSubscribe, [{
+      key: "clone",
+      value: function clone() {
+        var clone = _get(_getPrototypeOf(RuleSubscribe.prototype), "clone", this).call(this);
+
+        var subscribe = this.subscribe;
+
+        if (subscribe != null) {
+          clone.subscribe = subscribe;
+        }
+
+        if (this.unsubscribers) {
+          clone.unsubscribers = [];
+        }
+
+        if (this.unsubscribersCount) {
+          clone.unsubscribersCount = [];
+        }
+
+        return clone;
+      }
+    }]);
+
+    return RuleSubscribe;
+  }(Rule);
+  var RuleSubscribeObject =
+  /*#__PURE__*/
+  function (_RuleSubscribe) {
+    _inherits(RuleSubscribeObject, _RuleSubscribe);
+
+    function RuleSubscribeObject(type, propertyPredicate, description) {
+      var _this;
+
+      for (var _len3 = arguments.length, propertyNames = new Array(_len3 > 3 ? _len3 - 3 : 0), _key = 3; _key < _len3; _key++) {
+        propertyNames[_key - 3] = arguments[_key];
+      }
+
+      _classCallCheck(this, RuleSubscribeObject);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(RuleSubscribeObject).call(this, description));
+
+      if (propertyNames && !propertyNames.length) {
+        propertyNames = null;
+      }
+
+      if (propertyPredicate) {
+        if (typeof propertyPredicate !== 'function') {
+          throw new Error("propertyPredicate (" + propertyPredicate + ") is not a function");
+        }
+      } else if (type === SubscribeObjectType.Property) {
+        propertyPredicate = createPropertyPredicate(propertyNames);
+
+        if (!propertyPredicate) {
+          propertyNames = null;
+        }
+      }
+
+      switch (type) {
+        case SubscribeObjectType.Property:
+          // @ts-ignore
+          _this.subscribe = bind$3(subscribeObject).call(subscribeObject, null, propertyNames, propertyPredicate);
+          break;
+
+        case SubscribeObjectType.ValueProperty:
+          _this.subType = type; // @ts-ignore
+
+          _this.subscribe = bind$3(subscribeObjectValue).call(subscribeObjectValue, null, propertyNames);
+          break;
+
+        default:
+          throw new Error("Unknown SubscribeObjectType: " + type);
+      }
+
+      return _this;
+    }
+
+    return RuleSubscribeObject;
+  }(RuleSubscribe); // endregion
+  // region RuleSubscribeMap
+
+  function createKeyPredicate(keys) {
+    if (!keys || !keys.length) {
+      return null;
+    }
+
+    if (keys.length === 1) {
+      var key = keys[0]; // @ts-ignore
+
+      if (key === ANY) {
+        return null;
+      }
+
+      return function (k) {
+        return k === key;
+      };
+    } else {
+      for (var i = 0, len = keys.length; i < len; i++) {
+        var _key2 = keys[i]; // @ts-ignore
+
+        if (_key2 === ANY) {
+          return null;
+        }
+      }
+
+      return function (k) {
+        return indexOf$3(keys).call(keys, k) >= 0;
+      };
+    }
+  }
+
+  var RuleSubscribeMap =
+  /*#__PURE__*/
+  function (_RuleSubscribe2) {
+    _inherits(RuleSubscribeMap, _RuleSubscribe2);
+
+    function RuleSubscribeMap(keyPredicate, description) {
+      var _this2;
+
+      for (var _len4 = arguments.length, keys = new Array(_len4 > 2 ? _len4 - 2 : 0), _key3 = 2; _key3 < _len4; _key3++) {
+        keys[_key3 - 2] = arguments[_key3];
+      }
+
+      _classCallCheck(this, RuleSubscribeMap);
+
+      _this2 = _possibleConstructorReturn(this, _getPrototypeOf(RuleSubscribeMap).call(this, description));
+
+      if (keys && !keys.length) {
+        keys = null;
+      }
+
+      if (keyPredicate) {
+        if (typeof keyPredicate !== 'function') {
+          throw new Error("keyPredicate (" + keyPredicate + ") is not a function");
+        }
+      } else {
+        keyPredicate = createKeyPredicate(keys);
+
+        if (!keyPredicate) {
+          keys = null;
+        }
+      } // @ts-ignore
+
+
+      _this2.subscribe = bind$3(subscribeMap).call(subscribeMap, null, keys, keyPredicate);
+      return _this2;
+    }
+
+    return RuleSubscribeMap;
+  }(RuleSubscribe); // endregion
+   // endregion
+
+  var RuleSubscribeObjectPropertyNames = bind$3(RuleSubscribeObject).call(RuleSubscribeObject, null, SubscribeObjectType.Property, null);
+
+  var RuleSubscribeObjectValuePropertyNames = bind$3(RuleSubscribeObject).call(RuleSubscribeObject, null, SubscribeObjectType.ValueProperty, null);
+
+  var RuleSubscribeMapKeys = bind$3(RuleSubscribeMap).call(RuleSubscribeMap, null, null); // const UNSUBSCRIBE_PROPERTY_PREFIX = Math.random().toString(36)
+  // interface ITestInterface1 {
+  // 	y: number
+  // }
+  //
+  // interface ITestInterface2 {
+  // 	x: ITestInterface1
+  // }
+  //
+  // export const test = new RuleBuilder<ITestInterface2>()
+  // 	.path(o => o.x)
+
+  var ConnectorState =
+  /*#__PURE__*/
+  function (_ObservableClass) {
+    _inherits(ConnectorState, _ObservableClass);
+
+    function ConnectorState() {
+      _classCallCheck(this, ConnectorState);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(ConnectorState).apply(this, arguments));
+    }
+
+    return ConnectorState;
+  }(ObservableClass);
+  new ObservableObjectBuilder(ConnectorState.prototype).writable('source');
+  var Connector =
+  /*#__PURE__*/
+  function (_ObservableClass2) {
+    _inherits(Connector, _ObservableClass2);
+
+    function Connector(source, name) {
+      var _this;
+
+      _classCallCheck(this, Connector);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(Connector).call(this));
+      _this.connectorState.name = name;
+      _this.connectorState.source = source;
+      return _this;
+    }
+
+    return Connector;
+  }(ObservableClass);
+  new ObservableObjectBuilder(Connector.prototype).readable('connectorState', {
+    hidden: true,
+    factory: function factory() {
+      return new ConnectorState();
+    }
+  });
+
+  var _Symbol$toStringTag;
+  _Symbol$toStringTag = toStringTag$2;
+  var Property =
+  /*#__PURE__*/
+  function (_ObservableClass) {
+    _inherits(Property, _ObservableClass);
+
+    function Property(options, initValue) {
+      var _this;
+
+      _classCallCheck(this, Property);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(Property).call(this));
+      _this[_Symbol$toStringTag] = 'Property';
+
+      var _ref = options || {},
+          merger = _ref.merger,
+          mergeOptions = _ref.mergeOptions;
+
+      if (merger != null) {
+        _this.merger = merger;
+      }
+
+      if (mergeOptions != null) {
+        _this.mergeOptions = mergeOptions;
+      }
+
+      if (typeof initValue !== 'undefined') {
+        _this.value = initValue;
+      }
+
+      return _this;
+    } // region set / fill / merge
+
+
+    _createClass(Property, [{
+      key: "set",
+      value: function set(value, clone, options) {
+        var result = this.mergeValue(void 0, value, value, clone, clone, options);
+
+        if (!result) {
+          this.value = void 0;
+        }
+
+        return result;
+      }
+    }, {
+      key: "fill",
+      value: function fill(value, preferClone, options) {
+        return this.mergeValue(this.value, value, value, preferClone, preferClone, options);
+      }
+    }, {
+      key: "merge",
+      value: function merge(older, newer, preferCloneOlder, preferCloneNewer, options) {
+        return this.mergeValue(this.value, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region merge helpers
+
+    }, {
+      key: "mergeValue",
+      value: function mergeValue(base, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        return this._mergeValue((this.merger || ObjectMerger.default).merge, base, older, newer, preferCloneOlder, preferCloneNewer, options);
+      }
+    }, {
+      key: "_mergeValue",
+      value: function _mergeValue(merge, base, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        var _this2 = this;
+
+        if (older instanceof Property) {
+          older = older.value;
+        } else {
+          options = _extends({}, options, {
+            selfAsValueOlder: true
+          });
+        }
+
+        if (newer instanceof Property) {
+          newer = newer.value;
+        } else {
+          if (!options) {
+            options = {};
+          }
+
+          options.selfAsValueNewer = true;
+        }
+
+        return merge(base, older, newer, function (o) {
+          _this2.value = o;
+        }, preferCloneOlder, preferCloneNewer, _extends({}, this.mergeOptions, {}, options, {
+          selfAsValueOlder: !(older instanceof Property),
+          selfAsValueNewer: !(newer instanceof Property)
+        }));
+      } // endregion
+      // region IMergeable
+
+    }, {
+      key: "_canMerge",
+      value: function _canMerge(source) {
+        if (webrainOptions.equalsFunc ? source.constructor === Property && webrainOptions.equalsFunc.call(this, this.value, source.value) || webrainOptions.equalsFunc.call(this, this.value, source) : source.constructor === Property && this.value === source.value || this.value === source) {
+          return null;
+        }
+
+        return true;
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer) {
+        return this._mergeValue(merge, this.value, older, newer, preferCloneOlder, preferCloneNewer);
+      } // endregion
+      // region ISerializable
+      // noinspection SpellCheckingInspection
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          value: _serialize(this.value)
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize(_deSerialize, serializedValue) {
+        var _this3 = this;
+
+        _deSerialize(serializedValue.value, function (o) {
+          return _this3.value = o;
+        });
+      } // endregion
+
+    }]);
+
+    return Property;
+  }(ObservableClass);
+  Property.uuid = '6f2c51ccd8654baa9a93226e3374ccaf';
+  new ObservableObjectBuilder(Property.prototype).writable('value');
+  registerMergeable(Property);
+  registerSerializable(Property);
+
+  var FAILS_ON_PRIMITIVES$4 = fails(function () { objectKeys(1); });
+
+  // `Object.keys` method
+  // https://tc39.github.io/ecma262/#sec-object.keys
+  _export({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES$4 }, {
+    keys: function keys(it) {
+      return objectKeys(toObject(it));
+    }
+  });
+
+  var keys$4 = path.Object.keys;
+
+  var keys$5 = keys$4;
+
+  var keys$6 = keys$5;
+
+  var iterator$3 = iterator;
+
+  var iterator$4 = iterator$3;
+
+  var _Symbol$toStringTag$1, _Symbol$iterator;
+  _Symbol$toStringTag$1 = toStringTag$2;
+  _Symbol$iterator = iterator$4;
+  var ArraySet =
+  /*#__PURE__*/
+  function () {
+    function ArraySet(array, size) {
+      _classCallCheck(this, ArraySet);
+
+      this[_Symbol$toStringTag$1] = 'Set';
+      this._array = array || [];
+      this._size = size || keys$6(this._array).length;
+    }
+
+    _createClass(ArraySet, [{
+      key: "add",
+      value: function add(value) {
+        var _array = this._array;
+        var id = getObjectUniqueId(value); // if (Object.prototype.hasOwnProperty.call(_array, id)) {
+
+        if (typeof _array[id] !== 'undefined') {
+          return this;
+        }
+
+        this._array[id] = value;
+        this._size++;
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(value) {
+        var _array = this._array;
+        var id = getObjectUniqueId(value); // if (Object.prototype.hasOwnProperty.call(_array, id)) {
+
+        if (typeof _array[id] === 'undefined') {
+          return false;
+        } // tslint:disable-next-line:no-array-delete
+
+
+        delete _array[id];
+        this._size--;
+        return true;
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var _array = this._array;
+
+        for (var id in _array) {
+          if (Object.prototype.hasOwnProperty.call(_array, id)) {
+            // tslint:disable-next-line:no-array-delete
+            delete _array[id];
+          }
+        }
+
+        this._size = 0;
+        return this;
+      }
+    }, {
+      key: _Symbol$iterator,
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function value() {
+        var _array, id;
+
+        return regenerator.wrap(function value$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _array = this._array;
+                _context.t0 = keys$3(regenerator).call(regenerator, _array);
+
+              case 2:
+                if ((_context.t1 = _context.t0()).done) {
+                  _context.next = 9;
+                  break;
+                }
+
+                id = _context.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_array, id)) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 7;
+                return _array[id];
+
+              case 7:
+                _context.next = 2;
+                break;
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, value, this);
+      })
+    }, {
+      key: "entries",
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function entries() {
+        var _array, id, _value;
+
+        return regenerator.wrap(function entries$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _array = this._array;
+                _context2.t0 = keys$3(regenerator).call(regenerator, _array);
+
+              case 2:
+                if ((_context2.t1 = _context2.t0()).done) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                id = _context2.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_array, id)) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                _value = _array[id];
+                _context2.next = 8;
+                return [_value, _value];
+
+              case 8:
+                _context2.next = 2;
+                break;
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, entries, this);
+      })
+    }, {
+      key: "forEach",
+      value: function forEach(callbackfn, thisArg) {
+        var _array = this._array;
+
+        for (var id in _array) {
+          if (Object.prototype.hasOwnProperty.call(_array, id)) {
+            var _value2 = _array[id];
+            callbackfn.call(thisArg, _value2, _value2, this);
+          }
+        }
+      }
+    }, {
+      key: "has",
+      value: function has(value) {
+        return Object.prototype.hasOwnProperty.call(this._array, getObjectUniqueId(value));
+      }
+    }, {
+      key: "keys",
+      value: function keys() {
+        return getIterator$1(this);
+      }
+    }, {
+      key: "values",
+      value: function values() {
+        return getIterator$1(this);
+      }
+    }, {
+      key: "_canMerge",
+      // region IMergeable
+      value: function _canMerge(source) {
+        if (source.constructor === ArraySet && this._array === source._array) {
+          return null;
+        }
+
+        return source[toStringTag$2] === 'Set' || isArray$3(source) || isIterable$2(source);
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return createMergeSetWrapper(target, source, function (arrayOrIterable) {
+            return ArraySet.from(arrayOrIterable);
+          });
+        }, merge, this, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region ISerializable
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          array: _serialize(this._array, {
+            arrayAsObject: true,
+            objectKeepUndefined: true
+          })
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize() {} // endregion
+
+    }, {
+      key: "size",
+      get: function get() {
+        return this._size;
+      }
+    }], [{
+      key: "from",
+      value: function from(arrayOrIterable) {
+        return fillSet(new ArraySet(), arrayOrIterable);
+      }
+    }]);
+
+    return ArraySet;
+  }();
+  ArraySet.uuid = '0e8c7f09ea9e46318af8a635c214a01c';
+  registerMergeable(ArraySet);
+  registerSerializable(ArraySet, {
+    serializer: {
+      deSerialize:
+      /*#__PURE__*/
+      regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var innerSet, value;
+        return regenerator.wrap(function deSerialize$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _deSerialize(serializedValue.array, null, {
+                  arrayAsObject: true
+                });
+
+              case 2:
+                innerSet = _context3.sent;
+                value = valueFactory(innerSet); // value.deSerialize(deSerialize, serializedValue)
+
+                return _context3.abrupt("return", value);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, deSerialize);
+      })
+    }
+  });
+
+  var entries = entryVirtual('Array').entries;
+
+  var entries$1 = entries;
+
+  var ArrayPrototype$b = Array.prototype;
+
+  var DOMIterables$2 = {
+    DOMTokenList: true,
+    NodeList: true
+  };
+
+  var entries_1 = function (it) {
+    var own = it.entries;
+    return it === ArrayPrototype$b || (it instanceof Array && own === ArrayPrototype$b.entries)
+      // eslint-disable-next-line no-prototype-builtins
+      || DOMIterables$2.hasOwnProperty(classof(it)) ? entries$1 : own;
+  };
+
+  var entries$2 = entries_1;
+
+  var _Symbol$toStringTag$2, _Symbol$iterator$1;
+  _Symbol$toStringTag$2 = toStringTag$2;
+  _Symbol$iterator$1 = iterator$4;
+  var ArrayMap =
+  /*#__PURE__*/
+  function () {
+    function ArrayMap(array) {
+      _classCallCheck(this, ArrayMap);
+
+      this[_Symbol$toStringTag$2] = 'Map';
+      this._array = array || [];
+    }
+
+    _createClass(ArrayMap, [{
+      key: "set",
+      value: function set(key, value) {
+        var id = getObjectUniqueId(key);
+        this._array[id] = [key, value];
+        return this;
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var _array = this._array;
+
+        for (var id in _array) {
+          if (Object.prototype.hasOwnProperty.call(_array, id)) {
+            // tslint:disable-next-line:no-array-delete
+            delete _array[id];
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(key) {
+        var _array = this._array;
+        var id = getObjectUniqueId(key);
+
+        if (!Object.prototype.hasOwnProperty.call(_array, id)) {
+          return false;
+        } // tslint:disable-next-line:no-array-delete
+
+
+        delete _array[id];
+        return true;
+      }
+    }, {
+      key: _Symbol$iterator$1,
+      value: function value() {
+        var _context;
+
+        return entries$2(_context = this).call(_context);
+      }
+    }, {
+      key: "entries",
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function entries() {
+        var _array, id;
+
+        return regenerator.wrap(function entries$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _array = this._array;
+                _context2.t0 = keys$3(regenerator).call(regenerator, _array);
+
+              case 2:
+                if ((_context2.t1 = _context2.t0()).done) {
+                  _context2.next = 9;
+                  break;
+                }
+
+                id = _context2.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_array, id)) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                _context2.next = 7;
+                return _array[id];
+
+              case 7:
+                _context2.next = 2;
+                break;
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, entries, this);
+      })
+    }, {
+      key: "forEach",
+      value: function forEach(callbackfn, thisArg) {
+        var _array = this._array;
+
+        for (var id in _array) {
+          if (Object.prototype.hasOwnProperty.call(_array, id)) {
+            var entry = _array[id];
+            callbackfn.call(thisArg, entry[1], entry[0], this);
+          }
+        }
+      }
+    }, {
+      key: "get",
+      value: function get(key) {
+        var id = getObjectUniqueId(key);
+
+        if (!Object.prototype.hasOwnProperty.call(this._array, id)) {
+          return void 0;
+        }
+
+        return this._array[id][1];
+      }
+    }, {
+      key: "has",
+      value: function has(key) {
+        var id = getObjectUniqueId(key);
+        return Object.prototype.hasOwnProperty.call(this._array, id);
+      }
+    }, {
+      key: "keys",
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function keys() {
+        var _array, id, entry;
+
+        return regenerator.wrap(function keys$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _array = this._array;
+                _context3.t0 = keys$3(regenerator).call(regenerator, _array);
+
+              case 2:
+                if ((_context3.t1 = _context3.t0()).done) {
+                  _context3.next = 10;
+                  break;
+                }
+
+                id = _context3.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_array, id)) {
+                  _context3.next = 8;
+                  break;
+                }
+
+                entry = _array[id];
+                _context3.next = 8;
+                return entry[0];
+
+              case 8:
+                _context3.next = 2;
+                break;
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, keys, this);
+      }) // tslint:disable-next-line:no-identical-functions
+
+    }, {
+      key: "values",
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function values() {
+        var _array, id, entry;
+
+        return regenerator.wrap(function values$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _array = this._array;
+                _context4.t0 = keys$3(regenerator).call(regenerator, _array);
+
+              case 2:
+                if ((_context4.t1 = _context4.t0()).done) {
+                  _context4.next = 10;
+                  break;
+                }
+
+                id = _context4.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_array, id)) {
+                  _context4.next = 8;
+                  break;
+                }
+
+                entry = _array[id];
+                _context4.next = 8;
+                return entry[1];
+
+              case 8:
+                _context4.next = 2;
+                break;
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, values, this);
+      }) // region IMergeable
+
+    }, {
+      key: "_canMerge",
+      value: function _canMerge(source) {
+        if (source.constructor === ArrayMap && this._array === source._array) {
+          return null;
+        }
+
+        return source[toStringTag$2] === 'Map' || isArray$3(source) || isIterable$2(source);
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return createMergeMapWrapper(target, source, function (arrayOrIterable) {
+            return fillMap(new ArrayMap(), arrayOrIterable);
+          });
+        }, merge, this, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region ISerializable
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          array: _serialize(this._array, {
+            arrayAsObject: true,
+            objectKeepUndefined: true
+          })
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize() {} // endregion
+
+    }, {
+      key: "size",
+      get: function get() {
+        return keys$6(this._array).length;
+      }
+    }]);
+
+    return ArrayMap;
+  }();
+  ArrayMap.uuid = 'ef0ced8a58f74381b8503b09c0a42eed';
+  registerMergeable(ArrayMap);
+  registerSerializable(ArrayMap, {
+    serializer: {
+      deSerialize:
+      /*#__PURE__*/
+      regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var innerMap, value;
+        return regenerator.wrap(function deSerialize$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _deSerialize(serializedValue.array, null, {
+                  arrayAsObject: true
+                });
+
+              case 2:
+                innerMap = _context5.sent;
+                value = valueFactory(innerMap); // value.deSerialize(deSerialize, serializedValue)
+
+                return _context5.abrupt("return", value);
+
+              case 5:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, deSerialize);
+      })
+    }
+  });
+
+  var values = entryVirtual('Array').values;
+
+  var values$1 = values;
+
+  var ArrayPrototype$c = Array.prototype;
+
+  var DOMIterables$3 = {
+    DOMTokenList: true,
+    NodeList: true
+  };
+
+  var values_1 = function (it) {
+    var own = it.values;
+    return it === ArrayPrototype$c || (it instanceof Array && own === ArrayPrototype$c.values)
+      // eslint-disable-next-line no-prototype-builtins
+      || DOMIterables$3.hasOwnProperty(classof(it)) ? values$1 : own;
+  };
+
+  var values$2 = values_1;
+
+  var SetChangedObject =
+  /*#__PURE__*/
+  function (_PropertyChangedObjec) {
+    _inherits(SetChangedObject, _PropertyChangedObjec);
+
+    function SetChangedObject() {
+      _classCallCheck(this, SetChangedObject);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(SetChangedObject).apply(this, arguments));
+    }
+
+    _createClass(SetChangedObject, [{
+      key: "onSetChanged",
+      value: function onSetChanged(event) {
+        var propertyChangedDisabled = this.__meta.propertyChangedDisabled;
+        var _setChanged = this._setChanged;
+
+        if (propertyChangedDisabled || !_setChanged || !_setChanged.hasSubscribers) {
+          return this;
+        }
+
+        _setChanged.emit(event);
+
+        return this;
+      }
+    }, {
+      key: "setChanged",
+      get: function get() {
+        var _setChanged = this._setChanged;
+
+        if (!_setChanged) {
+          this._setChanged = _setChanged = new HasSubscribersSubject();
+        }
+
+        return _setChanged;
+      }
+    }, {
+      key: "_setChangedIfCanEmit",
+      get: function get() {
+        var propertyChangedDisabled = this.__meta.propertyChangedDisabled;
+        var _setChanged = this._setChanged;
+        return !propertyChangedDisabled && _setChanged && _setChanged.hasSubscribers ? _setChanged : null;
+      }
+    }]);
+
+    return SetChangedObject;
+  }(PropertyChangedObject);
+
+  var _Symbol$toStringTag$3, _Symbol$iterator$2;
+  _Symbol$toStringTag$3 = toStringTag$2;
+  _Symbol$iterator$2 = iterator$4;
+  var ObservableSet =
+  /*#__PURE__*/
+  function (_SetChangedObject) {
+    _inherits(ObservableSet, _SetChangedObject);
+
+    function ObservableSet(set) {
+      var _this;
+
+      _classCallCheck(this, ObservableSet);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(ObservableSet).call(this));
+      _this[_Symbol$toStringTag$3] = 'Set';
+      _this._set = set || new set$4();
+      return _this;
+    }
+
+    _createClass(ObservableSet, [{
+      key: "add",
+      value: function add(value) {
+        var _set = this._set;
+        var oldSize = _set.size;
+
+        this._set.add(value);
+
+        var size = _set.size;
+
+        if (size > oldSize) {
+          var _setChangedIfCanEmit = this._setChangedIfCanEmit;
+
+          if (_setChangedIfCanEmit) {
+            _setChangedIfCanEmit.emit({
+              type: SetChangedType.Added,
+              newItems: [value]
+            });
+          }
+
+          var propertyChangedIfCanEmit = this.propertyChangedIfCanEmit;
+
+          if (propertyChangedIfCanEmit) {
+            propertyChangedIfCanEmit.onPropertyChanged({
+              name: 'size',
+              oldValue: oldSize,
+              newValue: size
+            });
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(value) {
+        var _set = this._set;
+        var oldSize = _set.size;
+
+        this._set.delete(value);
+
+        var size = _set.size;
+
+        if (size < oldSize) {
+          var _setChangedIfCanEmit = this._setChangedIfCanEmit;
+
+          if (_setChangedIfCanEmit) {
+            _setChangedIfCanEmit.emit({
+              type: SetChangedType.Removed,
+              oldItems: [value]
+            });
+          }
+
+          var propertyChangedIfCanEmit = this.propertyChangedIfCanEmit;
+
+          if (propertyChangedIfCanEmit) {
+            propertyChangedIfCanEmit.onPropertyChanged({
+              name: 'size',
+              oldValue: oldSize,
+              newValue: size
+            });
+          }
+
+          return true;
+        }
+
+        return false;
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var size = this.size;
+
+        if (size === 0) {
+          return;
+        }
+
+        var _setChangedIfCanEmit = this._setChangedIfCanEmit;
+
+        if (_setChangedIfCanEmit) {
+          var oldItems = from_1$2(this);
+
+          this._set.clear();
+
+          _setChangedIfCanEmit.emit({
+            type: SetChangedType.Removed,
+            oldItems: oldItems
+          });
+        } else {
+          this._set.clear();
+        }
+
+        var propertyChangedIfCanEmit = this.propertyChangedIfCanEmit;
+
+        if (propertyChangedIfCanEmit) {
+          propertyChangedIfCanEmit.onPropertyChanged({
+            name: 'size',
+            oldValue: size,
+            newValue: 0
+          });
+        }
+      } // region Unchanged Set methods
+
+    }, {
+      key: _Symbol$iterator$2,
+      value: function value() {
+        return getIterator$1(this._set);
+      }
+    }, {
+      key: "entries",
+      value: function entries() {
+        var _context;
+
+        return entries$2(_context = this._set).call(_context);
+      }
+    }, {
+      key: "forEach",
+      value: function forEach(callbackfn, thisArg) {
+        var _context2,
+            _this2 = this;
+
+        forEach$2(_context2 = this._set).call(_context2, function (k, v) {
+          return callbackfn.call(thisArg, k, v, _this2);
+        });
+      }
+    }, {
+      key: "has",
+      value: function has(value) {
+        return this._set.has(value);
+      }
+    }, {
+      key: "keys",
+      value: function keys() {
+        var _context3;
+
+        return keys$3(_context3 = this._set).call(_context3);
+      }
+    }, {
+      key: "values",
+      value: function values() {
+        var _context4;
+
+        return values$2(_context4 = this._set).call(_context4);
+      } // endregion
+      // region IMergeable
+
+    }, {
+      key: "_canMerge",
+      value: function _canMerge(source) {
+        var _set = this._set;
+
+        if (_set.canMerge) {
+          return _set.canMerge(source);
+        }
+
+        if (source.constructor === ObservableSet && this._set === source._set) {
+          return null;
+        }
+
+        return source.constructor === Object || source[toStringTag$2] === 'Set' || isArray$3(source) || isIterable$2(source);
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        var _this3 = this;
+
+        return mergeMaps(function (target, source) {
+          return createMergeSetWrapper(target, source, function (arrayOrIterable) {
+            return fillSet(new _this3._set.constructor(), arrayOrIterable);
+          });
+        }, merge, this, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region ISerializable
+      // noinspection SpellCheckingInspection
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          set: _serialize(this._set)
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize() {} // endregion
+
+    }, {
+      key: "size",
+      get: function get() {
+        return this._set.size;
+      }
+    }]);
+
+    return ObservableSet;
+  }(SetChangedObject);
+  ObservableSet.uuid = '91539dfb55f44bfb9dbfbff7f6ab800d';
+  registerMergeable(ObservableSet);
+  registerSerializable(ObservableSet, {
+    serializer: {
+      deSerialize:
+      /*#__PURE__*/
+      regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var innerSet, value;
+        return regenerator.wrap(function deSerialize$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return _deSerialize(serializedValue.set);
+
+              case 2:
+                innerSet = _context5.sent;
+                value = valueFactory(innerSet); // value.deSerialize(deSerialize, serializedValue)
+
+                return _context5.abrupt("return", value);
+
+              case 5:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, deSerialize);
+      })
+    }
+  });
+
+  var MapChangedObject =
+  /*#__PURE__*/
+  function (_PropertyChangedObjec) {
+    _inherits(MapChangedObject, _PropertyChangedObjec);
+
+    function MapChangedObject() {
+      _classCallCheck(this, MapChangedObject);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(MapChangedObject).apply(this, arguments));
+    }
+
+    _createClass(MapChangedObject, [{
+      key: "onMapChanged",
+      value: function onMapChanged(event) {
+        var _mapChanged = this._mapChanged;
+
+        if (!_mapChanged || !_mapChanged.hasSubscribers) {
+          return this;
+        }
+
+        _mapChanged.emit(event);
+
+        return this;
+      }
+    }, {
+      key: "mapChanged",
+      get: function get() {
+        var _mapChanged = this._mapChanged;
+
+        if (!_mapChanged) {
+          this._mapChanged = _mapChanged = new HasSubscribersSubject();
+        }
+
+        return _mapChanged;
+      }
+    }, {
+      key: "_mapChangedIfCanEmit",
+      get: function get() {
+        var __meta = this.__meta;
+        var propertyChangedDisabled = __meta ? __meta.propertyChangedDisabled : null;
+        var _mapChanged = this._mapChanged;
+        return !propertyChangedDisabled && _mapChanged && _mapChanged.hasSubscribers ? _mapChanged : null;
+      }
+    }]);
+
+    return MapChangedObject;
+  }(PropertyChangedObject);
+
+  var _Symbol$toStringTag$4, _Symbol$iterator$3;
+  _Symbol$toStringTag$4 = toStringTag$2;
+  _Symbol$iterator$3 = iterator$4;
+  var ObservableMap =
+  /*#__PURE__*/
+  function (_MapChangedObject) {
+    _inherits(ObservableMap, _MapChangedObject);
+
+    function ObservableMap(map) {
+      var _this;
+
+      _classCallCheck(this, ObservableMap);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(ObservableMap).call(this));
+      _this[_Symbol$toStringTag$4] = 'Map';
+      _this._map = map || new map$5();
+      return _this;
+    }
+
+    _createClass(ObservableMap, [{
+      key: "set",
+      value: function set(key, value) {
+        var _map = this._map;
+        var oldSize = _map.size;
+
+        var oldValue = _map.get(key);
+
+        _map.set(key, value);
+
+        var size = _map.size;
+
+        if (size > oldSize) {
+          var _mapChangedIfCanEmit = this._mapChangedIfCanEmit;
+
+          if (_mapChangedIfCanEmit) {
+            _mapChangedIfCanEmit.emit({
+              type: MapChangedType.Added,
+              key: key,
+              newValue: value
+            });
+          }
+
+          var propertyChangedIfCanEmit = this.propertyChangedIfCanEmit;
+
+          if (propertyChangedIfCanEmit) {
+            propertyChangedIfCanEmit.onPropertyChanged({
+              name: 'size',
+              oldValue: oldSize,
+              newValue: size
+            });
+          }
+        } else {
+          var _mapChangedIfCanEmit2 = this._mapChangedIfCanEmit;
+
+          if (_mapChangedIfCanEmit2) {
+            _mapChangedIfCanEmit2.emit({
+              type: MapChangedType.Set,
+              key: key,
+              oldValue: oldValue,
+              newValue: value
+            });
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(key) {
+        var _map = this._map;
+        var oldSize = _map.size;
+
+        var oldValue = _map.get(key);
+
+        this._map.delete(key);
+
+        var size = _map.size;
+
+        if (size < oldSize) {
+          var _mapChangedIfCanEmit = this._mapChangedIfCanEmit;
+
+          if (_mapChangedIfCanEmit) {
+            _mapChangedIfCanEmit.emit({
+              type: MapChangedType.Removed,
+              key: key,
+              oldValue: oldValue
+            });
+          }
+
+          var propertyChangedIfCanEmit = this.propertyChangedIfCanEmit;
+
+          if (propertyChangedIfCanEmit) {
+            propertyChangedIfCanEmit.onPropertyChanged({
+              name: 'size',
+              oldValue: oldSize,
+              newValue: size
+            });
+          }
+
+          return true;
+        }
+
+        return false;
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var size = this.size;
+
+        if (size === 0) {
+          return;
+        }
+
+        var _mapChangedIfCanEmit = this._mapChangedIfCanEmit;
+
+        if (_mapChangedIfCanEmit) {
+          var _context;
+
+          var oldItems = from_1$2(entries$2(_context = this).call(_context));
+
+          this._map.clear();
+
+          for (var i = 0, len = oldItems.length; i < len; i++) {
+            var oldItem = oldItems[i];
+
+            _mapChangedIfCanEmit.emit({
+              type: MapChangedType.Removed,
+              key: oldItem[0],
+              oldValue: oldItem[1]
+            });
+          }
+        } else {
+          this._map.clear();
+        }
+
+        var propertyChangedIfCanEmit = this.propertyChangedIfCanEmit;
+
+        if (propertyChangedIfCanEmit) {
+          propertyChangedIfCanEmit.onPropertyChanged({
+            name: 'size',
+            oldValue: size,
+            newValue: 0
+          });
+        }
+      } // region Unchanged Map methods
+
+    }, {
+      key: _Symbol$iterator$3,
+      value: function value() {
+        return getIterator$1(this._map);
+      }
+    }, {
+      key: "get",
+      value: function get(key) {
+        return this._map.get(key);
+      }
+    }, {
+      key: "entries",
+      value: function entries() {
+        var _context2;
+
+        return entries$2(_context2 = this._map).call(_context2);
+      }
+    }, {
+      key: "forEach",
+      value: function forEach(callbackfn, thisArg) {
+        var _context3,
+            _this2 = this;
+
+        forEach$2(_context3 = this._map).call(_context3, function (k, v) {
+          return callbackfn.call(thisArg, k, v, _this2);
+        });
+      }
+    }, {
+      key: "has",
+      value: function has(key) {
+        return this._map.has(key);
+      }
+    }, {
+      key: "keys",
+      value: function keys() {
+        var _context4;
+
+        return keys$3(_context4 = this._map).call(_context4);
+      }
+    }, {
+      key: "values",
+      value: function values() {
+        var _context5;
+
+        return values$2(_context5 = this._map).call(_context5);
+      } // endregion
+      // region IMergeable
+
+    }, {
+      key: "_canMerge",
+      value: function _canMerge(source) {
+        var _map = this._map;
+
+        if (_map.canMerge) {
+          return _map.canMerge(source);
+        }
+
+        if (source.constructor === ObservableMap && this._map === source._map) {
+          return null;
+        }
+
+        return source.constructor === Object || source[toStringTag$2] === 'Map' || isArray$3(source) || isIterable$2(source);
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        var _this3 = this;
+
+        return mergeMaps(function (target, source) {
+          return createMergeMapWrapper(target, source, function (arrayOrIterable) {
+            return fillMap(new _this3._map.constructor(), arrayOrIterable);
+          });
+        }, merge, this, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region ISerializable
+      // noinspection SpellCheckingInspection
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          map: _serialize(this._map)
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize() {} // endregion
+
+    }, {
+      key: "size",
+      get: function get() {
+        return this._map.size;
+      }
+    }]);
+
+    return ObservableMap;
+  }(MapChangedObject);
+  ObservableMap.uuid = 'e162178d51234beaab6eb96d5b8f130b';
+  registerMergeable(ObservableMap);
+  registerSerializable(ObservableMap, {
+    serializer: {
+      deSerialize:
+      /*#__PURE__*/
+      regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var innerMap, value;
+        return regenerator.wrap(function deSerialize$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return _deSerialize(map$2(serializedValue));
+
+              case 2:
+                innerMap = _context6.sent;
+                value = valueFactory(innerMap); // value.deSerialize(deSerialize, serializedValue)
+
+                return _context6.abrupt("return", value);
+
+              case 5:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, deSerialize);
+      })
+    }
+  });
+
+  var propertyIsEnumerable = objectPropertyIsEnumerable.f;
+
+  // `Object.{ entries, values }` methods implementation
+  var createMethod$4 = function (TO_ENTRIES) {
+    return function (it) {
+      var O = toIndexedObject(it);
+      var keys = objectKeys(O);
+      var length = keys.length;
+      var i = 0;
+      var result = [];
+      var key;
+      while (length > i) {
+        key = keys[i++];
+        if (!descriptors || propertyIsEnumerable.call(O, key)) {
+          result.push(TO_ENTRIES ? [key, O[key]] : O[key]);
+        }
+      }
+      return result;
+    };
+  };
+
+  var objectToArray = {
+    // `Object.entries` method
+    // https://tc39.github.io/ecma262/#sec-object.entries
+    entries: createMethod$4(true),
+    // `Object.values` method
+    // https://tc39.github.io/ecma262/#sec-object.values
+    values: createMethod$4(false)
+  };
+
+  var $values = objectToArray.values;
+
+  // `Object.values` method
+  // https://tc39.github.io/ecma262/#sec-object.values
+  _export({ target: 'Object', stat: true }, {
+    values: function values(O) {
+      return $values(O);
+    }
+  });
+
+  var values$3 = path.Object.values;
+
+  var values$4 = values$3;
+
+  var values$5 = values$4;
+
+  var _Symbol$toStringTag$5, _Symbol$iterator$4;
+  _Symbol$toStringTag$5 = toStringTag$2;
+  _Symbol$iterator$4 = iterator$4;
+  var ObjectMap =
+  /*#__PURE__*/
+  function () {
+    function ObjectMap(object) {
+      _classCallCheck(this, ObjectMap);
+
+      this[_Symbol$toStringTag$5] = 'Map';
+      this._object = object || {};
+    }
+
+    _createClass(ObjectMap, [{
+      key: "set",
+      value: function set(key, value) {
+        this._object[key] = value;
+        return this;
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var _object = this._object;
+
+        for (var key in _object) {
+          if (Object.prototype.hasOwnProperty.call(_object, key)) {
+            delete _object[key];
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(key) {
+        var _object = this._object;
+
+        if (!Object.prototype.hasOwnProperty.call(_object, key)) {
+          return false;
+        }
+
+        delete _object[key];
+        return true;
+      }
+    }, {
+      key: _Symbol$iterator$4,
+      value: function value() {
+        var _context;
+
+        return entries$2(_context = this).call(_context);
+      }
+    }, {
+      key: "entries",
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function entries() {
+        var _object, key;
+
+        return regenerator.wrap(function entries$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _object = this._object;
+                _context2.t0 = keys$3(regenerator).call(regenerator, _object);
+
+              case 2:
+                if ((_context2.t1 = _context2.t0()).done) {
+                  _context2.next = 9;
+                  break;
+                }
+
+                key = _context2.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_object, key)) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                _context2.next = 7;
+                return [key, _object[key]];
+
+              case 7:
+                _context2.next = 2;
+                break;
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, entries, this);
+      })
+    }, {
+      key: "forEach",
+      value: function forEach(callbackfn, thisArg) {
+        var _object = this._object;
+
+        for (var key in _object) {
+          if (Object.prototype.hasOwnProperty.call(_object, key)) {
+            callbackfn.call(thisArg, _object[key], key, this);
+          }
+        }
+      }
+    }, {
+      key: "get",
+      value: function get(key) {
+        return this._object[key];
+      }
+    }, {
+      key: "has",
+      value: function has(key) {
+        return Object.prototype.hasOwnProperty.call(this._object, key);
+      }
+    }, {
+      key: "keys",
+      value: function keys() {
+        return getIterator$1(keys$6(this._object));
+      }
+    }, {
+      key: "values",
+      value: function values() {
+        return getIterator$1(values$5(this._object));
+      } // region IMergeable
+
+    }, {
+      key: "_canMerge",
+      value: function _canMerge(source) {
+        if (source.constructor === ObjectMap && this._object === source._object) {
+          return null;
+        }
+
+        return source.constructor === Object || source[toStringTag$2] === 'Map' || isArray$3(source) || isIterable$2(source);
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return createMergeMapWrapper(target, source, function (arrayOrIterable) {
+            return fillMap(new ObjectMap(), arrayOrIterable);
+          });
+        }, merge, this, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region ISerializable
+      // noinspection SpellCheckingInspection
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          object: _serialize(this._object, {
+            objectKeepUndefined: true
+          })
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize() {} // endregion
+
+    }, {
+      key: "size",
+      get: function get() {
+        return keys$6(this._object).length;
+      }
+    }]);
+
+    return ObjectMap;
+  }();
+  ObjectMap.uuid = '62388f07b21a47788b3858f225cdbd42';
+  registerMergeable(ObjectMap);
+  registerSerializable(ObjectMap, {
+    serializer: {
+      deSerialize:
+      /*#__PURE__*/
+      regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var innerMap, value;
+        return regenerator.wrap(function deSerialize$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _deSerialize(serializedValue.object);
+
+              case 2:
+                innerMap = _context3.sent;
+                value = valueFactory(innerMap); // value.deSerialize(deSerialize, serializedValue)
+
+                return _context3.abrupt("return", value);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, deSerialize);
+      })
+    }
+  });
+
+  var _Symbol$toStringTag$6, _Symbol$iterator$5;
+  _Symbol$toStringTag$6 = toStringTag$2;
+  _Symbol$iterator$5 = iterator$4;
+  var ObjectSet =
+  /*#__PURE__*/
+  function () {
+    function ObjectSet(object) {
+      _classCallCheck(this, ObjectSet);
+
+      this[_Symbol$toStringTag$6] = 'Set';
+      this._object = object || {};
+    }
+
+    _createClass(ObjectSet, [{
+      key: "add",
+      value: function add(value) {
+        this._object[value] = true;
+        return this;
+      }
+    }, {
+      key: "delete",
+      value: function _delete(value) {
+        var _object = this._object;
+
+        if (!Object.prototype.hasOwnProperty.call(_object, value)) {
+          return false;
+        }
+
+        delete _object[value];
+        return true;
+      }
+    }, {
+      key: "clear",
+      value: function clear() {
+        var _object = this._object;
+
+        for (var value in _object) {
+          if (Object.prototype.hasOwnProperty.call(_object, value)) {
+            delete _object[value];
+          }
+        }
+
+        return this;
+      }
+    }, {
+      key: _Symbol$iterator$5,
+      value: function value() {
+        return getIterator$1(keys$6(this._object));
+      }
+    }, {
+      key: "entries",
+      value:
+      /*#__PURE__*/
+      regenerator.mark(function entries() {
+        var _object, value;
+
+        return regenerator.wrap(function entries$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _object = this._object;
+                _context.t0 = keys$3(regenerator).call(regenerator, _object);
+
+              case 2:
+                if ((_context.t1 = _context.t0()).done) {
+                  _context.next = 9;
+                  break;
+                }
+
+                value = _context.t1.value;
+
+                if (!Object.prototype.hasOwnProperty.call(_object, value)) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 7;
+                return [value, value];
+
+              case 7:
+                _context.next = 2;
+                break;
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, entries, this);
+      })
+    }, {
+      key: "forEach",
+      value: function forEach(callbackfn, thisArg) {
+        var _object = this._object;
+
+        for (var value in _object) {
+          if (Object.prototype.hasOwnProperty.call(_object, value)) {
+            callbackfn.call(thisArg, value, value, this);
+          }
+        }
+      }
+    }, {
+      key: "has",
+      value: function has(value) {
+        return Object.prototype.hasOwnProperty.call(this._object, value);
+      }
+    }, {
+      key: "keys",
+      value: function keys() {
+        return getIterator$1(this);
+      }
+    }, {
+      key: "values",
+      value: function values() {
+        return getIterator$1(this);
+      }
+    }, {
+      key: "_canMerge",
+      // region IMergeable
+      value: function _canMerge(source) {
+        if (source.constructor === ObjectSet && this._object === source._object) {
+          return null;
+        }
+
+        return source.constructor === Object || source[toStringTag$2] === 'Set' || isArray$3(source) || isIterable$2(source);
+      }
+    }, {
+      key: "_merge",
+      value: function _merge(merge, older, newer, preferCloneOlder, preferCloneNewer, options) {
+        return mergeMaps(function (target, source) {
+          return createMergeSetWrapper(target, source, function (arrayOrIterable) {
+            return ObjectSet.from(arrayOrIterable);
+          });
+        }, merge, this, older, newer, preferCloneOlder, preferCloneNewer, options);
+      } // endregion
+      // region ISerializable
+
+    }, {
+      key: "serialize",
+      value: function serialize(_serialize) {
+        return {
+          object: _serialize(this._object, {
+            objectKeepUndefined: true
+          })
+        };
+      }
+    }, {
+      key: "deSerialize",
+      value: function deSerialize() {} // endregion
+
+    }, {
+      key: "size",
+      get: function get() {
+        return keys$6(this._object).length;
+      }
+    }], [{
+      key: "from",
+      value: function from(arrayOrIterable) {
+        return new ObjectSet(fillObjectKeys({}, arrayOrIterable));
+      }
+    }]);
+
+    return ObjectSet;
+  }();
+  ObjectSet.uuid = '6988ebc9cd064a9b97a98415b8cf1dc4';
+  registerMergeable(ObjectSet);
+  registerSerializable(ObjectSet, {
+    serializer: {
+      deSerialize:
+      /*#__PURE__*/
+      regenerator.mark(function deSerialize(_deSerialize, serializedValue, valueFactory) {
+        var innerSet, value;
+        return regenerator.wrap(function deSerialize$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _deSerialize(serializedValue.object);
+
+              case 2:
+                innerSet = _context2.sent;
+                value = valueFactory(innerSet); // value.deSerialize(deSerialize, serializedValue)
+
+                return _context2.abrupt("return", value);
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, deSerialize);
+      })
+    }
+  });
+
+  var test$2 = [];
+  var nativeSort = test$2.sort;
+
+  // IE8-
+  var FAILS_ON_UNDEFINED = fails(function () {
+    test$2.sort(undefined);
+  });
+  // V8 bug
+  var FAILS_ON_NULL = fails(function () {
+    test$2.sort(null);
+  });
+  // Old WebKit
+  var STRICT_METHOD$3 = arrayMethodIsStrict('sort');
+
+  var FORCED$6 = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD$3;
+
+  // `Array.prototype.sort` method
+  // https://tc39.github.io/ecma262/#sec-array.prototype.sort
+  _export({ target: 'Array', proto: true, forced: FORCED$6 }, {
+    sort: function sort(comparefn) {
+      return comparefn === undefined
+        ? nativeSort.call(toObject(this))
+        : nativeSort.call(toObject(this), aFunction(comparefn));
+    }
+  });
+
+  var sort = entryVirtual('Array').sort;
+
+  var nativeImul = Math.imul;
+
+  var FORCED$7 = fails(function () {
+    return nativeImul(0xFFFFFFFF, 5) != -5 || nativeImul.length != 2;
+  });
+
+  // `Math.imul` method
+  // https://tc39.github.io/ecma262/#sec-math.imul
+  // some WebKit versions fails with big numbers, some has wrong arity
+  _export({ target: 'Math', stat: true, forced: FORCED$7 }, {
+    imul: function imul(x, y) {
+      var UINT16 = 0xFFFF;
+      var xn = +x;
+      var yn = +y;
+      var xl = UINT16 & xn;
+      var yl = UINT16 & yn;
+      return 0 | xl * yl + ((UINT16 & xn >>> 16) * yl + xl * (UINT16 & yn >>> 16) << 16 >>> 0);
+    }
+  });
+
+  var imul = path.Math.imul;
+
+  var lut = [];
+
+  for (var i = 0; i < 256; i++) {
+    lut[i] = (i < 16 ? '0' : '') + i.toString(16);
+  }
+
+  var _context$1;
+
+  var randomWithoutSeed = bind$3(_context$1 = Math.random).call(_context$1, Math);
 
   function filter$3(obj) {
     if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {
@@ -7945,52 +14986,9 @@
     return Logger;
   }(); // endregion
 
-  var slice$4 = [].slice;
-  var factories = {};
-
-  var construct = function (C, argsLength, args) {
-    if (!(argsLength in factories)) {
-      for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']';
-      // eslint-disable-next-line no-new-func
-      factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
-    } return factories[argsLength](C, args);
-  };
-
-  // `Function.prototype.bind` method implementation
-  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
-  var functionBind = Function.bind || function bind(that /* , ...args */) {
-    var fn = aFunction(this);
-    var partArgs = slice$4.call(arguments, 1);
-    var boundFunction = function bound(/* args... */) {
-      var args = partArgs.concat(slice$4.call(arguments));
-      return this instanceof boundFunction ? construct(fn, args.length, args) : fn.apply(that, args);
-    };
-    if (isObject(fn.prototype)) boundFunction.prototype = fn.prototype;
-    return boundFunction;
-  };
-
-  // `Function.prototype.bind` method
-  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
-  _export({ target: 'Function', proto: true }, {
-    bind: functionBind
-  });
-
-  var bind$1 = entryVirtual('Function').bind;
-
-  var FunctionPrototype = Function.prototype;
-
-  var bind_1 = function (it) {
-    var own = it.bind;
-    return it === FunctionPrototype || (it instanceof Function && own === FunctionPrototype.bind) ? bind$1 : own;
-  };
-
-  var bind$2 = bind_1;
-
-  var bind$3 = bind$2;
-
-  var _context, _context2, _context3, _context4, _context5;
+  var _context$2, _context2, _context3, _context4, _context5;
   var consoleOrig = {
-    debug: bind$3(_context = console.debug).call(_context, console),
+    debug: bind$3(_context$2 = console.debug).call(_context$2, console),
     info: bind$3(_context2 = console.info).call(_context2, console),
     log: bind$3(_context3 = console.log).call(_context3, console),
     warn: bind$3(_context4 = console.warn).call(_context4, console),
@@ -8369,7 +15367,7 @@
   }(Logger);
   var logger = new LoggerBrowser();
 
-  var _context$1;
+  var _context$3;
 
   /* eslint-disable no-process-env */
   var base$1 = {
@@ -8384,12 +15382,10 @@
       nodeVersion: '12.4.0'
     },
     sapper: {
-      devServer: trim$2(_context$1 =  '').call(_context$1) === 'development'
+      devServer: trim$2(_context$3 =  '').call(_context$3) === 'development'
     },
     tests: {
-      intern: {
-        serverIp: '192.168.0.102'
-      }
+      intern: {}
     }
   };
 
@@ -8411,7 +15407,6 @@
     },
     tests: {
       intern: {
-        serverIp: base$1.tests.intern.serverIp,
         staticPort: 3012,
         serverPort: 3022,
         socketPort: 3032

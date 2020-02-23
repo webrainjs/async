@@ -18,7 +18,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/createClass"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 // @ts-ignore
 var ReadableStore =
@@ -55,7 +55,7 @@ function (_ReadableStore) {
 
     (0, _classCallCheck2.default)(this, WritableStore);
     _this2 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(WritableStore).call(this, object, propertyName));
-    _this2.set = (0, _index.createFunction)('o', 'v', "o[\"" + propertyName + "\"] = v");
+    _this2.set = (0, _webrain.createFunction)('o', 'v', "o[\"" + propertyName + "\"] = v");
     return _this2;
   }
 

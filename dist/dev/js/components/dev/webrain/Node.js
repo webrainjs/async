@@ -17,7 +17,7 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpe
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _common = require("./common");
 
@@ -180,7 +180,7 @@ function (_ObservableClass) {
     _this.key = key;
     _this.keyType = keyType;
 
-    if (object instanceof _index.PropertyChangedObject) {
+    if (object instanceof _webrain.PropertyChangedObject) {
       _this.type = NodeType.ObservableClass;
     } else if (object && object.constructor === Object) {
       _this.type = NodeType.Object;
@@ -237,10 +237,10 @@ function (_ObservableClass) {
     }
   }]);
   return Node;
-}(_index.ObservableClass);
+}(_webrain.ObservableClass);
 
 exports.Node = Node;
-new _index.CalcObjectBuilder(Node.prototype).writable('name').writable('type').writable('value', {
+new _webrain.CalcObjectBuilder(Node.prototype).writable('name').writable('type').writable('value', {
   setOptions: {
     equalsFunc: function equalsFunc() {
       return false;
@@ -256,7 +256,7 @@ new _index.CalcObjectBuilder(Node.prototype).writable('name').writable('type').w
 }).writable('error').calc('updateId', function (o) {
   return o;
 }, // connect to self
-(0, _index.calcPropertyFactory)({
+(0, _webrain.calcPropertyFactory)({
   name: 'Node.updateId' + _common.WebrainGraphObjectsId,
   dependencies: function dependencies(d) {
     return d.invalidateOn(function (b) {

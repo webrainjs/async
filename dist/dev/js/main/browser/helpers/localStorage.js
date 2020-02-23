@@ -15,7 +15,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs3/
 
 var _promise = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/promise"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 /* tslint:disable:no-empty */
 var localStorageWrapper = typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local && {
@@ -135,14 +135,14 @@ function _storeObject() {
             if (serializedStr) {
               serialized = JSON.parse(serializedStr);
 
-              _index.ObjectSerializer.default.deSerialize(serialized, {
+              _webrain.ObjectSerializer.default.deSerialize(serialized, {
                 valueFactory: function valueFactory() {
                   return object;
                 }
               });
             }
 
-            deferredSave = new _index.DeferredCalc(function () {
+            deferredSave = new _webrain.DeferredCalc(function () {
               this.calc();
             },
             /*#__PURE__*/
@@ -156,7 +156,7 @@ function _storeObject() {
                     switch (_context3.prev = _context3.next) {
                       case 0:
                         // tslint:disable-next-line:no-shadowed-variable
-                        serialized = _index.ObjectSerializer.default.serialize(object);
+                        serialized = _webrain.ObjectSerializer.default.serialize(object);
                         _context3.next = 3;
                         return localStorageWrapper.setItem(storageKey, (0, _stringify.default)(serialized));
 
@@ -179,7 +179,7 @@ function _storeObject() {
               maxThrottleTime: 10000,
               minTimeBetweenCalc: 5000
             });
-            return _context4.abrupt("return", (0, _index.deepSubscribe)({
+            return _context4.abrupt("return", (0, _webrain.deepSubscribe)({
               object: object,
               changeValue: function changeValue() {
                 deferredSave.invalidate();

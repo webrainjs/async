@@ -1,1 +1,1 @@
-export * from 'webrain/src/main/common/index.ts'
+export * from 'webrain'

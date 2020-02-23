@@ -72,7 +72,7 @@
 <script>
 	import {onMount, onDestroy} from 'svelte'
 	import {TouchToMouse} from '../../main/browser/helpers/touchMouse'
-	import {Debugger} from 'webrain/src/main/common/index.ts'
+	import {Debugger} from 'webrain'
 
 	let canvas
 	let gradient

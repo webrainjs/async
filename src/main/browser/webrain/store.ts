@@ -1,6 +1,6 @@
 // @ts-ignore
 import {Readable, Writable} from 'svelte/store'
-import {createFunction, IPropertyChangedObject} from 'webrain/src/main/common/index.ts'
+import {createFunction, IPropertyChangedObject} from 'webrain'
 
 class ReadableStore<TValue>
 	implements Readable<TValue>

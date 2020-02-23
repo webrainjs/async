@@ -3,7 +3,7 @@ import {
 	calcPropertyFactory,
 	connectorFactory,
 	ObservableClass,
-} from 'webrain/src/main/common/index.ts'
+} from 'webrain'
 
 export class TestObject extends ObservableClass {
 	public value1: number = 1

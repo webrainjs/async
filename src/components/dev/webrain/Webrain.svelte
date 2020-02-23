@@ -5,7 +5,7 @@
 		deepSubscribe,
 		connectorFactory,
 		dependenciesSubscriber,
-	} from 'webrain/src/main/common/index.ts';
+	} from 'webrain';
 
 	let data
 

@@ -1,4 +1,4 @@
-import { CalcObjectBuilder, calcPropertyFactory, ObservableClass } from 'webrain/src/main/common/index.ts';
+import { CalcObjectBuilder, calcPropertyFactory, ObservableClass } from 'webrain';
 import { colorOpacity, deepMerge, getDisplayName, updateId, VALUE_HISTORY_MAX_SIZE, WebrainGraphObjectsId, WebrainObject } from './common';
 export let EdgeType;
 

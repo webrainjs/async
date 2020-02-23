@@ -34,7 +34,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/createClass"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _localStorage = require("../localStorage");
 
@@ -620,7 +620,7 @@ function (_ObservableClass) {
       var _loadSubject = this._loadSubject;
 
       if (!_loadSubject) {
-        this._loadSubject = _loadSubject = new _index.BehaviorSubject();
+        this._loadSubject = _loadSubject = new _webrain.BehaviorSubject();
       }
 
       return _loadSubject;
@@ -631,7 +631,7 @@ function (_ObservableClass) {
       var _closeSubject = this._closeSubject;
 
       if (!_closeSubject) {
-        this._closeSubject = _closeSubject = new _index.BehaviorSubject();
+        this._closeSubject = _closeSubject = new _webrain.BehaviorSubject();
       }
 
       return _closeSubject;
@@ -642,17 +642,17 @@ function (_ObservableClass) {
       var _resizeSubject = this._resizeSubject;
 
       if (!_resizeSubject) {
-        this._resizeSubject = _resizeSubject = new _index.Subject();
+        this._resizeSubject = _resizeSubject = new _webrain.Subject();
       }
 
       return _resizeSubject;
     }
   }]);
   return WindowController;
-}(_index.ObservableClass);
+}(_webrain.ObservableClass);
 
 exports.WindowController = WindowController;
-new _index.CalcObjectBuilder(WindowController.prototype).writable('isVisible').writable('isFocused');
+new _webrain.CalcObjectBuilder(WindowController.prototype).writable('isVisible').writable('isFocused');
 var WINDOW_STATE_PROPERTY_NAME = '13883806ede0481c92c41c2cda3d99c3';
 
 function createWindowController(options) {
@@ -841,7 +841,7 @@ function () {
       var _loadSubject = this._loadSubject;
 
       if (!_loadSubject) {
-        this._loadSubject = _loadSubject = new _index.Subject();
+        this._loadSubject = _loadSubject = new _webrain.Subject();
       }
 
       return _loadSubject;

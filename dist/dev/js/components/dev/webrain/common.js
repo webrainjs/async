@@ -30,7 +30,7 @@ var _isNan = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stab
 
 var _color = _interopRequireDefault(require("color"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 /* tslint:disable:no-construct use-primitive-type */
 // @ts-ignore
@@ -59,11 +59,11 @@ function getDisplayName(value) {
     return (0, _isNan.default)(value.getTime()) ? 'NaN' : value.toISOString().replace('T', ' ');
   }
 
-  if (value instanceof _index.CalcStat) {
+  if (value instanceof _webrain.CalcStat) {
     return value.toString();
   }
 
-  if ((0, _index.isIterable)(value)) {
+  if ((0, _webrain.isIterable)(value)) {
     var iterator = (0, _getIterator2.default)(value);
     var iteration = iterator.next();
     var size = value.length;
@@ -82,21 +82,21 @@ function getDisplayName(value) {
       }
     }
 
-    return iteration.done ? value.constructor.name + "-" + (0, _index.getObjectUniqueId)(value) + "[" + (size || 0) + "]" : value.constructor.name + "-" + (0, _index.getObjectUniqueId)(value) + "<" + getDisplayName(item) + ">[" + size + "]";
+    return iteration.done ? value.constructor.name + "-" + (0, _webrain.getObjectUniqueId)(value) + "[" + (size || 0) + "]" : value.constructor.name + "-" + (0, _webrain.getObjectUniqueId)(value) + "<" + getDisplayName(item) + ">[" + size + "]";
   }
 
   if (typeof value === 'object') {
-    var name = value instanceof _index.CalcProperty && value.state.name || value instanceof _index.Connector && value.connectorState.name;
+    var name = value instanceof _webrain.CalcProperty && value.state.name || value instanceof _webrain.Connector && value.connectorState.name;
 
-    if (value instanceof _index.Connector) {
+    if (value instanceof _webrain.Connector) {
       return 'Connector.' + (name || '');
     }
 
-    return (name || value.constructor.name) + "-" + (0, _index.getObjectUniqueId)(value);
+    return (name || value.constructor.name) + "-" + (0, _webrain.getObjectUniqueId)(value);
   }
 
   if (typeof value === 'function') {
-    return value.name ? value.name + "()-" + (0, _index.getObjectUniqueId)(value) : "() => {...} - " + (0, _index.getObjectUniqueId)(value);
+    return value.name ? value.name + "()-" + (0, _webrain.getObjectUniqueId)(value) : "() => {...} - " + (0, _webrain.getObjectUniqueId)(value);
   }
 
   return value.toString();
@@ -163,7 +163,7 @@ function (_ObservableMap) {
   }
 
   return WebrainObservableMap;
-}(_index.ObservableMap);
+}(_webrain.ObservableMap);
 
 exports.WebrainObservableMap = WebrainObservableMap;
 

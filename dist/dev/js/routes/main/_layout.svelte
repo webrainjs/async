@@ -1,5 +1,5 @@
 <script context="module">
-	import {connectorFactory, dependenciesSubscriber} from 'webrain/src/main/common/index.ts'
+	import {connectorFactory, dependenciesSubscriber} from 'webrain'
 
 	// const createConnector = connectorFactory({
 	// 	name: 'login view',

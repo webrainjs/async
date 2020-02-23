@@ -30,7 +30,7 @@ var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime-cor
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
-var _index = require("webrain/src/main/common/index.ts");
+var _webrain = require("webrain");
 
 var _helpers = require("./helpers");
 
@@ -340,7 +340,7 @@ function (_ObservableClass) {
       var _resizeSubject = this._resizeSubject;
 
       if (!_resizeSubject) {
-        this._resizeSubject = _resizeSubject = new _index.Subject();
+        this._resizeSubject = _resizeSubject = new _webrain.Subject();
       }
 
       return _resizeSubject;
@@ -351,7 +351,7 @@ function (_ObservableClass) {
       var _closeSubject = this._closeSubject;
 
       if (!_closeSubject) {
-        this._closeSubject = _closeSubject = new _index.Subject();
+        this._closeSubject = _closeSubject = new _webrain.Subject();
       }
 
       return _closeSubject;
@@ -375,10 +375,10 @@ function (_ObservableClass) {
     }
   }]);
   return WindowState;
-}(_index.ObservableClass);
+}(_webrain.ObservableClass);
 
 exports.WindowState = WindowState;
-new _index.CalcObjectBuilder(WindowState.prototype).writable('isVisible').writable('isFocused');
+new _webrain.CalcObjectBuilder(WindowState.prototype).writable('isVisible').writable('isFocused');
 var WINDOW_STATE_PROPERTY_NAME = '13883806ede0481c92c41c2cda3d99c3';
 
 function getWindowState(window) {

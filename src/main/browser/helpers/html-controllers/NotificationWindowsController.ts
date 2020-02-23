@@ -1,6 +1,6 @@
 import {
 	ObservableClass,
-} from 'webrain/src/main/common/index.ts'
+} from 'webrain'
 import {getWindowController, WindowController} from './WindowController'
 
 const UNSUBSCRIBERS_PROPERTY_NAME = '61e3ecc3f7ff48f2ab75bc7f8c86ed3b'

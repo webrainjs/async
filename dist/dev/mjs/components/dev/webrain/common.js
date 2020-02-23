@@ -1,7 +1,7 @@
 /* tslint:disable:no-construct use-primitive-type */
 // @ts-ignore
 import Color from 'color';
-import { CalcProperty, CalcStat, Connector, getObjectUniqueId, isIterable, ObservableMap } from 'webrain/src/main/common/index.ts';
+import { CalcProperty, CalcStat, Connector, getObjectUniqueId, isIterable, ObservableMap } from 'webrain';
 export const WebrainGraphObjectsId = '-4ff4f3a6-b8a8-4085-bd85-bb255c9f24a7';
 // noinspection JSPrimitiveTypeWrapperUsage
 export const NoValue = new String('NoValue');

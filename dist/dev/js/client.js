@@ -14,11 +14,12 @@ var _APP_CONFIG_PATH = _interopRequireDefault(require("APP_CONFIG_PATH"));
 
 var _Webrain = require("./components/app/Webrain");
 
+var _facade = require("./brain/facade");
+
 var _WindowController = require("./main/browser/helpers/html-controllers/WindowController");
 
 /* eslint-env browser */
 // noinspection NpmUsedModulesInstalled
-// import {brain} from './brain/facade' // TODO
 var appWindow;
 var appOrigin;
 window.addEventListener('message', function (e) {
@@ -38,15 +39,13 @@ sapper.start({
   windowName: 'Main',
   storeWindowState: true,
   win: window
-}); // brain.mainWindow.win = window // TODO
+});
+_facade.brain.mainWindow.win = window;
 
 if (window.tray) {
   window.tray.subscribe('click', function (e) {
     if (e.id === 'icon') {
-      // brain.mainWindow.show() // TODO
-      window.widget.updateState({
-        isVisible: true
-      });
+      _facade.brain.mainWindow.show();
     }
   });
 }

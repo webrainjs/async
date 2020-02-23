@@ -4,7 +4,7 @@ import {
 	ISubject,
 	ObservableClass,
 	Subject,
-} from 'webrain/src/main/common/index.ts'
+} from 'webrain'
 import {windowIsDestroyed} from './helpers'
 
 export class WindowState extends ObservableClass {

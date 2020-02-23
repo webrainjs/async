@@ -5,7 +5,7 @@ import {
 	IUnsubscribeOrVoid,
 	ObjectSerializer,
 	RuleBuilder,
-} from 'webrain/src/main/common/index.ts'
+} from 'webrain'
 
 declare const chrome: any
 
