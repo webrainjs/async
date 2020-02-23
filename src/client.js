@@ -5,7 +5,7 @@ import './initClientLog'
 import {webrainGraph} from './components/dev/webrain/WebrainGraph'
 import appConfig from 'APP_CONFIG_PATH'
 import {openWebrainWindow} from './components/app/Webrain'
-import {brain} from './brain/facade'
+// import {brain} from './brain/facade' // TODO
 import {createWindowController} from './main/browser/helpers/html-controllers/WindowController'
 
 let appWindow
@@ -29,12 +29,12 @@ createWindowController({
 	storeWindowState: true,
 	win             : window,
 })
-brain.mainWindow.win = window
+// brain.mainWindow.win = window // TODO
 
 if (window.tray) {
 	window.tray.subscribe('click', e => {
 		if (e.id === 'icon') {
-			brain.mainWindow.show()
+			// brain.mainWindow.show() // TODO
 			window.widget.updateState({
 				isVisible: true,
 			})

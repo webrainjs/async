@@ -1,0 +1,87 @@
+<!doctype html> <head> <meta charset=utf-8> <meta content="width=device-width,initial-scale=1" name=viewport> <meta content=#333333 name=theme-color> <base href=/app/ > <script src=libs/polyfill.js></script> <script src=libs/vis-network.js></script> <script> function subscribeUnhandledErrors() {
+			// eslint-disable-next-line no-eval
+			var origEval = window.eval;
+			// eslint-disable-next-line no-eval
+			delete window.eval;
+			// eslint-disable-next-line no-eval
+			window.eval = function (str) {
+				if (str.indexOf('async function') >= 0) {
+					return origEval.call(window, str);
+				}
+
+				try {
+					return origEval.call(window, str);
+				} catch (ex) {
+					console.error(ex);
+					console.log(str);
+					throw ex;
+				}
+			};
+
+			// function errorHandler(...args) {
+			// 	console.error('Unhandled rejection: ', ...args);
+			// }
+
+			function errorHandler() {
+				var len = arguments.length;
+				var args = new Array(len);
+
+				for (var i = 0; i < len; i++) {
+					let arg = arguments[i];
+					arg = (typeof PromiseRejectionEvent !== 'undefined'
+						? arg instanceof PromiseRejectionEvent && arg.reason
+						: arg.reason)
+						|| arg;
+
+					if (arg instanceof Error) {
+						const obj = {};
+						for (var key in arg) {
+							obj[key] = arg[key];
+						}
+						obj.origErrorObject = arg;
+						arg = obj;
+					}
+
+					args[i] = arg;
+				}
+
+				// eslint-disable-next-line prefer-spread
+				console.error.apply(console, ['Unhandled rejection: '].concat(args));
+			}
+
+			window.addEventListener('unhandledrejection', errorHandler);
+
+			window.onunhandledrejection = errorHandler;
+
+			window.onerror = errorHandler;
+
+			return function () {
+				window.removeEventListener('unhandledrejection', errorHandler);
+				window.onunhandledrejection = null;
+				window.onerror = null;
+				// eslint-disable-next-line no-eval
+				window.eval = origEval;
+			};
+		}
+
+		window.unsubscribeUnhandledErrors = subscribeUnhandledErrors(); </script> <script> (function () {
+			// Suppress serviceWorker.register errors for non https protocol, because electron allowServiceWorkers is not worked
+			// see: https://github.com/electron/electron/issues/9663
+
+			// const origRegister = navigator.serviceWorker.register;
+			// navigator.serviceWorker.register = function () {
+			// 	if (!window.location.href.startsWith('https:')) {
+			// 		return origRegister
+			// 			.apply(navigator.serviceWorker, arguments)
+			// 			.catch(function (err) {
+			// 				return null;
+			// 			});
+			// 	}
+			// 	return origRegister.apply(navigator.serviceWorker, arguments);
+			// };
+		})(); </script> <link href=client/styles.css rel=stylesheet> <link href=manifest.json rel=manifest> <link href=favicon.ico rel=icon type=image/x-icon> <script> (function() {
+			const indexFile = 'index.html';
+			if (window.location.href.endsWith('/', indexFile)) {
+				window.history.pushState({}, null, window.location.href.substring(0, window.location.href.length - indexFile.length));
+			}
+		})(); </script> <link href=client/main.3150615964.css rel=stylesheet><link href=client/client.b24ea231.css rel=stylesheet> <noscript id=sapper-head-start></noscript><noscript id=sapper-head-end></noscript> </head> <body> <div id=sapper> </div> <script>__SAPPER__={baseUrl:"/app",preloaded:[void 0]};if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/service-worker.js');(function(){try{eval("async function x(){}");var main="/app/client/client.b24ea231.js"}catch(e){main="/app/client/legacy/client.b598e8a3.js"};var s=document.createElement("script");try{new Function("if(0)import('')")();s.src=main;s.type="module";s.crossOrigin="use-credentials";}catch(e){s.src="/app/client/shimport@1.0.1.js";s.setAttribute("data-main",main);}document.head.appendChild(s);}());</script> 
