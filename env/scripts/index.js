@@ -12,6 +12,13 @@ const test = singleCall(async appConfigType => {
 	])
 })
 
+const testCi = singleCall(async appConfigType => {
+	await Promise.all([
+		common.lint(),
+		specific.tests.coverage(appConfigType),
+	])
+})
+
 const pack = singleCall(async (packType, appConfigType) => {
 	switch (packType) {
 		case 'electron':
@@ -61,14 +68,14 @@ const testAll = singleCall(async (...appConfigTypes) => {
 	)
 })
 
-const testCI = singleCall(async (...appConfigTypes) => {
+const testCiAll = singleCall(async (...appConfigTypes) => {
 	await Promise.all([
 		common.lint(),
 		buildAll(...appConfigTypes),
 	])
 
 	await Promise.all(
-		appConfigTypes.map(appConfigType => test(appConfigType))
+		appConfigTypes.map(appConfigType => testCi(appConfigType))
 	)
 })
 
@@ -110,5 +117,5 @@ module.exports = {
 	packAll,
 	testAndPackAll,
 	buildAndPackAll,
-	testCI,
+	testCiAll,
 }
