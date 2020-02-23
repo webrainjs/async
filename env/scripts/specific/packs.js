@@ -74,7 +74,6 @@ const runElectron = singleProcess(singleCall(async appConfigType => {
 
 const packChrome = singleCall(async appConfigType => {
 	await builds.buildChrome(appConfigType)
-
 })
 
 const runChrome = singleCall(async appConfigType => {

@@ -61,6 +61,17 @@ const testAll = singleCall(async (...appConfigTypes) => {
 	)
 })
 
+const testCI = singleCall(async (...appConfigTypes) => {
+	await Promise.all([
+		common.lint(),
+		buildAll(...appConfigTypes),
+	])
+
+	await Promise.all(
+		appConfigTypes.map(appConfigType => test(appConfigType))
+	)
+})
+
 const packAll = singleCall((packTypes, appConfigTypes) => Promise.all(
 	appConfigTypes
 		.map(
@@ -99,4 +110,5 @@ module.exports = {
 	packAll,
 	testAndPackAll,
 	buildAndPackAll,
+	testCI,
 }

@@ -16,9 +16,8 @@ const testMochaMjs = singleCall(async (appConfigType, coverage) => {
 const testMochaJs = singleCall(async (appConfigType, coverage) => {
 	await builds.buildJs(appConfigType)
 	await run(
-		// TODO replace babel to no-babel after webrain will completed
-		`${coverage ? 'nyc ' : ''}mocha --opts ./env/mocha/configs/babel/mocha.opts --bail ./dist/${appConfigType}/js/test/tests/{node,common}/**/*.*`,
-		// `${coverage ? 'nyc ' : ''}mocha --opts ./env/mocha/configs/no-babel/mocha.opts --bail ./dist/${appConfigType}/js/test/tests/{node,common}/**/*.*`,
+		// `${coverage ? 'nyc ' : ''}mocha --opts ./env/mocha/configs/babel/mocha.opts --bail ./dist/${appConfigType}/js/test/tests/{node,common}/**/*.*`,
+		`${coverage ? 'nyc ' : ''}mocha --opts ./env/mocha/configs/no-babel/mocha.opts --bail ./dist/${appConfigType}/js/test/tests/{node,common}/**/*.*`,
 		{env: {APP_CONFIG: appConfigType}}
 	)
 })
