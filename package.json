@@ -18,7 +18,7 @@
     "precommit": "npm run test:ci",
     "prepare": "npm run build-and-pack:dev",
     "prepublishOnly": "npm run test:ci",
-    "ci": "npm run test:ci && ncat \"tmp/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
+    "ci": "npm run test:ci && ncat \"tmp/common/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
     "test:ci": "node ./env/scripts/run.js \"require('./env/scripts').testCiAll('dev').stopOnError()\"",
     "build:icons": "icon-gen --ico name=appicon --icns name=appicon --favicon name=favicon sizes=16,64,512 --input src/assets/icons/vector/appicon.svg --output src/assets/icons/ico",
     "sapper:dev": "node ./env/sapper/dev.js",
