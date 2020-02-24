@@ -113,6 +113,7 @@ const testAndPackAll = singleCall(async (packTypes, appConfigTypes) => {
 // endregion
 
 module.exports = {
+	buildAll,
 	testAll,
 	packAll,
 	testAndPackAll,
