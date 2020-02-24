@@ -1,18 +1,14 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
+
 exports.__esModule = true;
 exports.default = void 0;
-var _default = {
-  space: {
-    quarter: "0.25em",
-    half: "0.5em",
-    base: "1em",
-    "double": "2em"
-  } // zIndex: {
-  // 	modalWindow : 1000,
-  // 	notification: 2000,
-  // 	modalDialog : 3000,
-  // },
 
-};
+var _extends2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/extends"));
+
+var _constants = _interopRequireDefault(require("../../global/templates/constants"));
+
+var _default = (0, _extends2.default)({}, _constants.default);
+
 exports.default = _default;

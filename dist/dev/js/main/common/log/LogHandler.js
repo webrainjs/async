@@ -45,7 +45,8 @@ function () {
     this._maxQueueSize = maxQueueSize || 10;
     this._throttleMaxQueueSize = throttleMaxQueueSize || 5;
     this._throttleTime = throttleTime || 0;
-  }
+  } // tslint:disable-next-line:no-empty
+
 
   (0, _createClass2.default)(LogHandler, [{
     key: "init",
@@ -53,7 +54,7 @@ function () {
   }, {
     key: "canLog",
     value: function canLog(logEvent) {
-      return canDoAction(logEvent.handlersModes ? logEvent.handlersModes[this.name] || _contracts.ActionMode.Default : _contracts.ActionMode.Default, this.allowLogLevels, logEvent.level);
+      return !this.disabled && canDoAction(logEvent.handlersModes ? logEvent.handlersModes[this.name] || logEvent.handlersModes._all || _contracts.ActionMode.Default : _contracts.ActionMode.Default, this.allowLogLevels, logEvent.level);
     }
   }, {
     key: "onError",

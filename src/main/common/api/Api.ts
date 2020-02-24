@@ -1,17 +1,18 @@
 import {IObservable, ISubject, Subject} from 'webrain'
-import {IApi, IApiRequest, IApiRequestArgs, IApiResponse} from './contracts/api'
-import {HttpDataType, IHttpClient, INetworkError, NetworkErrorType} from './contracts/http'
-import {prepareHttpRequest} from './helpers'
+import {IApi, IApiRequest, IApiRequestArgs, IApiResponse, INetworkEvent, NetworkEventType} from './contracts/api'
+import {HttpDataType, IHttpClient, NetworkErrorType} from './contracts/http'
+import {toFormData, toFormUrlEncoded} from './helpers'
 import {NetworkError} from './NetworkError'
 
 export interface IApiConstructorArgs {
-	urlBase: string,
+	urlBase?: string,
 	httpClient: IHttpClient,
 }
 
 export class Api<TError> implements IApi<TError> {
 	public readonly urlBase: string
 	public readonly httpClient: IHttpClient
+	public timeout: number
 
 	constructor({
 		urlBase,
@@ -21,18 +22,62 @@ export class Api<TError> implements IApi<TError> {
 		this.httpClient = httpClient
 	}
 
-	// region networkErrorObservable
+	private _isBadConnection: boolean = false
+	public get isBadConnection(): boolean {
+		return this._isBadConnection
+	}
+	public set isBadConnection(value: boolean) {
+		if (this._isBadConnection === value) {
+			return
+		}
+		this._isBadConnection = value
+		console.log(value ? 'Bad Connection' : 'Connection Restored')
+	}
 
-	private _networkErrorSubject: ISubject<INetworkError> = new Subject()
+	// region networkEventObservable
 
-	public get networkErrorObservable(): IObservable<INetworkError> {
-		return this._networkErrorSubject
+	private _networkEventSubject: ISubject<INetworkEvent> = new Subject()
+
+	public get networkEventObservable(): IObservable<INetworkEvent> {
+		return this._networkEventSubject
 	}
 
 	// endregion
 
 	protected prepareRequest(request: IApiRequest): void {
-		return prepareHttpRequest(request)
+		if (request.method !== 'GET' && (request.data || request.dataType)) {
+			switch (request.dataType) {
+				case HttpDataType.FormUrlEncoded:
+					request.data = toFormUrlEncoded(request.data)
+					request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+					break
+				case HttpDataType.MultipartFormData:
+					request.data = toFormData(request.data)
+					// request.headers['Content-Type'] = 'multipart/form-data; boundary="d0987012-5c8b-471d-b79b-81fabac23628"'
+					break
+				case HttpDataType.Json:
+					request.data = JSON.stringify(request.data)
+					request.headers['Content-Type'] = 'application/json; charset=UTF-8'
+					break
+				default:
+					throw new Error('Unknown dataType: ' + request.dataType)
+			}
+		}
+
+		switch (request.responseDataType) {
+			case HttpDataType.String:
+				request.headers.Accept = 'text/plain'
+				break
+			case HttpDataType.Json:
+				request.headers.Accept = 'application/json'
+				break
+			default:
+				throw new Error('Unknown dataType: ' + request.responseDataType)
+		}
+
+		if (this.urlBase) {
+			request.url = new URL(request.url, this.urlBase).href
+		}
 	}
 
 	public async sendRequest<TResult>({
@@ -50,6 +95,8 @@ export class Api<TError> implements IApi<TError> {
 
 			response = await this.httpClient.sendRequest(request)
 
+			this.isBadConnection = false
+
 			if (response.statusCode !== 200) {
 				throw new NetworkError({
 					message: `statusCode(${response.statusCode}) !== 200`,
@@ -57,6 +104,15 @@ export class Api<TError> implements IApi<TError> {
 					response,
 				})
 			}
+
+			this._networkEventSubject.emit({
+				type: NetworkEventType.Success,
+				data: {
+					fromBaseUrl: request.url.toLowerCase().startsWith((this.urlBase || '').toLowerCase()),
+					request,
+					response,
+				},
+			})
 
 			let result
 			// tslint:disable-next-line:no-small-switch
@@ -81,6 +137,21 @@ export class Api<TError> implements IApi<TError> {
 				throw err
 			}
 
+			if (err.errorType === NetworkErrorType.BadConnection) {
+				this.isBadConnection = true
+				this._networkEventSubject.emit({
+					type: NetworkEventType.Error,
+					data: err,
+				})
+				return {
+					error: {
+						networkError: err,
+					},
+				}
+			}
+
+			this.isBadConnection = false
+
 			let data = err.response && err.response.data
 			if (typeof data === 'string') {
 				try {
@@ -94,18 +165,14 @@ export class Api<TError> implements IApi<TError> {
 				networkError: err,
 			}
 
-			if (err.errorType === NetworkErrorType.BadConnection) {
-				console.log('Api bad connection', err, request)
-				return {
-					error: apiError,
-				}
-			}
-
 			const errorHandled = errorHandler && errorHandler(apiError)
 			if (errorHandled !== true) {
 				console.error('Api error', err, request)
 				if (errorHandled == null) {
-					this._networkErrorSubject.emit(err)
+					this._networkEventSubject.emit({
+						type: NetworkEventType.Error,
+						data: err,
+					})
 				}
 			}
 

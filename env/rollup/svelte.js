@@ -5,7 +5,7 @@ const svelteThemesPreprocess = require('svelte-themes-preprocess').default
 const babel = require('@babel/core')
 const babelConfigMinimal = require('../babel/configs/minimal')
 const {toCachedFunc} = require('./helpers')
-
+const {normalizePath} = require('../common/helpers')
 const postcss = require('./postcss')
 
 const transformJsToCss = toCachedFunc(
@@ -88,7 +88,18 @@ function rollupCommon(options = {}) {
 					filename,
 					...others
 				})
+
+				// see this bug: https://github.com/sveltejs/svelte/issues/4313
+				// Do not let the Svelte create one CSS file and use the same suffixes
+				// for the equals component styles. Because the Sapper loads them
+				// several times and the order of css rules will be violated
+				result.code = `/* ${normalizePath(filename)} */\r\n${result.code}`
+
+				// content: `.disable-equals-css-optimisation: { content: "${
+				// 	normalizePath(filename)
+				// }"; }\r\n${content}`,
 				// console.log(`\r\n${filename}\r\n${result.code}`)
+
 				return result
 			},
 			// async script({content, filename, attributes}) {

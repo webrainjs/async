@@ -18,7 +18,9 @@ var _WebrainWindow = _interopRequireDefault(require("./WebrainWindow.svelte"));
 // @ts-ignore
 var webrainWindow = new _ComponentWindow.ComponentWindow({
   windowControllerFactory: new _WindowController.WindowControllerFactory({
-    windowName: 'Webrain'
+    windowControllerOptions: {
+      windowName: 'Webrain'
+    }
   }),
   componentClass: _WebrainWindow.default
 });

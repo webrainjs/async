@@ -1,5 +1,9 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
+
+var _constants = _interopRequireDefault(require("../helpers/constants"));
+
 /* tslint:disable:quotemark no-duplicate-string */
 function fontFamily(_ref) {
   var family = _ref.family,
@@ -48,11 +52,24 @@ var timesNewRoman = fontFamily({
   size: 1,
   offsetY: 0
 });
+var clear = {
+  'font-size': "100%",
+  'font-family': _constants.default.fonts.base,
+  'color': "rgba(0, 0, 0, 0)",
+  'text-transform': "none",
+  'text-rendering': "initial",
+  'text-size-adjust': "initial",
+  'letter-spacing': "initial",
+  'font-weight': "initial",
+  '-webkit-box-direction': "initial",
+  '-webkit-font-smoothing': "initial"
+};
 module.exports = {
   fontFamily: fontFamily,
   fonts: {
     arial: arial,
     tahoma: tahoma,
-    timesNewRoman: timesNewRoman
+    timesNewRoman: timesNewRoman,
+    clear: clear
   }
 };

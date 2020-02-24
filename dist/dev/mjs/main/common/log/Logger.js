@@ -25,27 +25,28 @@ export class Logger {
     this._initialized = true;
     this.appName = appName;
     this.appVersion = appVersion;
-    this.handlers = handlers;
+    const handlersObject = {};
+
+    for (let i = 0, len = handlers.length; i < len; i++) {
+      const handler = handlers[i];
+
+      if (handler) {
+        handlersObject[handler.name] = handler;
+        handler.init();
+      }
+    }
+
+    this.handlers = handlersObject;
     this.filter = filter;
     this.appState = appState;
     this.interceptEval();
     const logEvent = {
       level: LogLevel.Info,
       messagesOrErrors: `Start App: ${appName} v${appVersion}`,
-      handlersModes: {}
-    };
-
-    if (this.handlers) {
-      for (let i = 0; i < this.handlers.length; i++) {
-        const handler = handlers[i];
-
-        if (handler) {
-          logEvent.handlersModes[handler.name] = ActionMode.Always;
-          handler.init();
-        }
+      handlersModes: {
+        _all: ActionMode.Always
       }
-    }
-
+    };
     this.log(logEvent);
   }
 
@@ -149,11 +150,13 @@ export class Logger {
       handlers
     } = this;
 
-    for (let i = 0; i < handlers.length; i++) {
-      const handler = handlers[i];
+    for (const key in handlers) {
+      if (Object.prototype.hasOwnProperty.call(handlers, key)) {
+        const handler = handlers[key];
 
-      if (handler) {
-        handler.enqueueLog(logEvent);
+        if (handler) {
+          handler.enqueueLog(logEvent);
+        }
       }
     }
   } // endregion

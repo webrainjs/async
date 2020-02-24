@@ -1,5 +1,3 @@
-
-
 /* eslint-disable no-process-env */
 module.exports = {
 	appId      : 'com.app-template',
@@ -7,7 +5,9 @@ module.exports = {
 	appName    : 'App Template',
 	appVersion : '0.0.1',
 	description: 'App Template',
-	// logUrl     : 'http://app-template.logger.com/log.php', // TODO
+	logUrls    : [
+		// 'http://app-template.logger.com/log.php', // TODO
+	],
 	installer  : {
 		electronVersion: '6.0.11',
 		nodeVersion    : '12.4.0',

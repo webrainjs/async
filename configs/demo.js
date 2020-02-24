@@ -7,10 +7,16 @@ module.exports = {
 	packageName: `${base.packageName}-demo`,
 	appName    : `${base.appName} Demo`,
 	appVersion : `${base.appVersion}`,
-	logUrl     : base.logUrl,
+	logUrls    : base.logUrls,
 	installer  : base.installer,
 
 	type  : 'demo',
+	dev: {
+		devPage : false,
+		devTools: {
+			openAtStart: false,
+		},
+	},
 	tests : {
 		intern: {
 			staticPort: 3011,

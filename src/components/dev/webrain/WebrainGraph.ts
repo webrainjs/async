@@ -724,8 +724,8 @@ new CalcObjectBuilder(WebrainGraph.prototype)
 	.writable('highlightMode')
 	.writable('searchPattern', {
 		setOptions: {
-			afterChange(value) {
-				if (value) {
+			afterChange(oldValue, newValue) {
+				if (newValue) {
 					this.highlightMode = HighlightMode.SearchResults
 				}
 			},
@@ -751,10 +751,7 @@ new CalcObjectBuilder(WebrainGraph.prototype)
 			dependencies: d => d.invalidateOn(b => b
 				.any(
 					b2 => b2.p('highlightMode', 'searchPattern'),
-					b2 => b2
-						.p('nodes', 'edges')
-						.collection()
-						.p('updateId'),
+					b2 => b2.p('nodes', 'edges').collection().p('updateId'),
 				),
 			), // invalidate on change self
 			*calcFunc(state) {

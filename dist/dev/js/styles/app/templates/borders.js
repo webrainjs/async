@@ -82,7 +82,7 @@ var innerShadow = function innerShadow(_temp3) {
       _ref3$width = _ref3.width,
       width = _ref3$width === void 0 ? '1.5px' : _ref3$width;
 
-  return color && width && _templates.default.bordersInnerShadow({
+  return _templates.default.bordersInnerShadow({
     color: color,
     width: width
   });

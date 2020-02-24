@@ -20,12 +20,7 @@ module.exports = {
 		`dist/${process.env.APP_CONFIG}/sapper/export/**`,
 		`dist/${process.env.APP_CONFIG}/electron/build/**`,
 	],
-	extraFiles: [
-		'wpf/**/*.xaml',
-		'static/favicon*.*',
-		'wpf/**/{libs,bin}/**/*.dll',
-		'wpf/assets/**',
-	],
+	extraFiles   : ['static/favicon*.*'],
 	extraMetadata: {
 		name: appConfig.packageName,
 		main: `dist/${process.env.APP_CONFIG}/electron/build/index.js`,
@@ -38,6 +33,9 @@ module.exports = {
 		// see list of servers here: https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710
 		rfc3161TimeStampServer: 'http://sha256timestamp.ws.symantec.com/sha256/timestamp',
 		// rfc3161TimeStampServer: 'http://timestamp.globalsign.com/scripts/timstamp.dll',
+		extraFiles            : [
+			
+		],
 	},
 	mac: {
 		target    : 'dmg',
@@ -52,6 +50,7 @@ module.exports = {
 	dmg: {
 
 	},
+
 	// pkg: {
 	// !!! postinstall is not worked !!!
 	// 	// see example: https://github.com/astaupb/copyclient_electron/blob/0f4b1a94da549cb1e9fcaf791707a4037a0cac8b/package.json
@@ -61,6 +60,7 @@ module.exports = {
 	// 	// allowCurrentUserHome: true,
 	// 	// allowRootDirectory  : true,
 	// },
+
 	npmRebuild     : false,
 	electronVersion: appConfig.installer.electronVersion,
 	nodeVersion    : appConfig.installer.nodeVersion,

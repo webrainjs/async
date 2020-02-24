@@ -36,7 +36,7 @@ const template = ({
 const innerShadow = ({
 	color = colors.border.base,
 	width = '1.5px',
-} = {}) => color && width && templates.bordersInnerShadow({
+} = {}) => templates.bordersInnerShadow({
 	color,
 	width,
 })

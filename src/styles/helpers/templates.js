@@ -150,9 +150,9 @@ const borders = ({
 const bordersInnerShadow = ({
 	color,
 	width,
-} = {}) => ({
+} = {}) => color && width && {
 	'box-shadow': `inset 0px 0px 0px ${width} ${color}`,
-})
+}
 
 const anchorAsDiv = {
 	...anchorColor({
@@ -189,6 +189,7 @@ const buttonsReset = {
 
 const textboxReset = {
 	[[
+		`textarea`,
 		`input[type='text']`,
 		`input[type='email']`,
 		`input[type='password']`,

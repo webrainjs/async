@@ -67,7 +67,7 @@ function (_LogHandler) {
               case 0:
                 logUrl = this.logUrl;
 
-                if (logUrl) {
+                if (!(!logUrl || !logUrl.length)) {
                   _context2.next = 3;
                   break;
                 }
@@ -132,18 +132,23 @@ function (_LogHandler) {
                 return _context2.abrupt("return");
 
               case 20:
-                selfError('Send log status code == ' + statusCode);
+                if (statusCode === 429 || statusCode === 502 || statusCode === 504) {
+                  console.log('Send log failed: Bad Connection');
+                } else if (!errorWasWrite) {
+                  errorWasWrite = true;
+                  selfError('Send log status code == ' + statusCode);
+                }
+
                 _context2.next = 26;
                 break;
 
               case 23:
                 _context2.prev = 23;
                 _context2.t0 = _context2["catch"](13);
-
-                if (!errorWasWrite) {
-                  errorWasWrite = true;
-                  selfError('Send log error', _context2.t0);
-                }
+                console.log('Send log failed: Bad Connection'); // if (!errorWasWrite) {
+                // 	errorWasWrite = true
+                // 	selfError('Send log error', error)
+                // }
 
               case 26:
                 _context2.next = 28;

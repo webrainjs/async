@@ -56,9 +56,14 @@ async function writeTextFile(filePath, content) {
 	})
 }
 
+function normalizePath(filepath) {
+	return path.relative(process.cwd(), filepath).replace(/\\/g, '/')
+}
+
 module.exports = {
 	writeTextFile,
 	fileExtensions,
 	asPromise,
 	now,
+	normalizePath,
 }

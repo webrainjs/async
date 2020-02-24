@@ -9,8 +9,6 @@ exports.GMapController = void 0;
 
 var _log = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/math/log2"));
 
-var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
-
 var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/classCallCheck"));
@@ -70,14 +68,7 @@ function getMarkerClass() {
       }, {
         key: "draw",
         value: function draw() {
-          var _console, _context;
-
-          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-          }
-
-          (_console = console).log.apply(_console, (0, _concat.default)(_context = ['draw']).call(_context, args));
-
+          // console.log('draw', ...args)
           this.updatePosition();
         } // public onAdd(): void {
         // 	let markers = (this.map as any).markers
@@ -106,8 +97,8 @@ function getMarkerClass() {
 }
 
 function gmapPointsToRect() {
-  for (var _len2 = arguments.length, points = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    points[_key2] = arguments[_key2];
+  for (var _len = arguments.length, points = new Array(_len), _key = 0; _key < _len; _key++) {
+    points[_key] = arguments[_key];
   }
 
   if (!points) {

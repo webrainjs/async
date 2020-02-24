@@ -1,12 +1,6 @@
 import { BehaviorSubject, CalcObjectBuilder, ObservableClass, Subject } from 'webrain';
 import { storeWindowState } from '../localStorage';
-export function windowIsDestroyed(win) {
-  try {
-    return !win || win.closed || !win.document;
-  } catch (ex) {
-    return true;
-  }
-} // from: https://stackoverflow.com/a/1060034/5221762
+import { windowIsDestroyed } from './helpers'; // from: https://stackoverflow.com/a/1060034/5221762
 
 function bindVisibleChange(window, handler) {
   /* tslint:disable:no-conditional-assignment */
@@ -124,6 +118,7 @@ export class WindowSizeController {
 
     this.borderWidth = this.winController.win.outerWidth - this.winController.win.innerWidth;
     this.borderHeight = this.winController.win.outerHeight - this.winController.win.innerHeight;
+    console.log(`outerWidth, innerWidth: ${this.winController.win.outerWidth}, ${this.winController.win.innerWidth}`);
     console.log(`Window border size: ${this.borderWidth}, ${this.borderHeight}`);
   }
 
@@ -138,14 +133,14 @@ export class WindowSizeController {
       } // fix unwanted auto resize, eg. after window.moveTo()
 
 
-      if (this.lastResizeTime && Date.now() - this.lastResizeTime < 1000) {
-        if (this.winController.win.outerWidth !== this.width || this.winController.win.outerHeight !== this.height) {
-          this.winController.win.resizeTo(this.width, this.height);
-        }
-      } else {
+      if (this.winController.resizable || !this.lastResizeTime || Date.now() - this.lastResizeTime >= 1000) {
         this.width = this.winController.win.outerWidth;
         this.height = this.winController.win.outerHeight;
         this.lastResizeTime = Date.now();
+      } else {
+        if (this.winController.win.outerWidth !== this.width || this.winController.win.outerHeight !== this.height) {
+          this.winController.win.resizeTo(this.width, this.height);
+        }
       }
     });
   } // region methods
@@ -177,15 +172,16 @@ export class WindowSizeController {
 
 }
 export class WindowController extends ObservableClass {
-  constructor({
+  constructor(win, {
     windowName,
-    win,
     // tslint:disable-next-line:no-shadowed-variable
-    storeWindowState: _storeWindowState = true
+    storeWindowState: _storeWindowState = true,
+    resizable
   }) {
     super();
     this.windowName = windowName;
     this.win = win;
+    this.resizable = resizable;
     this._storeWindowState = _storeWindowState;
     this.sizeController = new WindowSizeController(this);
     this.init();
@@ -263,12 +259,13 @@ export class WindowController extends ObservableClass {
       return;
     }
 
+    await this.sizeController.init();
+
     if (this._storeWindowState) {
       await storeWindowState(this.windowName, this.win);
     }
 
     this.bind();
-    await this.sizeController.init();
     this.onLoad();
   } // endregion
   // region onLoad
@@ -444,22 +441,22 @@ export class WindowController extends ObservableClass {
 }
 new CalcObjectBuilder(WindowController.prototype).writable('isVisible').writable('isFocused');
 const WINDOW_STATE_PROPERTY_NAME = '13883806ede0481c92c41c2cda3d99c3';
-export function createWindowController(options) {
-  if (windowIsDestroyed(options.win)) {
+export function createWindowController(win, options) {
+  if (windowIsDestroyed(win)) {
     return null;
   }
 
-  let controller = options.win[WINDOW_STATE_PROPERTY_NAME];
+  let controller = win[WINDOW_STATE_PROPERTY_NAME];
 
   if (controller) {
     throw new Error('Window controller already created');
   }
 
-  Object.defineProperty(options.win, WINDOW_STATE_PROPERTY_NAME, {
+  Object.defineProperty(win, WINDOW_STATE_PROPERTY_NAME, {
     enumerable: false,
     configurable: false,
     writable: false,
-    value: controller = new WindowController(options)
+    value: controller = new WindowController(win, options)
   });
   return controller;
 }
@@ -473,16 +470,13 @@ export function getWindowController(win) {
 export class WindowControllerFactory {
   // resizable=no is not worked in browsers because: https://stackoverflow.com/a/15481333/5221762
   constructor({
-    windowName,
     // docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#Window_features
     windowFeatures = 'width=600,height=400,' + 'titlebar=no,resizable=yes,movable=yes,alwaysOnTop=yes,fullscreenable=yes,' + 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,' + 'dialog=yes,modal=yes,dependent=yes',
-    // tslint:disable-next-line:no-shadowed-variable
-    storeWindowState = true,
+    windowControllerOptions,
     replace = true
   }) {
-    this._windowName = windowName;
-    this._windowOptions = ['about:blank', windowName, windowFeatures, replace];
-    this._storeWindowState = storeWindowState;
+    this._windowControllerOptions = windowControllerOptions;
+    this._windowOptions = ['about:blank', this._windowControllerOptions.windowName, windowFeatures, replace];
   } // region get or create windowController
 
 
@@ -505,7 +499,7 @@ export class WindowControllerFactory {
         win = window.open(...this._windowOptions);
 
         if (getWindowController(win)) {
-          throw new Error('Cannot recreate window with name: ' + this._windowName);
+          throw new Error('Cannot recreate window with name: ' + this._windowControllerOptions.windowName);
         }
       }
 
@@ -517,11 +511,7 @@ export class WindowControllerFactory {
       window.addEventListener('beforeunload', onParentWindowUnload);
       this.appendCss(win);
       this.appendContainer(win);
-      const windowController = createWindowController({
-        windowName: this._windowName,
-        win,
-        storeWindowState: this._storeWindowState
-      });
+      const windowController = createWindowController(win, this._windowControllerOptions);
       this._windowController = windowController;
       windowController.loadObservable.subscribe(() => {
         if (!windowController.isOpened) {

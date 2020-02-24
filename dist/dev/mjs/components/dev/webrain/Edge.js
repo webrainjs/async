@@ -115,8 +115,8 @@ new CalcObjectBuilder(Edge.prototype).writable('count').writable('value', {
   setOptions: {
     equalsFunc: () => false,
 
-    afterChange(value) {
-      this.valueHistory.push(value);
+    afterChange(oldValue, newValue) {
+      this.valueHistory.push(newValue);
 
       if (this.valueHistory.length > VALUE_HISTORY_MAX_SIZE) {
         delete this.valueHistory[this.valueHistory.length - VALUE_HISTORY_MAX_SIZE - 1];
@@ -129,7 +129,7 @@ calcPropertyFactory({
   name: 'Edge.updateId' + WebrainGraphObjectsId,
   dependencies: d => d.invalidateOn(b => b.noAutoRules().propertyPredicate(p => p !== 'visData' && p !== 'updateId', '!visData && !updateId')),
 
-  *calcFunc(state) {
+  calcFunc(state) {
     state.value = updateId[0]++;
   }
 

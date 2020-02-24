@@ -43,3 +43,11 @@ export function getPatentElement(element, matchesFunc: (element) => boolean) {
 
 	return element
 }
+
+export function windowIsDestroyed(win: Window) {
+	try {
+		return !win || win.closed || !win.document
+	} catch (ex) {
+		return true
+	}
+}

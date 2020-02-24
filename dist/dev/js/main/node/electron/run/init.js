@@ -17,6 +17,8 @@ var _appState = require("./appState");
 
 var _mainWindow = require("./mainWindow");
 
+var _remoteLogger = require("./remoteLogger");
+
 /* tslint:disable:no-var-requires */
 // @ts-ignore
 var path = require('path');
@@ -34,11 +36,14 @@ function init(app, appConfig, prepareStartUrl) {
   _LoggerNode.logger.init({
     appName: _appState.appState.appConfig.appName,
     appVersion: _appState.appState.appConfig.appVersion,
-    logUrl: _appState.appState.appConfig.logUrl,
+    logUrls: _appState.appState.appConfig.logUrls,
     appState: (0, _extends2.default)({}, _appState.appState.appConfig),
-    logFilePath: path.resolve(_appState.appState.app.getPath('userData'), 'logs/log.txt'),
+    logDir: path.resolve(_appState.appState.app.getPath('userData'), 'logs'),
+    logFileName: 'node.log',
     writeToFileLevels: _contracts.LogLevel.Any
   });
+
+  (0, _remoteLogger.bindRemoteLogger)('node');
 
   _LoggerNode.logger.debug('resourcesPath = ' + (0, _server.getResourcesPath)(_appState.appState.app));
 

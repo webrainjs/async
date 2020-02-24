@@ -50,11 +50,25 @@ const timesNewRoman = fontFamily({
 	offsetY: 0,
 })
 
+const clear = {
+	'font-size': `100%`,
+	'font-family': constants.fonts.base,
+	'color': `rgba(0, 0, 0, 0)`,
+	'text-transform': `none`,
+	'text-rendering': `initial`,
+	'text-size-adjust': `initial`,
+	'letter-spacing': `initial`,
+	'font-weight': `initial`,
+	'-webkit-box-direction': `initial`,
+	'-webkit-font-smoothing': `initial`,
+}
+
 module.exports = {
 	fontFamily,
 	fonts: {
 		arial,
 		tahoma,
 		timesNewRoman,
+		clear,
 	},
 }

@@ -1,9 +1,7 @@
 "use strict";
 
 /* tslint:disable:no-var-requires */
-// @ts-ignore
-var SparkMD5 = require('spark-md5'); // @ts-ignore
-
+var SparkMD5 = require('spark-md5');
 
 var html = require('html-escaper'); // don't mix require and import/export; see: https://github.com/rollup/rollup/issues/1058#issuecomment-254187433
 

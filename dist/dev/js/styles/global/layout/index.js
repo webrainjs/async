@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = [require('./flex'), require('./tables'), require('./visibility'), require('./scroll'), require('./others')];
+module.exports = [require('./flex'), require('./tables'), require('./visibility'), require('./scroll'), require('./others'), require('./icons'), require('./spaces')];

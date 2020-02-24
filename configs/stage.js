@@ -7,11 +7,12 @@ module.exports = {
 	packageName: `${base.packageName}-stage`,
 	appName    : `${base.appName} Stage`,
 	appVersion : `${base.appVersion}`,
-	logUrl     : base.logUrl,
+	logUrls    : base.logUrls,
 	installer  : base.installer,
 
 	type  : 'stage',
 	dev   : {
+		devPage : false,
 		devTools: {
 			openAtStart: false,
 		},

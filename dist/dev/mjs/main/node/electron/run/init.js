@@ -5,6 +5,7 @@ import { logger } from '../../log/LoggerNode';
 import { getResourcesPath, getRootPath } from '../helpers/server';
 import { appState } from './appState';
 import { createWindow as _createWindow } from './mainWindow';
+import { bindRemoteLogger } from './remoteLogger';
 
 const path = require('path');
 
@@ -22,12 +23,14 @@ export function init(app, appConfig, prepareStartUrl) {
   logger.init({
     appName: appState.appConfig.appName,
     appVersion: appState.appConfig.appVersion,
-    logUrl: appState.appConfig.logUrl,
+    logUrls: appState.appConfig.logUrls,
     appState: { ...appState.appConfig
     },
-    logFilePath: path.resolve(appState.app.getPath('userData'), 'logs/log.txt'),
+    logDir: path.resolve(appState.app.getPath('userData'), 'logs'),
+    logFileName: 'node.log',
     writeToFileLevels: LogLevel.Any
   });
+  bindRemoteLogger('node');
   logger.debug('resourcesPath = ' + getResourcesPath(appState.app));
   logger.debug('rootPath = ' + getRootPath(appState.app));
   process.chdir(getRootPath(appState.app));

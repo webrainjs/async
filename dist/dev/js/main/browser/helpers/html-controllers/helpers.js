@@ -5,6 +5,7 @@ var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequ
 exports.__esModule = true;
 exports.createHtmlElementMatches = createHtmlElementMatches;
 exports.getPatentElement = getPatentElement;
+exports.windowIsDestroyed = windowIsDestroyed;
 
 var _some = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/some"));
 
@@ -51,4 +52,12 @@ function getPatentElement(element, matchesFunc) {
   }
 
   return element;
+}
+
+function windowIsDestroyed(win) {
+  try {
+    return !win || win.closed || !win.document;
+  } catch (ex) {
+    return true;
+  }
 }

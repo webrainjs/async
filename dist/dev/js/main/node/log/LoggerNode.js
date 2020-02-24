@@ -5,7 +5,11 @@ var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequ
 exports.__esModule = true;
 exports.logger = exports.LoggerNode = void 0;
 
+var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/map"));
+
 var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
+
+var _construct2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/construct"));
 
 var _filter = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/filter"));
 
@@ -20,6 +24,8 @@ var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime-corejs3/he
 var _get2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/get"));
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
+
+var _CombineLogHandlers = require("../../common/log/CombineLogHandlers");
 
 var _contracts = require("../../common/log/contracts");
 
@@ -46,10 +52,14 @@ function (_Logger) {
   (0, _createClass2.default)(LoggerNode, [{
     key: "init",
     value: function init(_ref) {
+      var _context,
+          _this = this;
+
       var appName = _ref.appName,
           appVersion = _ref.appVersion,
-          logFilePath = _ref.logFilePath,
-          logUrl = _ref.logUrl,
+          logDir = _ref.logDir,
+          logFileName = _ref.logFileName,
+          logUrls = _ref.logUrls,
           _ref$writeToConsoleLe = _ref.writeToConsoleLevels,
           writeToConsoleLevels = _ref$writeToConsoleLe === void 0 ? _contracts.LogLevel.Any : _ref$writeToConsoleLe,
           _ref$writeToFileLevel = _ref.writeToFileLevels,
@@ -64,7 +74,9 @@ function (_Logger) {
       (0, _get2.default)((0, _getPrototypeOf2.default)(LoggerNode.prototype), "_init", this).call(this, {
         appName: appName,
         appVersion: appVersion,
-        handlers: [new _WriteToConsoleHandler.WriteToConsoleHandler(this, writeToConsoleLevels), new _WriteToFileHandler.WriteToFileHandler(this, writeToFileLevels, _WriteToFileHandler.path.resolve(logFilePath)), new _SendLogHandlerNode.SendLogHandlerNode(this, sendLogLevels, logUrl), new _EmitEventHandler.EmitEventHandler(this, emitEventLevels)],
+        handlers: [new _WriteToConsoleHandler.WriteToConsoleHandler(this, writeToConsoleLevels), new _WriteToFileHandler.WriteToFileHandler(this, writeToFileLevels, _WriteToFileHandler.path.resolve(logDir), logFileName), logUrls && logUrls.length && (0, _construct2.default)(_CombineLogHandlers.CombineLogHandlers, (0, _concat.default)(_context = [this]).call(_context, (0, _map.default)(logUrls).call(logUrls, function (logUrl) {
+          return new _SendLogHandlerNode.SendLogHandlerNode(_this, sendLogLevels, logUrl);
+        }))), new _EmitEventHandler.EmitEventHandler(this, emitEventLevels)],
         filter: filter,
         appState: appState
       });
@@ -72,24 +84,24 @@ function (_Logger) {
   }, {
     key: "logUnhandledErrors",
     value: function logUnhandledErrors() {
-      var _this = this;
+      var _this2 = this;
 
       process.on('unhandledRejection', function () {
-        var _context;
+        var _context2;
 
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
 
-        _this.error.apply(_this, (0, _concat.default)(_context = ['process.unhandledRejection']).call(_context, args));
+        _this2.error.apply(_this2, (0, _concat.default)(_context2 = ['process.unhandledRejection']).call(_context2, args));
       }).on('uncaughtException', function () {
-        var _context2;
+        var _context3;
 
         for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
           args[_key2] = arguments[_key2];
         }
 
-        _this.error.apply(_this, (0, _concat.default)(_context2 = ['process.uncaughtException']).call(_context2, args));
+        _this2.error.apply(_this2, (0, _concat.default)(_context3 = ['process.uncaughtException']).call(_context3, args));
       });
     }
   }]);

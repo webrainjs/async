@@ -32,7 +32,7 @@
 	$: _canMaximize = canMaximize && win && !!win.maximize && !!win.restore
 	$: _canClose = canClose && win && !!win.close
 	$: _canMinimize = canMinimize && win && !!win.minimize
-	$: _canDev = canDev && appConfig.dev
+	$: _canDev = canDev && appConfig.dev && appConfig.dev.devPage
 
 	onMount(() => {
 		if (!win) {
@@ -122,7 +122,7 @@
 
 <style-js>
 	import templates from '../../styles/helpers/templates';
-	import buttons from '../../styles/app/templates/buttons';
+	import buttons from '../../styles/global/templates/buttons';
 	import colors from '../../styles/app/templates/colors';
 
 	const titleBarHeight = `1.5em`

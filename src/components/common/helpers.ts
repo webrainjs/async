@@ -30,7 +30,7 @@ export function dateTimeToString(date: Date) {
 
 	return [
 		((date.getMonth() + 1) + '').padStart(2, '0'), '/',
-		(date.getDay() + '').padStart(2, '0'), '/',
+		(date.getDate() + '').padStart(2, '0'), '/',
 		date.getFullYear(), ' ',
 		(((date.getHours() + 11) % 12 + 1) + '').padStart(2, '0'), ':',
 		(date.getMinutes() + '').padStart(2, '0'), ':',
@@ -59,7 +59,7 @@ export function dateToString(date: Date) {
 
 	return [
 		((date.getMonth() + 1) + '').padStart(2, '0'), '/',
-		(date.getDay() + '').padStart(2, '0'), '/',
+		(date.getDate() + '').padStart(2, '0'), '/',
 		date.getFullYear(), ' ',
 	].join('')
 }
@@ -93,17 +93,41 @@ export function runInContext<T>(win, func: (...args: any[]) => T, ...args): T {
 	return result.result
 }
 
-export function toValuesIterable(object, defaultValues = []) {
-	if (object
-		&& typeof object === 'object'
-		&& typeof object.values === 'function'
-	) {
-		return object.values() || defaultValues
+export function dateTimeToIdString(date: Date) {
+	if (!date) {
+		return null
 	}
 
-	return object || defaultValues
+	return [
+		date.getFullYear(), '_',
+		((date.getMonth() + 1) + '').padStart(2, '0'), '_',
+		(date.getDate() + '').padStart(2, '0'), '_',
+		(date.getHours() + '').padStart(2, '0'), '_',
+		(date.getMinutes() + '').padStart(2, '0'), '_',
+		(date.getSeconds() + '').padStart(2, '0'),
+	].join('')
 }
 
-export function toValuesArray(object, defaultValues = []) {
-	return Array.from(toValuesIterable(object, defaultValues))
+export function nameToIdString(name) {
+	if (!name) {
+		return ''
+	}
+
+	return name.toLowerCase().replace(/\W+/g, '_')
+}
+
+// from: https://stackoverflow.com/a/28458409/5221762
+function escapeHtml(text) {
+	return text.replace(/[&<"']/g, m => {
+		switch (m) {
+			case '&':
+				return '&amp;'
+			case '<':
+				return '&lt;'
+			case '"':
+				return '&quot;'
+			default:
+				return '&#039;'
+		}
+	})
 }

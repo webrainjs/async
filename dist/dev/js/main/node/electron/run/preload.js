@@ -49,7 +49,25 @@ function initWindow(window, remoteWindow) {
     enumerable: true,
     configurable: false,
     value: (0, _freeze.default)((0, _assign.default)({}, appConfig))
-  }); // region window actions
+  });
+  window.isElectron = true; // region remote logger
+
+  window.remoteLogger = function () {
+    return {
+      setFileName: function setFileName(value) {
+        ipcRenderer.send('logger_setFileName', value);
+      },
+      writeToFile: function writeToFile() {
+        for (var _len = arguments.length, logEvents = new Array(_len), _key = 0; _key < _len; _key++) {
+          logEvents[_key] = arguments[_key];
+        }
+
+        ipcRenderer.send('logger_writeToFile', logEvents);
+      }
+    };
+  }(); //endregion
+  // region window actions
+
 
   remoteWindow.wid;
   var open = (0, _bind.default)(_context = window.open).call(_context, window);
@@ -145,16 +163,40 @@ function initWindow(window, remoteWindow) {
     return childWindow;
   };
 
+  var windowRect;
+
+  window.saveRect = function () {
+    if (windowRect == null && !remoteWindow.isMinimized() && !remoteWindow.isMaximized() && !window.document.fullscreenElement && !window.document.webkitFullscreenElement) {
+      windowRect = {
+        x: window.screenLeft,
+        y: window.screenTop,
+        width: window.outerWidth,
+        height: window.outerHeight
+      };
+    }
+  };
+
+  window.restoreRect = function () {
+    if (windowRect != null && !remoteWindow.isMinimized() && !remoteWindow.isMaximized() && !window.document.fullscreenElement && !window.document.webkitFullscreenElement) {
+      window.resizeTo(windowRect.width, windowRect.height);
+      window.moveTo(windowRect.x, windowRect.y);
+      windowRect = null;
+    }
+  };
+
   window.maximize = function () {
+    window.saveRect();
     remoteWindow.maximize();
   };
 
   window.minimize = function () {
+    window.saveRect();
     remoteWindow.minimize();
   };
 
   window.restore = function () {
     remoteWindow.restore();
+    window.restoreRect();
   };
 
   var focus = (0, _bind.default)(_context6 = window.focus).call(_context6, window);
@@ -173,8 +215,8 @@ function initWindow(window, remoteWindow) {
       },
       subscribe: function subscribe(eventName, listener) {
         ipcRenderer.on('tray_on' + eventName, function (event) {
-          for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-            args[_key - 1] = arguments[_key];
+          for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+            args[_key2 - 1] = arguments[_key2];
           }
 
           listener.apply(void 0, args);

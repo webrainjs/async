@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequ
 exports.__esModule = true;
 exports.notificationWindowsController = void 0;
 
-var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/slice"));
+var _splice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/splice"));
 
 var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/index-of"));
 
@@ -54,9 +54,16 @@ function (_ObservableClass) {
   (0, _createClass2.default)(NotificationWindowsController, [{
     key: "show",
     value: function show(win) {
-      var _this2 = this;
+      var _context2,
+          _this2 = this;
 
       var controller = (0, _WindowController.getWindowController)(win);
+      var index = (0, _indexOf.default)(_context2 = this._windowControllers).call(_context2, controller);
+
+      if (index >= 0) {
+        return;
+      }
+
       var unsubscribers = controller[this._unsubscribePropertyName] = [];
       unsubscribers.push(controller.loadObservable.subscribe(function (o) {
         _this2.onLoad(win);
@@ -89,18 +96,20 @@ function (_ObservableClass) {
   }, {
     key: "onClose",
     value: function onClose(win) {
-      var _context2, _context3;
+      var _context3, _context4;
 
       var controller = (0, _WindowController.getWindowController)(win);
       var unsubscribers = controller[this._unsubscribePropertyName];
       delete controller[this._unsubscribePropertyName];
 
-      for (var i = 0, len = unsubscribers.length; i < len; i++) {
-        unsubscribers[i]();
+      if (unsubscribers) {
+        for (var i = 0, len = unsubscribers.length; i < len; i++) {
+          unsubscribers[i]();
+        }
       }
 
-      var index = (0, _indexOf.default)(_context2 = this._windowControllers).call(_context2, controller);
-      (0, _slice.default)(_context3 = this._windowControllers).call(_context3, index, 1);
+      var index = (0, _indexOf.default)(_context3 = this._windowControllers).call(_context3, controller);
+      (0, _splice.default)(_context4 = this._windowControllers).call(_context4, index, 1);
       this.updatePositions();
     }
   }, {

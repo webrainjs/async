@@ -41,7 +41,7 @@ export async function createWindow(url) {
   appState.win.loadURL(url);
   new WindowPositioner(appState.win).move(WindowPosition.Center);
   appState.win.webContents.on('did-finish-load', function () {
-    appState.win.webContents.executeJavaScript(`console.log('Log path:\\n${escapeJs(logger.handlers.filter(o => o.logFilePath)[0].logFilePath)}\\n')`);
+    appState.win.webContents.executeJavaScript(`console.log('Log path:\\n${escapeJs(Object.values(logger.handlers).filter(o => o.logFilePath)[0].logFilePath)}\\n')`);
   });
   logger.subscribe(logEvent => {
     appState.win.webContents.executeJavaScript(`console.${logEvent.consoleLevel}('${escapeJs(logEvent.consoleString)}')`);

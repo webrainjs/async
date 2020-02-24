@@ -38,3 +38,10 @@ export function getPatentElement(element, matchesFunc) {
 
   return element;
 }
+export function windowIsDestroyed(win) {
+  try {
+    return !win || win.closed || !win.document;
+  } catch (ex) {
+    return true;
+  }
+}

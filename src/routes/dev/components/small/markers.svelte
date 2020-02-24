@@ -20,7 +20,7 @@
 	import fonts from '../../../../styles/app/templates/fonts';
 	import borders from '../../../../styles/app/templates/borders';
 	import texts from '../../../../styles/app/templates/texts';
-	import buttons from '../../../../styles/app/templates/buttons';
+	import buttons from '../../../../styles/global/templates/buttons';
 	import colors from '../../../../styles/app/templates/colors';
 	import constants from '../../../../styles/app/templates/constants';
 	import Color from 'color';

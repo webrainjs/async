@@ -4,7 +4,9 @@ import { ComponentWindow } from '../common/ComponentWindow'; // @ts-ignore
 import WebrainWindow from './WebrainWindow.svelte';
 const webrainWindow = new ComponentWindow({
   windowControllerFactory: new WindowControllerFactory({
-    windowName: 'Webrain'
+    windowControllerOptions: {
+      windowName: 'Webrain'
+    }
   }),
   componentClass: WebrainWindow
 });

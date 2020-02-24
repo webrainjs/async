@@ -20,6 +20,13 @@ var _WindowController = require("./main/browser/helpers/html-controllers/WindowC
 
 /* eslint-env browser */
 // noinspection NpmUsedModulesInstalled
+// // region for Chrome App:
+// if (!window.history.replaceState) {
+// 	window.history.replaceState = () => {}
+// }
+// if (!window.history.pushState) {
+// 	window.history.pushState = () => {}
+// }
 var appWindow;
 var appOrigin;
 window.addEventListener('message', function (e) {
@@ -35,20 +42,12 @@ _WebrainGraph.webrainGraph.init();
 sapper.start({
   target: document.querySelector('#sapper')
 });
-(0, _WindowController.createWindowController)({
+(0, _WindowController.createWindowController)(window, {
   windowName: 'Main',
   storeWindowState: true,
-  win: window
+  resizable: true
 });
 _facade.brain.mainWindow.win = window;
-
-if (window.tray) {
-  window.tray.subscribe('click', function (e) {
-    if (e.id === 'icon') {
-      _facade.brain.mainWindow.show();
-    }
-  });
-}
 
 if (_APP_CONFIG_PATH.default.dev) {
   window.addEventListener('keydown', function (e) {

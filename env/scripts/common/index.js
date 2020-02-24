@@ -22,7 +22,7 @@ const build = singleCall(async () => {
 	// await clean()
 	await buildLibs()
 })
-const npmCheck = singleCall(() => run('depcheck --ignores="*,@babel/*,@types/*,@metahub/karma-rollup-preprocessor,karma-*,@sapper/*,pug,rdtsc,tslint-eslint-rules,electron,APP_CONFIG_PATH,SAPPER_MODULE" --ignore-dirs=__sapper__,_trash,dist,docs,static,tmp'))
+const npmCheck = singleCall(() => run('depcheck --ignores="*,@babel/*,@types/*,@metahub/karma-rollup-preprocessor,karma-*,@sapper/*,pug,rdtsc,tslint-eslint-rules,electron,APP_CONFIG_PATH,SAPPER_MODULE,caniuse-lite,browserslist" --ignore-dirs=__sapper__,_trash,dist,docs,static,tmp'))
 const lint = singleCall(() => Promise.all([
 	npmCheck(),
 	// run('eslint --plugin markdown --ext js,md . '),

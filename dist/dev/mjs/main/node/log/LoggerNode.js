@@ -1,3 +1,4 @@
+import { CombineLogHandlers } from '../../common/log/CombineLogHandlers';
 import { LogLevel } from '../../common/log/contracts';
 import { EmitEventHandler } from '../../common/log/EmitEventHandler';
 import { Logger } from '../../common/log/Logger';
@@ -8,8 +9,9 @@ export class LoggerNode extends Logger {
   init({
     appName,
     appVersion,
-    logFilePath,
-    logUrl,
+    logDir,
+    logFileName,
+    logUrls,
     writeToConsoleLevels = LogLevel.Any,
     writeToFileLevels = LogLevel.Fatal | LogLevel.Error | LogLevel.Warning | LogLevel.UserError | LogLevel.UserWarning,
     sendLogLevels = LogLevel.Fatal | LogLevel.Error | LogLevel.Warning | LogLevel.UserError | LogLevel.UserWarning,
@@ -22,7 +24,7 @@ export class LoggerNode extends Logger {
     super._init({
       appName,
       appVersion,
-      handlers: [new WriteToConsoleHandler(this, writeToConsoleLevels), new WriteToFileHandler(this, writeToFileLevels, path.resolve(logFilePath)), new SendLogHandlerNode(this, sendLogLevels, logUrl), new EmitEventHandler(this, emitEventLevels)],
+      handlers: [new WriteToConsoleHandler(this, writeToConsoleLevels), new WriteToFileHandler(this, writeToFileLevels, path.resolve(logDir), logFileName), logUrls && logUrls.length && new CombineLogHandlers(this, ...logUrls.map(logUrl => new SendLogHandlerNode(this, sendLogLevels, logUrl))), new EmitEventHandler(this, emitEventLevels)],
       filter,
       appState
     });

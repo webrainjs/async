@@ -124,7 +124,7 @@ var WriteToFileHandler =
 function (_LogHandler) {
   (0, _inherits2.default)(WriteToFileHandler, _LogHandler);
 
-  function WriteToFileHandler(logger, allowLogLevels, logFilePath) {
+  function WriteToFileHandler(logger, allowLogLevels, logDir, logFileName) {
     var _this;
 
     (0, _classCallCheck2.default)(this, WriteToFileHandler);
@@ -133,7 +133,8 @@ function (_LogHandler) {
       logger: logger,
       allowLogLevels: allowLogLevels
     }));
-    _this.logFilePath = logFilePath;
+    _this.logDir = logDir;
+    _this.logFileName = logFileName;
     return _this;
   }
 
@@ -186,6 +187,11 @@ function (_LogHandler) {
 
       return handleLog;
     }()
+  }, {
+    key: "logFilePath",
+    get: function get() {
+      return path.resolve(this.logDir, this.logFileName);
+    }
   }]);
   return WriteToFileHandler;
 }(_LogHandler2.LogHandler);

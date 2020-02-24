@@ -11,7 +11,7 @@
 			.connect('time', b => b.p('time'))
 	})
 
-	let source = new TestObject()
+	const source = new TestObject()
 </script>
 
 <script>

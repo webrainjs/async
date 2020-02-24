@@ -6,6 +6,7 @@ module.exports = [
 	require('./base'),
 	require('./layout'),
 	require('./components'),
+	require('./animations'),
 	// ],
 	// },
 	// },

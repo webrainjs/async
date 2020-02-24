@@ -22,7 +22,21 @@ function initWindow(window, remoteWindow) {
     enumerable: true,
     configurable: false,
     value: Object.freeze(Object.assign({}, appConfig))
-  }); // region window actions
+  });
+  window.isElectron = true; // region remote logger
+
+  window.remoteLogger = (() => ({
+    setFileName(value) {
+      ipcRenderer.send('logger_setFileName', value);
+    },
+
+    writeToFile(...logEvents) {
+      ipcRenderer.send('logger_writeToFile', logEvents);
+    }
+
+  }))(); //endregion
+  // region window actions
+
 
   remoteWindow.wid;
   const open = window.open.bind(window);
@@ -71,16 +85,40 @@ function initWindow(window, remoteWindow) {
     return childWindow;
   };
 
+  let windowRect;
+
+  window.saveRect = function () {
+    if (windowRect == null && !remoteWindow.isMinimized() && !remoteWindow.isMaximized() && !window.document.fullscreenElement && !window.document.webkitFullscreenElement) {
+      windowRect = {
+        x: window.screenLeft,
+        y: window.screenTop,
+        width: window.outerWidth,
+        height: window.outerHeight
+      };
+    }
+  };
+
+  window.restoreRect = function () {
+    if (windowRect != null && !remoteWindow.isMinimized() && !remoteWindow.isMaximized() && !window.document.fullscreenElement && !window.document.webkitFullscreenElement) {
+      window.resizeTo(windowRect.width, windowRect.height);
+      window.moveTo(windowRect.x, windowRect.y);
+      windowRect = null;
+    }
+  };
+
   window.maximize = function () {
+    window.saveRect();
     remoteWindow.maximize();
   };
 
   window.minimize = function () {
+    window.saveRect();
     remoteWindow.minimize();
   };
 
   window.restore = function () {
     remoteWindow.restore();
+    window.restoreRect();
   };
 
   const focus = window.focus.bind(window);

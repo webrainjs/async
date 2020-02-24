@@ -1,14 +1,18 @@
+import { CombineLogHandlers } from '../../common/log/CombineLogHandlers';
 import { LogLevel } from '../../common/log/contracts';
 import { EmitEventHandler } from '../../common/log/EmitEventHandler';
 import { globalScope } from '../../common/log/helpers';
 import { Logger } from '../../common/log/Logger';
 import { WriteToConsoleHandler } from '../../common/log/WriteToConsoleHandler';
 import { SendLogHandlerBrowser } from './SendLogHandlerBrowser';
+import { WriteToFileHandler } from './WriteToFileHandler';
 export class LoggerBrowser extends Logger {
   init({
     appName,
     appVersion,
-    logUrl,
+    logUrls,
+    logFileName,
+    writeToFileLevels = LogLevel.Any,
     writeToConsoleLevels = LogLevel.Any,
     sendLogLevels = LogLevel.Fatal | LogLevel.Error | LogLevel.Warning | LogLevel.UserError | LogLevel.UserWarning,
     emitEventLevels = LogLevel.Any,
@@ -33,7 +37,7 @@ export class LoggerBrowser extends Logger {
     super._init({
       appName,
       appVersion,
-      handlers: [new WriteToConsoleHandler(this, writeToConsoleLevels), new SendLogHandlerBrowser(this, sendLogLevels, logUrl), new EmitEventHandler(this, emitEventLevels)],
+      handlers: [new WriteToConsoleHandler(this, writeToConsoleLevels), logUrls && logUrls.length && new CombineLogHandlers(this, ...logUrls.map(logUrl => new SendLogHandlerBrowser(this, sendLogLevels, logUrl))), new EmitEventHandler(this, emitEventLevels), new WriteToFileHandler(this, writeToFileLevels, logFileName)],
       filter,
       appState
     });

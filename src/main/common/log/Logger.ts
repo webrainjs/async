@@ -2,7 +2,7 @@
 import {
 	ActionMode, ILogEvent,
 	ILogEventParams,
-	ILogger, ILogHandler,
+	ILogger, ILogHandler, ILogHandlers,
 	ISubscriber,
 	IUnsubscribe,
 	LogLevel,
@@ -13,7 +13,7 @@ import {LogEvent} from './LogEvent'
 // region Logger
 
 export class Logger<HandlersNames extends string|number> implements ILogger<HandlersNames> {
-	public handlers: Array<ILogHandler<HandlersNames>>
+	public handlers: ILogHandlers<HandlersNames>
 	public minTimeBetweenEqualEvents: number = 120000
 	public filter: (logEvent: ILogEvent<HandlersNames>) => boolean
 	private _logEventsTime: {
@@ -48,7 +48,17 @@ export class Logger<HandlersNames extends string|number> implements ILogger<Hand
 
 		this.appName = appName
 		this.appVersion = appVersion
-		this.handlers = handlers
+
+		const handlersObject: ILogHandlers<HandlersNames> = {} as any
+		for (let i = 0, len = handlers.length; i < len; i++) {
+			const handler = handlers[i]
+			if (handler) {
+				handlersObject[handler.name] = handler
+				handler.init()
+			}
+		}
+		this.handlers = handlersObject
+
 		this.filter = filter
 		this.appState = appState
 
@@ -57,17 +67,9 @@ export class Logger<HandlersNames extends string|number> implements ILogger<Hand
 		const logEvent: ILogEventParams<HandlersNames> = {
 			level: LogLevel.Info,
 			messagesOrErrors: `Start App: ${appName} v${appVersion}`,
-			handlersModes: {} as any,
-		}
-
-		if (this.handlers) {
-			for (let i = 0; i < this.handlers.length; i++) {
-				const handler = handlers[i]
-				if (handler) {
-					(logEvent.handlersModes as any)[handler.name] = ActionMode.Always
-					handler.init()
-				}
-			}
+			handlersModes: {
+				_all: ActionMode.Always,
+			} as any,
 		}
 
 		this.log(logEvent)
@@ -171,10 +173,12 @@ export class Logger<HandlersNames extends string|number> implements ILogger<Hand
 		_logEventsTime[logEvent.bodyString] = logEvent.time.getTime()
 
 		const {handlers} = this
-		for (let i = 0; i < handlers.length; i++) {
-			const handler = handlers[i]
-			if (handler) {
-				handler.enqueueLog(logEvent)
+		for (const key in handlers) {
+			if (Object.prototype.hasOwnProperty.call(handlers, key)) {
+				const handler = handlers[key]
+				if (handler) {
+					handler.enqueueLog(logEvent)
+				}
 			}
 		}
 	}

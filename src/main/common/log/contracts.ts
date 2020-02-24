@@ -20,7 +20,9 @@ export enum ActionMode {
 	Never,
 }
 
-export type ILogHandlersModes<Name extends string|number> = {[key in Name]?: ActionMode}
+export type ILogHandlersModes<Name extends string|number> = {
+	[key in (Name | '_all')]?: ActionMode
+}
 
 export interface ILogEventParams<HandlersNames extends string|number> {
 	level: LogLevel
@@ -49,9 +51,14 @@ export interface ILogEvent<HandlersNames extends string|number>
 
 export interface ILogHandler<Name extends string|number> {
 	name: Name
+	disabled: boolean
 	allowLogLevels: LogLevel
 	init()
 	enqueueLog(logEvent: ILogEvent<Name>): void
+}
+
+export type ILogHandlers<HandlersNames extends string|number> = {
+	[key in HandlersNames]: ILogHandler<HandlersNames>
 }
 
 export type ISubscriber<HandlersNames extends string|number>
@@ -61,7 +68,7 @@ export type IUnsubscribe = () => void
 export interface ILogger<HandlersNames extends string|number> {
 	appName: string
 	appVersion: string
-	handlers: Array<ILogHandler<HandlersNames>>
+	handlers: ILogHandlers<HandlersNames>
 
 	error(error: Error)
 	log(level: LogLevel, message: string, error?: Error)

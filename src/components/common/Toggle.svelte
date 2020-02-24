@@ -1,13 +1,22 @@
 <script>
+	import { createEventDispatcher } from 'svelte'
+
+	const dispatch = createEventDispatcher()
+
+	export let disabled = false
 	export let type = 'checkbox'
 	export let checked = false
 	export let group = ''
 	export let value = void 0
+	export let valueChecked = void 0
+	export let valueUnchecked = void 0
 
 	$: type === 'radio' && updateRadio(group, value)
 
 	$: type === 'checkbox' && group && updateCheckbox(group, value)
 	$: type === 'checkbox' && group && updateGroup(checked, value)
+	$: type === 'checkbox' && !group && typeof valueChecked !== 'undefined' && updateCheckboxFromValue(value, valueChecked)
+	$: type === 'checkbox' && !group && typeof valueChecked !== 'undefined' && updateValue(checked, valueChecked, valueUnchecked)
 
 	function updateRadio(group, value) {
 		checked = group === value
@@ -31,15 +40,35 @@
 			}
 		}
 	}
+
+	function updateValue(checked, valueChecked, valueUnchecked) {
+		const newValue = checked ? valueChecked : valueUnchecked
+		if (newValue !== value) {
+			value = newValue
+		}
+	}
+
+	function updateCheckboxFromValue(value, valueChecked) {
+		const newValue = value === valueChecked
+		if (newValue !== checked) {
+			checked = newValue
+		}
+	}
+
+	function change(event) {
+		setTimeout(() => {
+			dispatch('change', event)
+		})
+	}
 </script>
 
-<label>
+<label disabled="{disabled}">
 	{#if type === 'radio'}
 		<input
 			type="radio"
 			class="collapsed"
 			on:click
-			on:change
+			on:change="{change}"
 			bind:group={group}
 			value={value}
 		/>
@@ -48,12 +77,12 @@
 			type="checkbox"
 			class="collapsed"
 			on:click
-			on:change
+			on:change="{change}"
 			bind:checked={checked}
 			value={value}
 		/>
 	{/if}
-	<slot {checked}></slot>
+	<slot checked="{checked}"></slot>
 </label>
 
 <style-js>

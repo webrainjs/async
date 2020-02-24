@@ -33,17 +33,19 @@ function metricEnd() {
 		buildEnd() {
 			const modules = Object.entries(state.modules)
 			console.log(`buildEnd: ${name} (${modules.length} modules)`)
-			// const log = modules
-			// 	.sort((o1, o2) => o1[1].duration - o2[1].duration)
-			// 	.map(([id, _module]) => {
-			// 		const duration = _module.duration != null && +_module.duration.toPrecision(3)
-			// 		const size = _module.sizeStart != null && _module.sizeEnd != null
-			// 			&& +Math.max(_module.sizeStart, _module.sizeEnd) // .toPrecision(3)
+			if (modules.length < 20) {
+				const log = modules
+					.sort((o1, o2) => o1[1].duration - o2[1].duration)
+					.map(([id, _module]) => {
+						const duration = _module.duration != null && +_module.duration.toPrecision(3)
+						const size = _module.sizeStart != null && _module.sizeEnd != null
+							&& +Math.max(_module.sizeStart, _module.sizeEnd) // .toPrecision(3)
 			// 		console.log(`[${duration} ms][${size} B][${name}] ${id}`)
-			// 		return `[${duration} ms][${size} B][${name}] ${id}`
-			// 	})
-			// 	.join('\r\n')
-			// console.log(log)
+						return `[${duration} ms][${size} B][${name}] ${id}`
+					})
+					.join('\r\n')
+				console.log(log)
+			}
 			state.modules = {}
 		},
 		transform(code, id) {

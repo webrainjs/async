@@ -7,6 +7,8 @@ exports.createWindow = createWindow;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs3/regenerator"));
 
+var _values = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/values"));
+
 var _filter = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/filter"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/asyncToGenerator"));
@@ -79,7 +81,7 @@ function _createWindow() {
             _appState.appState.win.webContents.on('did-finish-load', function () {
               var _context;
 
-              _appState.appState.win.webContents.executeJavaScript("console.log('Log path:\\n" + (0, _helpers.escapeJs)((0, _filter.default)(_context = _LoggerNode.logger.handlers).call(_context, function (o) {
+              _appState.appState.win.webContents.executeJavaScript("console.log('Log path:\\n" + (0, _helpers.escapeJs)((0, _filter.default)(_context = (0, _values.default)(_LoggerNode.logger.handlers)).call(_context, function (o) {
                 return o.logFilePath;
               })[0].logFilePath) + "\\n')");
             });

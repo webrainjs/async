@@ -9,12 +9,8 @@ exports.timeOfDayToString = timeOfDayToString;
 exports.dateToString = dateToString;
 exports.getElapsedTime = getElapsedTime;
 exports.runInContext = runInContext;
-exports.toValuesIterable = toValuesIterable;
-exports.toValuesArray = toValuesArray;
-
-var _from = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/array/from"));
-
-var _values = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/values"));
+exports.dateTimeToIdString = dateTimeToIdString;
+exports.nameToIdString = nameToIdString;
 
 var _now = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/date/now"));
 
@@ -50,7 +46,7 @@ function dateTimeToString(date) {
     return '--/--/---- --:--:-- --';
   }
 
-  return [(0, _padStart.default)(_context3 = date.getMonth() + 1 + '').call(_context3, 2, '0'), '/', (0, _padStart.default)(_context4 = date.getDay() + '').call(_context4, 2, '0'), '/', date.getFullYear(), ' ', (0, _padStart.default)(_context5 = (date.getHours() + 11) % 12 + 1 + '').call(_context5, 2, '0'), ':', (0, _padStart.default)(_context6 = date.getMinutes() + '').call(_context6, 2, '0'), ':', (0, _padStart.default)(_context7 = date.getSeconds() + '').call(_context7, 2, '0'), ' ', date.getHours() > 12 ? 'PM' : 'AM'].join('');
+  return [(0, _padStart.default)(_context3 = date.getMonth() + 1 + '').call(_context3, 2, '0'), '/', (0, _padStart.default)(_context4 = date.getDate() + '').call(_context4, 2, '0'), '/', date.getFullYear(), ' ', (0, _padStart.default)(_context5 = (date.getHours() + 11) % 12 + 1 + '').call(_context5, 2, '0'), ':', (0, _padStart.default)(_context6 = date.getMinutes() + '').call(_context6, 2, '0'), ':', (0, _padStart.default)(_context7 = date.getSeconds() + '').call(_context7, 2, '0'), ' ', date.getHours() > 12 ? 'PM' : 'AM'].join('');
 }
 
 function timeOfDayToString(date) {
@@ -70,7 +66,7 @@ function dateToString(date) {
     return '--/--/----';
   }
 
-  return [(0, _padStart.default)(_context11 = date.getMonth() + 1 + '').call(_context11, 2, '0'), '/', (0, _padStart.default)(_context12 = date.getDay() + '').call(_context12, 2, '0'), '/', date.getFullYear(), ' '].join('');
+  return [(0, _padStart.default)(_context11 = date.getMonth() + 1 + '').call(_context11, 2, '0'), '/', (0, _padStart.default)(_context12 = date.getDate() + '').call(_context12, 2, '0'), '/', date.getFullYear(), ' '].join('');
 }
 
 function getElapsedTime(date, now) {
@@ -102,22 +98,39 @@ function runInContext(win, func) {
   return result.result;
 }
 
-function toValuesIterable(object, defaultValues) {
-  if (defaultValues === void 0) {
-    defaultValues = [];
+function dateTimeToIdString(date) {
+  var _context13, _context14, _context15, _context16, _context17;
+
+  if (!date) {
+    return null;
   }
 
-  if (object && typeof object === 'object' && typeof (0, _values.default)(object) === 'function') {
-    return (0, _values.default)(object).call(object) || defaultValues;
-  }
-
-  return object || defaultValues;
+  return [date.getFullYear(), '_', (0, _padStart.default)(_context13 = date.getMonth() + 1 + '').call(_context13, 2, '0'), '_', (0, _padStart.default)(_context14 = date.getDate() + '').call(_context14, 2, '0'), '_', (0, _padStart.default)(_context15 = date.getHours() + '').call(_context15, 2, '0'), '_', (0, _padStart.default)(_context16 = date.getMinutes() + '').call(_context16, 2, '0'), '_', (0, _padStart.default)(_context17 = date.getSeconds() + '').call(_context17, 2, '0')].join('');
 }
 
-function toValuesArray(object, defaultValues) {
-  if (defaultValues === void 0) {
-    defaultValues = [];
+function nameToIdString(name) {
+  if (!name) {
+    return '';
   }
 
-  return (0, _from.default)(toValuesIterable(object, defaultValues));
+  return name.toLowerCase().replace(/\W+/g, '_');
+} // from: https://stackoverflow.com/a/28458409/5221762
+
+
+function escapeHtml(text) {
+  return text.replace(/[&<"']/g, function (m) {
+    switch (m) {
+      case '&':
+        return '&amp;';
+
+      case '<':
+        return '&lt;';
+
+      case '"':
+        return '&quot;';
+
+      default:
+        return '&#039;';
+    }
+  });
 }

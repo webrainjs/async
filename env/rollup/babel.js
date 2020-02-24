@@ -11,21 +11,24 @@ const babelCommon = {
 
 const babelRollup = {
 	rollup: {
-		minimal: () => babel({
+		minimal: options => babel({
 			...babelCommon,
 			extensions: [...fileExtensions.js, ...fileExtensions.ts],
 			...babelConfigMinimal,
+			...options,
 		}),
-		node: () => babel({
+		node: options => babel({
 			...babelCommon,
 			extensions: [...fileExtensions.js, ...fileExtensions.ts],
 			...babelConfigNode,
+			...options,
 		}),
-		browser: () => babel({
+		browser: options => babel({
 			...babelCommon,
 			runtimeHelpers: true,
 			extensions    : [...fileExtensions.js, ...fileExtensions.ts, ...fileExtensions.svelte],
 			...babelConfigBrowser,
+			...options,
 		}),
 	}
 }

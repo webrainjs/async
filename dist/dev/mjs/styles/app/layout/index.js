@@ -1,1 +1,1 @@
-module.exports = [require('./icons')];
+module.exports = [];

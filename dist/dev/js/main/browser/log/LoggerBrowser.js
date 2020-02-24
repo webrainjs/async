@@ -9,6 +9,8 @@ var _map = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable
 
 var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
 
+var _construct2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/construct"));
+
 var _filter = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/filter"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/classCallCheck"));
@@ -23,6 +25,8 @@ var _get2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/get")
 
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/inherits"));
 
+var _CombineLogHandlers = require("../../common/log/CombineLogHandlers");
+
 var _contracts = require("../../common/log/contracts");
 
 var _EmitEventHandler = require("../../common/log/EmitEventHandler");
@@ -34,6 +38,8 @@ var _Logger2 = require("../../common/log/Logger");
 var _WriteToConsoleHandler = require("../../common/log/WriteToConsoleHandler");
 
 var _SendLogHandlerBrowser = require("./SendLogHandlerBrowser");
+
+var _WriteToFileHandler = require("./WriteToFileHandler");
 
 var LoggerBrowser =
 /*#__PURE__*/
@@ -48,9 +54,15 @@ function (_Logger) {
   (0, _createClass2.default)(LoggerBrowser, [{
     key: "init",
     value: function init(_ref) {
+      var _context,
+          _this = this;
+
       var appName = _ref.appName,
           appVersion = _ref.appVersion,
-          logUrl = _ref.logUrl,
+          logUrls = _ref.logUrls,
+          logFileName = _ref.logFileName,
+          _ref$writeToFileLevel = _ref.writeToFileLevels,
+          writeToFileLevels = _ref$writeToFileLevel === void 0 ? _contracts.LogLevel.Any : _ref$writeToFileLevel,
           _ref$writeToConsoleLe = _ref.writeToConsoleLevels,
           writeToConsoleLevels = _ref$writeToConsoleLe === void 0 ? _contracts.LogLevel.Any : _ref$writeToConsoleLe,
           _ref$sendLogLevels = _ref.sendLogLevels,
@@ -76,7 +88,9 @@ function (_Logger) {
       (0, _get2.default)((0, _getPrototypeOf2.default)(LoggerBrowser.prototype), "_init", this).call(this, {
         appName: appName,
         appVersion: appVersion,
-        handlers: [new _WriteToConsoleHandler.WriteToConsoleHandler(this, writeToConsoleLevels), new _SendLogHandlerBrowser.SendLogHandlerBrowser(this, sendLogLevels, logUrl), new _EmitEventHandler.EmitEventHandler(this, emitEventLevels)],
+        handlers: [new _WriteToConsoleHandler.WriteToConsoleHandler(this, writeToConsoleLevels), logUrls && logUrls.length && (0, _construct2.default)(_CombineLogHandlers.CombineLogHandlers, (0, _concat.default)(_context = [this]).call(_context, (0, _map.default)(logUrls).call(logUrls, function (logUrl) {
+          return new _SendLogHandlerBrowser.SendLogHandlerBrowser(_this, sendLogLevels, logUrl);
+        }))), new _EmitEventHandler.EmitEventHandler(this, emitEventLevels), new _WriteToFileHandler.WriteToFileHandler(this, writeToFileLevels, logFileName)],
         filter: filter,
         appState: appState
       });
@@ -84,16 +98,16 @@ function (_Logger) {
   }, {
     key: "logUnhandledErrors",
     value: function logUnhandledErrors() {
-      var _this = this;
+      var _this2 = this;
 
       var errorHandler = function errorHandler() {
-        var _context;
+        var _context2;
 
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
           args[_key] = arguments[_key];
         }
 
-        _this.error.apply(_this, (0, _concat.default)(_context = ['unhandledrejection']).call(_context, (0, _map.default)(args).call(args, function (arg) {
+        _this2.error.apply(_this2, (0, _concat.default)(_context2 = ['unhandledrejection']).call(_context2, (0, _map.default)(args).call(args, function (arg) {
           return (typeof PromiseRejectionEvent !== 'undefined' ? arg instanceof PromiseRejectionEvent && arg.reason : arg.reason) || arg;
         })));
       };
@@ -104,13 +118,13 @@ function (_Logger) {
         _helpers.globalScope.onunhandledrejection = errorHandler;
 
         _helpers.globalScope.onerror = function () {
-          var _context2;
+          var _context3;
 
           for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
             args[_key2] = arguments[_key2];
           }
 
-          _this.error.apply(_this, (0, _concat.default)(_context2 = ['unhandled error']).call(_context2, args));
+          _this2.error.apply(_this2, (0, _concat.default)(_context3 = ['unhandled error']).call(_context3, args));
         };
       }
     }

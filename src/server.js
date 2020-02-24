@@ -13,14 +13,20 @@ import {LogLevel} from './main/common/log/contracts'
 import {logger} from './main/node/log/LoggerNode'
 import './styles/index.jss'
 
-logger.init({
-	appName          : appConfig.appName,
-	appVersion       : appConfig.appVersion,
-	logUrl           : appConfig.logUrl,
-	appState         : {...appConfig},
-	logFilePath      : path.resolve('tmp/logs/sapper.txt'),
-	writeToFileLevels: LogLevel.Any,
-})
+try {
+	logger.init({
+		appName          : appConfig.appName,
+		appVersion       : appConfig.appVersion,
+		logUrls          : appConfig.logUrls,
+		logDir           : path.resolve('tmp/logs'),
+		logFileName      : 'server.log',
+		appState         : {...appConfig},
+		writeToFileLevels: LogLevel.Any,
+	})
+} catch (ex) {
+	console.log(ex)
+	throw ex
+}
 
 const dev = appConfig.sapper.buildMode === 'development'
 // const isExport = process.env.npm_lifecycle_event === 'build:sapper:export'
@@ -38,7 +44,21 @@ server
 		'/app',
 		compression({threshold: 0}),
 		sirv('static', {dev}),
-		sapper.middleware()
+		// Fix sapper template.html for Chrome App
+		function (req, res, next) {
+			const {end} = res
+			res.end = function (body, ...rest) {
+				if (typeof body === 'string' && body.startsWith('<!doctype')) {
+					body = body.replace(
+						/navigator\.serviceWorker\.register\(['"][\w/]+\/service-worker\.js['"]\);?/g,
+						' { try { $& } catch (ex) { console.log(ex.message) } } ',
+					)
+				}
+				return end.call(this, body, ...rest)
+			}
+			next()
+		},
+		sapper.middleware(),
 	)
 	.listen(appConfig.sapper.port, err => {
 		if (err) {

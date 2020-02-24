@@ -661,8 +661,8 @@ function calcOpacityCalcTime(calcTime, halfOpacityForCalcTime) {
 
 new CalcObjectBuilder(WebrainGraph.prototype).writable('isEnabled').writable('highlightMode').writable('searchPattern', {
   setOptions: {
-    afterChange(value) {
-      if (value) {
+    afterChange(oldValue, newValue) {
+      if (newValue) {
         this.highlightMode = HighlightMode.SearchResults;
       }
     }

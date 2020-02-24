@@ -4,4 +4,6 @@ module.exports = [
 	require('./visibility'),
 	require('./scroll'),
 	require('./others'),
+	require('./icons'),
+	require('./spaces'),
 ]

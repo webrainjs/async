@@ -56,27 +56,28 @@ function () {
       this._initialized = true;
       this.appName = appName;
       this.appVersion = appVersion;
-      this.handlers = handlers;
+      var handlersObject = {};
+
+      for (var i = 0, len = handlers.length; i < len; i++) {
+        var handler = handlers[i];
+
+        if (handler) {
+          handlersObject[handler.name] = handler;
+          handler.init();
+        }
+      }
+
+      this.handlers = handlersObject;
       this.filter = filter;
       this.appState = appState;
       this.interceptEval();
       var logEvent = {
         level: _contracts.LogLevel.Info,
         messagesOrErrors: "Start App: " + appName + " v" + appVersion,
-        handlersModes: {}
-      };
-
-      if (this.handlers) {
-        for (var i = 0; i < this.handlers.length; i++) {
-          var handler = handlers[i];
-
-          if (handler) {
-            logEvent.handlersModes[handler.name] = _contracts.ActionMode.Always;
-            handler.init();
-          }
+        handlersModes: {
+          _all: _contracts.ActionMode.Always
         }
-      }
-
+      };
       this.log(logEvent);
     }
   }, {
@@ -209,11 +210,13 @@ function () {
       _logEventsTime[logEvent.bodyString] = logEvent.time.getTime();
       var handlers = this.handlers;
 
-      for (var i = 0; i < handlers.length; i++) {
-        var handler = handlers[i];
+      for (var _key7 in handlers) {
+        if (Object.prototype.hasOwnProperty.call(handlers, _key7)) {
+          var handler = handlers[_key7];
 
-        if (handler) {
-          handler.enqueueLog(logEvent);
+          if (handler) {
+            handler.enqueueLog(logEvent);
+          }
         }
       }
     } // endregion

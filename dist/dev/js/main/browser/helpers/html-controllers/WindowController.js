@@ -3,7 +3,6 @@
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.windowIsDestroyed = windowIsDestroyed;
 exports.createWindowController = createWindowController;
 exports.getWindowController = getWindowController;
 exports.WindowControllerFactory = exports.WindowController = exports.WindowSizeController = void 0;
@@ -38,15 +37,9 @@ var _webrain = require("webrain");
 
 var _localStorage = require("../localStorage");
 
-function windowIsDestroyed(win) {
-  try {
-    return !win || win.closed || !win.document;
-  } catch (ex) {
-    return true;
-  }
-} // from: https://stackoverflow.com/a/1060034/5221762
+var _helpers = require("./helpers");
 
-
+// from: https://stackoverflow.com/a/1060034/5221762
 function bindVisibleChange(window, handler) {
   /* tslint:disable:no-conditional-assignment */
   var hidden = 'hidden';
@@ -183,9 +176,10 @@ function () {
 
                 this.borderWidth = this.winController.win.outerWidth - this.winController.win.innerWidth;
                 this.borderHeight = this.winController.win.outerHeight - this.winController.win.innerHeight;
+                console.log("outerWidth, innerWidth: " + this.winController.win.outerWidth + ", " + this.winController.win.innerWidth);
                 console.log("Window border size: " + this.borderWidth + ", " + this.borderHeight);
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
@@ -214,14 +208,14 @@ function () {
         } // fix unwanted auto resize, eg. after window.moveTo()
 
 
-        if (_this.lastResizeTime && (0, _now.default)() - _this.lastResizeTime < 1000) {
-          if (_this.winController.win.outerWidth !== _this.width || _this.winController.win.outerHeight !== _this.height) {
-            _this.winController.win.resizeTo(_this.width, _this.height);
-          }
-        } else {
+        if (_this.winController.resizable || !_this.lastResizeTime || (0, _now.default)() - _this.lastResizeTime >= 1000) {
           _this.width = _this.winController.win.outerWidth;
           _this.height = _this.winController.win.outerHeight;
           _this.lastResizeTime = (0, _now.default)();
+        } else {
+          if (_this.winController.win.outerWidth !== _this.width || _this.winController.win.outerHeight !== _this.height) {
+            _this.winController.win.resizeTo(_this.width, _this.height);
+          }
         }
       });
     } // region methods
@@ -263,18 +257,19 @@ var WindowController =
 function (_ObservableClass) {
   (0, _inherits2.default)(WindowController, _ObservableClass);
 
-  function WindowController(_ref) {
+  function WindowController(win, _ref) {
     var _this2;
 
     var windowName = _ref.windowName,
-        win = _ref.win,
         _ref$storeWindowState = _ref.storeWindowState,
-        _storeWindowState = _ref$storeWindowState === void 0 ? true : _ref$storeWindowState;
+        _storeWindowState = _ref$storeWindowState === void 0 ? true : _ref$storeWindowState,
+        resizable = _ref.resizable;
 
     (0, _classCallCheck2.default)(this, WindowController);
     _this2 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(WindowController).call(this));
     _this2.windowName = windowName;
     _this2.win = win;
+    _this2.resizable = resizable;
     _this2._storeWindowState = _storeWindowState;
     _this2.sizeController = new WindowSizeController((0, _assertThisInitialized2.default)(_this2));
 
@@ -428,20 +423,20 @@ function (_ObservableClass) {
                 return _context7.abrupt("return");
 
               case 2:
+                _context7.next = 4;
+                return this.sizeController.init();
+
+              case 4:
                 if (!this._storeWindowState) {
-                  _context7.next = 5;
+                  _context7.next = 7;
                   break;
                 }
 
-                _context7.next = 5;
+                _context7.next = 7;
                 return (0, _localStorage.storeWindowState)(this.windowName, this.win);
 
-              case 5:
+              case 7:
                 (0, _bind.default)(_context6 = this).call(_context6);
-                _context7.next = 8;
-                return this.sizeController.init();
-
-              case 8:
                 this.onLoad();
 
               case 9:
@@ -599,7 +594,7 @@ function (_ObservableClass) {
     get: function get() {
       var win = this.win;
 
-      if (!windowIsDestroyed(win)) {
+      if (!(0, _helpers.windowIsDestroyed)(win)) {
         return false;
       } else {
         if (win && win.close) {
@@ -655,28 +650,28 @@ exports.WindowController = WindowController;
 new _webrain.CalcObjectBuilder(WindowController.prototype).writable('isVisible').writable('isFocused');
 var WINDOW_STATE_PROPERTY_NAME = '13883806ede0481c92c41c2cda3d99c3';
 
-function createWindowController(options) {
-  if (windowIsDestroyed(options.win)) {
+function createWindowController(win, options) {
+  if ((0, _helpers.windowIsDestroyed)(win)) {
     return null;
   }
 
-  var controller = options.win[WINDOW_STATE_PROPERTY_NAME];
+  var controller = win[WINDOW_STATE_PROPERTY_NAME];
 
   if (controller) {
     throw new Error('Window controller already created');
   }
 
-  (0, _defineProperty.default)(options.win, WINDOW_STATE_PROPERTY_NAME, {
+  (0, _defineProperty.default)(win, WINDOW_STATE_PROPERTY_NAME, {
     enumerable: false,
     configurable: false,
     writable: false,
-    value: controller = new WindowController(options)
+    value: controller = new WindowController(win, options)
   });
   return controller;
 }
 
 function getWindowController(win) {
-  if (windowIsDestroyed(win)) {
+  if ((0, _helpers.windowIsDestroyed)(win)) {
     return null;
   }
 
@@ -688,17 +683,14 @@ var WindowControllerFactory =
 function () {
   // resizable=no is not worked in browsers because: https://stackoverflow.com/a/15481333/5221762
   function WindowControllerFactory(_ref2) {
-    var windowName = _ref2.windowName,
-        _ref2$windowFeatures = _ref2.windowFeatures,
+    var _ref2$windowFeatures = _ref2.windowFeatures,
         windowFeatures = _ref2$windowFeatures === void 0 ? 'width=600,height=400,' + 'titlebar=no,resizable=yes,movable=yes,alwaysOnTop=yes,fullscreenable=yes,' + 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,' + 'dialog=yes,modal=yes,dependent=yes' : _ref2$windowFeatures,
-        _ref2$storeWindowStat = _ref2.storeWindowState,
-        storeWindowState = _ref2$storeWindowStat === void 0 ? true : _ref2$storeWindowStat,
+        windowControllerOptions = _ref2.windowControllerOptions,
         _ref2$replace = _ref2.replace,
         replace = _ref2$replace === void 0 ? true : _ref2$replace;
     (0, _classCallCheck2.default)(this, WindowControllerFactory);
-    this._windowName = windowName;
-    this._windowOptions = ['about:blank', windowName, windowFeatures, replace];
-    this._storeWindowState = storeWindowState;
+    this._windowControllerOptions = windowControllerOptions;
+    this._windowOptions = ['about:blank', this._windowControllerOptions.windowName, windowFeatures, replace];
   } // region get or create windowController
 
 
@@ -782,7 +774,7 @@ function () {
     get: function get() {
       var _this5 = this;
 
-      if (windowIsDestroyed(window)) {
+      if ((0, _helpers.windowIsDestroyed)(window)) {
         return null;
       }
 
@@ -805,7 +797,7 @@ function () {
           win = (_window2 = window).open.apply(_window2, this._windowOptions);
 
           if (getWindowController(win)) {
-            throw new Error('Cannot recreate window with name: ' + this._windowName);
+            throw new Error('Cannot recreate window with name: ' + this._windowControllerOptions.windowName);
           }
         }
 
@@ -817,11 +809,7 @@ function () {
         window.addEventListener('beforeunload', onParentWindowUnload);
         this.appendCss(win);
         this.appendContainer(win);
-        var windowController = createWindowController({
-          windowName: this._windowName,
-          win: win,
-          storeWindowState: this._storeWindowState
-        });
+        var windowController = createWindowController(win, this._windowControllerOptions);
         this._windowController = windowController;
         windowController.loadObservable.subscribe(function () {
           if (!windowController.isOpened) {

@@ -3,6 +3,8 @@
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
 exports.__esModule = true;
+exports.showNotificationWindowFactory = showNotificationWindowFactory;
+exports.showNotificationApiFactory = showNotificationApiFactory;
 exports.showNotificationFactory = showNotificationFactory;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs3/regenerator"));
@@ -17,7 +19,7 @@ var _WindowController = require("../../../main/browser/helpers/html-controllers/
 
 var _ComponentWindow = require("../ComponentWindow");
 
-function showNotificationFactory(_ref) {
+function showNotificationWindowFactory(_ref) {
   var windowOptions = _ref.windowOptions,
       componentClass = _ref.componentClass;
   var win;
@@ -39,10 +41,13 @@ function showNotificationFactory(_ref) {
                 if (!win) {
                   win = new _ComponentWindow.ComponentWindow({
                     windowControllerFactory: new _WindowController.WindowControllerFactory((0, _extends2.default)({
-                      windowName: componentClass.name,
-                      windowFeatures: 'width=110,height=110,' + 'titlebar=no,resizable=no,movable=yes,alwaysOnTop=yes,fullscreenable=no,' + 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,' + 'dialog=yes,modal=yes,dependent=yes',
-                      storeWindowState: false
-                    }, windowOptions)),
+                      windowFeatures: 'width=110,height=110,' + 'titlebar=no,resizable=no,movable=yes,alwaysOnTop=yes,fullscreenable=no,' + 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,' + 'dialog=yes,modal=yes,dependent=yes'
+                    }, windowOptions, {
+                      windowControllerOptions: (0, _extends2.default)({
+                        windowName: componentClass.name,
+                        storeWindowState: false
+                      }, windowOptions.windowControllerOptions)
+                    })),
                     componentClass: componentClass,
                     props: props
                   });
@@ -84,4 +89,103 @@ function showNotificationFactory(_ref) {
       return showNotification;
     }()
   );
+}
+
+function showNotificationApiFactory(_ref2) {
+  var defaultOptions = _ref2.defaultOptions;
+  var notification;
+  return (
+    /*#__PURE__*/
+    function () {
+      var _showNotification2 = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2(options) {
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (notification) {
+                  notification.close();
+                  notification = null;
+                }
+
+                if (options) {
+                  options = (0, _extends2.default)({}, defaultOptions, {}, options);
+                  notification = new Notification(options.title, options);
+
+                  if (options.onclick) {
+                    notification.addEventListener('click', options.onclick);
+                  }
+
+                  if (options.onclose) {
+                    notification.addEventListener('close', options.onclose);
+                  }
+                }
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function showNotification(_x2) {
+        return _showNotification2.apply(this, arguments);
+      }
+
+      return showNotification;
+    }()
+  );
+}
+
+function showNotificationFactory(options) {
+  if (typeof window !== 'undefined' && window.isElectron && options.notificationWindow) {
+    return showNotificationWindowFactory(options.notificationWindow);
+  } else if (options.notificationApi) {
+    var showNotification = showNotificationApiFactory({
+      defaultOptions: options.notificationApi.defaultOptions
+    });
+    return (
+      /*#__PURE__*/
+      function () {
+        var _ref3 = (0, _asyncToGenerator2.default)(
+        /*#__PURE__*/
+        _regenerator.default.mark(function _callee3(props) {
+          return _regenerator.default.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.t0 = showNotification;
+                  _context3.t1 = props;
+
+                  if (!_context3.t1) {
+                    _context3.next = 6;
+                    break;
+                  }
+
+                  _context3.next = 5;
+                  return options.notificationApi.getOptions(props);
+
+                case 5:
+                  _context3.t1 = _context3.sent;
+
+                case 6:
+                  _context3.t2 = _context3.t1;
+                  return _context3.abrupt("return", (0, _context3.t0)(_context3.t2));
+
+                case 8:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }));
+
+        return function (_x3) {
+          return _ref3.apply(this, arguments);
+        };
+      }()
+    );
+  }
 }

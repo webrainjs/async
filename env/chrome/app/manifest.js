@@ -38,6 +38,7 @@ module.exports = {
 		'storage',
 		'webview',
 		'fullscreen',
+		'notifications',
 	],
 	webview: {
 		partitions: [

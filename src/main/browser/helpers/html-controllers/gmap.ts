@@ -37,7 +37,7 @@ export function getMarkerClass() {
 			}
 
 			public draw(...args) {
-				console.log('draw', ...args)
+				// console.log('draw', ...args)
 				this.updatePosition()
 			}
 

@@ -19,12 +19,13 @@ export class LogHandler {
     this._maxQueueSize = maxQueueSize || 10;
     this._throttleMaxQueueSize = throttleMaxQueueSize || 5;
     this._throttleTime = throttleTime || 0;
-  }
+  } // tslint:disable-next-line:no-empty
+
 
   init() {}
 
   canLog(logEvent) {
-    return canDoAction(logEvent.handlersModes ? logEvent.handlersModes[this.name] || ActionMode.Default : ActionMode.Default, this.allowLogLevels, logEvent.level);
+    return !this.disabled && canDoAction(logEvent.handlersModes ? logEvent.handlersModes[this.name] || logEvent.handlersModes._all || ActionMode.Default : ActionMode.Default, this.allowLogLevels, logEvent.level);
   }
 
   onError(logEvents, error) {

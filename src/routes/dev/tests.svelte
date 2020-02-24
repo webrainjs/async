@@ -2,6 +2,7 @@
 	<title>Page for tests</title>
 </svelte:head>
 
+<button on:click={playSound}>Play sound</button>
 <h2>SVG Gradient</h2>
 <div class="box">
 	CSS:
@@ -68,11 +69,11 @@
 	</audio>
 </div>
 
-
 <script>
 	import {onMount, onDestroy} from 'svelte'
 	import {TouchToMouse} from '../../main/browser/helpers/touchMouse'
 	import {Debugger} from 'webrain'
+	import {audioQueue} from "../../main/browser/helpers/audio";
 
 	let canvas
 	let gradient
@@ -93,6 +94,10 @@
 			context.stroke()
 		}
 	})
+
+	function playSound() {
+		audioQueue.play('client/sounds/code-red-twice.mp3')
+	}
 </script>
 
 <style-js>

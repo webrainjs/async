@@ -17,6 +17,7 @@ export abstract class LogHandler<Name extends string | number>
 	protected readonly _logger: ILogger<Name>
 	public allowLogLevels: LogLevel
 	public name: Name
+	public disabled: boolean
 
 	protected constructor({
 		name,
@@ -28,7 +29,7 @@ export abstract class LogHandler<Name extends string | number>
 	}: {
 		name: Name,
 		logger: ILogger<Name>,
-		allowLogLevels: LogLevel,
+		allowLogLevels?: LogLevel,
 		maxQueueSize?: number,
 		throttleMaxQueueSize?: number,
 		throttleTime?: number,
@@ -41,14 +42,15 @@ export abstract class LogHandler<Name extends string | number>
 		this._throttleTime = throttleTime || 0
 	}
 
+	// tslint:disable-next-line:no-empty
 	public init() {
 
 	}
 
 	private canLog(logEvent: ILogEvent<Name>): boolean {
-		return canDoAction(
+		return !this.disabled && canDoAction(
 			logEvent.handlersModes
-				? logEvent.handlersModes[this.name] || ActionMode.Default
+				? logEvent.handlersModes[this.name] || logEvent.handlersModes._all || ActionMode.Default
 				: ActionMode.Default,
 			this.allowLogLevels,
 			logEvent.level,

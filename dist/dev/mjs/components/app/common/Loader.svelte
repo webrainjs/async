@@ -1,14 +1,17 @@
 <script>
 	export let value = void 0
+	export let canShowLoading = true
 </script>
 
 {#if typeof value === 'undefined'}
-	<slot name="loading">
-		<div class="loading__placeholder ghost"></div>
-		<div class="loading fill">
-			<span class="loading__icon ghost icon-inline icon-loading">&nbsp;</span>
-		</div>
-	</slot>
+	{#if canShowLoading}
+		<slot name="loading">
+			<div class="loading__placeholder ghost"></div>
+			<div class="loading fill">
+				<span class="loading__icon ghost icon-inline icon-loading">&nbsp;</span>
+			</div>
+		</slot>
+	{/if}
 {:else}
 	<slot name="content" value="{value}">
 		<slot></slot>

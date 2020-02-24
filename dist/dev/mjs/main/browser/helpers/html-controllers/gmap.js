@@ -32,7 +32,7 @@ export function getMarkerClass() {
       }
 
       draw(...args) {
-        console.log('draw', ...args);
+        // console.log('draw', ...args)
         this.updatePosition();
       } // public onAdd(): void {
       // 	let markers = (this.map as any).markers

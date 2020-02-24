@@ -1,4 +1,6 @@
-Install MacOS:
+## Install MacOS:
+**Admin password: 1234**
+
 * https://rutracker.org/forum/viewtopic.php?t=5634652
 * https://www.geekrar.com/install-macos-mojave-on-vmware/
 * https://github.com/DrDonk/unlocker
@@ -17,3 +19,37 @@ Install MacOS:
 * Allow apps downloaded from anywhere
     sudo spctl --master-disable
     Check this policy in security settings
+
+### Mac commands
+
+* Check App signature
+```
+codesign -dv --verbose=4 "/Applications/AlertPoint Security Dev.app"
+```
+* Build
+```
+sudo git stash && sudo git pull && sudo npm run pack:dev
+```
+* Others
+```
+sudo diskutil secureErase freespace 0 system
+mkdir -p projects/nodejs/apps
+mkdir -p projects/nodejs/modules
+brew install node
+cd projects/nodejs/modules
+git clone https://NikolayMakhonin@github.com/NikolayMakhonin/webrain.js.git
+cd ../apps/
+git clone https://otokonoko@gitlab.com/otokonoko/alertpoint-electron.git
+mv ../../modules/webrain.js ../../modules/webrain
+ls ../../modules/
+npm i
+sudo nano /etc/paths
+cd projects/nodejs/apps/alertpoint-electron/
+electron ./src/main/node/electron/run/export/run.js
+sudo nano package.json
+npm run electron:export
+sudo git stash && sudo git pull && sudo npm run pack:dev
+sudo spctl --master-disable
+codesign -dv --verbose=4 "/Applications/AlertPoint Security Dev.app"
+```
+

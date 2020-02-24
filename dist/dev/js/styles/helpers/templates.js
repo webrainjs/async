@@ -171,7 +171,7 @@ var bordersInnerShadow = function bordersInnerShadow(_temp2) {
       color = _ref3.color,
       width = _ref3.width;
 
-  return {
+  return color && width && {
     'box-shadow': "inset 0px 0px 0px " + width + " " + color
   };
 };
@@ -191,7 +191,7 @@ var contentCenterButton = {
 var buttonsReset = (_buttonsReset = {}, _buttonsReset[["input[type='button']", "input[type='submit']", "input[type='reset']", "input[type='color']", "button"].join(',\n\t')] = [buttonAsDiv], _buttonsReset["input[type='file']::-webkit-file-upload-button"] = [(0, _extends2.default)({}, buttonAsDiv, {
   '&::-moz-focus-inner': null
 })], _buttonsReset);
-var textboxReset = (_textboxReset = {}, _textboxReset[["input[type='text']", "input[type='email']", "input[type='password']", "select", "button"].join(',\n\t')] = [textboxAsDiv], _textboxReset);
+var textboxReset = (_textboxReset = {}, _textboxReset[["textarea", "input[type='text']", "input[type='email']", "input[type='password']", "select", "button"].join(',\n\t')] = [textboxAsDiv], _textboxReset);
 var contentCenter = (0, _extends2.default)({}, contentCenterButton, {
   display: "flex"
 });

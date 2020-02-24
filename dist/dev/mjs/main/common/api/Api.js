@@ -1,25 +1,77 @@
 import { Subject } from 'webrain';
+import { NetworkEventType } from './contracts/api';
 import { HttpDataType, NetworkErrorType } from './contracts/http';
-import { prepareHttpRequest } from './helpers';
+import { toFormData, toFormUrlEncoded } from './helpers';
 import { NetworkError } from './NetworkError';
 export class Api {
   constructor({
     urlBase,
     httpClient
   }) {
-    this._networkErrorSubject = new Subject();
+    this._isBadConnection = false;
+    this._networkEventSubject = new Subject();
     this.urlBase = urlBase;
     this.httpClient = httpClient;
-  } // region networkErrorObservable
+  }
+
+  get isBadConnection() {
+    return this._isBadConnection;
+  }
+
+  set isBadConnection(value) {
+    if (this._isBadConnection === value) {
+      return;
+    }
+
+    this._isBadConnection = value;
+    console.log(value ? 'Bad Connection' : 'Connection Restored');
+  } // region networkEventObservable
 
 
-  get networkErrorObservable() {
-    return this._networkErrorSubject;
+  get networkEventObservable() {
+    return this._networkEventSubject;
   } // endregion
 
 
   prepareRequest(request) {
-    return prepareHttpRequest(request);
+    if (request.method !== 'GET' && (request.data || request.dataType)) {
+      switch (request.dataType) {
+        case HttpDataType.FormUrlEncoded:
+          request.data = toFormUrlEncoded(request.data);
+          request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+          break;
+
+        case HttpDataType.MultipartFormData:
+          request.data = toFormData(request.data); // request.headers['Content-Type'] = 'multipart/form-data; boundary="d0987012-5c8b-471d-b79b-81fabac23628"'
+
+          break;
+
+        case HttpDataType.Json:
+          request.data = JSON.stringify(request.data);
+          request.headers['Content-Type'] = 'application/json; charset=UTF-8';
+          break;
+
+        default:
+          throw new Error('Unknown dataType: ' + request.dataType);
+      }
+    }
+
+    switch (request.responseDataType) {
+      case HttpDataType.String:
+        request.headers.Accept = 'text/plain';
+        break;
+
+      case HttpDataType.Json:
+        request.headers.Accept = 'application/json';
+        break;
+
+      default:
+        throw new Error('Unknown dataType: ' + request.responseDataType);
+    }
+
+    if (this.urlBase) {
+      request.url = new URL(request.url, this.urlBase).href;
+    }
   }
 
   async sendRequest({
@@ -35,6 +87,7 @@ export class Api {
       };
       this.prepareRequest(request);
       response = await this.httpClient.sendRequest(request);
+      this.isBadConnection = false;
 
       if (response.statusCode !== 200) {
         throw new NetworkError({
@@ -43,6 +96,15 @@ export class Api {
           response
         });
       }
+
+      this._networkEventSubject.emit({
+        type: NetworkEventType.Success,
+        data: {
+          fromBaseUrl: request.url.toLowerCase().startsWith((this.urlBase || '').toLowerCase()),
+          request,
+          response
+        }
+      });
 
       let result; // tslint:disable-next-line:no-small-switch
 
@@ -67,6 +129,22 @@ export class Api {
         throw err;
       }
 
+      if (err.errorType === NetworkErrorType.BadConnection) {
+        this.isBadConnection = true;
+
+        this._networkEventSubject.emit({
+          type: NetworkEventType.Error,
+          data: err
+        });
+
+        return {
+          error: {
+            networkError: err
+          }
+        };
+      }
+
+      this.isBadConnection = false;
       let data = err.response && err.response.data;
 
       if (typeof data === 'string') {
@@ -79,21 +157,16 @@ export class Api {
         apiError: data,
         networkError: err
       };
-
-      if (err.errorType === NetworkErrorType.BadConnection) {
-        console.log('Api bad connection', err, request);
-        return {
-          error: apiError
-        };
-      }
-
       const errorHandled = errorHandler && errorHandler(apiError);
 
       if (errorHandled !== true) {
         console.error('Api error', err, request);
 
         if (errorHandled == null) {
-          this._networkErrorSubject.emit(err);
+          this._networkEventSubject.emit({
+            type: NetworkEventType.Error,
+            data: err
+          });
         }
       }
 

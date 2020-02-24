@@ -17,7 +17,7 @@ export class SendLogHandler extends LogHandler {
       logUrl
     } = this;
 
-    if (!logUrl) {
+    if (!logUrl || !logUrl.length) {
       return;
     }
 
@@ -60,12 +60,17 @@ export class SendLogHandler extends LogHandler {
           return;
         }
 
-        selfError('Send log status code == ' + statusCode);
-      } catch (error) {
-        if (!errorWasWrite) {
+        if (statusCode === 429 || statusCode === 502 || statusCode === 504) {
+          console.log('Send log failed: Bad Connection');
+        } else if (!errorWasWrite) {
           errorWasWrite = true;
-          selfError('Send log error', error);
+          selfError('Send log status code == ' + statusCode);
         }
+      } catch (error) {
+        console.log('Send log failed: Bad Connection'); // if (!errorWasWrite) {
+        // 	errorWasWrite = true
+        // 	selfError('Send log error', error)
+        // }
       }
 
       await delay(delayTime);

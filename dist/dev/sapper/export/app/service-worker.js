@@ -5472,6 +5472,143 @@
 
   var map$2 = map$1;
 
+  var slice$3 = [].slice;
+  var factories = {};
+
+  var construct = function (C, argsLength, args) {
+    if (!(argsLength in factories)) {
+      for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']';
+      // eslint-disable-next-line no-new-func
+      factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
+    } return factories[argsLength](C, args);
+  };
+
+  // `Function.prototype.bind` method implementation
+  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
+  var functionBind = Function.bind || function bind(that /* , ...args */) {
+    var fn = aFunction(this);
+    var partArgs = slice$3.call(arguments, 1);
+    var boundFunction = function bound(/* args... */) {
+      var args = partArgs.concat(slice$3.call(arguments));
+      return this instanceof boundFunction ? construct(fn, args.length, args) : fn.apply(that, args);
+    };
+    if (isObject(fn.prototype)) boundFunction.prototype = fn.prototype;
+    return boundFunction;
+  };
+
+  // `Function.prototype.bind` method
+  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
+  _export({ target: 'Function', proto: true }, {
+    bind: functionBind
+  });
+
+  var bind$1 = entryVirtual('Function').bind;
+
+  var FunctionPrototype = Function.prototype;
+
+  var bind_1 = function (it) {
+    var own = it.bind;
+    return it === FunctionPrototype || (it instanceof Function && own === FunctionPrototype.bind) ? bind$1 : own;
+  };
+
+  var bind$2 = bind_1;
+
+  var bind$3 = bind$2;
+
+  var nativeConstruct = getBuiltIn('Reflect', 'construct');
+
+  // `Reflect.construct` method
+  // https://tc39.github.io/ecma262/#sec-reflect.construct
+  // MS Edge supports only 2 arguments and argumentsList argument is optional
+  // FF Nightly sets third argument as `new.target`, but does not create `this` from it
+  var NEW_TARGET_BUG = fails(function () {
+    function F() { /* empty */ }
+    return !(nativeConstruct(function () { /* empty */ }, [], F) instanceof F);
+  });
+  var ARGS_BUG = !fails(function () {
+    nativeConstruct(function () { /* empty */ });
+  });
+  var FORCED$2 = NEW_TARGET_BUG || ARGS_BUG;
+
+  _export({ target: 'Reflect', stat: true, forced: FORCED$2, sham: FORCED$2 }, {
+    construct: function construct(Target, args /* , newTarget */) {
+      aFunction(Target);
+      anObject(args);
+      var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
+      if (ARGS_BUG && !NEW_TARGET_BUG) return nativeConstruct(Target, args, newTarget);
+      if (Target == newTarget) {
+        // w/o altered newTarget, optimization for 0-4 arguments
+        switch (args.length) {
+          case 0: return new Target();
+          case 1: return new Target(args[0]);
+          case 2: return new Target(args[0], args[1]);
+          case 3: return new Target(args[0], args[1], args[2]);
+          case 4: return new Target(args[0], args[1], args[2], args[3]);
+        }
+        // w/o altered newTarget, lot of arguments case
+        var $args = [null];
+        $args.push.apply($args, args);
+        return new (functionBind.apply(Target, $args))();
+      }
+      // with altered newTarget, not support built-in constructors
+      var proto = newTarget.prototype;
+      var instance = objectCreate(isObject(proto) ? proto : Object.prototype);
+      var result = Function.apply.call(Target, instance, args);
+      return isObject(result) ? result : instance;
+    }
+  });
+
+  var construct$1 = path.Reflect.construct;
+
+  var construct$2 = construct$1;
+
+  var construct$3 = construct$2;
+
+  var setPrototypeOf$3 = setPrototypeOf;
+
+  var setPrototypeOf$4 = setPrototypeOf$3;
+
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = setPrototypeOf$4 || function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+
+    return _setPrototypeOf(o, p);
+  }
+
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !construct$3) return false;
+    if (construct$3.sham) return false;
+    if (typeof Proxy === "function") return true;
+
+    try {
+      Date.prototype.toString.call(construct$3(Date, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function _construct(Parent, args, Class) {
+    if (isNativeReflectConstruct()) {
+      _construct = construct$3;
+    } else {
+      _construct = function _construct(Parent, args, Class) {
+        var a = [null];
+        a.push.apply(a, args);
+
+        var Constructor = bind$3(Function).apply(Parent, a);
+
+        var instance = new Constructor();
+        if (Class) _setPrototypeOf(instance, Class.prototype);
+        return instance;
+      };
+    }
+
+    return _construct.apply(null, arguments);
+  }
+
   var $filter = arrayIteration.filter;
 
 
@@ -5615,10 +5752,6 @@
 
   var getPrototypeOf$4 = getPrototypeOf$3;
 
-  var setPrototypeOf$3 = setPrototypeOf;
-
-  var setPrototypeOf$4 = setPrototypeOf$3;
-
   function _getPrototypeOf(o) {
     _getPrototypeOf = setPrototypeOf$4 ? getPrototypeOf$4 : function _getPrototypeOf(o) {
       return o.__proto__ || getPrototypeOf$4(o);
@@ -5630,11 +5763,11 @@
 
 
   var FAILS_ON_PRIMITIVES$1 = fails(function () { nativeGetOwnPropertyDescriptor$2(1); });
-  var FORCED$2 = !descriptors || FAILS_ON_PRIMITIVES$1;
+  var FORCED$3 = !descriptors || FAILS_ON_PRIMITIVES$1;
 
   // `Object.getOwnPropertyDescriptor` method
   // https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptor
-  _export({ target: 'Object', stat: true, forced: FORCED$2, sham: !descriptors }, {
+  _export({ target: 'Object', stat: true, forced: FORCED$3, sham: !descriptors }, {
     getOwnPropertyDescriptor: function getOwnPropertyDescriptor(it, key) {
       return nativeGetOwnPropertyDescriptor$2(toIndexedObject(it), key);
     }
@@ -5712,15 +5845,6 @@
 
   var create$4 = create$3;
 
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = setPrototypeOf$4 || function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
-
-    return _setPrototypeOf(o, p);
-  }
-
   function _inherits(subClass, superClass) {
     if (typeof superClass !== "function" && superClass !== null) {
       throw new TypeError("Super expression must either be null or a function");
@@ -5760,6 +5884,40 @@
     ActionMode[ActionMode["Always"] = 1] = "Always";
     ActionMode[ActionMode["Never"] = 2] = "Never";
   })(ActionMode || (ActionMode = {}));
+
+  var CombineLogHandlers =
+  /*#__PURE__*/
+  function () {
+    function CombineLogHandlers(logger) {
+      _classCallCheck(this, CombineLogHandlers);
+
+      for (var _len = arguments.length, logHandlers = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        logHandlers[_key - 1] = arguments[_key];
+      }
+
+      this.name = logHandlers[0].name;
+      this.logHandlers = logHandlers;
+      this.allowLogLevels = LogLevel.Any;
+    }
+
+    _createClass(CombineLogHandlers, [{
+      key: "init",
+      value: function init() {
+        for (var i = 0, len = this.logHandlers.length; i < len; i++) {
+          this.logHandlers[i].init();
+        }
+      }
+    }, {
+      key: "enqueueLog",
+      value: function enqueueLog(logEvent) {
+        for (var i = 0, len = this.logHandlers.length; i < len; i++) {
+          this.logHandlers[i].enqueueLog(logEvent);
+        }
+      }
+    }]);
+
+    return CombineLogHandlers;
+  }();
 
   var HAS_SPECIES_SUPPORT$3 = arrayMethodHasSpeciesSupport('splice');
   var USES_TO_LENGTH$4 = arrayMethodUsesToLength('splice', { ACCESSORS: true, 0: 0, 1: 2 });
@@ -5927,13 +6085,13 @@
 
   var trim$2 = trim$1;
 
-  var slice$3 = [].slice;
+  var slice$4 = [].slice;
   var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
 
   var wrap$1 = function (scheduler) {
     return function (handler, timeout /* , ...arguments */) {
       var boundArgs = arguments.length > 2;
-      var args = boundArgs ? slice$3.call(arguments, 2) : undefined;
+      var args = boundArgs ? slice$4.call(arguments, 2) : undefined;
       return scheduler(boundArgs ? function () {
         // eslint-disable-next-line no-new-func
         (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
@@ -5961,11 +6119,11 @@
 
   var $parseInt = global_1.parseInt;
   var hex = /^[+-]?0[Xx]/;
-  var FORCED$3 = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22;
+  var FORCED$4 = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22;
 
   // `parseInt` method
   // https://tc39.github.io/ecma262/#sec-parseint-string-radix
-  var numberParseInt = FORCED$3 ? function parseInt(string, radix) {
+  var numberParseInt = FORCED$4 ? function parseInt(string, radix) {
     var S = trim$3(String(string));
     return $parseInt(S, (radix >>> 0) || (hex.test(S) ? 16 : 10));
   } : $parseInt;
@@ -6773,8 +6931,6 @@
   var html$1 = getCjsExportFromNamespace(esm);
 
   /* tslint:disable:no-var-requires */
-  // @ts-ignore
-  // @ts-ignore
   // don't mix require and import/export; see: https://github.com/rollup/rollup/issues/1058#issuecomment-254187433
 
   var helpersCjs = {
@@ -6863,7 +7019,8 @@
       this._maxQueueSize = maxQueueSize || 10;
       this._throttleMaxQueueSize = throttleMaxQueueSize || 5;
       this._throttleTime = throttleTime || 0;
-    }
+    } // tslint:disable-next-line:no-empty
+
 
     _createClass(LogHandler, [{
       key: "init",
@@ -6871,7 +7028,7 @@
     }, {
       key: "canLog",
       value: function canLog(logEvent) {
-        return canDoAction(logEvent.handlersModes ? logEvent.handlersModes[this.name] || ActionMode.Default : ActionMode.Default, this.allowLogLevels, logEvent.level);
+        return !this.disabled && canDoAction(logEvent.handlersModes ? logEvent.handlersModes[this.name] || logEvent.handlersModes._all || ActionMode.Default : ActionMode.Default, this.allowLogLevels, logEvent.level);
       }
     }, {
       key: "onError",
@@ -7156,14 +7313,14 @@
     } return match;
   };
 
-  var FORCED$4 = fails(function () {
+  var FORCED$5 = fails(function () {
     return $stringify$1('\uDF06\uD834') !== '"\\udf06\\ud834"'
       || $stringify$1('\uDEAD') !== '"\\udead"';
   });
 
   if ($stringify$1) {
     // https://github.com/tc39/proposal-well-formed-stringify
-    _export({ target: 'JSON', stat: true, forced: FORCED$4 }, {
+    _export({ target: 'JSON', stat: true, forced: FORCED$5 }, {
       // eslint-disable-next-line no-unused-vars
       stringify: function stringify(it, replacer, space) {
         var result = $stringify$1.apply(null, arguments);
@@ -7212,48 +7369,9 @@
 
   var isNan$2 = isNan$1;
 
-  var slice$4 = [].slice;
-  var factories = {};
+  var bind$4 = bind_1;
 
-  var construct = function (C, argsLength, args) {
-    if (!(argsLength in factories)) {
-      for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']';
-      // eslint-disable-next-line no-new-func
-      factories[argsLength] = Function('C,a', 'return new C(' + list.join(',') + ')');
-    } return factories[argsLength](C, args);
-  };
-
-  // `Function.prototype.bind` method implementation
-  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
-  var functionBind = Function.bind || function bind(that /* , ...args */) {
-    var fn = aFunction(this);
-    var partArgs = slice$4.call(arguments, 1);
-    var boundFunction = function bound(/* args... */) {
-      var args = partArgs.concat(slice$4.call(arguments));
-      return this instanceof boundFunction ? construct(fn, args.length, args) : fn.apply(that, args);
-    };
-    if (isObject(fn.prototype)) boundFunction.prototype = fn.prototype;
-    return boundFunction;
-  };
-
-  // `Function.prototype.bind` method
-  // https://tc39.github.io/ecma262/#sec-function.prototype.bind
-  _export({ target: 'Function', proto: true }, {
-    bind: functionBind
-  });
-
-  var bind$1 = entryVirtual('Function').bind;
-
-  var FunctionPrototype = Function.prototype;
-
-  var bind_1 = function (it) {
-    var own = it.bind;
-    return it === FunctionPrototype || (it instanceof Function && own === FunctionPrototype.bind) ? bind$1 : own;
-  };
-
-  var bind$2 = bind_1;
-
-  var bind$3 = bind$2;
+  var bind$5 = bind$4;
 
   var defineProperty$8 = defineProperty_1;
 
@@ -7507,7 +7625,7 @@
         try {
           var _context, _context2;
 
-          executor(bind$3(_context = this.resolve).call(_context, this), bind$3(_context2 = this.reject).call(_context2, this));
+          executor(bind$5(_context = this.resolve).call(_context, this), bind$5(_context2 = this.reject).call(_context2, this));
         } catch (err) {
           this.reject(err);
         }
@@ -9780,7 +9898,7 @@
       this.typeMeta = new TypeMetaMergerCollection({
         proto: typeMeta
       });
-      this.merge = bind$3(_context = this.merge).call(_context, this);
+      this.merge = bind$5(_context = this.merge).call(_context, this);
     }
 
     _createClass(ObjectMerger, [{
@@ -9969,91 +10087,6 @@
 
   }); // endregion
 
-  var bind$4 = bind_1;
-
-  var bind$5 = bind$4;
-
-  var nativeConstruct = getBuiltIn('Reflect', 'construct');
-
-  // `Reflect.construct` method
-  // https://tc39.github.io/ecma262/#sec-reflect.construct
-  // MS Edge supports only 2 arguments and argumentsList argument is optional
-  // FF Nightly sets third argument as `new.target`, but does not create `this` from it
-  var NEW_TARGET_BUG = fails(function () {
-    function F() { /* empty */ }
-    return !(nativeConstruct(function () { /* empty */ }, [], F) instanceof F);
-  });
-  var ARGS_BUG = !fails(function () {
-    nativeConstruct(function () { /* empty */ });
-  });
-  var FORCED$5 = NEW_TARGET_BUG || ARGS_BUG;
-
-  _export({ target: 'Reflect', stat: true, forced: FORCED$5, sham: FORCED$5 }, {
-    construct: function construct(Target, args /* , newTarget */) {
-      aFunction(Target);
-      anObject(args);
-      var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
-      if (ARGS_BUG && !NEW_TARGET_BUG) return nativeConstruct(Target, args, newTarget);
-      if (Target == newTarget) {
-        // w/o altered newTarget, optimization for 0-4 arguments
-        switch (args.length) {
-          case 0: return new Target();
-          case 1: return new Target(args[0]);
-          case 2: return new Target(args[0], args[1]);
-          case 3: return new Target(args[0], args[1], args[2]);
-          case 4: return new Target(args[0], args[1], args[2], args[3]);
-        }
-        // w/o altered newTarget, lot of arguments case
-        var $args = [null];
-        $args.push.apply($args, args);
-        return new (functionBind.apply(Target, $args))();
-      }
-      // with altered newTarget, not support built-in constructors
-      var proto = newTarget.prototype;
-      var instance = objectCreate(isObject(proto) ? proto : Object.prototype);
-      var result = Function.apply.call(Target, instance, args);
-      return isObject(result) ? result : instance;
-    }
-  });
-
-  var construct$1 = path.Reflect.construct;
-
-  var construct$2 = construct$1;
-
-  var construct$3 = construct$2;
-
-  function isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !construct$3) return false;
-    if (construct$3.sham) return false;
-    if (typeof Proxy === "function") return true;
-
-    try {
-      Date.prototype.toString.call(construct$3(Date, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function _construct(Parent, args, Class) {
-    if (isNativeReflectConstruct()) {
-      _construct = construct$3;
-    } else {
-      _construct = function _construct(Parent, args, Class) {
-        var a = [null];
-        a.push.apply(a, args);
-
-        var Constructor = bind$5(Function).apply(Parent, a);
-
-        var instance = new Constructor();
-        if (Class) _setPrototypeOf(instance, Class.prototype);
-        return instance;
-      };
-    }
-
-    return _construct.apply(null, arguments);
-  }
-
   var _marked =
   /*#__PURE__*/
   regenerator.mark(deSerializeIterableOrdered);
@@ -10067,7 +10100,7 @@
       _classCallCheck(this, SerializerVisitor);
 
       this._typeMeta = typeMeta;
-      this.serialize = bind$3(_context = this.serialize).call(_context, this);
+      this.serialize = bind$5(_context = this.serialize).call(_context, this);
     }
 
     _createClass(SerializerVisitor, [{
@@ -10204,7 +10237,7 @@
       }
 
       this._instances = instances;
-      this.deSerialize = bind$3(_context2 = this.deSerialize).call(_context2, this);
+      this.deSerialize = bind$5(_context2 = this.deSerialize).call(_context2, this);
     }
 
     _createClass(DeSerializerVisitor, [{
@@ -10973,7 +11006,7 @@
   if (typeof performance !== 'undefined' && performance.now) {
     var _context;
 
-    now = bind$3(_context = performance.now).call(_context, performance);
+    now = bind$5(_context = performance.now).call(_context, performance);
   } else {
     var start = process.hrtime();
 
@@ -11166,8 +11199,8 @@
 
   var timingDefault = {
     now: now$3,
-    setTimeout: typeof window === 'undefined' ? setTimeout$2 : bind$3(setTimeout$2).call(setTimeout$2, window),
-    clearTimeout: typeof window === 'undefined' ? clearTimeout : bind$3(clearTimeout).call(clearTimeout, window)
+    setTimeout: typeof window === 'undefined' ? setTimeout$2 : bind$5(setTimeout$2).call(setTimeout$2, window),
+    clearTimeout: typeof window === 'undefined' ? clearTimeout : bind$5(clearTimeout).call(clearTimeout, window)
   };
 
   // Is slower than simple object
@@ -11240,7 +11273,7 @@
           };
         }, 'v', "this.__fields[\"" + name + "\"] = v");
 
-        var _set2 = setOptions ? bind$3(_setExt).call(_setExt, null, name, getValue, setValue, setOptions) : bind$3(_set).call(_set, null, name, getValue, setValue);
+        var _set2 = setOptions ? bind$5(_setExt).call(_setExt, null, name, getValue, setValue, setOptions) : bind$5(_set).call(_set, null, name, getValue, setValue);
 
         defineProperty$9(object, name, {
           configurable: true,
@@ -11309,7 +11342,7 @@
         if (update) {
           // tslint:disable-next-line
           var setOptions = options && options.setOptions;
-          setOnUpdate = setOptions ? bind$3(_setExt).call(_setExt, null, name, getValue, setValue, setOptions) : bind$3(_set).call(_set, null, name, getValue, setValue);
+          setOnUpdate = setOptions ? bind$5(_setExt).call(_setExt, null, name, getValue, setValue, setOptions) : bind$5(_set).call(_set, null, name, getValue, setValue);
         }
 
         var setOnInit;
@@ -11319,7 +11352,7 @@
             suppressPropertyChanged: true
           });
 
-          setOnInit = _setOptions ? bind$3(_setExt).call(_setExt, null, name, getValue, setValue, _setOptions) : bind$3(_set).call(_set, null, name, getValue, setValue);
+          setOnInit = _setOptions ? bind$5(_setExt).call(_setExt, null, name, getValue, setValue, _setOptions) : bind$5(_set).call(_set, null, name, getValue, setValue);
         }
 
         var createInstanceProperty = function createInstanceProperty(instance) {
@@ -12303,13 +12336,13 @@
       switch (type) {
         case SubscribeObjectType.Property:
           // @ts-ignore
-          _this.subscribe = bind$3(subscribeObject).call(subscribeObject, null, propertyNames, propertyPredicate);
+          _this.subscribe = bind$5(subscribeObject).call(subscribeObject, null, propertyNames, propertyPredicate);
           break;
 
         case SubscribeObjectType.ValueProperty:
           _this.subType = type; // @ts-ignore
 
-          _this.subscribe = bind$3(subscribeObjectValue).call(subscribeObjectValue, null, propertyNames);
+          _this.subscribe = bind$5(subscribeObjectValue).call(subscribeObjectValue, null, propertyNames);
           break;
 
         default:
@@ -12386,7 +12419,7 @@
       } // @ts-ignore
 
 
-      _this2.subscribe = bind$3(subscribeMap).call(subscribeMap, null, keys, keyPredicate);
+      _this2.subscribe = bind$5(subscribeMap).call(subscribeMap, null, keys, keyPredicate);
       return _this2;
     }
 
@@ -12394,11 +12427,11 @@
   }(RuleSubscribe); // endregion
    // endregion
 
-  var RuleSubscribeObjectPropertyNames = bind$3(RuleSubscribeObject).call(RuleSubscribeObject, null, SubscribeObjectType.Property, null);
+  var RuleSubscribeObjectPropertyNames = bind$5(RuleSubscribeObject).call(RuleSubscribeObject, null, SubscribeObjectType.Property, null);
 
-  var RuleSubscribeObjectValuePropertyNames = bind$3(RuleSubscribeObject).call(RuleSubscribeObject, null, SubscribeObjectType.ValueProperty, null);
+  var RuleSubscribeObjectValuePropertyNames = bind$5(RuleSubscribeObject).call(RuleSubscribeObject, null, SubscribeObjectType.ValueProperty, null);
 
-  var RuleSubscribeMapKeys = bind$3(RuleSubscribeMap).call(RuleSubscribeMap, null, null); // const UNSUBSCRIBE_PROPERTY_PREFIX = Math.random().toString(36)
+  var RuleSubscribeMapKeys = bind$5(RuleSubscribeMap).call(RuleSubscribeMap, null, null); // const UNSUBSCRIBE_PROPERTY_PREFIX = Math.random().toString(36)
   // interface ITestInterface1 {
   // 	y: number
   // }
@@ -14296,7 +14329,7 @@
 
   var _context$1;
 
-  var randomWithoutSeed = bind$3(_context$1 = Math.random).call(_context$1, Math);
+  var randomWithoutSeed = bind$5(_context$1 = Math.random).call(_context$1, Math);
 
   function filter$3(obj) {
     if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {
@@ -14752,27 +14785,28 @@
         this._initialized = true;
         this.appName = appName;
         this.appVersion = appVersion;
-        this.handlers = handlers;
+        var handlersObject = {};
+
+        for (var i = 0, len = handlers.length; i < len; i++) {
+          var handler = handlers[i];
+
+          if (handler) {
+            handlersObject[handler.name] = handler;
+            handler.init();
+          }
+        }
+
+        this.handlers = handlersObject;
         this.filter = filter;
         this.appState = appState;
         this.interceptEval();
         var logEvent = {
           level: LogLevel.Info,
           messagesOrErrors: "Start App: " + appName + " v" + appVersion,
-          handlersModes: {}
-        };
-
-        if (this.handlers) {
-          for (var i = 0; i < this.handlers.length; i++) {
-            var handler = handlers[i];
-
-            if (handler) {
-              logEvent.handlersModes[handler.name] = ActionMode.Always;
-              handler.init();
-            }
+          handlersModes: {
+            _all: ActionMode.Always
           }
-        }
-
+        };
         this.log(logEvent);
       }
     }, {
@@ -14905,11 +14939,13 @@
         _logEventsTime[logEvent.bodyString] = logEvent.time.getTime();
         var handlers = this.handlers;
 
-        for (var i = 0; i < handlers.length; i++) {
-          var handler = handlers[i];
+        for (var key in handlers) {
+          if (Object.prototype.hasOwnProperty.call(handlers, key)) {
+            var handler = handlers[key];
 
-          if (handler) {
-            handler.enqueueLog(logEvent);
+            if (handler) {
+              handler.enqueueLog(logEvent);
+            }
           }
         }
       } // endregion
@@ -14988,11 +15024,11 @@
 
   var _context$2, _context2, _context3, _context4, _context5;
   var consoleOrig = {
-    debug: bind$3(_context$2 = console.debug).call(_context$2, console),
-    info: bind$3(_context2 = console.info).call(_context2, console),
-    log: bind$3(_context3 = console.log).call(_context3, console),
-    warn: bind$3(_context4 = console.warn).call(_context4, console),
-    error: bind$3(_context5 = console.error).call(_context5, console)
+    debug: bind$5(_context$2 = console.debug).call(_context$2, console),
+    info: bind$5(_context2 = console.info).call(_context2, console),
+    log: bind$5(_context3 = console.log).call(_context3, console),
+    warn: bind$5(_context4 = console.warn).call(_context4, console),
+    error: bind$5(_context5 = console.error).call(_context5, console)
   };
   var WriteToConsoleHandler =
   /*#__PURE__*/
@@ -15126,7 +15162,7 @@
                 case 0:
                   logUrl = this.logUrl;
 
-                  if (logUrl) {
+                  if (!(!logUrl || !logUrl.length)) {
                     _context2.next = 3;
                     break;
                   }
@@ -15187,18 +15223,23 @@
                   return _context2.abrupt("return");
 
                 case 20:
-                  selfError('Send log status code == ' + statusCode);
+                  if (statusCode === 429 || statusCode === 502 || statusCode === 504) {
+                    console.log('Send log failed: Bad Connection');
+                  } else if (!errorWasWrite) {
+                    errorWasWrite = true;
+                    selfError('Send log status code == ' + statusCode);
+                  }
+
                   _context2.next = 26;
                   break;
 
                 case 23:
                   _context2.prev = 23;
                   _context2.t0 = _context2["catch"](13);
-
-                  if (!errorWasWrite) {
-                    errorWasWrite = true;
-                    selfError('Send log error', _context2.t0);
-                  }
+                  console.log('Send log failed: Bad Connection'); // if (!errorWasWrite) {
+                  // 	errorWasWrite = true
+                  // 	selfError('Send log error', error)
+                  // }
 
                 case 26:
                   _context2.next = 28;
@@ -15281,6 +15322,93 @@
     return SendLogHandlerBrowser;
   }(SendLogHandler);
 
+  var WriteToFileHandler =
+  /*#__PURE__*/
+  function (_LogHandler) {
+    _inherits(WriteToFileHandler, _LogHandler);
+
+    function WriteToFileHandler(logger, allowLogLevels, logFileName) {
+      var _this;
+
+      _classCallCheck(this, WriteToFileHandler);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(WriteToFileHandler).call(this, {
+        name: 'writeToFile',
+        logger: logger,
+        allowLogLevels: allowLogLevels
+      }));
+      _this._logFileName = logFileName;
+      return _this;
+    }
+
+    _createClass(WriteToFileHandler, [{
+      key: "handleLog",
+      value: function () {
+        var _handleLog = _asyncToGenerator(
+        /*#__PURE__*/
+        regenerator.mark(function _callee(logEvents) {
+          var remoteLogger, sendLogEvents;
+          return regenerator.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  remoteLogger = typeof window !== 'undefined' ? window.remoteLogger : null;
+
+                  if (remoteLogger) {
+                    _context.next = 3;
+                    break;
+                  }
+
+                  return _context.abrupt("return");
+
+                case 3:
+                  sendLogEvents = map$2(logEvents).call(logEvents, function (o) {
+                    return {
+                      level: o.level,
+                      dateString: o.dateString,
+                      appInfo: o.appInfo,
+                      handlersModes: {
+                        _all: ActionMode.Never,
+                        writeToFile: ActionMode.Always
+                      },
+                      bodyString: o.bodyString
+                    };
+                  });
+                  _context.next = 6;
+                  return remoteLogger.writeToFile.apply(remoteLogger, sendLogEvents);
+
+                case 6:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }));
+
+        function handleLog(_x) {
+          return _handleLog.apply(this, arguments);
+        }
+
+        return handleLog;
+      }()
+    }, {
+      key: "logFileName",
+      get: function get() {
+        return this._logFileName;
+      },
+      set: function set(value) {
+        this._logFileName = value;
+        console.log("logFileName = " + this._logFileName);
+
+        if (typeof window !== 'undefined' && window.remoteLogger) {
+          window.remoteLogger.setFileName(value);
+        }
+      }
+    }]);
+
+    return WriteToFileHandler;
+  }(LogHandler);
+
   var LoggerBrowser =
   /*#__PURE__*/
   function (_Logger) {
@@ -15295,9 +15423,15 @@
     _createClass(LoggerBrowser, [{
       key: "init",
       value: function init(_ref) {
+        var _context,
+            _this = this;
+
         var appName = _ref.appName,
             appVersion = _ref.appVersion,
-            logUrl = _ref.logUrl,
+            logUrls = _ref.logUrls,
+            logFileName = _ref.logFileName,
+            _ref$writeToFileLevel = _ref.writeToFileLevels,
+            writeToFileLevels = _ref$writeToFileLevel === void 0 ? LogLevel.Any : _ref$writeToFileLevel,
             _ref$writeToConsoleLe = _ref.writeToConsoleLevels,
             writeToConsoleLevels = _ref$writeToConsoleLe === void 0 ? LogLevel.Any : _ref$writeToConsoleLe,
             _ref$sendLogLevels = _ref.sendLogLevels,
@@ -15324,7 +15458,9 @@
         _get(_getPrototypeOf(LoggerBrowser.prototype), "_init", this).call(this, {
           appName: appName,
           appVersion: appVersion,
-          handlers: [new WriteToConsoleHandler(this, writeToConsoleLevels), new SendLogHandlerBrowser(this, sendLogLevels, logUrl), new EmitEventHandler(this, emitEventLevels)],
+          handlers: [new WriteToConsoleHandler(this, writeToConsoleLevels), logUrls && logUrls.length && _construct(CombineLogHandlers, concat$2(_context = [this]).call(_context, map$2(logUrls).call(logUrls, function (logUrl) {
+            return new SendLogHandlerBrowser(_this, sendLogLevels, logUrl);
+          }))), new EmitEventHandler(this, emitEventLevels), new WriteToFileHandler(this, writeToFileLevels, logFileName)],
           filter: filter,
           appState: appState
         });
@@ -15332,16 +15468,16 @@
     }, {
       key: "logUnhandledErrors",
       value: function logUnhandledErrors() {
-        var _this = this;
+        var _this2 = this;
 
         var errorHandler = function errorHandler() {
-          var _context;
+          var _context2;
 
           for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
           }
 
-          _this.error.apply(_this, concat$2(_context = ['unhandledrejection']).call(_context, map$2(args).call(args, function (arg) {
+          _this2.error.apply(_this2, concat$2(_context2 = ['unhandledrejection']).call(_context2, map$2(args).call(args, function (arg) {
             return (typeof PromiseRejectionEvent !== 'undefined' ? arg instanceof PromiseRejectionEvent && arg.reason : arg.reason) || arg;
           })));
         };
@@ -15351,13 +15487,13 @@
           globalScope.onunhandledrejection = errorHandler;
 
           globalScope.onerror = function () {
-            var _context2;
+            var _context3;
 
             for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
               args[_key2] = arguments[_key2];
             }
 
-            _this.error.apply(_this, concat$2(_context2 = ['unhandled error']).call(_context2, args));
+            _this2.error.apply(_this2, concat$2(_context3 = ['unhandled error']).call(_context3, args));
           };
         }
       }
@@ -15376,7 +15512,8 @@
     appName: 'App Template',
     appVersion: '0.0.1',
     description: 'App Template',
-    // logUrl     : 'http://app-template.logger.com/log.php', // TODO
+    logUrls: [// 'http://app-template.logger.com/log.php', // TODO
+    ],
     installer: {
       electronVersion: '6.0.11',
       nodeVersion: '12.4.0'
@@ -15397,10 +15534,11 @@
     packageName: base$1.packageName + "-dev",
     appName: base$1.appName + " Dev",
     appVersion: "" + base$1.appVersion,
-    logUrl: base$1.logUrl,
+    logUrls: base$1.logUrls,
     installer: base$1.installer,
     type: 'dev',
     dev: {
+      devPage: true,
       devTools: {
         openAtStart: false
       }
@@ -15419,26 +15557,32 @@
     }
   };
 
-  logger.init({
-    appName: dev.appName,
-    appVersion: dev.appVersion,
-    logUrl: dev.logUrl,
-    appState: _extends({}, dev),
-    filter: function filter(logEvent) {
-      if (logEvent.messagesOrErrors && logEvent.messagesOrErrors.length) {
-        var first = logEvent.messagesOrErrors[0];
+  try {
+    logger.init({
+      appName: dev.appName,
+      appVersion: dev.appVersion,
+      logUrls: dev.logUrls,
+      logFileName: 'client.log',
+      appState: _extends({}, dev),
+      filter: function filter(logEvent) {
+        if (logEvent.messagesOrErrors && logEvent.messagesOrErrors.length) {
+          var first = logEvent.messagesOrErrors[0];
 
-        if (first) {
-          var _context;
+          if (first) {
+            var _context;
 
-          if (first.target && typeof first.target.url === 'string' && indexOf$3(_context = first.target.url).call(_context, '__sapper__') >= 0) {
-            return false;
+            if (first.target && typeof first.target.url === 'string' && indexOf$3(_context = first.target.url).call(_context, '__sapper__') >= 0) {
+              return false;
+            }
           }
         }
-      }
 
-      return true;
-    }
-  });
+        return true;
+      }
+    });
+  } catch (ex) {
+    console.log(ex);
+    throw ex;
+  }
 
 }());

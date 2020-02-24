@@ -78,5 +78,24 @@ module.exports = [{
     '&-relative': {
       position: `relative`
     }
+  },
+  '.float': {
+    '&-left': {
+      'float': `left`
+    },
+    '&-right': {
+      'float': `right`
+    },
+    '&-clear': {
+      '&-left': {
+        clear: `left`
+      },
+      '&-right': {
+        clear: `right`
+      },
+      '&-both': {
+        clear: `both`
+      }
+    }
   }
 })];

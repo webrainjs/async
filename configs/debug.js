@@ -7,11 +7,12 @@ module.exports = {
 	packageName: `${base.packageName}-debug`,
 	appName    : `${base.appName} Debug`,
 	appVersion : `${base.appVersion}`,
-	logUrl     : base.logUrl,
+	logUrls    : base.logUrls,
 	installer  : base.installer,
 
 	type  : 'debug',
 	dev   : {
+		devPage : true,
 		devTools: {
 			openAtStart: true,
 		},

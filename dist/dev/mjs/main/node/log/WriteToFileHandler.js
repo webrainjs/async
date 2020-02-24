@@ -42,13 +42,18 @@ async function autoCutLogFile(filePath, maxSize, cutToSize) {
 }
 
 export class WriteToFileHandler extends LogHandler {
-  constructor(logger, allowLogLevels, logFilePath) {
+  constructor(logger, allowLogLevels, logDir, logFileName) {
     super({
       name: 'writeToFile',
       logger,
       allowLogLevels
     });
-    this.logFilePath = logFilePath;
+    this.logDir = logDir;
+    this.logFileName = logFileName;
+  }
+
+  get logFilePath() {
+    return path.resolve(this.logDir, this.logFileName);
   }
 
   async handleLog(logEvents) {

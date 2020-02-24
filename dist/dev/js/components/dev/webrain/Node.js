@@ -5,8 +5,6 @@ var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequ
 exports.__esModule = true;
 exports.Node = exports.NodeType = void 0;
 
-var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs3/regenerator"));
-
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/classCallCheck"));
 
 var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/possibleConstructorReturn"));
@@ -245,8 +243,8 @@ new _webrain.CalcObjectBuilder(Node.prototype).writable('name').writable('type')
     equalsFunc: function equalsFunc() {
       return false;
     },
-    afterChange: function afterChange(value) {
-      this.valueHistory.push(value);
+    afterChange: function afterChange(oldValue, newValue) {
+      this.valueHistory.push(newValue);
 
       if (this.valueHistory.length > _common.VALUE_HISTORY_MAX_SIZE) {
         delete this.valueHistory[this.valueHistory.length - _common.VALUE_HISTORY_MAX_SIZE - 1];
@@ -265,20 +263,7 @@ new _webrain.CalcObjectBuilder(Node.prototype).writable('name').writable('type')
       }, '!visData && !updateId');
     });
   },
-  calcFunc:
-  /*#__PURE__*/
-  _regenerator.default.mark(function calcFunc(state) {
-    return _regenerator.default.wrap(function calcFunc$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            state.value = _common.updateId[0]++;
-
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, calcFunc);
-  })
+  calcFunc: function calcFunc(state) {
+    state.value = _common.updateId[0]++;
+  }
 }));

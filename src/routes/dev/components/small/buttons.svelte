@@ -27,7 +27,7 @@
 	import templates from '../../../../styles/helpers/templates';
 	import fonts from '../../../../styles/app/templates/fonts';
 	import borders from '../../../../styles/app/templates/borders';
-	import buttons from '../../../../styles/app/templates/buttons';
+	import buttons from '../../../../styles/global/templates/buttons';
 	import colors from '../../../../styles/app/templates/colors';
 	import constants from '../../../../styles/app/templates/constants';
 

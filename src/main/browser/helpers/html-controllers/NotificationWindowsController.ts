@@ -13,6 +13,11 @@ class NotificationWindowsController extends ObservableClass {
 
 	public show(win: Window) {
 		const controller = getWindowController(win)
+		const index = this._windowControllers.indexOf(controller)
+		if (index >= 0) {
+			return
+		}
+
 		const unsubscribers = controller[this._unsubscribePropertyName] = []
 		unsubscribers.push(controller.loadObservable.subscribe(o => {
 			this.onLoad(win)
@@ -47,12 +52,14 @@ class NotificationWindowsController extends ObservableClass {
 		const controller = getWindowController(win)
 		const unsubscribers = controller[this._unsubscribePropertyName]
 		delete controller[this._unsubscribePropertyName]
-		for (let i = 0, len = unsubscribers.length; i < len; i++) {
-			unsubscribers[i]()
+		if (unsubscribers) {
+			for (let i = 0, len = unsubscribers.length; i < len; i++) {
+				unsubscribers[i]()
+			}
 		}
 
 		const index = this._windowControllers.indexOf(controller)
-		this._windowControllers.slice(index, 1)
+		this._windowControllers.splice(index, 1)
 
 		this.updatePositions()
 	}

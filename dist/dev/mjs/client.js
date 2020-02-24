@@ -6,7 +6,14 @@ import { webrainGraph } from './components/dev/webrain/WebrainGraph';
 import appConfig from 'APP_CONFIG_PATH';
 import { openWebrainWindow } from './components/app/Webrain';
 import { brain } from './brain/facade';
-import { createWindowController } from './main/browser/helpers/html-controllers/WindowController';
+import { createWindowController } from './main/browser/helpers/html-controllers/WindowController'; // // region for Chrome App:
+// if (!window.history.replaceState) {
+// 	window.history.replaceState = () => {}
+// }
+// if (!window.history.pushState) {
+// 	window.history.pushState = () => {}
+// }
+
 let appWindow;
 let appOrigin;
 window.addEventListener('message', e => {
@@ -20,20 +27,12 @@ webrainGraph.init();
 sapper.start({
   target: document.querySelector('#sapper')
 });
-createWindowController({
+createWindowController(window, {
   windowName: 'Main',
   storeWindowState: true,
-  win: window
+  resizable: true
 });
 brain.mainWindow.win = window;
-
-if (window.tray) {
-  window.tray.subscribe('click', e => {
-    if (e.id === 'icon') {
-      brain.mainWindow.show();
-    }
-  });
-}
 
 if (appConfig.dev) {
   window.addEventListener('keydown', function (e) {

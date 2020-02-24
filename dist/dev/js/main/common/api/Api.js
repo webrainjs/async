@@ -7,15 +7,23 @@ exports.Api = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs3/regenerator"));
 
+var _startsWith = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/starts-with"));
+
 var _extends2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/extends"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/asyncToGenerator"));
+
+var _url = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/url"));
+
+var _stringify = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/json/stringify"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/createClass"));
 
 var _webrain = require("webrain");
+
+var _api = require("./contracts/api");
 
 var _http = require("./contracts/http");
 
@@ -30,17 +38,54 @@ function () {
     var urlBase = _ref.urlBase,
         httpClient = _ref.httpClient;
     (0, _classCallCheck2.default)(this, Api);
-    this._networkErrorSubject = new _webrain.Subject();
+    this._isBadConnection = false;
+    this._networkEventSubject = new _webrain.Subject();
     this.urlBase = urlBase;
     this.httpClient = httpClient;
-  } // region networkErrorObservable
-
+  }
 
   (0, _createClass2.default)(Api, [{
     key: "prepareRequest",
     // endregion
     value: function prepareRequest(request) {
-      return (0, _helpers.prepareHttpRequest)(request);
+      if (request.method !== 'GET' && (request.data || request.dataType)) {
+        switch (request.dataType) {
+          case _http.HttpDataType.FormUrlEncoded:
+            request.data = (0, _helpers.toFormUrlEncoded)(request.data);
+            request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            break;
+
+          case _http.HttpDataType.MultipartFormData:
+            request.data = (0, _helpers.toFormData)(request.data); // request.headers['Content-Type'] = 'multipart/form-data; boundary="d0987012-5c8b-471d-b79b-81fabac23628"'
+
+            break;
+
+          case _http.HttpDataType.Json:
+            request.data = (0, _stringify.default)(request.data);
+            request.headers['Content-Type'] = 'application/json; charset=UTF-8';
+            break;
+
+          default:
+            throw new Error('Unknown dataType: ' + request.dataType);
+        }
+      }
+
+      switch (request.responseDataType) {
+        case _http.HttpDataType.String:
+          request.headers.Accept = 'text/plain';
+          break;
+
+        case _http.HttpDataType.Json:
+          request.headers.Accept = 'application/json';
+          break;
+
+        default:
+          throw new Error('Unknown dataType: ' + request.responseDataType);
+      }
+
+      if (this.urlBase) {
+        request.url = new _url.default(request.url, this.urlBase).href;
+      }
     }
   }, {
     key: "sendRequest",
@@ -48,25 +93,27 @@ function () {
       var _sendRequest = (0, _asyncToGenerator2.default)(
       /*#__PURE__*/
       _regenerator.default.mark(function _callee(_ref2) {
-        var request, errorHandler, resultHandler, response, result, apiResult, data, apiError, errorHandled;
-        return _regenerator.default.wrap(function _callee$(_context) {
+        var request, errorHandler, resultHandler, response, _context, result, apiResult, data, apiError, errorHandled;
+
+        return _regenerator.default.wrap(function _callee$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 request = _ref2.request, errorHandler = _ref2.errorHandler, resultHandler = _ref2.resultHandler;
-                _context.prev = 1;
+                _context2.prev = 1;
                 request = (0, _extends2.default)({}, request, {
                   headers: {}
                 });
                 this.prepareRequest(request);
-                _context.next = 6;
+                _context2.next = 6;
                 return this.httpClient.sendRequest(request);
 
               case 6:
-                response = _context.sent;
+                response = _context2.sent;
+                this.isBadConnection = false;
 
                 if (!(response.statusCode !== 200)) {
-                  _context.next = 9;
+                  _context2.next = 10;
                   break;
                 }
 
@@ -76,16 +123,25 @@ function () {
                   response: response
                 });
 
-              case 9:
-                _context.t0 = request.responseDataType;
-                _context.next = _context.t0 === _http.HttpDataType.Json ? 12 : 14;
+              case 10:
+                this._networkEventSubject.emit({
+                  type: _api.NetworkEventType.Success,
+                  data: {
+                    fromBaseUrl: (0, _startsWith.default)(_context = request.url.toLowerCase()).call(_context, (this.urlBase || '').toLowerCase()),
+                    request: request,
+                    response: response
+                  }
+                });
+
+                _context2.t0 = request.responseDataType;
+                _context2.next = _context2.t0 === _http.HttpDataType.Json ? 14 : 16;
                 break;
 
-              case 12:
-                result = JSON.parse(response.data);
-                return _context.abrupt("break", 14);
-
               case 14:
+                result = JSON.parse(response.data);
+                return _context2.abrupt("break", 16);
+
+              case 16:
                 apiResult = {
                   result: result
                 };
@@ -94,22 +150,42 @@ function () {
                   resultHandler(apiResult);
                 }
 
-                return _context.abrupt("return", apiResult);
+                return _context2.abrupt("return", apiResult);
 
-              case 19:
-                _context.prev = 19;
-                _context.t1 = _context["catch"](1);
+              case 21:
+                _context2.prev = 21;
+                _context2.t1 = _context2["catch"](1);
 
-                if (_context.t1 instanceof _NetworkError.NetworkError) {
-                  _context.next = 24;
+                if (_context2.t1 instanceof _NetworkError.NetworkError) {
+                  _context2.next = 26;
                   break;
                 }
 
-                console.error('Api unknown error', _context.t1, request, response);
-                throw _context.t1;
+                console.error('Api unknown error', _context2.t1, request, response);
+                throw _context2.t1;
 
-              case 24:
-                data = _context.t1.response && _context.t1.response.data;
+              case 26:
+                if (!(_context2.t1.errorType === _http.NetworkErrorType.BadConnection)) {
+                  _context2.next = 30;
+                  break;
+                }
+
+                this.isBadConnection = true;
+
+                this._networkEventSubject.emit({
+                  type: _api.NetworkEventType.Error,
+                  data: _context2.t1
+                });
+
+                return _context2.abrupt("return", {
+                  error: {
+                    networkError: _context2.t1
+                  }
+                });
+
+              case 30:
+                this.isBadConnection = false;
+                data = _context2.t1.response && _context2.t1.response.data;
 
                 if (typeof data === 'string') {
                   try {
@@ -119,40 +195,31 @@ function () {
 
                 apiError = {
                   apiError: data,
-                  networkError: _context.t1
+                  networkError: _context2.t1
                 };
-
-                if (!(_context.t1.errorType === _http.NetworkErrorType.BadConnection)) {
-                  _context.next = 30;
-                  break;
-                }
-
-                console.log('Api bad connection', _context.t1, request);
-                return _context.abrupt("return", {
-                  error: apiError
-                });
-
-              case 30:
                 errorHandled = errorHandler && errorHandler(apiError);
 
                 if (errorHandled !== true) {
-                  console.error('Api error', _context.t1, request);
+                  console.error('Api error', _context2.t1, request);
 
                   if (errorHandled == null) {
-                    this._networkErrorSubject.emit(_context.t1);
+                    this._networkEventSubject.emit({
+                      type: _api.NetworkEventType.Error,
+                      data: _context2.t1
+                    });
                   }
                 }
 
-                return _context.abrupt("return", {
+                return _context2.abrupt("return", {
                   error: apiError
                 });
 
-              case 33:
+              case 37:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[1, 19]]);
+        }, _callee, this, [[1, 21]]);
       }));
 
       function sendRequest(_x) {
@@ -162,9 +229,23 @@ function () {
       return sendRequest;
     }()
   }, {
-    key: "networkErrorObservable",
+    key: "isBadConnection",
     get: function get() {
-      return this._networkErrorSubject;
+      return this._isBadConnection;
+    },
+    set: function set(value) {
+      if (this._isBadConnection === value) {
+        return;
+      }
+
+      this._isBadConnection = value;
+      console.log(value ? 'Bad Connection' : 'Connection Restored');
+    } // region networkEventObservable
+
+  }, {
+    key: "networkEventObservable",
+    get: function get() {
+      return this._networkEventSubject;
     }
   }]);
   return Api;

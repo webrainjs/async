@@ -256,6 +256,10 @@
 	}
 
 	function elementIsInDropdown(element) {
+		if (!control) {
+			return false
+		}
+
 		const toggleElement = control.parentElement
 		do {
 			if (element === dropdown || element === toggleElement) {

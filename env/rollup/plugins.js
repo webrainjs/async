@@ -140,13 +140,17 @@ module.exports = {
 	},
 	libs({dev = false, legacy = true}) {
 		return [
-			plugins.babel.minimal(),
-			plugins.replace(),
+			plugins.babel.minimal({
+				compact: true,
+			}),
+			// plugins.replace(),
 			plugins.resolve({
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser(),
+			legacy && plugins.babel.browser({
+				compact: true,
+			}),
 			!dev && plugins.terser(),
 		]
 	},

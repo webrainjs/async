@@ -1,6 +1,43 @@
 <script context="module">
-	import {connectorFactory, dependenciesSubscriber} from 'webrain'
+	import {deepSubscribe, connectorFactory, dependenciesSubscriber} from 'webrain'
+	import {brain} from "../../brain/facade";
+	import {logger} from "../../main/browser/log/LoggerBrowser";
 
+	// region App Init
+
+	if (typeof window !== 'undefined') {
+		// region Tray
+
+		if (window.tray) {
+			window.tray.subscribe('click', e => {
+				if (e.id === 'icon') {
+					brain.mainWindow.show()
+					window.widget.updateState({
+						isVisible: true,
+					})
+				}
+			})
+		}
+
+		// endregion
+
+		// region logFileName
+
+		logger.handlers.writeToFile.logFileName = 'unknown.log'
+		deepSubscribe({
+			object: brain,
+			ruleBuilder: b => b.p('auth').p('user').p('accountId'),
+			lastValue(accountId) {
+				logger.handlers.writeToFile.logFileName = accountId == null
+					? 'unknown.log'
+					: `${accountId}.log`
+			},
+		})
+
+		// endregion
+	}
+
+	// endregion
 	// const createConnector = connectorFactory({
 	// 	name: 'login view',
 	// 	buildRule: c => c
@@ -63,7 +100,7 @@
 	import templates from '../../styles/helpers/templates';
 	import colors from '../../styles/app/templates/colors';
 	import fonts from '../../styles/app/templates/fonts';
-	import buttons from '../../styles/app/templates/buttons';
+	import buttons from '../../styles/global/templates/buttons';
 	import constants from '../../styles/app/templates/constants';
 	import borders from '../../styles/app/templates/borders';
 

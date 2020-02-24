@@ -151,9 +151,9 @@ const borders = ({
 const bordersInnerShadow = ({
   color,
   width
-} = {}) => ({
+} = {}) => color && width && {
   'box-shadow': `inset 0px 0px 0px ${width} ${color}`
-});
+};
 
 const anchorAsDiv = { ...anchorColor({
     all: `inherit`
@@ -174,7 +174,7 @@ const buttonsReset = {
   }]
 };
 const textboxReset = {
-  [[`input[type='text']`, `input[type='email']`, `input[type='password']`, `select`, `button`].join(',\n\t')]: [textboxAsDiv]
+  [[`textarea`, `input[type='text']`, `input[type='email']`, `input[type='password']`, `select`, `button`].join(',\n\t')]: [textboxAsDiv]
 };
 const contentCenter = { ...contentCenterButton,
   display: `flex`
