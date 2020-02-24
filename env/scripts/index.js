@@ -57,6 +57,7 @@ const testCiAll = singleCall(async (...appConfigTypes) => {
 // endregion
 
 module.exports = {
+	buildAll,
 	testAll,
 	testCiAll,
 }
