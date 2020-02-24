@@ -1,9 +1,7 @@
 <svelte:options accessors/>
 
-<template lang="pug">
-	p(count="{count}") Count: {count}
-	button(on:click!="{() => count++}") +1
-</template>
+<p count="{count}">Count: {count}</p>
+<button on:click="{() => count++}">+1</button>
 
 <!-- Default data -->
 <script>
