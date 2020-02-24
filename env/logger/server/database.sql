@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `otoka112_logs`
 --
-CREATE DATABASE IF NOT EXISTS `otoka112_logs` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `otoka112_logs`;
+-- CREATE DATABASE IF NOT EXISTS `otoka112_logs` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- USE `otoka112_logs`;
 
 -- --------------------------------------------------------
 
