@@ -123,7 +123,6 @@
     "postcss-syntax": "^0.36.2",
     "postcss-url": "^8.0.0",
     "ps-tree": "^1.2.0",
-    "pug": "^2.0.4",
     "rdtsc": "^2.0.0",
     "regenerator-runtime": "^0.13.3",
     "require-from-memory": "^1.0.2",
