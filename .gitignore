@@ -27,4 +27,5 @@ node_modules/
 /package-lock.json
 /dist/**/pack/**
 /dist/*/chrome/**
+/dist/
 *.stackdump
