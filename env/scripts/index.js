@@ -19,31 +19,6 @@ const testCi = singleCall(async appConfigType => {
 	])
 })
 
-const pack = singleCall(async (packType, appConfigType) => {
-	switch (packType) {
-		case 'electron':
-			await specific.packs.packElectron(appConfigType)
-			await specific.packs.runElectron(appConfigType)
-			break
-		case 'chrome':
-			await specific.packs.packChrome(appConfigType)
-			await specific.packs.runChrome(appConfigType)
-			break
-		default:
-			throw new Error(`Unknown pack type: ${packType}`)
-	}
-})
-
-// const testAndPack = singleCall(async appConfigType => {
-// 	await specific.tests.testIntern(appConfigType)
-// 	await Promise.all([
-// 		common.lint(),
-// 		specific.tests.coverage(appConfigType),
-// 		specific.packs.packElectron(appConfigType)
-// 			.then(() => specific.packs.runElectron(appConfigType)),
-// 	])
-// })
-
 // endregion
 
 // region All
@@ -79,43 +54,9 @@ const testCiAll = singleCall(async (...appConfigTypes) => {
 	)
 })
 
-const packAll = singleCall((packTypes, appConfigTypes) => Promise.all(
-	appConfigTypes
-		.map(
-			appConfigType => packTypes
-				.map(packType => pack(packType, appConfigType))
-		)
-		.reduce((a, o) => {
-			a.push(...o)
-			return a
-		}, [])
-))
-
-const buildAndPackAll = singleCall(async (packTypes, appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
-
-	await packAll(packTypes, appConfigTypes)
-})
-
-const testAndPackAll = singleCall(async (packTypes, appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
-	await testInternAll(...appConfigTypes)
-
-	await packAll(packTypes, appConfigTypes)
-})
-
 // endregion
 
 module.exports = {
 	testAll,
-	packAll,
-	testAndPackAll,
-	buildAndPackAll,
 	testCiAll,
 }

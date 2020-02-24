@@ -21,36 +21,6 @@ const buildComponents = singleCall(async appConfigType => {
 	)
 })
 
-const buildSapperExport = singleCall(appConfigType => run(
-	`sapper export "dist/${appConfigType}/sapper/export/"`
-	+ ` --build-dir tmp/${appConfigType}/sapper/build`
-	+ ` --output src/node_modules/@sapper/${appConfigType}`
-	+ ' --timeout 180000 --legacy --basepath app',
-	{
-		env: {
-			APP_CONFIG: appConfigType,
-			PORT      : require(`../../../configs/${appConfigType}`).sapper.port,
-		},
-	},
-))
-
-const buildElectron = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/electron/build/`)
-	await run(
-		'node env/electron/build.js',
-		{env: {APP_CONFIG: appConfigType}}
-	)
-	await run(`cpy "src/main/node/electron/run/preload.js" "dist/${appConfigType}/electron/build/"`)
-})
-
-const buildChrome = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/chrome/build/`)
-	await run(
-		'node env/chrome/build.js',
-		{env: {APP_CONFIG: appConfigType}}
-	)
-})
-
 const clean = singleCall(appConfigType => run(`shx rm -rf {dist,tmp}/${appConfigType}`))
 const build = singleCall(async appConfigType => {
 	// await clean(appConfigType)
@@ -60,9 +30,6 @@ const build = singleCall(async appConfigType => {
 		buildMjs(appConfigType),
 		buildJs(appConfigType),
 		buildComponents(appConfigType),
-		// buildElectron(appConfigType),
-		// buildChrome(appConfigType),
-		buildSapperExport(appConfigType),
 	])
 })
 
@@ -72,7 +39,4 @@ module.exports = {
 	buildMjs,
 	buildJs,
 	buildComponents,
-	buildElectron,
-	buildChrome,
-	buildSapperExport,
 }

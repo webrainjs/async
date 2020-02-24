@@ -1,7 +1,6 @@
 const path = require('path')
 const svelte  = require('rollup-plugin-svelte')
 const sveltePreprocess = require('svelte-preprocess')
-const svelteThemesPreprocess = require('svelte-themes-preprocess').default
 const babel = require('@babel/core')
 const babelConfigMinimal = require('../babel/configs/minimal')
 const {toCachedFunc} = require('./helpers')
@@ -36,17 +35,6 @@ function rollupCommon(options = {}) {
 		}
 	})
 
-	const themesPreprocess = svelteThemesPreprocess(
-		path.resolve('./src/styles/themes.js'),
-		sveltePreprocessInstance,
-		{
-			lang : 'js',
-			debug: {
-				// showComponentsIds: true
-			}
-		}
-	)
-
 	const preprocessMarkup = toCachedFunc(
 		content => content,
 		content => {
@@ -58,12 +46,10 @@ function rollupCommon(options = {}) {
 	)
 
 	const preprocess = {
-		...themesPreprocess,
-		markup({content, ...others}) {
-			return themesPreprocess.markup({
-				content: preprocessMarkup(content),
-				...others
-			})
+		markup({content}) {
+			return {
+				code: preprocessMarkup(content)
+			}
 		}
 	}
 

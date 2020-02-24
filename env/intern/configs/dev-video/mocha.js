@@ -12,7 +12,7 @@ config.environments = config.environments.map(o => ({
 configure({
 	...config,
 	functionalSuites: [
-		'src/test/*/webdriver/**/sapper/**/*.js',
+		'src/test/*/webdriver/**/*.js',
 		'!*/**/{src,assets}/**'
 	],
 })

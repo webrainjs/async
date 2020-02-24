@@ -4038,6 +4038,10 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
     return document.createTextNode(data);
   }
 
+  function space() {
+    return text(' ');
+  }
+
   function listen(node, event, handler, options) {
     node.addEventListener(event, handler, options);
     return function () {
@@ -4088,6 +4092,10 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
     }
 
     return text(data);
+  }
+
+  function claim_space(nodes) {
+    return claim_text(nodes, ' ');
   }
 
   function custom_event(type, detail) {
@@ -4582,8 +4590,9 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
     var p;
     var t0;
     var t1;
-    var button;
     var t2;
+    var button;
+    var t3;
     var dispose;
     var block = {
       c: function create() {
@@ -4592,8 +4601,9 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
         t1 = text(
         /*count*/
         ctx[0]);
+        t2 = space();
         button = element("button");
-        t2 = text("+1");
+        t3 = text("+1");
         this.h();
       },
       l: function claim(nodes) {
@@ -4608,9 +4618,10 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
 
         forEach$2(p_nodes).call(p_nodes, detach_dev);
 
+        t2 = claim_space(nodes);
         button = claim_element(nodes, "BUTTON", {});
         var button_nodes = children(button);
-        t2 = claim_text(button_nodes, "+1");
+        t3 = claim_text(button_nodes, "+1");
 
         forEach$2(button_nodes).call(button_nodes, detach_dev);
 
@@ -4620,15 +4631,16 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
         attr_dev(p, "count",
         /*count*/
         ctx[0]);
-        add_location(p, file, 2, 0, 29);
-        add_location(button, file, 2, 37, 66);
+        add_location(p, file, 2, 0, 37);
+        add_location(button, file, 3, 0, 75);
       },
       m: function mount(target, anchor) {
         insert_dev(target, p, anchor);
         append_dev(p, t0);
         append_dev(p, t1);
+        insert_dev(target, t2, anchor);
         insert_dev(target, button, anchor);
-        append_dev(button, t2);
+        append_dev(button, t3);
         dispose = listen_dev(button, "click",
         /*click_handler*/
         ctx[1], false, false, false);
@@ -4653,6 +4665,7 @@ this['src/test/tests/webdriver/env/src/component'] = (function () {
       o: noop,
       d: function destroy(detaching) {
         if (detaching) detach_dev(p);
+        if (detaching) detach_dev(t2);
         if (detaching) detach_dev(button);
         dispose();
       }

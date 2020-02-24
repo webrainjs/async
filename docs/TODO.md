@@ -2,3 +2,5 @@
 * [x] Update readme from old template
 * [x] Merge with latest app
 * [ ] Change ReadMe
+* [ ] Remove svelte themes
+* [ ] Remove pug 

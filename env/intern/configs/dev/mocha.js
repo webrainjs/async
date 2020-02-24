@@ -4,7 +4,7 @@ import {configure, runTests} from '../../mocha-helpers'
 configure({
 	...config,
 	functionalSuites: [
-		'src/test/*/webdriver/**/sapper/**/*.js',
+		'src/test/*/webdriver/**/*.js',
 		'!*/**/{src,assets}/**'
 	],
 })
