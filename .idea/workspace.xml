@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6926ed60-5721-4a9d-af77-9faa2963739a" name="Default Changelist" comment="" />
+    <list default="true" id="6926ed60-5721-4a9d-af77-9faa2963739a" name="Default Changelist" comment="Added logger">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/TODO.md" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +15,40 @@
     <favorites_list name="balda" />
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/webapp" />
+                <branch-info repo="$PROJECT_DIR$" source="origin/browser-helpers" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="webapp" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
@@ -67,7 +102,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
     <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\apps\app-template\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
@@ -297,15 +332,102 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Mocha.common &gt; log &gt; objectToString.base" />
         <item itemvalue="Mocha.node &gt; styles &gt; postcss.jsToCss import + babel" />
         <item itemvalue="Mocha.node &gt; styles &gt; postcss" />
+        <item itemvalue="Mocha.common &gt; log &gt; objectToString.base" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss.calc" />
+        <item itemvalue="Mocha.node &gt; styles &gt; postcss.jsToCss import + babel" />
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6926ed60-5721-4a9d-af77-9faa2963739a" name="Default Changelist" comment="" />
+      <created>1582528180248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582528180248</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Develop">
+      <created>1582528241689</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582528241689</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Deleting webapp specific code...">
+      <created>1582529124661</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582529124661</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Deleting webapp specific code: Deleted src files">
+      <created>1582529609141</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582529609141</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Deleting webapp specific code: Fixed tests. Tests OK.">
+      <created>1582531208883</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582531208883</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Deleted dist directory">
+      <created>1582531424719</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582531424719</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Deleting webapp specific code: Deleted dist directory">
+      <created>1582531626972</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1582531626972</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Deleting webapp specific code: Deleted env files">
+      <created>1582531975151</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1582531975151</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Removed unnecessary cmd files">
+      <created>1582532295541</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1582532295541</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added logger">
+      <created>1582532364851</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1582532364851</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Deleting webapp specific code: Fix env">
+      <created>1582532520125</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1582532520125</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="additionalRoots">
+      <list>
+        <option value="$PROJECT_DIR$/node_modules" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -320,6 +442,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:L:/Work/_GIT/GitHub/NodeJs/apps/app-template/src/main/common" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -329,19 +476,15 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Notification window big refactoring, not tested" />
-    <MESSAGE value="Notification window big refactoring, tested. Works fine." />
-    <MESSAGE value="v0.0.15" />
-    <MESSAGE value="Webrain graph groups. Users table simple." />
-    <MESSAGE value="Users paging completed" />
-    <MESSAGE value="Google map markers in process..." />
-    <MESSAGE value="Google map fit to view area in process.." />
-    <MESSAGE value="Users location filter completed" />
-    <MESSAGE value="Google/Floor map markers is completed" />
     <MESSAGE value="Users dialogs in process..." />
     <MESSAGE value="v0.0.18" />
     <MESSAGE value="User edit dialog in process..." />
@@ -350,7 +493,6 @@
     <MESSAGE value="Battery marker" />
     <MESSAGE value="Develop devices" />
     <MESSAGE value="Develop devices and users" />
-    <MESSAGE value="Develop" />
     <MESSAGE value="build-and-pack:dev OK" />
     <MESSAGE value="configure travis" />
     <MESSAGE value="fix travis" />
@@ -358,6 +500,16 @@
     <MESSAGE value="fix ReadMe" />
     <MESSAGE value="Merged with app" />
     <MESSAGE value="TODO changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO changed" />
+    <MESSAGE value="Develop" />
+    <MESSAGE value="Deleting webapp specific code..." />
+    <MESSAGE value="Deleting webapp specific code: Deleted src files" />
+    <MESSAGE value="Deleting webapp specific code: Fixed tests. Tests OK." />
+    <MESSAGE value="Deleted dist directory" />
+    <MESSAGE value="Deleting webapp specific code: Deleted dist directory" />
+    <MESSAGE value="Deleting webapp specific code: Deleted env files" />
+    <MESSAGE value="Removed unnecessary cmd files" />
+    <MESSAGE value="Added logger" />
+    <MESSAGE value="Deleting webapp specific code: Fix env" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleting webapp specific code: Fix env" />
   </component>
 </project>
