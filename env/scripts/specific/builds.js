@@ -26,6 +26,7 @@ const build = singleCall(async appConfigType => {
 	// await clean(appConfigType)
 	// await run('echo      │ node_modules\\core-js-pure\\stable\\set-interval.js (0.2%)\n')
 	await Promise.all([
+		common.build(),
 		buildMjs(appConfigType),
 		buildJs(appConfigType),
 		buildComponents(appConfigType),
