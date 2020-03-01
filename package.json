@@ -7,10 +7,14 @@
   "bugs": {
     "url": ""
   },
-  "license": "Commercial",
+  "license": "CC0-1.0",
+  "keywords": [],
   "files": [
     "dist/sapper/export/**"
   ],
+  "main": "dist/js/main/browser/main.js",
+  "jsnext:main": "dist/mjs/main/browser/main.js",
+  "module": "dist/mjs/main/browser/main.js",
   "engines": {
     "node": ">= 8.6.0"
   },
