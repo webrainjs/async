@@ -165,17 +165,5 @@
     "tslint-sonarts": "^1.9.0",
     "typescript": "^3.6.3",
     "vis-network": "^5.4.1"
-  },
-  "dependencies": {
-    "compression": "^1.7.4",
-    "express": "^4.17.1",
-    "html-escaper": "^2.0.0",
-    "iterare": "^1.2.0",
-    "mime": "^2.4.4",
-    "needle": "^2.4.0",
-    "postcss": "^7.0.24",
-    "sirv": "^0.4.2",
-    "spark-md5": "^3.0.0",
-    "webrain": "^0.0.7"
   }
 }
