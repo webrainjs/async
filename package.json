@@ -2,10 +2,17 @@
   "name": "app-template",
   "version": "0.0.1",
   "description": "App Template",
-  "author": "App Template",
-  "homepage": "",
+  "author": {
+    "name": "App Template",
+    "url": "https://github.com/AppTemplate/"
+  },
+  "homepage": "https://github.com/AppTemplate/app-template/",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/AppTemplate/app-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:AppTemplate/app-template.git"
   },
   "license": "CC0-1.0",
   "keywords": [],
