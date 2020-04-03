@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6926ed60-5721-4a9d-af77-9faa2963739a" name="Default Changelist" comment="Added logger">
+    <list default="true" id="744dca17-b9b6-45e4-a50f-f5f97166e1ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Mika.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Mika.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/libs/polyfill.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/libs/polyfill.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +82,7 @@
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+		<property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/karma"/>
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -91,7 +91,7 @@
     <property name="node.js.path.for.package.standard" value="node" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/../nodejs-templates/node_modules/eslint" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/../../templates/nodejs-templates/node_modules/eslint" />
     <property name="node.js.selected.package.standard" value="L:\Work\_GIT\GitHub\NodeJs\templates\nodejs-templates\node_modules\eslint" />
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -105,21 +105,9 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
     <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\apps\app-template\node_modules\typescript\lib" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="npm.Test Dev">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
-      <config-file value="$PROJECT_DIR$/env/karma.conf.tests.js" />
+			<config-file value="$PROJECT_DIR$/env/karma/configs/dev.js"/>
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
       <node-interpreter value="node" />
       <envs />
@@ -162,53 +150,6 @@
       <test-pattern>./src/test/tests/{common,node}/**/*.*</test-pattern>
       <method v="2" />
     </configuration>
-    <configuration name="common &gt; log &gt; objectToString.base" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>node</node-interpreter>
-      <node-options>--max-old-space-size=4096</node-options>
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options>--opts ./env/mocha/configs/babel/mocha.opts --watch</extra-mocha-options>
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/src/test/tests/common/log/objectToString.ts</test-file>
-      <test-names>
-        <name value="common &gt; log &gt; objectToString" />
-        <name value="base" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="node &gt; styles &gt; postcss" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>node</node-interpreter>
-      <node-options>--max-old-space-size=4096</node-options>
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options>--opts ./env/mocha/mocha.babel.opts --watch</extra-mocha-options>
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/src/test/tests/node/env/postcss/postcss.js</test-file>
-      <test-names>
-        <name value="node &gt; styles &gt; postcss" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="node &gt; styles &gt; postcss.jsToCss import + babel" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>node</node-interpreter>
-      <node-options>--max-old-space-size=4096</node-options>
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options>--opts ./env/mocha/configs/babel/mocha.opts --watch</extra-mocha-options>
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/src/test/tests/node/env/postcss/postcss.js</test-file>
-      <test-names>
-        <name value="node &gt; styles &gt; postcss" />
-        <name value="jsToCss import + babel" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Karma.CI" />
       <item itemvalue="Karma.Coverage" />
@@ -220,9 +161,6 @@
       <item itemvalue="Mocha.Intern Export" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
       <item itemvalue="Mocha.Watch" />
-      <item itemvalue="Mocha.common &gt; log &gt; objectToString.base" />
-      <item itemvalue="Mocha.node &gt; styles &gt; postcss" />
-      <item itemvalue="Mocha.node &gt; styles &gt; postcss.jsToCss import + babel" />
       <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="Node.js.Sapper Dev - DEBUG" />
       <item itemvalue="npm.Build and Pack All" />
@@ -247,6 +185,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.common &gt; log &gt; objectToString.base" />
         <item itemvalue="Mocha.node &gt; styles &gt; postcss.jsToCss import + babel" />
         <item itemvalue="Mocha.node &gt; styles &gt; postcss" />
       </list>
@@ -254,21 +193,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6926ed60-5721-4a9d-af77-9faa2963739a" name="Default Changelist" comment="Added logger" />
-      <created>1583055712588</created>
+      <changelist id="744dca17-b9b6-45e4-a50f-f5f97166e1ce" name="Default Changelist" comment="" />
+      <created>1582539385612</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1583055712588</updated>
+      <updated>1582539385612</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="additionalRoots">
-      <list>
-        <option value="$PROJECT_DIR$/node_modules" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -341,16 +275,7 @@
     <MESSAGE value="fix ReadMe" />
     <MESSAGE value="Merged with app" />
     <MESSAGE value="TODO changed" />
-    <MESSAGE value="Develop" />
-    <MESSAGE value="Deleting webapp specific code..." />
-    <MESSAGE value="Deleting webapp specific code: Deleted src files" />
-    <MESSAGE value="Deleting webapp specific code: Fixed tests. Tests OK." />
-    <MESSAGE value="Deleted dist directory" />
-    <MESSAGE value="Deleting webapp specific code: Deleted dist directory" />
-    <MESSAGE value="Deleting webapp specific code: Deleted env files" />
-    <MESSAGE value="Removed unnecessary cmd files" />
-    <MESSAGE value="Added logger" />
-    <MESSAGE value="Deleting webapp specific code: Fix env" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleting webapp specific code: Fix env" />
+    <MESSAGE value="Remove pug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove pug" />
   </component>
 </project>
