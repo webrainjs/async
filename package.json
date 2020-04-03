@@ -20,7 +20,7 @@
   },
   "scripts": {
     "precommit": "npm run test:ci",
-    "prepare": "npm run build-and-pack:dev",
+    "prepare": "npm run build:dev",
     "prepublishOnly": "npm run test:dev",
     "ci": "npm run test:ci && ncat \"tmp/common/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
 
