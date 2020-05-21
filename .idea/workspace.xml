@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,7 +240,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590054245686</updated>
-      <workItem from="1590054248215" duration="1311000" />
+      <workItem from="1590054248215" duration="1877000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -259,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590054926098</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Change node version to 12.4.0">
+      <created>1590055591221</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590055591221</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +294,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Notification window big refactoring, tested. Works fine." />
     <MESSAGE value="v0.0.15" />
     <MESSAGE value="Webrain graph groups. Users table simple." />
     <MESSAGE value="Users paging completed" />
@@ -315,13 +318,14 @@
     <MESSAGE value="TODO changed" />
     <MESSAGE value="Remove pug" />
     <MESSAGE value="Merged with app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged with app" />
+    <MESSAGE value="Change node version to 12.4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change node version to 12.4.0" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590054923656">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590055588691">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590054923656" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590055588691" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590054798402">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
