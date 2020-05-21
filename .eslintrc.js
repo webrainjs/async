@@ -1,18 +1,7 @@
-{
+module.exports = {
 	"extends": ["pro"],
 	"rules": {
-		"object-curly-newline": "off",
-		"function-paren-newline": "off",
-		"comma-dangle" : [
-			"error",
-			{
-				"arrays"   : "only-multiline",
-				"objects"  : "only-multiline",
-				"imports"  : "only-multiline",
-				"exports"  : "only-multiline",
-				"functions": "only-multiline"
-			}
-		]
+
 	},
 
 	"env": {
@@ -25,7 +14,10 @@
 		"ecmaVersion": 6,
 		"sourceType": "module",
 		"allowImportExportEverywhere": false,
-		"codeFrame": true
+		"codeFrame": true,
+		"babelOptions": {
+			"configFile": "./env/babel/configs/minimal.js"
+		},
 	},
 
 	"plugins": [
