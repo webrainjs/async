@@ -1,9 +1,12 @@
-/* eslint-disable global-require,object-property-newline */
+/* eslint-disable global-require,object-property-newline,no-process-env */
 import config from 'sapper/config/rollup.js'
 import pkg from './package.json'
+const appConfig = require(`./configs/${process.env.APP_CONFIG}`)
 const rollupPlugins = require('./env/rollup/plugins')
 
-const dev = true // mode === 'development'
+const mode = process.env.NODE_ENV
+console.log(`mode = ${mode}`)
+const dev = !!(appConfig.dev && appConfig.dev.devBuild || mode === 'development')
 const legacy = true // dev || !!process.env.SAPPER_LEGACY_BUILD
 const onwarn = (warning, nextOnWarn) => (warning.code === 'CIRCULAR_DEPENDENCY'
 		&& /[/\\]@sapper[/\\]/.test(warning.message))

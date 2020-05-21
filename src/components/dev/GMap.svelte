@@ -4,7 +4,7 @@
 
 	let container
 	function initMap() {
-		// console.log('component initMap')
+		// console.debug('component initMap')
 		// Basic options for a simple Google Map
 		// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
 		const mapOptions = {
@@ -216,7 +216,7 @@
 </script>
 
 <GMapInit on:initialized="{initMap}" />
-<div bind:this="{container}" class="gmap-container fill">Loading...</div>
+<div bind:this="{container}" class="gmap-container fill" debug_id="loader-text">Loading...</div>
 
 <style-js>
 	import templates from '../../styles/helpers/templates';

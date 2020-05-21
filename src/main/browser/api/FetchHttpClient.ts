@@ -16,6 +16,9 @@ async function fetchExt(url: string, options): Promise<any> {
 			...options,
 			signal,
 		})
+	// } catch (err) {
+	// 	console.error(url, options, err)
+	// 	throw err
 	} finally {
 		clearTimeout(timeoutId)
 	}

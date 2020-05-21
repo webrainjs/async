@@ -3,7 +3,7 @@
 	export let canShowLoading = true
 </script>
 
-{#if typeof value === 'undefined'}
+{#if value == null}
 	{#if canShowLoading}
 		<slot name="loading">
 			<div class="loading__placeholder ghost"></div>

@@ -28,6 +28,25 @@ module.exports = [
 							url: 'client/images/icons/window/fullscreen-exit.png',
 						}),
 					},
+					'&-mac': {
+						'&-minimize': iconMask({
+							url: 'client/images/icons/window/mac/minimize.png',
+						}),
+						'&-plus': iconMask({
+							url: 'client/images/icons/window/mac/plus.png',
+						}),
+						'&-close': iconMask({
+							url: 'client/images/icons/window/mac/close.png',
+						}),
+						'&-fullscreen': {
+							'&-enter': iconMask({
+								url: 'client/images/icons/window/mac/fullscreen-enter.png',
+							}),
+							'&-exit': iconMask({
+								url: 'client/images/icons/window/mac/fullscreen-exit.png',
+							}),
+						},
+					},
 				},
 				'&-check': iconMask({
 					url: 'client/images/icons/check.png',

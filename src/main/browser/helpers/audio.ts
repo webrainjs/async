@@ -1,5 +1,5 @@
 import {
-	CalcObjectBuilder,
+	DependCalcObjectBuilder,
 	delay,
 	IPropertyChanged,
 	ObservableClass,
@@ -44,6 +44,7 @@ export class AudioPlayer extends ObservableClass {
 	private _initialized
 	private readonly _sources: HTMLSourceElement[]
 	private readonly _audio: Audio
+	private _currentThenable: Promise<any>
 	public stopped = true
 	public canPlay
 	public error
@@ -80,39 +81,39 @@ export class AudioPlayer extends ObservableClass {
 		}
 
 		bind('canplay', o => {
-			console.log('AudioPlayer: canplay')
+			console.debug('AudioPlayer: canplay')
 			this.canPlay = true
 		})
 		bind('abort', o => {
-			console.log('AudioPlayer: abort')
+			console.debug('AudioPlayer: abort')
 			onStop()
 		})
 		bind('emptied', o => {
-			console.log('AudioPlayer: emptied')
+			console.debug('AudioPlayer: emptied')
 			// onStop()
 		})
 		bind('error', o => {
-			console.log('AudioPlayer: error')
+			console.debug('AudioPlayer: error')
 			onError(new Error('Audio load error: ' + this._audio.src))
 		})
 		bind('stalled', o => {
-			console.log('AudioPlayer: stalled')
+			console.debug('AudioPlayer: stalled')
 			// onStop()
 		})
 		bind('waiting', o => {
-			console.log('AudioPlayer: waiting')
+			console.debug('AudioPlayer: waiting')
 			// onStop()
 		})
 		bind('suspend', o => {
-			console.log('AudioPlayer: suspend')
+			console.debug('AudioPlayer: suspend')
 			// onStop()
 		})
 		bind('ended', o => {
-			console.log('AudioPlayer: ended')
+			console.debug('AudioPlayer: ended')
 			onStop()
 		})
 		bind('pause', o => {
-			console.log('AudioPlayer: pause')
+			console.debug('AudioPlayer: pause')
 			onStop()
 		})
 
@@ -140,6 +141,33 @@ export class AudioPlayer extends ObservableClass {
 				Object.assign(sourceElement, source)
 				return sourceElement
 			})
+	}
+
+	private async run(action: () => Promise<any>) {
+		while (true) {
+			const prevThenable = this._currentThenable
+
+			try {
+				await this._currentThenable
+			} catch (err) {
+			}
+
+			if (prevThenable === this._currentThenable) {
+				break
+			}
+		}
+
+		const thenable = action()
+
+		this._currentThenable = thenable
+
+		const result = await thenable
+
+		if (this._currentThenable === thenable) {
+			this._currentThenable = null
+		}
+
+		return result
 	}
 
 	private init() {
@@ -184,11 +212,12 @@ export class AudioPlayer extends ObservableClass {
 
 	private async _play(waitEnd: boolean) {
 		this.stopped = false
+		// noinspection ES6MissingAwait
 		const wait = waitEnd ? this.waitEnd() : null
 
 		try {
-			console.log('AudioPlayer: play()')
-			await this._audio.play()
+			console.debug('AudioPlayer: play()')
+			await this.run(() => this._audio.play())
 		} catch (err) {
 			this.error = err
 			throw err
@@ -197,7 +226,7 @@ export class AudioPlayer extends ObservableClass {
 		return wait
 	}
 
-	public play(waitEnd: boolean = true) {
+	public async play(waitEnd: boolean = true) {
 		if (!this._audio) {
 			return
 		}
@@ -205,14 +234,14 @@ export class AudioPlayer extends ObservableClass {
 		this.init()
 		if (this.error) {
 			this.error = null
-			this.stop()
-			console.log('AudioPlayer: load()')
-			this._audio.load()
+			await this.stop()
+			console.debug('AudioPlayer: load()')
+			await this.run(() => this._audio.load())
 		} else if (this.stopped && this._audio.duration) {
 			this._audio.currentTime = 0
 			if (this._audio.currentTime) {
-				console.log('AudioPlayer: load()')
-				this._audio.load()
+				console.debug('AudioPlayer: load()')
+				await this.run(() => this._audio.load())
 			}
 		}
 
@@ -224,8 +253,8 @@ export class AudioPlayer extends ObservableClass {
 			return
 		}
 
-		console.log('AudioPlayer: pause()')
-		this._audio.pause()
+		console.debug('AudioPlayer: pause()')
+		return this.run(() => this._audio.pause())
 	}
 
 	public resume(waitEnd: boolean = true) {
@@ -236,13 +265,15 @@ export class AudioPlayer extends ObservableClass {
 		return this._play(waitEnd)
 	}
 
-	public stop() {
+	public async stop() {
 		if (!this._audio) {
 			return
 		}
 
-		console.log('AudioPlayer: pause()')
-		this._audio.pause()
+		console.debug('AudioPlayer: pause()')
+
+		await this.run(() => this._audio.pause())
+
 		if (this._audio.duration) {
 			this._audio.currentTime = 0
 			this.stopped = true
@@ -250,7 +281,7 @@ export class AudioPlayer extends ObservableClass {
 	}
 }
 
-new CalcObjectBuilder(AudioPlayer.prototype)
+new DependCalcObjectBuilder(AudioPlayer.prototype)
 	.writable('canPlay')
 	.writable('stopped', {
 		setOptions: {
@@ -258,7 +289,7 @@ new CalcObjectBuilder(AudioPlayer.prototype)
 				if (!newValue) {
 					this.error = null
 				}
-				console.log(newValue ? 'AudioPlayer stopped' : 'AudioPlayer played')
+				console.debug(newValue ? 'AudioPlayer stopped' : 'AudioPlayer played')
 			},
 		},
 	})
@@ -312,7 +343,7 @@ export class AudioQueue {
 	}
 
 	private async __play() {
-		console.log('AudioQueue play')
+		console.debug('AudioQueue play')
 		try {
 			while (true) {
 				// get AudioPlayer from queue
@@ -325,7 +356,7 @@ export class AudioQueue {
 
 				try {
 					// play and wait
-					audio.stop()
+					await audio.stop()
 					await Promise.race([
 						delay(60000),
 						audio.play(),
@@ -342,7 +373,7 @@ export class AudioQueue {
 			}
 		} finally {
 			this._playThenable = null
-			console.log('AudioQueue stopped')
+			console.debug('AudioQueue stopped')
 		}
 	}
 }

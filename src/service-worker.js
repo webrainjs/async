@@ -1,6 +1,7 @@
 // @ts-ignore
 import {files, shell, timestamp} from 'SAPPER_MODULE/service-worker'
 import {logger} from './main/browser/log/LoggerBrowser'
+import './initWebrain'
 import './initClientLog'
 
 const init = () => {

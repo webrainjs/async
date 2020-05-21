@@ -3,8 +3,6 @@
 	const pageStore = stores()
 	const page = pageStore && pageStore.page
 
-	// export let segment
-
 	let paths = {
 		'small/icons': { completed: true, background: `black`, layout: 'series' },
 		'small/fonts': { completed: true, background: `black`, layout: 'series' },
@@ -60,7 +58,7 @@
 		{:else if options.layout === 'design-horizontal'}
 			<div class="flex__item--fill position-relative scroll-horizontal" style="background: {options.background || 'none'};">
 				<div class="scroll-horizontal__content flex overflow-visible">
-					<div class="components__design flex" style="padding-right: 1em;">
+					<div class="components__design flex padding-right-base">
 						{#each options.images || [`client/images/design/${currentPath}.png`] as image}
 							<img src="{image}" class="design-image" alt="Design image"/>
 						{/each}

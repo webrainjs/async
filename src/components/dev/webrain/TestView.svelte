@@ -1,14 +1,14 @@
 <script context="module">
-	import { connectorFactory } from 'webrain'
+	import { dependConnectorFactory } from 'webrain'
 	import {TestObject} from "./TestObject";
 
-	const createConnector = connectorFactory({
+	const createConnector = dependConnectorFactory({
 		name: 'TestView',
-		buildRule: c => c
-			.connectWritable('value1', b => b.p('value1'))
-			.connectWritable('value2', b => b.p('value2'))
-			.connect('sum', b => b.p('sum'))
-			.connect('time', b => b.p('time'))
+		build: c => c
+			.connectLazy('value1', b => b.f(o => o.value1, (o, v) => { o.value1 = v }))
+			.connectLazy('value2', b => b.f(o => o.value2, (o, v) => { o.value2 = v }))
+			.connectLazy('sum', b => b.f(o => o.sum))
+			.connectLazy('time', b => b.f(o => o.time))
 	})
 
 	const source = new TestObject()

@@ -1,6 +1,6 @@
 <script context="module">
 	if (typeof window !== 'undefined') {
-		// console.log('window.initMap = ...')
+		// console.debug('window.initMap = ...')
 
 		let initMaps = []
 
@@ -13,7 +13,7 @@
 		}
 
 		window.initMap = () => {
-			// console.log('initMap()')
+			// console.debug('initMap()')
 			const _initMaps = initMaps.slice()
 			initMaps = null
 			for (let i = 0; i < _initMaps.length; i++) {

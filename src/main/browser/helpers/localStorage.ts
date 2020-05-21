@@ -1,10 +1,10 @@
 /* tslint:disable:no-empty */
 import {
-	deepSubscribe,
 	DeferredCalc,
 	IUnsubscribeOrVoid,
 	ObjectSerializer,
 	RuleBuilder,
+	dependDeepSubscriber,
 } from 'webrain'
 
 declare const chrome: any
@@ -26,8 +26,8 @@ export async function storeWindowState(name: string, win: typeof window) {
 	const stateStr: string = await localStorageWrapper.getItem(storageKey)
 	const state: any = stateStr && JSON.parse(stateStr)
 	if (state) {
-		win.moveTo(state.x, state.y)
 		win.resizeTo(state.width, state.height)
+		win.moveTo(state.x, state.y)
 	}
 	const saveState = async () => {
 		await localStorageWrapper.setItem(storageKey, JSON.stringify({
@@ -57,28 +57,23 @@ export async function storeObject<TObject>(
 		})
 	}
 
-	const deferredSave = new DeferredCalc(
-		function() {
-			this.calc()
-		},
-		async function(done) {
+	const deferredSave = new DeferredCalc({
+		async calcFunc() {
 			// tslint:disable-next-line:no-shadowed-variable
 			const serialized = ObjectSerializer.default.serialize(object)
 			await localStorageWrapper.setItem(storageKey, JSON.stringify(serialized))
-			done()
+			this.done()
 		},
-		() => {},
-		{
+		options: {
 			throttleTime: 1000,
 			maxThrottleTime: 10000,
 			minTimeBetweenCalc: 5000,
-		})
-
-	return deepSubscribe({
-		object,
-		changeValue() {
-			deferredSave.invalidate()
 		},
-		ruleBuilder,
+	})
+
+	return dependDeepSubscriber({
+		build: ruleBuilder,
+	})(object, () => {
+		deferredSave.invalidate()
 	})
 }

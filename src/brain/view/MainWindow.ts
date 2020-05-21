@@ -1,8 +1,10 @@
 /* tslint:disable:no-conditional-assignment */
 import {
-	CalcObjectBuilder,
-	calcPropertyFactory,
-	connectorFactory,
+	DependCalcObjectBuilder,
+	noSubscribe,
+	dependConnectorFactory,
+	dependCalcPropertyFactory,
+	dependCalcPropertyFactoryX,
 	delay,
 	IDeSerializeValue,
 	ISerializable,
@@ -40,6 +42,13 @@ export class MainWindow extends ObservableClass {
 		}
 	}
 
+	public hideOrMinimize() {
+		const windowController = resolvePath(this)(o => o.windowController)() as WindowController
+		if (windowController) {
+			windowController.hideOrMinimize()
+		}
+	}
+
 	// endregion
 
 	// region writable
@@ -58,22 +67,25 @@ export class MainWindow extends ObservableClass {
 	// endregion
 }
 
-new CalcObjectBuilder(MainWindow.prototype)
+new DependCalcObjectBuilder(MainWindow.prototype)
 	.writable('win')
-	.calc('windowController',
-		connectorFactory({
-			buildRule: c => c
-				.connect('win', b => b.p('win')),
+	.nestedCalc('windowController',
+		dependConnectorFactory({
+			build: c => c
+				.connectPath('win', b => b.f(o => o.win)),
 		}),
-		calcPropertyFactory({
-			dependencies: d => d.invalidateOn(b => b.propertyAny()),
-			calcFunc(state) {
-				state.value = getWindowController(state.input.win)
+		dependCalcPropertyFactoryX({
+			*calcFunc() {
+				const state = this
+				const input = state._this.input
+				let value = state.value
+
+				return getWindowController(yield input.win)
 			},
 		}),
 	)
-	.calcConnect('isVisible', b => b.p('windowController').p('isVisible'))
-	.calcConnect('isFocused', b => b.p('windowController').p('isFocused'))
+	.connectPath('isVisible', b => b.f(o => o.windowController).f(o => o.isVisible))
+	.connectPath('isFocused', b => b.f(o => o.windowController).f(o => o.isFocused))
 	// .calc('lostFocusDate',
 	// 	connectorFactory({
 	// 		buildRule: c => c

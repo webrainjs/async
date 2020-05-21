@@ -9,6 +9,7 @@ import compression from 'compression'
 import express from 'express'
 import sirv from 'sirv'
 import path from 'path'
+import './initWebrain'
 import {LogLevel} from './main/common/log/contracts'
 import {logger} from './main/node/log/LoggerNode'
 import './styles/index.jss'
@@ -24,18 +25,18 @@ try {
 		writeToFileLevels: LogLevel.Any,
 	})
 } catch (ex) {
-	console.log(ex)
+	console.error(ex)
 	throw ex
 }
 
 const dev = appConfig.sapper.buildMode === 'development'
 // const isExport = process.env.npm_lifecycle_event === 'build:sapper:export'
 // if (isExport) {
-// 	console.log('Export mode')
+// 	console.debug('Export mode')
 // }
 
-console.log('PORT=', process.env.PORT)
-console.log('NODE_ENV=', process.env.NODE_ENV)
+console.debug('PORT=', process.env.PORT)
+console.debug('NODE_ENV=', process.env.NODE_ENV)
 
 const server = express()
 server.disable('x-powered-by')
@@ -62,6 +63,6 @@ server
 	)
 	.listen(appConfig.sapper.port, err => {
 		if (err) {
-			console.log('error', err)
+			console.error('error', err)
 		}
 	})

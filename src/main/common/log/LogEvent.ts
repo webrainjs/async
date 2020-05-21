@@ -214,8 +214,19 @@ export class LogEvent<HandlersNames extends string|number>
 			if (this.additionalHashString) {
 				buffer.push(this.additionalHashString)
 			}
-			if (this.errorsString) {
-				buffer.push(this.errorsString.toString())
+			const errors = this.errors
+			if (errors) {
+				for (let i = 0, len = errors.length; i < len; i++) {
+					const error = errors[i]
+					let str = error.stack || error.toString()
+					if (str) {
+						const index = str.indexOf('\n')
+						if (index >= 0) {
+							str = str.substring(index + 1, str.length)
+						}
+					}
+					buffer.push(str)
+				}
 			}
 			if (this.stack) {
 				buffer.push(this.stack)

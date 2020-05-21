@@ -31,6 +31,11 @@ export class HtmlController {
 			return handler.apply(container, arguments)
 		}
 
+		options = {
+			passive: false,
+			...options,
+		}
+
 		this._container.addEventListener(eventName, _handler, options)
 		this._unsubscribers.push(() => {
 			this._container.removeEventListener(eventName, _handler, options)

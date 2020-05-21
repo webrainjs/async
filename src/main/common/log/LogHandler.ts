@@ -1,5 +1,4 @@
 import {ActionMode, ILogEvent, ILogEventParams, ILogger, ILogHandler, LogLevel} from './contracts'
-import {delay} from './helpers'
 
 export function canDoAction(actionMode: ActionMode, allowedLevels: LogLevel, level: LogLevel) {
 	return actionMode === ActionMode.Always
@@ -11,9 +10,7 @@ export abstract class LogHandler<Name extends string | number>
 {
 	private readonly _queue: Array<ILogEvent<Name>> = []
 	private _inProcess: boolean
-	private readonly _maxQueueSize: number
-	private readonly _throttleMaxQueueSize: number
-	private readonly _throttleTime: number
+	private readonly _maxLogSize: number
 	protected readonly _logger: ILogger<Name>
 	public allowLogLevels: LogLevel
 	public name: Name
@@ -23,23 +20,17 @@ export abstract class LogHandler<Name extends string | number>
 		name,
 		logger,
 		allowLogLevels,
-		maxQueueSize,
-		throttleMaxQueueSize,
-		throttleTime,
+		maxLogSize,
 	}: {
 		name: Name,
 		logger: ILogger<Name>,
 		allowLogLevels?: LogLevel,
-		maxQueueSize?: number,
-		throttleMaxQueueSize?: number,
-		throttleTime?: number,
+		maxLogSize?: number,
 	}) {
 		this.name = name
 		this._logger = logger
 		this.allowLogLevels = allowLogLevels || LogLevel.Any
-		this._maxQueueSize = maxQueueSize || 10
-		this._throttleMaxQueueSize = throttleMaxQueueSize || 5
-		this._throttleTime = throttleTime || 0
+		this._maxLogSize = maxLogSize || 50000
 	}
 
 	// tslint:disable-next-line:no-empty
@@ -71,10 +62,6 @@ export abstract class LogHandler<Name extends string | number>
 	public enqueueLog(logEvent: ILogEvent<Name>) {
 		const canLog = this.canLog(logEvent)
 
-		while (this._queue.length > this._maxQueueSize && !this.canLog(this._queue[0])) {
-			this._queue.shift()
-		}
-
 		this._queue.push(logEvent)
 
 		if (!canLog || this._inProcess) {
@@ -90,22 +77,43 @@ export abstract class LogHandler<Name extends string | number>
 			return
 		}
 		try {
+			const {_queue} = this
 			do {
-				if (this._throttleTime && this._queue.length < this._throttleMaxQueueSize) {
-					await delay(this._throttleTime)
+				const len = _queue.length
+				let endIndex = 0
+				for (; endIndex < len; endIndex++) {
+					if (this.canLog(_queue[endIndex])) {
+						break
+					}
 				}
 
-				if (!this._queue.length) {
+				if (endIndex >= _queue.length) {
+					_queue.length = 0
 					break
 				}
 
-				const logEvents = this._queue.splice(0)
+				let startIndex = endIndex
+				let logSize = 0
+				while (true) {
+					logSize += _queue[startIndex].bodyString.length
+					if (logSize >= this._maxLogSize) {
+						break
+					}
+					if (startIndex === 0) {
+						break
+					}
+					startIndex--
+				}
+
+				const logEvents = _queue.slice(startIndex, endIndex + 1)
+				_queue.splice(0, endIndex + 1)
+
 				try {
 					await this.handleLog(logEvents)
 				} catch (err) {
 					this.onError(logEvents, err)
 				}
-			} while (this._queue.some(o => this.canLog(o)))
+			} while (_queue.some(o => this.canLog(o)))
 		} finally {
 			this._inProcess = false
 		}

@@ -23,7 +23,6 @@ export abstract class SendLogHandler extends LogHandler<'sendLog'> {
 			name: 'sendLog',
 			logger,
 			allowLogLevels,
-			throttleTime: 1000,
 		})
 		this.logUrl = logUrl
 	}
@@ -56,19 +55,27 @@ export abstract class SendLogHandler extends LogHandler<'sendLog'> {
 
 		let errorWasWrite = false
 
-		let body = logEvents.reverse().map((logEvent, index) => escapeHtml(`[${
-			logEvent.dateString
-		}][${
-			this._logger.appName
-		}][${
-			logEvent.level
-		}][${
-			index
-		}]: ${
-			logEvent.bodyString
-		}\r\n\r\nAppInfo: ${
-			logEvent.appInfo
-		}`)).join('\r\n<hr>\r\n')
+		let body = logEvents.reverse().map((logEvent, index) => {
+			let logStr = `[${
+				logEvent.dateString
+			}][${
+				this._logger.appName
+			}][${
+				LogLevel[logEvent.level]
+			}][${
+				index
+			}]: ${
+				logEvent.bodyString
+			}`
+
+			if (index === 0) {
+				logStr += `\r\n\r\nAppInfo: ${
+					logEvent.appInfo
+				}`
+			}
+
+			return escapeHtml(logStr)
+		}).join('\r\n<hr>\r\n')
 
 		body = lastLogEvent.md5Hash + '\r\n' + '\r\n' + body
 
@@ -82,7 +89,7 @@ export abstract class SendLogHandler extends LogHandler<'sendLog'> {
 			Type: LogLevel[lastLogEvent.level],
 			Time: lastLogEvent.time.toISOString(),
 			MessageFull: body,
-			MessageShort: removeExcessSpaces(lastLogEvent.messagesString.substring(0, 200)),
+			MessageShort: removeExcessSpaces(lastLogEvent.bodyString.substring(0, 200)),
 		}
 
 		let delayTime = 10000
@@ -97,13 +104,13 @@ export abstract class SendLogHandler extends LogHandler<'sendLog'> {
 				}
 
 				if (statusCode === 429 || statusCode === 502 || statusCode === 504) {
-					console.log('Send log failed: Bad Connection')
+					console.debug('Send log failed: Bad Connection')
 				} else if (!errorWasWrite) {
 					errorWasWrite = true
 					selfError('Send log status code == ' + statusCode)
 				}
 			} catch (error) {
-				console.log('Send log failed: Bad Connection')
+				console.debug('Send log failed: Bad Connection')
 				// if (!errorWasWrite) {
 				// 	errorWasWrite = true
 				// 	selfError('Send log error', error)

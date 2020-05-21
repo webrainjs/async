@@ -1,297 +1,293 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-	<component name="BranchesTreeState">
-		<expand>
-			<path>
-				<item name="ROOT" type="e8cecc67:BranchNodeDescriptor"/>
-				<item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor"/>
-			</path>
-			<path>
-				<item name="ROOT" type="e8cecc67:BranchNodeDescriptor"/>
-				<item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor"/>
-			</path>
-			<path>
-				<item name="ROOT" type="e8cecc67:BranchNodeDescriptor"/>
-				<item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor"/>
-				<item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor"/>
-			</path>
-		</expand>
-		<select/>
-	</component>
-	<component name="ChangeListManager">
-		<option name="SHOW_DIALOG" value="false"/>
-		<option name="HIGHLIGHT_CONFLICTS" value="true"/>
-		<option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false"/>
-		<option name="LAST_RESOLUTION" value="IGNORE"/>
-	</component>
-	<component name="FavoritesManager">
-		<favorites_list name="balda"/>
-	</component>
-	<component name="Git.Settings">
-		<option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false"/>
-		<option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true"/>
-		<option name="RECENT_BRANCH_BY_REPOSITORY">
-			<map>
-				<entry key="$PROJECT_DIR$" value="node-module"/>
-			</map>
-		</option>
-		<option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$"/>
-		<option name="ROOT_SYNC" value="DONT_SYNC"/>
-	</component>
-	<component name="JsFlowSettings">
-		<service-enabled>true</service-enabled>
-		<exe-path/>
-		<other-services-enabled>true</other-services-enabled>
-		<auto-save>true</auto-save>
-	</component>
-	<component 
-name="NamedScopeManager">
-		<order>
-			<scope name="src-test"/>
-			<scope name="src-main"/>
-			<scope name="all"/>
-			<scope name="env"/>
-			<scope name="all-ts"/>
-		</order>
-	</component>
-	<component 
-name="PackageJsonUpdateNotifier">
-		<dismissed value="$PROJECT_DIR$/package.json"/>
-	</component>
-	<component name="ProjectId" id="1QDyXYBPHxGRJ3XfwibYzFNKXV7"/>
-	<component name="ProjectLevelVcsManager" settingsEditedManually="true">
-		<ConfirmationsSetting value="2" id="Add"/>
-	</component>
-	<component name="ProjectViewState">
-		<option name="hideEmptyMiddlePackages" value="true"/>
-		<option name="showLibraryContents" value="true"/>
-	</component>
-	<component name="PropertiesComponent">
-		<property name="ChangesTree.GroupingKeys" value="directory"/>
-		<property name="NewWatcherDialog.advanced.open" value="true"/>
-		<property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true"/>
-		<property name="WebServerToolWindowFactoryState" value="false"/>
-		<property name="auto.test.manager.delay" value="1000"/>
-		<property name="javascript.nodejs.core.library.configured.version" value="12.4.0"/>
-		<property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli"/>
-		<property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp"/>
-		<property name="jsx.switch.disabled" value="true"/>
-		<property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/karma"/>
-		<property name="node.js.detected.package.eslint" value="true"/>
-		<property name="node.js.detected.package.standard" value="true"/>
-		<property name="node.js.detected.package.stylelint" value="true"/>
-		<property name="node.js.detected.package.tslint" value="true"/>
-		<property name="node.js.path.for.package.eslint" value="node"/>
-		<property name="node.js.path.for.package.standard" value="node"/>
-		<property name="node.js.path.for.package.stylelint" value="project"/>
-		<property name="node.js.path.for.package.tslint" value="project"/>
-		<property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint"/>
-		<property name="node.js.selected.package.standard" value="L:\Work\_GIT\GitHub\NodeJs\templates\nodejs-templates\node_modules\eslint"/>
-		<property name="node.js.selected.package.stylelint" value=""/>
-		<property name="node.js.selected.package.tslint" value="(autodetect)"/>
-		<property name="nodejs.cucumber.cucumber_node_package_dir" value=""/>
-		<property name="nodejs.jest.jest_package" value=""/>
-		<property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha"/>
-		<property name="nodejs.protractor.protractor_package" value=""/>
-		<property name="nodejs_interpreter_path" value="node"/>
-		<property name="nodejs_package_manager_path" value="npm"/>
-		<property name="restartRequiresConfirmation" value="false"/>
-		<property name="settings.editor.selected.configurable" value="application.passwordSafe"/>
-		<property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\apps\app-template\node_modules\typescript\lib"/>
-	</component>
-	<component name="RunManager" selected="npm.Test Dev">
-		<configuration default="true" type="JavaScriptTestRunnerKarma">
-			<config-file value="$PROJECT_DIR$/env/karma/configs/dev.js"/>
-			<karma-package-dir value="$PROJECT_DIR$/node_modules/karma"/>
-			<node-interpreter value="node"/>
-			<envs/>
-			<method v="2"/>
-		</configuration>
-		<configuration default="true" type="NodeJSConfigurationType" path-to-node="node" node-parameters="--max-old-space-size=4096" working-dir="$PROJECT_DIR$">
-			<method v="2"/>
-		</configuration>
-		<configuration default="true" type="js.build_tools.grunt">
-			<node-interpreter value="project"/>
-			<envs/>
-			<method v="2"/>
-		</configuration>
-		<configuration default="true" type="js.build_tools.gulp">
-			<node-interpreter>project</node-interpreter>
-			<node-options/>
-			<gulpfile/>
-			<tasks/>
-			<arguments/>
-			<envs/>
-			<method v="2"/>
-		</configuration>
-		<configuration default="true" type="js.build_tools.npm">
-			<package-json value="$PROJECT_DIR$/package.json"/>
-			<command value="run"/>
-			<scripts/>
-			<node-interpreter value="node"/>
-			<envs/>
-			<method v="2"/>
-		</configuration>
-		<configuration 
-name="Intern Debug Video" type="mocha-javascript-test-runner">
-			<node-interpreter>node</node-interpreter>
-			<node-options>--max-old-space-size=4096</node-options>
-			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-			<working-directory>$PROJECT_DIR$</working-directory>
-			<pass-parent-env>true</pass-parent-env>
-			<envs>
-				<env name="APP_CONFIG" value="dev"/>
-				<env name="NODE_ENV" value="development"/>
-				<env name="OVERRIDE_VIDEO_OUTPUT_DIR" value="E:/Temp/selenoid/video"/>
-			</envs>
-			<ui>bdd</ui>
-			<extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
-			<test-kind>PATTERN</test-kind>
-			<test-pattern>./env/intern/configs/debug-video/mocha.js</test-pattern>
-			<method v="2"/>
-		</configuration>
-		<configuration name="Intern Debug" type="mocha-javascript-test-runner">
-			<node-interpreter>node</node-interpreter>
-			<node-options>--max-old-space-size=4096 --prof</node-options>
-			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-			<working-directory>$PROJECT_DIR$</working-directory>
-			<pass-parent-env>true</pass-parent-env>
-			<envs>
-				<env name="APP_CONFIG" value="dev"/>
-				<env name="NODE_ENV" value="development"/>
-			</envs>
-			<ui>bdd</ui>
-			<extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
-			<test-kind>PATTERN</test-kind>
-			<test-pattern>./env/intern/configs/debug/mocha.js</test-pattern>
-			<method v="2"/>
-		</configuration>
-		<configuration 
-default="true" type="mocha-javascript-test-runner">
-			<node-interpreter>node</node-interpreter>
-			<node-options>--max-old-space-size=4096</node-options>
-			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-			<working-directory>$PROJECT_DIR$</working-directory>
-			<pass-parent-env>true</pass-parent-env>
-			<ui>bdd</ui>
-			<extra-mocha-options>--opts ./env/mocha/mocha.babel.opts --watch</extra-mocha-options>
-			<test-kind>PATTERN</test-kind>
-			<test-pattern>./src/test/tests/{common,node}/**/*.*</test-pattern>
-			<method v="2"/>
-		</configuration>
-		<configuration name="webdriver.intern" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-			<node-interpreter>node</node-interpreter>
-			<node-options>--max-old-space-size=4096</node-options>
-			<mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-			<working-directory>$PROJECT_DIR$</working-directory>
-			<pass-parent-env>true</pass-parent-env>
-			<envs>
-				<env name="APP_CONFIG" value="dev"/>
-				<env name="NODE_ENV" value="development"/>
-			</envs>
-			<ui>bdd</ui>
-			<extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
-			<test-kind>TEST</test-kind>
-			<test-file>$PROJECT_DIR$/env/intern/mocha-helpers.js</test-file>
-			<test-names>
-				<name value="webdriver"/>
-				<name value="intern"/>
-			</test-names>
-			<method v="2"/>
-		</configuration>
-		
-<list>
-			<item itemvalue="Mocha.Coverage"/>
-			<item itemvalue="Mocha.Watch"/>
-			<item itemvalue="npm.build:polyfill"/>
-			<item itemvalue="npm.Test All"/>
-			<item itemvalue="npm.Test Dev"/>
-			<item itemvalue="npm.Build and Pack All"/>
-			<item itemvalue="npm.Build and Pack Prod"/>
-			<item itemvalue="Karma.Tests"/>
-			<item itemvalue="npm.Build and Pack Stage"/>
-			<item itemvalue="npm.Test and Pack All"/>
-			<item itemvalue="Karma.Dev"/>
-			<item itemvalue="npm.Build and Pack Demo"/>
-			<item itemvalue="npm.Build and Pack PreProd"/>
-			<item itemvalue="npm.Sapper Dev"/>
-			<item itemvalue="npm.Pack Chrome Dev"/>
-			<item itemvalue="npm.Pack All"/>
-			<item itemvalue="Mocha.Intern Export"/>
-			<item itemvalue="Node.js.Sapper Dev - DEBUG"/>
-			<item itemvalue="npm.Electron Export"/>
-			<item itemvalue="Mocha.Intern Dev Video"/>
-			<item itemvalue="Mocha.Intern Debug"/>
-			<item itemvalue="Mocha.Intern Debug Video"/>
-			<item itemvalue="npm.Pack Dev"/>
-			<item itemvalue="Karma.CI"/>
-			<item itemvalue="npm.Electron Dev"/>
-			<item itemvalue="Node.js.Build Chrome Dev"/>
-			<item itemvalue="npm.Test and Pack Dev"/>
-			<item itemvalue="Mocha.Intern Dev"/>
-			<item itemvalue="Mocha.Intern Export with rebuild"/>
-			<item itemvalue="Karma.Performance"/>
-			<item itemvalue="npm.Build and Pack Dev"/>
-			<item itemvalue="npm.Sapper Dev Components"/>
-			<item itemvalue="npm.Build and Pack Chrome Dev"/>
-		</list>
-	</component>
-	<component name="Vcs.Log.History.Properties">
-		<option name="COLUMN_ORDER">
-			<list>
-				<option value="0"/>
-				<option value="2"/>
-				<option value="3"/>
-				<option value="1"/>
-			</list>
-		</option>
-	</component>
-	<component name="Vcs.Log.Tabs.Properties">
-		<option name="TAB_STATES">
-			<map>
-				<entry key="MAIN">
-					<value>
-						<State/>
-					</value>
-				</entry>
-			</map>
-		</option>
-		<option name="oldMeFiltersMigrated" value="true"/>
-	</component>
-	<component name="VcsManagerConfiguration">
-		<option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false"/>
-		<option name="CHECK_NEW_TODO" value="false"/>
-		<option name="LAST_COMMIT_MESSAGE" value="Remove pug"/>
-		<MESSAGE value="Notification window big refactoring, tested. Works fine."/>
-		<MESSAGE value="v0.0.15"/>
-		<MESSAGE value="Webrain graph groups. Users table simple."/>
-		<MESSAGE value="Users paging completed"/>
-		<MESSAGE value="Google map markers in process..."/>
-		<MESSAGE value="Google map fit to view area in process.."/>
-		<MESSAGE value="Users location filter completed"/>
-		<MESSAGE value="Google/Floor map markers is completed"/>
-		<MESSAGE value="Users dialogs in process..."/>
-		<MESSAGE value="v0.0.18"/>
-		<MESSAGE value="User edit dialog in process..."/>
-		<MESSAGE value="Dialogs in process..."/>
-		<MESSAGE value="Devices in process..."/>
-		<MESSAGE value="Battery marker"/>
-		<MESSAGE value="Develop devices"/>
-		<MESSAGE value="Develop devices and users"/>
-		<MESSAGE value="Develop"/>
-		<MESSAGE value="build-and-pack:dev OK"/>
-		<MESSAGE value="configure travis"/>
-		<MESSAGE value="fix travis"/>
-		<MESSAGE value="fix coveralls"/>
-		<MESSAGE value="fix ReadMe"/>
-		<MESSAGE value="Merged with app"/>
-		<MESSAGE value="TODO changed"/>
-		<MESSAGE value="Remove pug"/>
-	</component>
-	<component name="WindowStateProjectService">
-		<state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1590048297236">
-			<screen x="0" y="0" width="1920" height="882"/>
-		</state>
-		<state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.882@0.0.1920.882" timestamp="1590048297236"/>
-	</component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="balda" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="node-module" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="NamedScopeManager">
+    <order>
+      <scope name="src-test" />
+      <scope name="src-main" />
+      <scope name="all" />
+      <scope name="env" />
+      <scope name="all-ts" />
+    </order>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectId" id="1QDyXYBPHxGRJ3XfwibYzFNKXV7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="directory" />
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="auto.test.manager.delay" value="1000" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.4.0" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp" />
+    <property name="jsx.switch.disabled" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/karma" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.stylelint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="node" />
+    <property name="node.js.path.for.package.standard" value="node" />
+    <property name="node.js.path.for.package.stylelint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="node.js.selected.package.standard" value="L:\Work\_GIT\GitHub\NodeJs\templates\nodejs-templates\node_modules\eslint" />
+    <property name="node.js.selected.package.stylelint" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.cucumber.cucumber_node_package_dir" value="" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
+    <property name="nodejs.protractor.protractor_package" value="" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
+    <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\apps\app-template\node_modules\typescript\lib" />
+  </component>
+  <component name="RunManager" selected="npm.Test Dev">
+    <configuration default="true" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
+      <node-interpreter value="node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" path-to-node="node" node-parameters="--max-old-space-size=4096" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.grunt">
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Intern Debug Video" type="mocha-javascript-test-runner">
+      <node-interpreter>node</node-interpreter>
+      <node-options>--max-old-space-size=4096</node-options>
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs>
+        <env name="APP_CONFIG" value="dev" />
+        <env name="NODE_ENV" value="development" />
+        <env name="OVERRIDE_VIDEO_OUTPUT_DIR" value="E:/Temp/selenoid/video" />
+      </envs>
+      <ui>bdd</ui>
+      <extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
+      <test-kind>PATTERN</test-kind>
+      <test-pattern>./env/intern/configs/debug-video/mocha.js</test-pattern>
+      <method v="2" />
+    </configuration>
+    <configuration name="Intern Debug" type="mocha-javascript-test-runner">
+      <node-interpreter>node</node-interpreter>
+      <node-options>--max-old-space-size=4096 --prof</node-options>
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs>
+        <env name="APP_CONFIG" value="dev" />
+        <env name="NODE_ENV" value="development" />
+      </envs>
+      <ui>bdd</ui>
+      <extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
+      <test-kind>PATTERN</test-kind>
+      <test-pattern>./env/intern/configs/debug/mocha.js</test-pattern>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner">
+      <node-interpreter>node</node-interpreter>
+      <node-options>--max-old-space-size=4096</node-options>
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options>--opts ./env/mocha/mocha.babel.opts --watch</extra-mocha-options>
+      <test-kind>PATTERN</test-kind>
+      <test-pattern>./src/test/tests/{common,node}/**/*.*</test-pattern>
+      <method v="2" />
+    </configuration>
+    <configuration name="webdriver.intern" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>node</node-interpreter>
+      <node-options>--max-old-space-size=4096</node-options>
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs>
+        <env name="APP_CONFIG" value="dev" />
+        <env name="NODE_ENV" value="development" />
+      </envs>
+      <ui>bdd</ui>
+      <extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/env/intern/mocha-helpers.js</test-file>
+      <test-names>
+        <name value="webdriver" />
+        <name value="intern" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Mocha.Intern Debug Video" />
+      <item itemvalue="Mocha.Intern Debug" />
+      <item itemvalue="Mocha.webdriver.intern" />
+      <item itemvalue="npm.Build and Pack All" />
+      <item itemvalue="npm.Build and Pack Chrome Dev" />
+      <item itemvalue="npm.Build and Pack Demo" />
+      <item itemvalue="npm.Build and Pack Dev" />
+      <item itemvalue="npm.Build and Pack PreProd" />
+      <item itemvalue="npm.Build and Pack Prod" />
+      <item itemvalue="npm.Build and Pack Stage" />
+      <item itemvalue="Node.js.Build Chrome Dev" />
+      <item itemvalue="npm.build:polyfill" />
+      <item itemvalue="Karma.CI" />
+      <item itemvalue="Karma.Coverage" />
+      <item itemvalue="Karma.Dev" />
+      <item itemvalue="npm.Electron Dev" />
+      <item itemvalue="npm.Electron Export" />
+      <item itemvalue="Mocha.Intern Dev" />
+      <item itemvalue="Mocha.Intern Dev Video" />
+      <item itemvalue="Mocha.Intern Export" />
+      <item itemvalue="Mocha.Intern Export with rebuild" />
+      <item itemvalue="npm.Pack All" />
+      <item itemvalue="npm.Pack Chrome Dev" />
+      <item itemvalue="npm.Pack Dev" />
+      <item itemvalue="Karma.Performance" />
+      <item itemvalue="npm.Sapper Dev" />
+      <item itemvalue="npm.Sapper Dev Components" />
+      <item itemvalue="Node.js.Sapper Dev - DEBUG" />
+      <item itemvalue="Karma.Tests" />
+      <item itemvalue="npm.Test All" />
+      <item itemvalue="npm.Test and Pack All" />
+      <item itemvalue="npm.Test and Pack Dev" />
+      <item itemvalue="npm.Test Dev" />
+      <item itemvalue="Mocha.Watch" />
+    </list>
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove pug" />
+    <MESSAGE value="Notification window big refactoring, tested. Works fine." />
+    <MESSAGE value="v0.0.15" />
+    <MESSAGE value="Webrain graph groups. Users table simple." />
+    <MESSAGE value="Users paging completed" />
+    <MESSAGE value="Google map markers in process..." />
+    <MESSAGE value="Google map fit to view area in process.." />
+    <MESSAGE value="Users location filter completed" />
+    <MESSAGE value="Google/Floor map markers is completed" />
+    <MESSAGE value="Users dialogs in process..." />
+    <MESSAGE value="v0.0.18" />
+    <MESSAGE value="User edit dialog in process..." />
+    <MESSAGE value="Dialogs in process..." />
+    <MESSAGE value="Devices in process..." />
+    <MESSAGE value="Battery marker" />
+    <MESSAGE value="Develop devices" />
+    <MESSAGE value="Develop devices and users" />
+    <MESSAGE value="Develop" />
+    <MESSAGE value="build-and-pack:dev OK" />
+    <MESSAGE value="configure travis" />
+    <MESSAGE value="fix travis" />
+    <MESSAGE value="fix coveralls" />
+    <MESSAGE value="fix ReadMe" />
+    <MESSAGE value="Merged with app" />
+    <MESSAGE value="TODO changed" />
+    <MESSAGE value="Remove pug" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1590048297236">
+      <screen x="0" y="0" width="1920" height="882" />
+    </state>
+    <state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.882@0.0.1920.882" timestamp="1590048297236" />
+  </component>
 </project>

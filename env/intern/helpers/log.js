@@ -20,11 +20,27 @@ Command.prototype.getAllLogs = function () {
 								} else {
 									log.message = message
 								}
-							} catch (ex) {}
+								// eslint-disable-next-line no-unused-vars
+							} catch (ex) {
+								// empty
+							}
 							return log
 						})))))
 		.then(logs => logs
 			.flatMap(o => o))
+}
+
+Command.prototype.printAllLogs = function (predicate) {
+	return this
+		.getAllLogs()
+		.then(logs => {
+			if (predicate) {
+				logs = logs.filter(predicate)
+			}
+			if (logs.length) {
+				console.log(JSON.stringify(logs, null, 4))
+			}
+		})
 }
 
 /* eslint-disable */

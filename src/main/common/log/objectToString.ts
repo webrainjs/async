@@ -1,6 +1,6 @@
 import {getObjectUniqueId} from 'webrain'
 
-function filter(obj) {
+export function filterDefault(obj) {
 	if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {
 		return false
 	}
@@ -8,38 +8,79 @@ function filter(obj) {
 	return true
 }
 
-export function objectToString(object: any): string {
+export function objectToString(object: any, {
+	maxLevel = 15,
+	maxValueSize = 5000,
+	maxFuncSize = 100,
+	maxProperties = 30,
+	maxListSize = 10,
+	maxResultSize = 50000,
+	filter = filterDefault,
+}: {
+	maxLevel: number,
+	maxValueSize: number,
+	maxFuncSize: number,
+	maxProperties: number,
+	maxListSize: number,
+	maxResultSize: number,
+	filter: (object: any) => boolean,
+} = {} as any): string {
 	if (object == null) {
 		return object + ''
 	}
 
 	const buffer: string[] = []
-	const append = (obj, tabs, parents) => {
+
+	let resultSize = 0
+	const OVERFLOW = new String('Overflow')
+
+	function appendBuffer(value: string, maxSize?: number) {
+		let _maxSize = Math.min(value.length, maxValueSize, maxResultSize - resultSize)
+		if (maxSize != null && _maxSize > maxSize) {
+			_maxSize = maxSize
+		}
+
+		if (value.length > _maxSize) {
+			value = value.substring(0, _maxSize) + '...'
+		}
+		buffer.push(value)
+		resultSize += value.length
+
+		if (resultSize >= maxResultSize) {
+			buffer.push('...')
+			resultSize += 3
+			throw OVERFLOW
+		}
+	}
+
+	const objectsSet = new Set()
+
+	const append = (obj, tabs, level = 0) => {
 		if (typeof obj === 'undefined') {
-			buffer.push('undefined')
+			appendBuffer('undefined')
 			return
 		}
 
 		if (obj === null) {
-			buffer.push('null')
+			appendBuffer('null')
 			return
 		}
 
 		if (typeof obj === 'number' || typeof obj === 'boolean') {
-			buffer.push(obj.toString())
+			appendBuffer(obj.toString())
 			return
 		}
 
 		if (typeof obj === 'string') {
-			buffer.push('"')
-			buffer.push(obj)
-			buffer.push('"')
+			appendBuffer('"')
+			appendBuffer(obj)
+			appendBuffer('"')
 			return
 		}
 
 		if (obj instanceof Date) {
-			buffer.push('<Date> ')
-			buffer.push(Number.isNaN(obj.getTime()) ? 'NaN' : obj.toISOString())
+			appendBuffer('<Date> ')
+			appendBuffer(Number.isNaN(obj.getTime()) ? 'NaN' : obj.toISOString())
 			return
 		}
 
@@ -47,111 +88,152 @@ export function objectToString(object: any): string {
 			(obj as any)._stack = obj.stack || obj.toString()
 		}
 
-		if (obj.valueOf) {
-			const value = obj.valueOf()
-			if (value !== obj) {
-				if (obj.constructor) {
-					buffer.push('<')
-					buffer.push(obj.constructor.name)
-					const id = getObjectUniqueId(obj)
-					if (id) {
-						buffer.push('-')
-						buffer.push(id.toString())
-					}
-					buffer.push('> ')
-				}
-				append(value, tabs, parents)
-				return
-			}
-		}
-
 		if (typeof obj === 'object') {
-			if (parents && parents.indexOf(obj) >= 0) {
-				buffer.push('...')
+			if (obj.valueOf) {
+				const value = obj.valueOf()
+				if (value !== obj) {
+					if (obj.constructor) {
+						appendBuffer('<')
+						appendBuffer(obj.constructor.name)
+						const id = getObjectUniqueId(obj)
+						if (id) {
+							appendBuffer('-')
+							appendBuffer(id.toString())
+						}
+						appendBuffer('> ')
+					}
+					append(value, tabs, level)
+					return
+				}
+			}
+
+			if (level >= maxLevel) {
+				appendBuffer('...')
 				return
 			}
 
-			parents = parents
-				? [obj, ...parents]
-				: [obj]
+			level++
 
 			if (!filter(obj)) {
-				buffer.push('<')
-				buffer.push(obj.constructor.name)
-				buffer.push('> {...}')
+				appendBuffer('<')
+				appendBuffer(obj.constructor.name)
+				appendBuffer('> {...}')
 				return
+			}
+
+			let maxCount = maxProperties
+			let _maxListSize = maxListSize
+			if (objectsSet.has(obj)) {
+				maxCount = 0
+				_maxListSize = 0
+			} else {
+				objectsSet.add(obj)
 			}
 
 			if (Array.isArray(obj)) {
-				buffer.push('[')
+				appendBuffer('[')
+				maxCount = _maxListSize
 			} else if (obj.constructor) {
-				buffer.push('<')
-				buffer.push(obj.constructor.name)
+				appendBuffer('<')
+				appendBuffer(obj.constructor.name)
 				const id = getObjectUniqueId(obj)
 				if (id) {
-					buffer.push('-')
-					buffer.push(id.toString())
+					appendBuffer('-')
+					appendBuffer(id.toString())
 				}
-				buffer.push('> {')
+				appendBuffer('> {')
 			} else {
-				buffer.push('{')
+				appendBuffer('{')
 			}
 
 			const newTabs = tabs + '\t'
 
-			let first = true
-			// tslint:disable-next-line:forin
-			for (const key in obj) {
-				if (!first) {
-					buffer.push(',\r\n')
-				} else {
-					buffer.push('\r\n')
-					first = false
+			let index = 0
+			if (index >= maxCount) {
+				appendBuffer('...')
+			} else {
+				// tslint:disable-next-line:forin
+				for (const key in obj) {
+					if (index === 0) {
+						appendBuffer('\r\n')
+					} else {
+						appendBuffer(',\r\n')
+					}
+
+					appendBuffer(newTabs)
+					appendBuffer(key === '' ? '""' : key)
+					appendBuffer(': ')
+					append(obj[key], newTabs, level)
+
+					index++
+					if (index >= maxCount) {
+						appendBuffer(newTabs)
+						appendBuffer('...')
+						break
+					}
 				}
-				buffer.push(newTabs)
-				buffer.push(key)
-				buffer.push(': ')
-				append(obj[key], newTabs, parents)
 			}
 
-			if (!first) {
-				buffer.push(',\r\n')
-				buffer.push(tabs)
+			if (index > 0) {
+				appendBuffer(',\r\n')
+				appendBuffer(tabs)
 			}
 			if (Array.isArray(obj)) {
-				buffer.push(']')
+				appendBuffer(']')
 			} else {
-				buffer.push('}')
+				appendBuffer('}')
 			}
 
 			if (!Array.isArray(obj) && Symbol.iterator in obj) {
-				buffer.push('[')
-				const index = 0
-				for (const item of obj) {
-					if (index > 0) {
-						buffer.push(',\r\n')
-					} else {
-						buffer.push('\r\n')
-						first = false
+				appendBuffer('[')
+				let index = 0
+				if (index >= _maxListSize) {
+					appendBuffer('...')
+				} else {
+					for (const item of obj) {
+						if (index > 0) {
+							appendBuffer(',\r\n')
+						} else {
+							appendBuffer('\r\n')
+						}
+
+						appendBuffer(tabs)
+						appendBuffer(index.toString())
+						appendBuffer(': ')
+						append(item, newTabs, level)
+
+						index++
+						if (index >= _maxListSize) {
+							appendBuffer(newTabs)
+							appendBuffer('...')
+							break
+						}
 					}
-					buffer.push(tabs)
-					buffer.push(index.toString())
-					buffer.push(': ')
-					append(item, newTabs, parents)
 				}
 				if (index > 0) {
-					buffer.push(',\r\n')
-					buffer.push(tabs)
+					appendBuffer(',\r\n')
+					appendBuffer(tabs)
 				}
-				buffer.push(']')
+				appendBuffer(']')
 			}
 
 			return
 		}
 
-		buffer.push(obj.toString())
+		if (typeof obj === 'function') {
+			appendBuffer(obj.toString(), maxFuncSize)
+		} else {
+			appendBuffer(obj.toString())
+		}
 	}
 
-	append(object, '', null)
+	try {
+		append(object, '', null)
+	} catch (error) {
+		if (error !== OVERFLOW) {
+			throw error
+		}
+	}
+
 	return buffer.join('')
 }

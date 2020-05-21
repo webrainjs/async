@@ -11,7 +11,14 @@ import {bindRemoteLogger} from './remoteLogger'
 const path = require('path')
 const {ipcMain} = require('electron')
 
+let initialized = false
 export function init(app: App, appConfig: any, prepareStartUrl: () => string) {
+	if (initialized) {
+		console.error('app already initialized')
+		return
+	}
+	initialized = true
+
 	appState.app = app
 	appState.appConfig = appConfig
 
@@ -54,8 +61,8 @@ export function init(app: App, appConfig: any, prepareStartUrl: () => string) {
 	appState.app.on('window-all-closed', () => {
 		// On macOS it is common for applications and their menu bar
 		// to stay active until the user quits explicitly with Cmd + Q
-		if (process.platform !== 'darwin') {
-			appState.app.quit()
-		}
+		// if (process.platform !== 'darwin') {
+		appState.app.quit()
+		// }
 	})
 }

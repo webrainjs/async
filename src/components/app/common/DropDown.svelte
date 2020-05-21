@@ -182,6 +182,7 @@
 	]
 	export let align = 'start'
 	export let isContentResizable = false
+	export let debug_id = null
 
 	let windowWidth
 	let windowHeight
@@ -295,7 +296,7 @@
 	on:touchstart="{clickListener}"
 	/>
 
-<Toggle type="checkbox" bind:checked="{showed}">
+<Toggle type="checkbox" bind:checked="{showed}" {debug_id}>
 	{#if isContentResizable}
 		<span
 			bind:this="{control}"
@@ -330,6 +331,7 @@
 			max-width: {dropdownMaxWidth == null ? 'auto' : dropdownMaxWidth + 'px'};
 			max-height: {dropdownMaxHeight == null ? 'auto' : dropdownMaxHeight + 'px'};
 		"
+		debug_id="{debug_id + '__menu'}"
 		>
 		<slot name="dropdown"></slot>
 	</div>

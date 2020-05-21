@@ -5,11 +5,27 @@
 	import Toggle from "./Toggle.svelte"
 
 	export let checked = false
+	export let flex = false
 
 	let fullscreen
 
+	let isClick
 	function onclick() {
-		fullscreen && fullscreen.toggle()
+		if (fullscreen) {
+			isClick = true
+			checked = !checked
+		}
+	}
+
+	$: fullscreen && updateFullscreen(checked)
+
+	function updateFullscreen(checked) {
+		if (checked && !isClick) {
+			console.debug('Enter fullscreen can only be initiated by a user gesture')
+			checked = false
+		}
+		isClick = false
+		fullscreen.set(checked)
 	}
 
 	let elem
@@ -23,7 +39,7 @@
 
 <span bind:this="{elem}" style="display: none"></span>
 {#if fullscreen}
-	<Toggle checked="{checked}" on:click="{onclick}">
+	<Toggle checked="{checked}" on:click="{onclick}" {flex}>
 		<slot fullscreen={checked}></slot>
 	</Toggle>
 {/if}

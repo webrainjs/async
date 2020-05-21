@@ -1,7 +1,9 @@
 import {
-	CalcObjectBuilder,
-	calcPropertyFactory,
-	connectorFactory,
+	noSubscribe,
+	dependConnectorFactory,
+	dependCalcPropertyFactory,
+	dependCalcPropertyFactoryX,
+	DependCalcObjectBuilder,
 	ObservableClass,
 } from 'webrain'
 
@@ -12,29 +14,35 @@ export class TestObject extends ObservableClass {
 	public readonly time: Date
 }
 
-new CalcObjectBuilder(TestObject.prototype)
+new DependCalcObjectBuilder(TestObject.prototype)
 	.writable('value1')
 	.writable('value2')
-	.calc('sum',
-		connectorFactory({
-			buildRule: c => c
-				.connect('val1', b => b.p('value1'))
-				.connect('val2', b => b.p('value2')),
+	.nestedCalc('sum',
+		dependConnectorFactory({
+			build: c => c
+				.connectPath('val1', b => b.f(o => o.value1))
+				.connectPath('val2', b => b.f(o => o.value2)),
 		}),
-		calcPropertyFactory({
-			dependencies: d => d.invalidateOn(b => b.propertyAny()),
-			calcFunc(state) {
-				state.value = state.input.val1 + state.input.val2
+		dependCalcPropertyFactoryX({
+			*calcFunc() {
+				const state = this
+				const input = state._this.input
+				let value = state.value
+
+				return (yield input.val1) + (yield input.val2)
 			},
 		}),
 	)
-	.calc('time', null,
-		calcPropertyFactory({
-			dependencies: d => d.invalidateOn(b => b.propertyAny()),
-			calcFunc(state) {
-				state.value = new Date()
+	.nestedCalc('time', null,
+		dependCalcPropertyFactoryX({
+			*calcFunc() {
+				const state = this
+				const input = state._this.input
+				let value = state.value
+
+				return new Date()
 			},
-			calcOptions: {
+			deferredOptions: {
 				autoInvalidateInterval: 1000,
 			},
 		}),

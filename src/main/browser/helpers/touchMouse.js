@@ -41,7 +41,10 @@ export class TouchToMouse {
 				e.stopPropagation()
 				e.preventDefault()
 				return false
-			}, {bubbles: false})
+			}, {
+				bubbles: false,
+				passive: false,
+			})
 		}
 
 		function addListenerWithCoord(eventType, actionName) {
@@ -56,7 +59,10 @@ export class TouchToMouse {
 				e.stopPropagation()
 				e.preventDefault()
 				return false
-			}, {bubbles: false})
+			}, {
+				bubbles: false,
+				passive: false,
+			})
 		}
 
 		let prevTarget = null

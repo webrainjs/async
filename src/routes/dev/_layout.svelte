@@ -30,7 +30,7 @@
 <main bind:this="{container}" class="fill">
 	<Window
 		title="Dev"
-		minimizeInsteadClose={true}
+		hideOrMinimizeInsteadClose={true}
 		>
         <div class="fill flex flex--vertical" style="background: white;">
         	<div class="nav flex__item--fit scroll-horizontal scrollbar--collapsed">

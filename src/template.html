@@ -31,8 +31,7 @@
 				try {
 					return origEval.call(window, str);
 				} catch (ex) {
-					console.error(ex);
-					console.log(str);
+					console.error(ex, str);
 					throw ex;
 				}
 			};

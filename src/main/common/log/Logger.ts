@@ -201,7 +201,16 @@ export class Logger<HandlersNames extends string|number> implements ILogger<Hand
 	public async onLog(logEvent: ILogEvent<HandlersNames>): Promise<void> {
 		if (this._subscribers.length) {
 			for (let i = 0; i < this._subscribers.length; i++) {
-				await this._subscribers[i](logEvent)
+				const subscriber = this._subscribers[i]
+				try {
+					await subscriber(logEvent)
+				} catch (error) {
+					this._subscribers.splice(i, 1)
+					this.log(new LogEvent({
+						level: LogLevel.Error,
+						messagesOrErrors: [`onLog() error in ${subscriber}`, error],
+					}))
+				}
 			}
 		}
 	}

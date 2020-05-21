@@ -2,11 +2,11 @@
 	<title>Webrain dev page</title>
 </svelte:head>
 
-<Webrain/>
+<!--<Webrain/>-->
 <TestView />
 
 <script>
-	import Webrain from '../../components/dev/webrain/Webrain.svelte'
+	// import Webrain from '../../components/dev/webrain/Webrain.svelte'
 	import TestView from '../../components/dev/webrain/TestView.svelte'
 </script>
 

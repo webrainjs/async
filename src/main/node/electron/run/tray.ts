@@ -8,7 +8,14 @@ const { Menu, Tray, nativeImage } = require('electron')
 const path = require('path')
 const {ipcMain} = require('electron')
 
+let initialized = false
 export function showTray() {
+	if (initialized) {
+		console.error('tray already initialized')
+		return
+	}
+	initialized = true
+
 	const iconPath = path.resolve(
 		getRootPath(appState.app),
 		process.platform === 'darwin'
@@ -27,14 +34,14 @@ export function showTray() {
 		},
 		{
 			id: 'signin',
-			label: 'Sign In',
+			label: 'Sign in',
 			click(item, window, event) {
 				appState.win.webContents.send('tray_onclick', { id: item.id })
 			},
 		},
 		{
 			id: 'signout',
-			label: 'Sign Out',
+			label: 'Sign out',
 			click(item, window, event) {
 				appState.win.webContents.send('tray_onclick', { id: item.id })
 			},

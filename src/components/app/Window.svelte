@@ -4,6 +4,9 @@
 	import {goto, stores} from 'SAPPER_MODULE/app'
 	import ToggleFullscreen from "../common/ToggleFullscreen.svelte";
 	import appConfig from 'APP_CONFIG_PATH'
+	import WindowButtons from "./common/WindowButtons.svelte";
+	import {getUserAgent} from "../../brain/helpers/system-info";
+	import WindowButtonsMac from "./common/WindowButtonsMac.svelte";
 
 	const pageStore = stores()
 	const page = pageStore && pageStore.page
@@ -11,33 +14,40 @@
 	export let win = null
 	export let title = 'App'
 
+	export let canHide = true
 	export let canMinimize = true
 	export let canMaximize = true
 	export let canFullscreen = true
 	export let canClose = true
 	export let canDev = !!page
 
-	export let minimizeInsteadClose = false
+	export let hideOrMinimizeInsteadClose = false
 	export let openWebrainWindow = null
 
 	let maximized = false
 	let fullscreen = false
 
+	let _canHide
 	let _canMinimize
 	let _canMaximize
+	let _canRestore
 	let _canClose
 	let _canDev
 
+	$: _canHide = canHide && win && !!win.hide
 	$: _canMinimize = canMinimize && win && !!win.minimize
-	$: _canMaximize = canMaximize && win && !!win.maximize && !!win.restore
+	$: _canMaximize = !fullscreen && !maximized && canMaximize && win && !!win.maximize && !!win.restore
+	$: _canRestore = !fullscreen && maximized && canMaximize && win && !!win.maximize && !!win.restore
 	$: _canClose = canClose && win && !!win.close
-	$: _canMinimize = canMinimize && win && !!win.minimize
 	$: _canDev = canDev && appConfig.dev && appConfig.dev.devPage
+
+	let osName
 
 	onMount(() => {
 		if (!win) {
 			win = window
 		}
+		osName = getUserAgent().os.name
 	})
 
 	function showDev() {
@@ -46,7 +56,7 @@
 			if (path.startsWith('/dev/')) {
 				goto('')
 			} else {
-				//console.log('path = ', path)
+				//console.debug('path = ', path)
 				goto('dev')
 			}
 		}
@@ -59,8 +69,32 @@
 	}
 
 	//see: https://stackoverflow.com/a/31174463/5221762
-	function minimize() {
+	function _minimize() {
 		win.minimize()
+	}
+
+	function minimize() {
+		if (fullscreen && osName === 'Mac OS') {
+			fullscreen = false
+			setTimeout(_minimize, 700)
+		} else {
+			_minimize()
+		}
+	}
+
+	function _hideOrMinimize() {
+		if (win.hide || win.minimize) {
+			(win.hide || win.minimize)()
+		}
+	}
+
+	function hideOrMinimize() {
+		if (fullscreen && osName === 'Mac OS') {
+			fullscreen = false
+			setTimeout(_hideOrMinimize, 700)
+		} else {
+			_hideOrMinimize()
+		}
 	}
 
 	function maximize() {
@@ -74,8 +108,8 @@
 	}
 
 	function close() {
-		if (minimizeInsteadClose) {
-			minimize()
+		if (hideOrMinimizeInsteadClose) {
+			hideOrMinimize()
 		} else {
 			win.close()
 		}
@@ -84,36 +118,49 @@
 
 <div class="window flex__item--fit flex flex--vertical fill">
     <div class="window__titlebar titlebar flex">
+		{#if appConfig.type === 'dev' || osName === 'Mac OS'}
+			<div class="titlebar__buttons flex__item--fit flex flex--align-center margin-left-half">
+				<WindowButtonsMac
+					canClose="{_canClose}"
+					canDev="{_canDev}"
+					canFullscreen="{canFullscreen}"
+					canMaximize="{false}"
+					canRestore="{false}"
+					canMinimize="{_canMinimize}"
+
+					bind:fullscreen="{fullscreen}"
+
+					on:showDev="{showDev}"
+					on:minimize="{minimize}"
+					on:maximize="{maximize}"
+					on:restore="{restore}"
+					on:close="{close}"
+				/>
+			</div>
+		{/if}
         <div class="titlebar__title flex__item--fill flex flex--align-center">
-			<span class="text">{title}</span>
+			<span class="text" debug_id="main-window__title">{title}</span>
         </div>
-        <div class="titlebar__buttons flex__item--fit flex">
-            <!-- href needed for sapper export -->
-            <a href="dev" class="titlebar__button button-dev flex"
-            	on:click|preventDefault="{showDev}"
-            	class:collapsed="{!_canDev}">
-				<span class="text">&lt;/&gt;</span>
-            </a>
-            {#if canFullscreen}
-				<ToggleFullscreen bind:checked={fullscreen} let:fullscreen={fullscreen}>
-					<div class="titlebar__button flex" title="{fullscreen ? 'Exit' : 'Enter'} full screen (F11)">
-						<span class="titlebar__button__icon ghost icon-inline icon-window-fullscreen-{fullscreen ? 'exit' : 'enter'}">&nbsp;</span>
+		{#if appConfig.type === 'dev' || osName === 'Windows'}
+			<div class="titlebar__buttons flex__item--fit flex margin-right-half">
+        	<WindowButtons
+        		canClose="{_canClose}"
+        		canDev="{_canDev}"
+        		canFullscreen="{canFullscreen}"
+        		canMaximize="{_canMaximize}"
+        		canRestore="{_canRestore}"
+        		canMinimize="{_canMinimize}"
+
+        		bind:fullscreen="{fullscreen}"
+
+				on:showDev="{showDev}"
+				on:minimize="{minimize}"
+				on:maximize="{maximize}"
+				on:restore="{restore}"
+				on:close="{close}"
+        	/>
 					</div>
-				</ToggleFullscreen>
             {/if}
-            <button class="titlebar__button flex" on:click="{minimize}" class:collapsed="{!_canMinimize}">
-                <span class="titlebar__button__icon ghost icon-inline icon-window-minimize">&nbsp;</span>
-            </button>
-            <button class="titlebar__button flex" on:click="{maximize}" class:collapsed="{fullscreen || !_canMaximize || maximized}">
-                <span class="titlebar__button__icon ghost icon-inline icon-window-maximize">&nbsp;</span>
-            </button>
-            <button class="titlebar__button flex" on:click="{restore}" class:collapsed="{fullscreen || !_canMaximize || !maximized}">
-                <span class="titlebar__button__icon ghost icon-inline icon-window-restore">&nbsp;</span>
-            </button>
-            <button class="titlebar__button flex" on:click="{close}" class:collapsed="{!_canClose}">
-                <span class="titlebar__button__icon ghost icon-inline icon-window-close">&nbsp;</span>
-            </button>
-        </div>
     </div>
     <div class="window__content flex__item--fill flex">
         <slot></slot>
@@ -138,6 +185,7 @@
 				'font-size': `160%`,
 				'z-index': 10000,
 				'background-color': colors.base[7],
+				height: titleBarHeight,
 				'&__title': {
 					...templates.noWrap(),
 					'padding-left': `0.5em`,
@@ -150,19 +198,9 @@
 					'color': colors.base[14],
 				},
 				'&__buttons': {
-					'padding-right': `0.5em`,
 					'padding-bottom': `0.1em`,
 					'padding-top': `0.1em`,
 				},
-				'&__button': [
-					buttons.withText({
-						colorText: colors.base[14]
-					}),
-					{
-						'height': titleBarHeight,
-						'width': `auto`,
-					}
-				],
 			},
 			'.button-dev': {
 				'margin-right': `1em`,

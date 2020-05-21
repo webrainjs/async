@@ -16,6 +16,7 @@ module.exports = {
 		devTools: {
 			openAtStart: false,
 		},
+		devBuild       : false,
 	},
 	tests: {
 		intern: {

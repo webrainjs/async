@@ -14,6 +14,11 @@ export function bindWheel(container, eventHandler, options) {
 		return eventHandler.call(this, event)
 	}
 
+	options = {
+		passive: false,
+		...options,
+	}
+
 	// IE9, Chrome, Safari, Opera
 	container.addEventListener('mousewheel', _eventHandler, options)
 	// Firefox

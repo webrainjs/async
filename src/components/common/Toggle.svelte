@@ -10,6 +10,8 @@
 	export let value = void 0
 	export let valueChecked = void 0
 	export let valueUnchecked = void 0
+	export let flex = false
+	export let debug_id = null
 
 	$: type === 'radio' && updateRadio(group, value)
 
@@ -62,7 +64,7 @@
 	}
 </script>
 
-<label disabled="{disabled}">
+<label disabled="{disabled}" class:flex={flex} class:inline="{!flex}" {debug_id}>
 	{#if type === 'radio'}
 		<input
 			type="radio"
@@ -93,6 +95,8 @@
 			label: {
 				...templates.noSelect,
 				...templates.noDrag,
+			},
+			'.inline': {
 				display: `inline-block`,
 				'align-items': `center`,
 				'-webkit-box-align': `inherit`,

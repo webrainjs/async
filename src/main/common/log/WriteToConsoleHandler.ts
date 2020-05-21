@@ -1,5 +1,6 @@
 import {ActionMode, ILogEvent, ILogger, LogLevel} from './contracts'
 import {LogHandler} from './LogHandler'
+import {objectToString} from "./objectToString";
 
 const consoleOrig = {
 	debug: console.debug.bind(console),
@@ -35,7 +36,12 @@ export class WriteToConsoleHandler extends LogHandler<'writeToConsole'> {
 				})
 
 				if (consoleFunc) {
-					consoleFunc(...args)
+					consoleFunc.apply(console, args.map(o => {
+						if (o instanceof Error) {
+							return objectToString(o)
+						}
+						return o
+					}))
 				}
 			}
 		}

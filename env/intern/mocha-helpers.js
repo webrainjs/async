@@ -14,7 +14,7 @@ export function configure(configChanges = {}) {
 export function runTests() {
 	describe('webdriver', function () {
 		it('intern', async function () {
-			this.timeout(600000)
+			this.timeout(1200000)
 			console.log('Run Intern')
 
 			// !!

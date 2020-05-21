@@ -47,7 +47,12 @@ Command.prototype.getWithPort = function (port, relativeUrl) {
 }
 
 Command.prototype.getWithInternPort = function (relativeUrl) {
-	return this.getWithPort(appConfig.tests.intern.staticPort, relativeUrl)
+	return this.getWithPort(
+		process.env.NODE_ENV === 'development'
+			? appConfig.sapper.port
+			: appConfig.tests.intern.staticPort,
+		relativeUrl
+	)
 }
 
 global.delay = delay
@@ -80,5 +85,5 @@ Command.prototype.runInWindow = function (windowHandle, func) {
 }
 
 Command.prototype.call = function (func) {
-	return func(this)
+	return func.call(this, this)
 }

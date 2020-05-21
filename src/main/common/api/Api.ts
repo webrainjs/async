@@ -31,7 +31,6 @@ export class Api<TError> implements IApi<TError> {
 			return
 		}
 		this._isBadConnection = value
-		console.log(value ? 'Bad Connection' : 'Connection Restored')
 	}
 
 	// region networkEventObservable
@@ -139,14 +138,24 @@ export class Api<TError> implements IApi<TError> {
 
 			if (err.errorType === NetworkErrorType.BadConnection) {
 				this.isBadConnection = true
-				this._networkEventSubject.emit({
-					type: NetworkEventType.Error,
-					data: err,
-				})
+
+				const apiError = {
+					networkError: err,
+				}
+
+				const errorHandled = errorHandler && errorHandler(apiError)
+				if (errorHandled !== true) {
+					// console.error('Api error', err, request)
+					if (errorHandled == null) {
+						this._networkEventSubject.emit({
+							type: NetworkEventType.Error,
+							data: err,
+						})
+					}
+				}
+
 				return {
-					error: {
-						networkError: err,
-					},
+					error: apiError,
 				}
 			}
 
@@ -160,24 +169,26 @@ export class Api<TError> implements IApi<TError> {
 				} catch { }
 			}
 
-			const apiError = {
-				apiError: data,
-				networkError: err,
-			}
-
-			const errorHandled = errorHandler && errorHandler(apiError)
-			if (errorHandled !== true) {
-				console.error('Api error', err, request)
-				if (errorHandled == null) {
-					this._networkEventSubject.emit({
-						type: NetworkEventType.Error,
-						data: err,
-					})
+			{
+				const apiError = {
+					apiError: data,
+					networkError: err,
 				}
-			}
 
-			return {
-				error: apiError,
+				const errorHandled = errorHandler && errorHandler(apiError)
+				if (errorHandled !== true) {
+					console.error('Api error', err, request)
+					if (errorHandled == null) {
+						this._networkEventSubject.emit({
+							type: NetworkEventType.Error,
+							data: err,
+						})
+					}
+				}
+
+				return {
+					error: apiError,
+				}
 			}
 		}
 	}

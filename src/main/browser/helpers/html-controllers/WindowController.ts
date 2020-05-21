@@ -1,6 +1,6 @@
 import {
 	BehaviorSubject,
-	CalcObjectBuilder,
+	DependCalcObjectBuilder,
 	IObservable,
 	ISubject,
 	ObservableClass,
@@ -111,8 +111,8 @@ export class WindowSizeController {
 		}
 		this.borderWidth = this.winController.win.outerWidth - this.winController.win.innerWidth
 		this.borderHeight = this.winController.win.outerHeight - this.winController.win.innerHeight
-		console.log(`outerWidth, innerWidth: ${this.winController.win.outerWidth}, ${this.winController.win.innerWidth}`)
-		console.log(`Window border size: ${this.borderWidth}, ${this.borderHeight}`)
+		console.debug(`outerWidth, innerWidth: ${this.winController.win.outerWidth}, ${this.winController.win.innerWidth}`)
+		console.debug(`Window border size: ${this.borderWidth}, ${this.borderHeight}`)
 	}
 
 	public bind() {
@@ -243,14 +243,26 @@ export class WindowController extends ObservableClass {
 				return
 			}
 
-			this.win.addEventListener('resize', resolve, false)
-			if (this.win.innerWidth !== 0
-				&& this.win.innerHeight !== 0
-				&& this.win.outerWidth !== 0
-				&& this.win.outerHeight !== 0
-			) {
+			const _resolve = () => {
+				this.win.removeEventListener('resize', _resolve)
 				resolve()
 			}
+
+			this.win.addEventListener('resize', _resolve, false)
+
+			const check = () => {
+				if (this.win.innerWidth !== 0
+					&& this.win.innerHeight !== 0
+					&& this.win.outerWidth !== 0
+					&& this.win.outerHeight !== 0
+				) {
+					_resolve()
+					return
+				}
+				setTimeout(check, 50)
+			}
+
+			check()
 		})
 
 		this._waitLoadTask = null
@@ -293,14 +305,9 @@ export class WindowController extends ObservableClass {
 
 	// region onLoad
 
-	private _loadSubject: ISubject<any>
-
+	private _loadSubject: ISubject<any> = new BehaviorSubject()
 	public get loadObservable(): IObservable<any> {
-		let {_loadSubject} = this
-		if (!_loadSubject) {
-			this._loadSubject = _loadSubject = new BehaviorSubject()
-		}
-		return _loadSubject
+		return this._loadSubject
 	}
 
 	private onLoad() {
@@ -309,12 +316,9 @@ export class WindowController extends ObservableClass {
 		}
 		this.isLoaded = true
 
-		console.log('Window loaded')
+		console.debug('Window loaded')
 
-		const {_loadSubject} = this
-		if (_loadSubject) {
-			_loadSubject.emit(null)
-		}
+		this._loadSubject.emit(null)
 	}
 
 	// endregion
@@ -338,14 +342,14 @@ export class WindowController extends ObservableClass {
 		this.isClosing = true
 		this.unbind()
 
-		console.log('Window closing')
+		console.debug('Window closing')
 
 		const {_closeSubject} = this
 		if (_closeSubject) {
 			_closeSubject.emit(null)
 		}
 
-		console.log('Window closed')
+		console.debug('Window closed')
 	}
 
 	// endregion
@@ -382,15 +386,30 @@ export class WindowController extends ObservableClass {
 			return
 		}
 
-		this.win.addEventListener('beforeunload', () => {
+		const onBeforeUnload = () => {
 			this.onClose()
 			return false
-		})
-		this.win.addEventListener('resize', e => {
+		}
+
+		const onResize = e => {
 			this.onResize(e)
+		}
+
+		this.win.addEventListener('beforeunload', onBeforeUnload)
+		this.win.addEventListener('resize', onResize)
+
+		this._setUnsubscriber('beforeunload', () => {
+			this.win.removeEventListener('beforeunload', onBeforeUnload)
 		})
+		this._setUnsubscriber('resize', () => {
+			this.win.removeEventListener('resize', onResize)
+		})
+
 		this._setUnsubscriber('isVisible', bindVisibleChange(this.win, value => {
 			this.isVisible = value
+			if (!value) {
+				this.isFocused = false
+			}
 		}))
 		this._setUnsubscriber('isFocused', bindFocusChange(this.win, value => {
 			this.isFocused = value
@@ -402,8 +421,8 @@ export class WindowController extends ObservableClass {
 			return
 		}
 
-		this.win.removeEventListener('beforeunload', this.onClose)
-		this.win.removeEventListener('resize', this.onClose)
+		this._setUnsubscriber('beforeunload', null)
+		this._setUnsubscriber('resize', null)
 		this._setUnsubscriber('isVisible', null)
 		this._setUnsubscriber('isFocused', null)
 	}
@@ -421,6 +440,7 @@ export class WindowController extends ObservableClass {
 			(this.win as any).restore()
 		}
 		this.win.focus()
+		this.isFocused = true
 	}
 
 	public minimize() {
@@ -430,6 +450,18 @@ export class WindowController extends ObservableClass {
 
 		if ((this.win as any).minimize) {
 			(this.win as any).minimize()
+			this.isFocused = false
+		}
+	}
+
+	public hideOrMinimize() {
+		if (!this.isOpened) {
+			return
+		}
+
+		if ((this.win as any).hide || (this.win as any).minimize) {
+			((this.win as any).hide || (this.win as any).minimize)()
+			this.isFocused = false
 		}
 	}
 
@@ -449,9 +481,15 @@ export class WindowController extends ObservableClass {
 	// endregion
 }
 
-new CalcObjectBuilder(WindowController.prototype)
+new DependCalcObjectBuilder(WindowController.prototype)
 	.writable('isVisible')
-	.writable('isFocused')
+	.writable('isFocused', {
+		setOptions: {
+			beforeChange(oldValue, newValue) {
+				console.debug(`${this.windowName}.isFocused = ${newValue}`)
+			},
+		},
+	})
 
 const WINDOW_STATE_PROPERTY_NAME = '13883806ede0481c92c41c2cda3d99c3'
 
@@ -516,7 +554,7 @@ export class WindowControllerFactory {
 		}
 
 		if (!this._windowController || !this._windowController.isOpened) {
-			console.log('Window open')
+			console.debug('Window open')
 			let win = window.open(...this._windowOptions)
 
 			if (!win) {
@@ -587,22 +625,13 @@ export class WindowControllerFactory {
 
 	// region onLoad
 
-	private _loadSubject: ISubject<WindowController>
-
-	// tslint:disable-next-line:no-identical-functions
+	private _loadSubject: ISubject<WindowController> = new BehaviorSubject()
 	public get loadObservable(): IObservable<WindowController> {
-		let {_loadSubject} = this
-		if (!_loadSubject) {
-			this._loadSubject = _loadSubject = new Subject()
-		}
-		return _loadSubject
+		return this._loadSubject
 	}
 
 	private onLoad(windowController: WindowController) {
-		const {_loadSubject} = this
-		if (_loadSubject) {
-			_loadSubject.emit(windowController)
-		}
+		this._loadSubject.emit(windowController)
 	}
 
 	// endregion

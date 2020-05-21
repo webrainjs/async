@@ -489,7 +489,9 @@ export class ScrollBoosterController extends HtmlController {
 		this.addEventListener(this.props.handleMatches, 'click', this.events.click)
 		this.addEventListener(this.props.viewportMatches, 'wheel', this.events.wheel)
 		this.addEventListener(this.props.viewportMatches, 'scroll', this.events.scroll)
-		window.addEventListener('resize', this.events.resize)
+		window.addEventListener('resize', this.events.resize, {
+			passive: false,
+		})
 	}
 
 	public destroy() {

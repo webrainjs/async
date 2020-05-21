@@ -3,7 +3,7 @@ import {configure, runTests} from '../../mocha-helpers'
 
 config.environments = config.environments.map(o => ({
 	...o,
-	enableVNC       : false,
+	enableVNC       : true,
 	enableVideo     : true,
 	videoFrameRate  : 60,
 	screenResolution: '500x1000x24',
@@ -12,7 +12,7 @@ config.environments = config.environments.map(o => ({
 configure({
 	...config,
 	functionalSuites: [
-		'src/test/*/webdriver/**/sapper/**/*.js',
+		'src/test/*/webdriver/**/app/**/*.{js,ts}',
 		'!*/**/{src,assets}/**'
 	],
 })

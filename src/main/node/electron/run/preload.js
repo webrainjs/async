@@ -5,7 +5,7 @@ const {remote, ipcRenderer, BrowserWindow} = require('electron')
 const remoteWindow = remote.getCurrentWindow()
 const appConfig = ipcRenderer.sendSync('app-config')
 
-console.log('preload')
+console.debug('preload')
 
 function delay(timeMilliseconds) {
 	return new Promise(resolve => setTimeout(resolve, timeMilliseconds))
@@ -38,17 +38,10 @@ function initWindow(window, remoteWindow) {
 
 	// region window actions
 
-	remoteWindow.wid
-
 	const open = window.open.bind(window)
 	window.open = function (...args) {
-		const childWindow = open(...args)
-
-		const allWindows = remote.BrowserWindow.getAllWindows()
-		const remoteChildWindow = allWindows[allWindows.length - 1]
-
 		const featuresStr = args[2]
-		const features = featuresStr
+		const features = (featuresStr || '')
 			.split(',')
 			.map(o => o
 				.split('=')
@@ -59,10 +52,36 @@ function initWindow(window, remoteWindow) {
 				return a
 			}, {})
 
+		const oldWindows = remote.BrowserWindow.getAllWindows()
+
+		const childWindow = open(...args)
+		childWindow.document.documentElement.style.display = 'none'
+		childWindow.document.documentElement.style.backgroundColor = '#01000001'
+
+		const newWindows = remote.BrowserWindow.getAllWindows()
+
+		let newWindow
+		for (let i = 0, len = newWindows.length; i < len; i++) {
+			const win = newWindows[i]
+			if (oldWindows.indexOf(win) < 0) {
+				if (newWindow) {
+					throw new Error('Found more than one new window')
+				}
+				newWindow = win
+			}
+		}
+		if (!newWindow) {
+			throw new Error('New window not found')
+		}
+
+		const remoteChildWindow = newWindow
+
+		remoteChildWindow.setBackgroundColor('#00FFFFFF')
+		// remoteChildWindow.transparent = true
 		remoteChildWindow.setAlwaysOnTop(!!features.alwaysOnTop)
-		remoteChildWindow.setResizable(!!features.resizable)
-		remoteChildWindow.setMovable(!!features.movable)
-		remoteChildWindow.setFullScreenable(!!features.fullscreenable)
+		remoteChildWindow.resizable = !!features.resizable
+		remoteChildWindow.movable = !!features.movable
+		remoteChildWindow.fullScreenable = !!features.fullscreenable
 
 		// not needed:
 		// initWindow(childWindow, remoteChildWindow)
@@ -92,6 +111,12 @@ function initWindow(window, remoteWindow) {
 
 			remoteChildWindow.close()
 		}
+
+		remoteChildWindow.show()
+		remoteChildWindow.setOpacity(1)
+		remoteChildWindow.setFocusable(true)
+
+		childWindow.document.documentElement.style.display = ''
 
 		return childWindow
 	}
@@ -128,13 +153,20 @@ function initWindow(window, remoteWindow) {
 
 	window.maximize = function () {
 		window.saveRect()
+		remoteWindow.setSkipTaskbar(false)
 		remoteWindow.maximize()
 	}
 	window.minimize = function () {
 		window.saveRect()
 		remoteWindow.minimize()
 	}
+	window.hide = function () {
+		window.saveRect()
+		remoteWindow.minimize()
+		remoteWindow.setSkipTaskbar(true)
+	}
 	window.restore = function () {
+		remoteWindow.setSkipTaskbar(false)
 		remoteWindow.restore()
 		window.restoreRect()
 	}
@@ -160,10 +192,6 @@ function initWindow(window, remoteWindow) {
 		},
 	}))()
 
-	window.tray.subscribe('click', e => {
-		console.log(e)
-	})
-
 	// endregion
 
 	// region Dev
@@ -179,7 +207,7 @@ function initWindow(window, remoteWindow) {
 		}
 
 		window.addEventListener('keydown', function (e) {
-			if (e.key === 'F12') {
+			if (e.code === 'F12') {
 				window.dev.openDevTools()
 			}
 		})

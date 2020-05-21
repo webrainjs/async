@@ -20,12 +20,20 @@ try {
 						return false
 					}
 				}
+				if (typeof first === 'string') {
+					if (/<\w+> received an unexpected slot ['"]?default['"]?/.test(first)) {
+						return false
+					}
+					if (/<\w+> was created with unknown prop ['"]?segment['"]?/.test(first)) {
+						return false
+					}
+				}
 			}
 
 			return true
 		},
 	})
 } catch (ex) {
-	console.log(ex)
+	console.error(ex)
 	throw ex
 }

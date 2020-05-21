@@ -3,12 +3,14 @@
 
 	const dispatch = createEventDispatcher()
 
+	export let debug_id = null
+
 	function close() {
 		dispatch('close')
 	}
 </script>
 
-<div class="modal flex flex--align-center fill">
+<div class="modal flex flex--align-center fill" {debug_id}>
 	<div class="modal__background fill blur" on:click="{close}"></div>
 	<div class="modal__wrapper stretch-horizontal stretch-vertical">
 		<div class="modal__content">

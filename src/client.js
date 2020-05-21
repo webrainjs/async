@@ -1,8 +1,8 @@
 /* eslint-env browser */
 // noinspection NpmUsedModulesInstalled
 import * as sapper from 'SAPPER_MODULE/app'
+import './initWebrain'
 import './initClientLog'
-import {webrainGraph} from './components/dev/webrain/WebrainGraph'
 import appConfig from 'APP_CONFIG_PATH'
 import {openWebrainWindow} from './components/app/Webrain'
 import {brain} from './brain/facade'
@@ -22,11 +22,9 @@ window.addEventListener('message', e => {
 	if (e.data === 'init') {
 		appWindow = e.source
 		appOrigin = e.origin
-		console.log(`appWindow subscribed: ${appOrigin}`)
+		console.debug(`appWindow subscribed: ${appOrigin}`)
 	}
 })
-
-webrainGraph.init()
 
 sapper.start({
 	target: document.querySelector('#sapper'),
@@ -41,7 +39,7 @@ brain.mainWindow.win = window
 
 if (appConfig.dev) {
 	window.addEventListener('keydown', function (e) {
-		if (e.key === 'F10') {
+		if (e.code === 'F10') {
 			openWebrainWindow()
 		}
 	})
@@ -58,8 +56,9 @@ if (!window.minimize) {
 }
 
 // Prevent to close window:
-// if (window.minimize) {
-// 	window.onbeforeunload = function () {
-// 		return window.minimize() !== false || void 0
-// 	}
-// }
+if (window.hide || window.minimize) {
+	window.onbeforeunload = function () {
+		return (window.hide || window.minimize)() !== false || void 0
+	}
+}
+

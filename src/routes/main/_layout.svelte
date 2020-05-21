@@ -24,20 +24,25 @@
 		// region logFileName
 
 		logger.handlers.writeToFile.logFileName = 'unknown.log'
-		deepSubscribe({
-			object: brain,
-			ruleBuilder: b => b.p('auth').p('user').p('accountId'),
-			lastValue(accountId) {
+		autoCalcConnect(
+			brain,
+			dependConnectorFactory({
+				build: c => c
+					.connectPath('accountId', b => b.f(o => o.auth).f(o => o.user).f(o => o.accountId)),
+			}),
+			depend(function*() {
+				const accountId = yield this.accountId
 				logger.handlers.writeToFile.logFileName = accountId == null
 					? 'unknown.log'
 					: `${accountId}.log`
-			},
-		})
+			})
+		)()
 
 		// endregion
 	}
 
 	// endregion
+
 	// const createConnector = connectorFactory({
 	// 	name: 'login view',
 	// 	buildRule: c => c
