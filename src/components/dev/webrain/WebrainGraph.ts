@@ -16,7 +16,7 @@
 // 	resolvePath,
 // 	ValueChangeType,
 // 	ValueKeyType,
-// } from 'webrain/src/main/common/index.ts'
+// } from 'webrain'
 // import {localStorageWrapper} from '../../../main/browser/helpers/localStorage'
 // import {
 // 	getDisplayName,

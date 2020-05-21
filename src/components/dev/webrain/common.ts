@@ -7,7 +7,7 @@
 // 	Connector,
 // 	getObjectUniqueId,
 // 	isIterable,
-// } from 'webrain/src/main/common/index.ts'
+// } from 'webrain'
 //
 // export const WebrainGraphObjectsId = '-4ff4f3a6-b8a8-4085-bd85-bb255c9f24a7'
 //

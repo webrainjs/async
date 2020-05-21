@@ -9,7 +9,7 @@
 // 	ObservableObject,
 // 	resolvePath,
 // 	ValueKeyType,
-// } from 'webrain/src/main/common/index.ts'
+// } from 'webrain'
 // import {
 // 	colorOpacity,
 // 	deepMerge,

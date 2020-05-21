@@ -1,6 +1,6 @@
 import {
 	webrainOptions,
-} from 'webrain/src/main/common/index.ts'
+} from 'webrain'
 // noinspection NpmUsedModulesInstalled
 import appConfig from 'APP_CONFIG_PATH'
 
