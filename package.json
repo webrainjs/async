@@ -19,7 +19,7 @@
     "dist/sapper/export/**"
   ],
   "engines": {
-    "node": ">= 8.6.0"
+    "node": ">= 12.4.0"
   },
   "scripts": {
     "precommit": "npm run test:ci",

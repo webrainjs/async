@@ -20,20 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/dev/webrain/Edge.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dev/webrain/Edge.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dev/webrain/Node.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dev/webrain/Node.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dev/webrain/Webrain.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dev/webrain/Webrain.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dev/webrain/WebrainGraph.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dev/webrain/WebrainGraph.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dev/webrain/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dev/webrain/common.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/initWebrain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/initWebrain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="balda" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
@@ -250,7 +243,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590054245686</updated>
-      <workItem from="1590054248215" duration="667000" />
+      <workItem from="1590054248215" duration="1311000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -259,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590054860575</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merged with app">
+      <created>1590054926098</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590054926098</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,18 +318,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merged with app" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590054857108">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590054923656">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590054857108" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590054923656" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590054798402">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590054798402" />
-    <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590054909149">
+    <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590055556398">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="-2" y="1" width="1922" height="879" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1590054909149" />
+    <state x="-2" y="1" width="1922" height="879" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1590055556398" />
     <state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1590048297236">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
