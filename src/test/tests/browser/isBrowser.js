@@ -1,4 +1,6 @@
 /* eslint-disable no-new-func */
+import {assert} from 'webrain/src/main/common/test/Assert'
+import {describe, it} from 'webrain/src/main/common/test/Mocha'
 
 describe('browser', function () {
 	it('isBrowser', function () {

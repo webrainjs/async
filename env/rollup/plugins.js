@@ -83,7 +83,7 @@ const plugins = {
 	}),
 	terser: (options = {}) => terser({
 		mangle: false,
-		module: true,
+		module: false,
 		ecma  : 5,
 		output: {
 			max_line_len: 50,

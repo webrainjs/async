@@ -6,6 +6,7 @@ const path = require('path')
 const fs = require('fs')
 const thisPackage = require('../../package')
 const rollupPlugins  = require('../rollup/plugins.js')
+const {writeTextFile, writeTextFileSync} = require('../common/helpers')
 
 if (!process.env.APP_CONFIG) {
 	console.error('Environment variable APP_CONFIG is not defined', __filename)
@@ -36,20 +37,6 @@ function concatArrays(...arrays) {
 		}
 	}
 	return items
-}
-
-module.exports.writeTextFileSync = writeTextFileSync
-function writeTextFileSync(outFilePath, text) {
-	outFilePath = path.resolve(process.cwd(), outFilePath)
-	const dir = path.dirname(outFilePath)
-
-	if (!fs.existsSync(dir)) {
-		fs.mkdirSync(dir, {recursive: true})
-	}
-
-	fs.writeFileSync(outFilePath, text)
-
-	return outFilePath
 }
 
 module.exports.concatJsFiles = function concatJsFiles(outFilePath, ...globbyPatterns) {
@@ -159,11 +146,42 @@ module.exports.configCommon = function (config) {
 			'karma-coverage',
 			require('./modules/karma-express'),
 			require('./modules/karma-custom-launcher'),
-			require('./modules/karma-unshift-files')
+			require('./modules/karma-unshift-files'),
+
+			{
+				'preprocessor:writeToFile': [
+					'factory',
+					(factory => {
+						factory.$inject = ['args', 'config', 'emitter', 'logger']
+						return factory
+					})((preconfig, _config, emitter, logger) => {
+						const log = logger.create('preprocessor.rollup')
+
+						return async (original, file, done) => {
+							const {originalPath} = file
+							const location = path.relative(_config.basePath, originalPath)
+
+							try {
+								const parsed = path.parse(originalPath)
+								const fileOutput = path.join(parsed.dir, parsed.name + '.build' + parsed.ext)
+								await writeTextFile(fileOutput, original)
+								return done(null, original)
+							} catch (error) {
+								log.error('Failed to process ./%s\n\n%s\n', location, error.stack)
+								return done(error, null)
+							}
+						}
+					}),
+				],
+			}
 		],
 
 		// optionally, configure the reporter
 		coverageReporter: {
+			// Prevent to disable coverage by IntelliJ
+			// see: https://github.com/karma-runner/karma-coverage/issues/183#issuecomment-167880660
+			instrumenter: null,
+
 			type: 'json',
 			dir : `${paths.tmp}/coverage/karma/json`,
 			// subDir: () => 'browser'
@@ -307,7 +325,7 @@ function configDetectBrowsers(config) {
 			postDetection(availableBrowsers) {
 				const useBrowsers = {
 					E2E_ChromeLatest  : /Chrome/,
-					E2E_ChromiumLatest: /Chromium/
+					E2E_ChromiumLatest: /Chromium/,
 				}
 
 				return availableBrowsers
