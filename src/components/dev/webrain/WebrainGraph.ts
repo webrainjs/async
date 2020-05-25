@@ -1,10 +1,10 @@
 // import {
-// 	DependCalcObjectBuilder,
+// 	CalcObjectBuilder,
 // 	CalcProperty,
 // 	noSubscribe,
-// 	dependConnectorFactory,
-// 	dependCalcPropertyFactory,
-// 	dependCalcPropertyFactoryX,
+// 	connectorFactory,
+// 	calcPropertyFactory,
+// 	calcPropertyFactoryX,
 // 	CalcPropertyState,
 // 	CalcStat,
 // 	Connector,
@@ -720,7 +720,7 @@
 // 	return (1 - Math.exp(- calcTime * ln2 / halfOpacityForCalcTime)) * (1 - opacityMin) + opacityMin
 // }
 //
-// new DependCalcObjectBuilder(WebrainGraph.prototype)
+// new CalcObjectBuilder(WebrainGraph.prototype)
 // 	.writable('isEnabled')
 // 	.writable('highlightMode')
 // 	.writable('searchPattern', {
@@ -739,15 +739,15 @@
 // 		factory: () => new WebrainObservableMap<TObjectId, Edge>(new ObjectMap<Edge>()),
 // 	})
 // 	.nestedCalc('visData',
-// 		dependConnectorFactory({
+// 		connectorFactory({
 // 			name: 'WebrainGraph.Connector.visData' + WebrainGraphObjectsId,
 // 			build: c => c
-// 				.connectPath('nodes', b => b.f(o => o.nodes))
-// 				.connectPath('edges', b => b.f(o => o.edges))
-// 				.connectPath('highlightMode', b => b.f(o => o.highlightMode))
-// 				.connectPath('searchPattern', b => b.f(o => o.searchPattern)),
+// 				.connect('nodes', b => b.f(o => o.nodes))
+// 				.connect('edges', b => b.f(o => o.edges))
+// 				.connect('highlightMode', b => b.f(o => o.highlightMode))
+// 				.connect('searchPattern', b => b.f(o => o.searchPattern)),
 // 		}),
-// 		dependCalcPropertyFactoryX({
+// 		calcPropertyFactoryX({
 // 			name: 'WebrainGraph.visData' + WebrainGraphObjectsId,
 // 			*calcFunc() {
 // 				const state = this

@@ -1,9 +1,9 @@
 import {
 	noSubscribe,
-	dependConnectorFactory,
-	dependCalcPropertyFactory,
-	dependCalcPropertyFactoryX,
-	DependCalcObjectBuilder,
+	connectorFactory,
+	calcPropertyFactory,
+	calcPropertyFactoryX,
+	CalcObjectBuilder,
 	ObservableClass,
 } from 'webrain'
 
@@ -14,16 +14,16 @@ export class TestObject extends ObservableClass {
 	public readonly time: Date
 }
 
-new DependCalcObjectBuilder(TestObject.prototype)
+new CalcObjectBuilder(TestObject.prototype)
 	.writable('value1')
 	.writable('value2')
 	.nestedCalc('sum',
-		dependConnectorFactory({
+		connectorFactory({
 			build: c => c
-				.connectPath('val1', b => b.f(o => o.value1))
-				.connectPath('val2', b => b.f(o => o.value2)),
+				.connect('val1', b => b.f(o => o.value1))
+				.connect('val2', b => b.f(o => o.value2)),
 		}),
-		dependCalcPropertyFactoryX({
+		calcPropertyFactoryX({
 			*calcFunc() {
 				const state = this
 				const input = state._this.input
@@ -34,7 +34,7 @@ new DependCalcObjectBuilder(TestObject.prototype)
 		}),
 	)
 	.nestedCalc('time', null,
-		dependCalcPropertyFactoryX({
+		calcPropertyFactoryX({
 			*calcFunc() {
 				const state = this
 				const input = state._this.input

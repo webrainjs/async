@@ -1,8 +1,8 @@
 <script context="module">
-	import { dependConnectorFactory } from 'webrain'
+	import { connectorFactory } from 'webrain'
 	import {TestObject} from "./TestObject";
 
-	const createConnector = dependConnectorFactory({
+	const createConnector = connectorFactory({
 		name: 'TestView',
 		build: c => c
 			.connectLazy('value1', b => b.f(o => o.value1, (o, v) => { o.value1 = v }))

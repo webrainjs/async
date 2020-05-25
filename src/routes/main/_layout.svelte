@@ -26,9 +26,9 @@
 		logger.handlers.writeToFile.logFileName = 'unknown.log'
 		autoCalcConnect(
 			brain,
-			dependConnectorFactory({
+			connectorFactory({
 				build: c => c
-					.connectPath('accountId', b => b.f(o => o.auth).f(o => o.user).f(o => o.accountId)),
+					.connect('accountId', b => b.f(o => o.auth).f(o => o.user).f(o => o.accountId)),
 			}),
 			depend(function*() {
 				const accountId = yield this.accountId

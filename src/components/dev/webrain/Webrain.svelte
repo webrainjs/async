@@ -3,8 +3,8 @@
 <!--	import {WebrainGraphObjectsId} from "./common"-->
 <!--	import {-->
 <!--		deepSubscribe,-->
-<!--		dependConnectorFactory,-->
-<!--		dependDeepSubscriber,-->
+<!--		connectorFactory,-->
+<!--		deepSubscriber,-->
 <!--	} from 'webrain';-->
 
 <!--	let data-->
@@ -109,7 +109,7 @@
 <!--	}-->
 
 
-<!--	const createConnector = dependConnectorFactory({-->
+<!--	const createConnector = connectorFactory({-->
 <!--		name: 'WebrainView' + WebrainGraphObjectsId,-->
 <!--		build: c => c-->
 <!--			.connectLazy('visData', b => b.f(o => o.visData))-->
@@ -118,7 +118,7 @@
 <!--			.connectLazy('searchPattern', b => b.f(o => o.searchPattern, (o, v) => { o.searchPattern = v }))-->
 <!--	})-->
 
-<!--	const subscribe = dependDeepSubscriber({-->
+<!--	const subscribe = deepSubscriber({-->
 <!--		build: b => b.propertyAny(),-->
 <!--	})-->
 <!--</script>-->

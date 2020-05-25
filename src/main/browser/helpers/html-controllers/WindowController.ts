@@ -1,6 +1,6 @@
 import {
 	BehaviorSubject,
-	DependCalcObjectBuilder,
+	CalcObjectBuilder,
 	IObservable,
 	ISubject,
 	ObservableClass,
@@ -481,7 +481,7 @@ export class WindowController extends ObservableClass {
 	// endregion
 }
 
-new DependCalcObjectBuilder(WindowController.prototype)
+new CalcObjectBuilder(WindowController.prototype)
 	.writable('isVisible')
 	.writable('isFocused', {
 		setOptions: {

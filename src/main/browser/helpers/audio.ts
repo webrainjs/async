@@ -1,5 +1,5 @@
 import {
-	DependCalcObjectBuilder,
+	CalcObjectBuilder,
 	delay,
 	IPropertyChanged,
 	ObservableClass,
@@ -281,7 +281,7 @@ export class AudioPlayer extends ObservableClass {
 	}
 }
 
-new DependCalcObjectBuilder(AudioPlayer.prototype)
+new CalcObjectBuilder(AudioPlayer.prototype)
 	.writable('canPlay')
 	.writable('stopped', {
 		setOptions: {

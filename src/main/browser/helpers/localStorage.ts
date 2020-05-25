@@ -4,7 +4,7 @@ import {
 	IUnsubscribeOrVoid,
 	ObjectSerializer,
 	RuleBuilder,
-	dependDeepSubscriber,
+	deepSubscriber,
 } from 'webrain'
 
 declare const chrome: any
@@ -71,7 +71,7 @@ export async function storeObject<TObject>(
 		},
 	})
 
-	return dependDeepSubscriber({
+	return deepSubscriber({
 		build: ruleBuilder,
 	})(object, () => {
 		deferredSave.invalidate()

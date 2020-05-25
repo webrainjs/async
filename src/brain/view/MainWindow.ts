@@ -1,10 +1,10 @@
 /* tslint:disable:no-conditional-assignment */
 import {
-	DependCalcObjectBuilder,
+	CalcObjectBuilder,
 	noSubscribe,
-	dependConnectorFactory,
-	dependCalcPropertyFactory,
-	dependCalcPropertyFactoryX,
+	connectorFactory,
+	calcPropertyFactory,
+	calcPropertyFactoryX,
 	delay,
 	IDeSerializeValue,
 	ISerializable,
@@ -67,14 +67,14 @@ export class MainWindow extends ObservableClass {
 	// endregion
 }
 
-new DependCalcObjectBuilder(MainWindow.prototype)
+new CalcObjectBuilder(MainWindow.prototype)
 	.writable('win')
 	.nestedCalc('windowController',
-		dependConnectorFactory({
+		connectorFactory({
 			build: c => c
-				.connectPath('win', b => b.f(o => o.win)),
+				.connect('win', b => b.f(o => o.win)),
 		}),
-		dependCalcPropertyFactoryX({
+		calcPropertyFactoryX({
 			*calcFunc() {
 				const state = this
 				const input = state._this.input
@@ -84,8 +84,8 @@ new DependCalcObjectBuilder(MainWindow.prototype)
 			},
 		}),
 	)
-	.connectPath('isVisible', b => b.f(o => o.windowController).f(o => o.isVisible))
-	.connectPath('isFocused', b => b.f(o => o.windowController).f(o => o.isFocused))
+	.connect('isVisible', b => b.f(o => o.windowController).f(o => o.isVisible))
+	.connect('isFocused', b => b.f(o => o.windowController).f(o => o.isFocused))
 	// .calc('lostFocusDate',
 	// 	connectorFactory({
 	// 		buildRule: c => c

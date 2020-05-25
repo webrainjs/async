@@ -1,11 +1,20 @@
-import {getObjectUniqueId} from 'webrain'
-
 export function filterDefault(obj) {
 	if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {
 		return false
 	}
 
 	return true
+}
+
+let nextId = 1
+const objectsMap = new WeakMap()
+function getObjectUniqueId(obj) {
+	let id = objectsMap.get(obj)
+	if (id == null) {
+		id = nextId++
+		objectsMap.set(obj, id)
+	}
+	return id
 }
 
 export function objectToString(object: any, {

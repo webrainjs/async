@@ -1,9 +1,9 @@
 // import {
-// 	DependCalcObjectBuilder,
+// 	CalcObjectBuilder,
 // 	noSubscribe,
-// 	dependConnectorFactory,
-// 	dependCalcPropertyFactory,
-// 	dependCalcPropertyFactoryX,
+// 	connectorFactory,
+// 	calcPropertyFactory,
+// 	calcPropertyFactoryX,
 // 	getObjectUniqueId,
 // 	ObservableClass,
 // 	ObservableObject,
@@ -138,7 +138,7 @@
 // 	}
 // }
 //
-// new DependCalcObjectBuilder(Edge.prototype)
+// new CalcObjectBuilder(Edge.prototype)
 // 	.writable('count')
 // 	.writable('value', {
 // 		setOptions: {
@@ -151,7 +151,7 @@
 // 			},
 // 		},
 // 	})
-// 	.dependCalc('updateId', function() {
+// 	.calc('updateId', function() {
 // 		for(const key in this) {
 // 			if (Object.prototype.hasOwnProperty.call(this, key)
 // 				&& key !== 'visData' && key !== 'updateId'

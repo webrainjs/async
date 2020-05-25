@@ -1,5 +1,5 @@
 import {
-	DependCalcObjectBuilder,
+	CalcObjectBuilder,
 	calcPropertyFactory,
 	connectorFactory,
 	deepSubscribe,
@@ -58,7 +58,7 @@ export class Brain extends ObservableClass implements IBrain, ISerializable {
 
 registerSerializable(Brain)
 
-new DependCalcObjectBuilder(Brain.prototype)
+new CalcObjectBuilder(Brain.prototype)
 	.readable('mainWindow', {
 		factory() { return new MainWindow() },
 	})

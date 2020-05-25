@@ -1,9 +1,9 @@
 // import {
-// 	DependCalcObjectBuilder,
+// 	CalcObjectBuilder,
 // 	noSubscribe,
-// 	dependConnectorFactory,
-// 	dependCalcPropertyFactory,
-// 	dependCalcPropertyFactoryX,
+// 	connectorFactory,
+// 	calcPropertyFactory,
+// 	calcPropertyFactoryX,
 // 	getObjectUniqueId,
 // 	ObservableClass,
 // 	ObservableObject,
@@ -221,7 +221,7 @@
 // 	}
 // }
 //
-// new DependCalcObjectBuilder(Node.prototype)
+// new CalcObjectBuilder(Node.prototype)
 // 	.writable('name')
 // 	.writable('type')
 // 	.writable('value', {
@@ -236,7 +236,7 @@
 // 		},
 // 	})
 // 	.writable('error')
-// 	.dependCalc('updateId', function() {
+// 	.calc('updateId', function() {
 // 		for(const key in this) {
 // 			if (Object.prototype.hasOwnProperty.call(this, key)
 // 				&& key !== 'visData' && key !== 'updateId'
