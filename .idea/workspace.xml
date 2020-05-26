@@ -19,48 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Prod.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Stage.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Test_Pack_All.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Test_Pack_Dev.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Preprod.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_Chrome_Dev.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_Demo.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Dev.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_PreProd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_Prod.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Chrome_Dev.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_and_Pack_Stage.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Test_and_Pack_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_All.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Test_and_Pack_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Demo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Watch.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Watch.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/build_polyfill.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/log.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/find-base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/find-base.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/find.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/find.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/log.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/log.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/svelte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/mocha/configs/babel/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/mocha/configs/babel/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/mocha/configs/no-babel/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/mocha/configs/no-babel/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/get-debug-info.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/get-debug-info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/common/css-to-xpath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/modules/common/css-to-xpath.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brain/brain.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/brain/brain.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brain/facade.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/brain/facade.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/dev/tests.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/dev/tests.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/main/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/main/_layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/performance/browser/isBrowser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/performance/browser/isBrowser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/performance/node/isNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/performance/node/isNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/browser/isBrowser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/browser/isBrowser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/common/env/modules.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/env/modules.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/common/main/css-to-xpath.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/main/css-to-xpath.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/isNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/isNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/client/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/client/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -348,7 +307,7 @@
       <workItem from="1590149420969" duration="1309000" />
       <workItem from="1590316020088" duration="7807000" />
       <workItem from="1590401921297" duration="9440000" />
-      <workItem from="1590459238370" duration="9163000" />
+      <workItem from="1590459238370" duration="9487000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -413,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590400135134</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Merged with webrain. Precommit OK.">
+      <created>1590478823293</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590478823293</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +410,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Webrain graph groups. Users table simple." />
     <MESSAGE value="Users paging completed" />
     <MESSAGE value="Google map markers in process..." />
     <MESSAGE value="Google map fit to view area in process.." />
@@ -469,7 +434,8 @@
     <MESSAGE value="Change node version to 12.4.0" />
     <MESSAGE value="Merged with app" />
     <MESSAGE value="Merged with webrain" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged with webrain" />
+    <MESSAGE value="Merged with webrain. Precommit OK." />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged with webrain. Precommit OK." />
   </component>
   <component name="WindowStateProjectService">
     <state x="617" y="103" key="#ESLint" timestamp="1590067356069">
@@ -480,10 +446,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1590476699437" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590400133032">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590478821655">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590400133032" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590478821655" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590396780842">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

@@ -55,7 +55,7 @@ before_script:
 
 script:
   - if [[ ${NODE_ONLY} == true ]]; then
-      npm run test:ci;
+      npm run build-test:ci;
     else
       npm run ci;
     fi
