@@ -55,11 +55,15 @@ export const logRemote = iter(function *logRemote(prefix: string, remoteGetDataS
 })
 
 export const getHtml = iter(function *getHtml(): Iterator<any, string> {
-	return yield run(o => o.execute(() => new XMLSerializer().serializeToString(document)))
+	return yield run(o => o.execute(function () {
+		return new XMLSerializer().serializeToString(document)
+	})
 })
 
 export const getUserAgent = iter(function *getUserAgent(): Iterator<any, string> {
-	return yield run(o => o.execute(() => navigator.userAgent))
+	return yield run(o => o.execute(function () {
+		return navigator.userAgent
+	}))
 })
 
 export const getDebugInfo = iter(function *getDebugInfo() {

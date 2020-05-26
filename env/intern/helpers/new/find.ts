@@ -2,7 +2,7 @@ import Command from "@theintern/leadfoot/Command";
 import {assert, end, findBase, iter, run, usingFindTimeout} from "./index";
 import Element from "@theintern/leadfoot/Element";
 import {assertCount} from "./assert";
-import {delay} from "../../../../src/main/common/log/helpers";
+import {delay} from "webrain";
 
 // docs:
 // https://theintern.io/docs.html#Leadfoot/2/api/Command/command-1

@@ -1,7 +1,7 @@
-import {getCurrentState, iter, onPushFindFilter, onReleaseFindFilter, run} from "./run";
-import {cssToXPath} from "../../../../modules/common/css-to-xpath";
-import {findFirst, wait} from "./find";
-import {assert} from "./base";
+import {cssToXPath} from '../../../../modules/common/css-to-xpath'
+import {assert} from './base'
+import {findFirst, wait} from './find'
+import {getCurrentState, iter, onPushFindFilter, onReleaseFindFilter, run} from './run'
 // const cssToXPath = require('css-to-xpath')
 
 function prepareSelector(selector: string) {
@@ -22,7 +22,7 @@ function prepareSelector(selector: string) {
 
 export const findBase = iter(function* findBase(
 	selector: string,
-	firstOnly?: boolean
+	firstOnly?: boolean,
 ) {
 	const preparedSelector = prepareSelector(selector)
 
@@ -33,7 +33,7 @@ export const findBase = iter(function* findBase(
 	yield wait(function *_findBase() {
 		items = yield run(o => preparedSelector.startsWith('//') || preparedSelector.startsWith('.//')
 			? o.findAllByXpath(preparedSelector)
-			: o.findAllByCssSelector(preparedSelector)
+			: o.findAllByCssSelector(preparedSelector),
 		)
 
 		yield run(o => o.end())
@@ -57,7 +57,7 @@ export const findBase = iter(function* findBase(
 		assert.ok(items.length > 0, `findBase(firstOnly) not found: ${selector}`)
 	}
 
-	yield run(o => o.then(function (_, setContext) {
+	yield run(o => o.then(function(_, setContext) {
 		setContext(items)
 		return items
 	}))

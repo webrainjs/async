@@ -1,6 +1,6 @@
 /* eslint-disable no-duplicate-imports,no-var */
-import {assert} from 'webrain/src/main/common/test/Assert'
-import {describe, it} from 'webrain/src/main/common/test/Mocha'
+import {assert} from 'webrain/dist/js/main/common/test/Assert'
+import {describe, it} from 'webrain/dist/js/main/common/test/Mocha'
 import {func1, var1} from './src/module1'
 import module1 from './src/module1'
 import {var2 as var22} from './src/module2'

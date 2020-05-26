@@ -1,6 +1,6 @@
 /* eslint-disable no-new-func */
-import {assert} from 'webrain/src/main/common/test/Assert'
-import {describe, it} from 'webrain/src/main/common/test/Mocha'
+import {assert} from 'webrain/dist/js/main/common/test/Assert'
+import {describe, it} from 'webrain/dist/js/main/common/test/Mocha'
 
 it('isBrowser', function () {
 	// see: https://stackoverflow.com/a/31090240/5221762

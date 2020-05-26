@@ -72,7 +72,6 @@
 <script>
 	import {onMount, onDestroy} from 'svelte'
 	import {TouchToMouse} from '../../main/browser/helpers/touchMouse'
-	import {Debugger} from 'webrain'
 	import {audioQueue} from "../../main/browser/helpers/audio";
 
 	let canvas

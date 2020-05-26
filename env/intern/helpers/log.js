@@ -70,13 +70,17 @@ Command.prototype.logThis = function (prefix, transformFunc) {
 Command.prototype.getHtml = function () {
 	return this
 		// eslint-disable-next-line no-undef
-		.execute(() => new XMLSerializer().serializeToString(document))
+		.execute(function () {
+			return new XMLSerializer().serializeToString(document)
+		})
 }
 
 Command.prototype.getUserAgent = function () {
 	return this
 		// eslint-disable-next-line no-undef
-		.execute(() => navigator.userAgent)
+		.execute(function () {
+			return navigator.userAgent
+		})
 }
 
 Command.prototype.getDebugInfo = function () {

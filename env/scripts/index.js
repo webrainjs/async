@@ -4,18 +4,18 @@ const specific = require('./specific')
 
 // region Specific
 
-const test = singleCall(async appConfigType => {
-	await specific.tests.testIntern(appConfigType)
+const test = singleCall(async (appConfigType, options = {}) => {
+	await specific.tests.testIntern(appConfigType, options)
 	await Promise.all([
 		common.lint(),
-		specific.tests.coverage(appConfigType),
+		specific.tests.coverage(appConfigType, options),
 	])
 })
 
-const testCi = singleCall(async appConfigType => {
+const testCi = singleCall(async (appConfigType, options = {}) => {
 	await Promise.all([
 		common.lint(),
-		specific.tests.coverage(appConfigType),
+		specific.tests.coverage(appConfigType, options),
 	])
 })
 
@@ -34,11 +34,11 @@ const pack = singleCall(async (packType, appConfigType) => {
 	}
 })
 
-// const testAndPack = singleCall(async appConfigType => {
-// 	await specific.tests.testIntern(appConfigType)
+// const testAndPack = singleCall(async (appConfigType, options = {}) => {
+// 	await specific.tests.testIntern(appConfigType, options)
 // 	await Promise.all([
 // 		common.lint(),
-// 		specific.tests.coverage(appConfigType),
+// 		specific.tests.coverage(appConfigType, options),
 // 		specific.packs.packElectron(appConfigType)
 // 			.then(() => specific.packs.runElectron(appConfigType)),
 // 	])
@@ -48,64 +48,85 @@ const pack = singleCall(async (packType, appConfigType) => {
 
 // region All
 
-const buildAll = singleCall((...appConfigTypes) => Promise.all(
+const buildAll = singleCall(appConfigTypes => Promise.all(
 	appConfigTypes.map(appConfigType => specific.builds.build(appConfigType, {intern: false}))
 ))
 
-const testInternAll = singleCall((...appConfigTypes) => Promise.all(
-	appConfigTypes.map(appConfigType => specific.tests.testIntern(appConfigType))
+const testInternAll = singleCall((appConfigTypes, options = {}) => Promise.all(
+	appConfigTypes.map(appConfigType => specific.tests.testIntern(appConfigType, options))
 ))
 
-const testAll = singleCall(async (...appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
-	await testInternAll(...appConfigTypes)
+const testAll = singleCall(async (appConfigTypes, options = {}) => {
+	if (options.build !== false) {
+		await Promise.all([
+			common.lint(),
+			buildAll(appConfigTypes),
+		])
+	}
+	
+	await testInternAll(appConfigTypes, options)
 
 	await Promise.all(
-		appConfigTypes.map(appConfigType => test(appConfigType))
+		appConfigTypes.map(appConfigType => test(appConfigType, options))
 	)
 })
 
-const testCiAll = singleCall(async (...appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
+const testCiAll = singleCall(async (appConfigTypes, options = {}) => {
+	if (options.build !== false) {
+		await Promise.all([
+			common.lint(),
+			buildAll(appConfigTypes),
+		])
+	}
 
 	await Promise.all(
-		appConfigTypes.map(appConfigType => testCi(appConfigType))
+		appConfigTypes.map(appConfigType => testCi(appConfigType, options))
 	)
 })
 
-const packAll = singleCall((packTypes, appConfigTypes) => Promise.all(
-	appConfigTypes
-		.map(
-			appConfigType => packTypes
-				.map(packType => pack(packType, appConfigType))
-		)
-		.reduce((a, o) => {
-			a.push(...o)
-			return a
-		}, [])
-))
+const packAll = singleCall(async (packTypes, appConfigTypes, options) => {
+	if (options.build !== false) {
+		await Promise.all([
+			common.lint(),
+			buildAll(appConfigTypes),
+		])
+	}
+
+	if (options.test !== false) {
+		await testInternAll(appConfigTypes, options)
+	}
+
+	await Promise.all(
+		appConfigTypes
+			.map(
+				appConfigType => packTypes
+					.map(packType => pack(packType, appConfigType))
+			)
+			.reduce((a, o) => {
+				a.push(...o)
+				return a
+			}, [])
+	)
+})
 
 const buildAndPackAll = singleCall(async (packTypes, appConfigTypes) => {
 	await Promise.all([
 		common.lint(),
-		buildAll(...appConfigTypes),
+		buildAll(appConfigTypes),
 	])
 
 	await packAll(packTypes, appConfigTypes)
 })
 
-const testAndPackAll = singleCall(async (packTypes, appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
-	await testInternAll(...appConfigTypes)
+const testAndPackAll = singleCall(async (packTypes, appConfigTypes, options = {}) => {
+	if (options.build !== false) {
+		await Promise.all([
+			common.lint(),
+			buildAll(appConfigTypes),
+		])
+	}
+	
+	await testInternAll(appConfigTypes, options)
 
 	await packAll(packTypes, appConfigTypes)
 })

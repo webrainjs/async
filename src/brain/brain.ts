@@ -2,7 +2,7 @@ import {
 	CalcObjectBuilder,
 	calcPropertyFactory,
 	connectorFactory,
-	deepSubscribe,
+	deepSubscriber,
 	IDeSerializeValue,
 	IObservable,
 	IObservableMap,

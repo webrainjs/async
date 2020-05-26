@@ -1,5 +1,5 @@
 <script context="module">
-	import {deepSubscribe, connectorFactory, dependenciesSubscriber} from 'webrain'
+	import {deepSubscriber, connectorFactory} from 'webrain'
 	import {brain} from "../../brain/facade";
 	import {logger} from "../../main/browser/log/LoggerBrowser";
 

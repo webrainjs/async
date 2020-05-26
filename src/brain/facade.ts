@@ -1,7 +1,6 @@
 // @ts-ignore
 import appConfig from 'APP_CONFIG_PATH'
 import {
-	deepSubscribe,
 	ObjectSerializer,
 } from 'webrain'
 import {storeObject} from '../main/browser/helpers/localStorage'
