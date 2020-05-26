@@ -146,6 +146,7 @@ export class Api<TError> implements IApi<TError> {
 				const errorHandled = errorHandler && errorHandler(apiError)
 				if (errorHandled !== true) {
 					// console.error('Api error', err, request)
+					// tslint:disable-next-line:no-collapsible-if
 					if (errorHandled == null) {
 						this._networkEventSubject.emit({
 							type: NetworkEventType.Error,

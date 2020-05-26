@@ -1,6 +1,6 @@
 import {ActionMode, ILogEvent, ILogger, LogLevel} from './contracts'
 import {LogHandler} from './LogHandler'
-import {objectToString} from "./objectToString";
+import {objectToString} from './objectToString'
 
 const consoleOrig = {
 	debug: console.debug.bind(console),

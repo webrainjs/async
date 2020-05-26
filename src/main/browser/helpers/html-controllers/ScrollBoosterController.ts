@@ -98,8 +98,8 @@ export class ScrollBoosterController extends HtmlController {
 		}
 
 		this.mode = {
-			x: this.props.mode == 'x',
-			y: this.props.mode == 'y',
+			x: this.props.mode === 'x',
+			y: this.props.mode === 'y',
 			xy: this.props.mode !== 'x' && this.props.mode !== 'y',
 		}
 
@@ -333,7 +333,8 @@ export class ScrollBoosterController extends HtmlController {
 		let isTouch = false
 
 		const setDragPosition = event => {
-			let pageX, pageY
+			let pageX
+			let pageY
 
 			if (isTouch) {
 				pageX = event.touches[0].pageX
@@ -357,7 +358,10 @@ export class ScrollBoosterController extends HtmlController {
 		this.events.pointerdown = event => {
 			this.updateViewport(event.container)
 
-			let pageX, pageY, clientX, clientY
+			let pageX
+			let pageY
+			let clientX
+			let clientY
 
 			isTouch =  !!(event.touches && event.touches[0])
 
@@ -417,25 +421,25 @@ export class ScrollBoosterController extends HtmlController {
 
 			this.run()
 
-			let pointerUp, removeEvents
+			let removeEvents
 
-			removeEvents = event => {
+			removeEvents = _event => {
 				this.isDragging = false
 
 				if (isTouch) {
 					window.removeEventListener('touchmove', setDragPosition)
-					window.removeEventListener('touchend', pointerUp)
+					window.removeEventListener('touchend', removeEvents)
 				} else {
 					window.removeEventListener('mousemove', setDragPosition)
-					window.removeEventListener('mouseup', pointerUp)
+					window.removeEventListener('mouseup', removeEvents)
 				}
 			}
 
 			if (isTouch) {
-				pointerUp = window.addEventListener('touchend', removeEvents)
+				window.addEventListener('touchend', removeEvents)
 				window.addEventListener('touchmove', setDragPosition)
 			} else {
-				pointerUp = window.addEventListener('mouseup', removeEvents)
+				window.addEventListener('mouseup', removeEvents)
 				window.addEventListener('mousemove', setDragPosition)
 			}
 		}
@@ -517,7 +521,8 @@ function textNodeFromPoint(element, x, y) {
 	let node
 	const nodes = element.childNodes
 	const range = document.createRange()
-	for (let i = 0; node = nodes[i], i < nodes.length; i++) {
+	for (let i = 0; i < nodes.length; i++) {
+		node = nodes[i]
 		if (node.nodeType !== 3) { continue }
 		range.selectNodeContents(node)
 		const rect = range.getBoundingClientRect()

@@ -15,7 +15,7 @@ export function bindRemoteLogger(logFileNameDefault: string) {
 	ipcMain.addListener('logger_writeToFile', (event, logEvents: any[]) => {
 		const handler = (logger.handlers.writeToFile as WriteToFileHandler)
 		for (let i = 0, len = logEvents.length; i < len; i++) {
-			handler.enqueueLog(logEvents[i] as any)
+			handler.enqueueLog(logEvents[i])
 		}
 	})
 }

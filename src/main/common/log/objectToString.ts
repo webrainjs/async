@@ -1,3 +1,4 @@
+/* tslint:disable:no-construct use-primitive-type */
 export function filterDefault(obj) {
 	if (typeof EventTarget !== 'undefined' && obj instanceof EventTarget) {
 		return false
@@ -195,7 +196,7 @@ export function objectToString(object: any, {
 
 			if (!Array.isArray(obj) && Symbol.iterator in obj) {
 				appendBuffer('[')
-				let index = 0
+				index = 0
 				if (index >= _maxListSize) {
 					appendBuffer('...')
 				} else {

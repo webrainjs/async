@@ -37,7 +37,7 @@ export async function createWindow(url) {
 	})
 
 	// Set options for child windows
-	appState.win.webContents.on("new-window", function(e, url, frameName, disposition, options) {
+	appState.win.webContents.on('new-window', function(e, _url, frameName, disposition, options) {
 		options.show = false
 		options.opacity = 0.01
 		options.focusable = false
@@ -50,7 +50,7 @@ export async function createWindow(url) {
 	})
 
 	// hide instead close
-	appState.win.on('close', function (event) {
+	appState.win.on('close', function(event) {
 		if (!appState.app.isQuitting) {
 			event.preventDefault()
 			appState.win.hide()

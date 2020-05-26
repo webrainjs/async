@@ -150,6 +150,7 @@ export class AudioPlayer extends ObservableClass {
 			try {
 				await this._currentThenable
 			} catch (err) {
+				// empty
 			}
 
 			if (prevThenable === this._currentThenable) {

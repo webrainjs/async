@@ -19,7 +19,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="" />
+    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="Travis OK.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/scripts/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/audio.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/audio.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/ScrollBoosterController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/ScrollBoosterController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/helpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/localStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/localStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/browser/log/SendLogHandlerBrowser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/log/SendLogHandlerBrowser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/browser/webrain/store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/common/api/Api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/api/Api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/common/log/SendLogHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/log/SendLogHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/common/log/WriteToConsoleHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/log/WriteToConsoleHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/common/log/objectToString.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/log/objectToString.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/mainWindow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/mainWindow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/remoteLogger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/remoteLogger.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -259,9 +276,9 @@
       <item itemvalue="Mocha.Intern Dev" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
       <item itemvalue="Mocha.webdriver.intern" />
+      <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
       <item itemvalue="Node.js.Sapper Dev - DEBUG" />
       <item itemvalue="Node.js.Build Chrome Dev" />
-      <item itemvalue="npm.Build Polyfill" />
       <item itemvalue="npm.Build Test Dev" />
       <item itemvalue="npm.Build Test All" />
       <item itemvalue="npm.Test Dev" />
@@ -282,7 +299,6 @@
       <item itemvalue="npm.Build Pack Dev" />
       <item itemvalue="npm.Sapper Dev Components" />
       <item itemvalue="npm.Build Pack Chrome Dev" />
-      <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
     </list>
     <recent_temporary>
       <list>
@@ -307,7 +323,8 @@
       <workItem from="1590149420969" duration="1309000" />
       <workItem from="1590316020088" duration="7807000" />
       <workItem from="1590401921297" duration="9440000" />
-      <workItem from="1590459238370" duration="10218000" />
+      <workItem from="1590459238370" duration="10835000" />
+      <workItem from="1590492426641" duration="5903000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -386,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590479198018</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Travis OK.">
+      <created>1590480256132</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1590480256132</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +441,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Google map markers in process..." />
     <MESSAGE value="Google map fit to view area in process.." />
     <MESSAGE value="Users location filter completed" />
     <MESSAGE value="Google/Floor map markers is completed" />
@@ -442,7 +465,8 @@
     <MESSAGE value="Merged with webrain" />
     <MESSAGE value="Merged with webrain. Precommit OK." />
     <MESSAGE value="Fix travis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix travis" />
+    <MESSAGE value="Travis OK." />
+    <option name="LAST_COMMIT_MESSAGE" value="Travis OK." />
   </component>
   <component name="WindowStateProjectService">
     <state x="617" y="103" key="#ESLint" timestamp="1590067356069">
@@ -453,34 +477,34 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1590476699437" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590479197004">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590503586882">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590479197004" />
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590396780842">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590503586882" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590503586067">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590396780842" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590503586067" />
     <state x="685" y="133" width="548" height="614" key="FileChooserDialogImpl" timestamp="1590466798839">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="685" y="133" width="548" height="614" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1590466798839" />
-    <state width="1892" height="315" key="GridCell.Tab.0.bottom" timestamp="1590477429370">
+    <state width="1892" height="315" key="GridCell.Tab.0.bottom" timestamp="1590487081026">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="315" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1590477429370" />
-    <state width="1892" height="315" key="GridCell.Tab.0.center" timestamp="1590477429369">
+    <state width="1892" height="315" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1590487081026" />
+    <state width="1892" height="315" key="GridCell.Tab.0.center" timestamp="1590487081026">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="315" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1590477429369" />
-    <state width="1892" height="315" key="GridCell.Tab.0.left" timestamp="1590477429369">
+    <state width="1892" height="315" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1590487081026" />
+    <state width="1892" height="315" key="GridCell.Tab.0.left" timestamp="1590487081026">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="315" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1590477429369" />
-    <state width="1892" height="315" key="GridCell.Tab.0.right" timestamp="1590477429369">
+    <state width="1892" height="315" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1590487081026" />
+    <state width="1892" height="315" key="GridCell.Tab.0.right" timestamp="1590487081026">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="315" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1590477429369" />
+    <state width="1892" height="315" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1590487081026" />
     <state width="1892" height="349" key="GridCell.Tab.1.bottom" timestamp="1590433685150">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -533,10 +557,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="666" y="68" key="RollbackChangesDialog/0.0.1920.882@0.0.1920.882" timestamp="1590395668389" />
-    <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590479178524">
+    <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590493159827">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="-2" y="1" width="1922" height="879" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1590479178524" />
+    <state x="-2" y="1" width="1922" height="879" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1590493159827" />
     <state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1590048297236">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

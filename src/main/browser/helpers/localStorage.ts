@@ -1,10 +1,10 @@
 /* tslint:disable:no-empty */
 import {
+	deepSubscriber,
 	DeferredCalc,
 	IUnsubscribeOrVoid,
 	ObjectSerializer,
 	RuleBuilder,
-	deepSubscriber,
 } from 'webrain'
 
 declare const chrome: any

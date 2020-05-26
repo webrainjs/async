@@ -55,27 +55,31 @@ export abstract class SendLogHandler extends LogHandler<'sendLog'> {
 
 		let errorWasWrite = false
 
-		let body = logEvents.reverse().map((logEvent, index) => {
-			let logStr = `[${
-				logEvent.dateString
-			}][${
-				this._logger.appName
-			}][${
-				LogLevel[logEvent.level]
-			}][${
-				index
-			}]: ${
-				logEvent.bodyString
-			}`
-
-			if (index === 0) {
-				logStr += `\r\n\r\nAppInfo: ${
-					logEvent.appInfo
+		let body = logEvents
+			.slice()
+			.reverse()
+			.map((logEvent, index) => {
+				let logStr = `[${
+					logEvent.dateString
+				}][${
+					this._logger.appName
+				}][${
+					LogLevel[logEvent.level]
+				}][${
+					index
+				}]: ${
+					logEvent.bodyString
 				}`
-			}
 
-			return escapeHtml(logStr)
-		}).join('\r\n<hr>\r\n')
+				if (index === 0) {
+					logStr += `\r\n\r\nAppInfo: ${
+						logEvent.appInfo
+					}`
+				}
+
+				return escapeHtml(logStr)
+			})
+			.join('\r\n<hr>\r\n')
 
 		body = lastLogEvent.md5Hash + '\r\n' + '\r\n' + body
 
