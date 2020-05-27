@@ -59,7 +59,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="node-module" />
+        <entry key="$PROJECT_DIR$" value="webapp" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -166,18 +166,18 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Karma.CI" />
       <item itemvalue="Karma.Coverage" />
-      <item itemvalue="Karma.Dev" />
-      <item itemvalue="Karma.Performance" />
       <item itemvalue="Karma.Tests" />
-      <item itemvalue="Mocha.Intern Dev" />
-      <item itemvalue="Mocha.Intern Dev Video" />
-      <item itemvalue="Mocha.Intern Export" />
-      <item itemvalue="Mocha.Intern Export with rebuild" />
+      <item itemvalue="Karma.Dev" />
+      <item itemvalue="Karma.CI" />
+      <item itemvalue="Karma.Performance" />
       <item itemvalue="Mocha.Watch" />
-      <item itemvalue="npm.Test All" />
+      <item itemvalue="Mocha.Intern Export" />
+      <item itemvalue="Mocha.Intern Dev Video" />
+      <item itemvalue="Mocha.Intern Dev" />
+      <item itemvalue="Mocha.Intern Export with rebuild" />
       <item itemvalue="npm.Test Dev" />
+      <item itemvalue="npm.Test All" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -292,14 +292,14 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="686" y="134" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1590574197995" />
-    <state x="1" y="1" width="1915" height="880" key="MergeDialog" timestamp="1590573962530">
+    <state x="1" y="1" width="1915" height="880" key="MergeDialog" timestamp="1590577691584">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="1" y="1" width="1915" height="880" key="MergeDialog/0.0.1920.882@0.0.1920.882" timestamp="1590573962530" />
-    <state x="-3" y="1" width="1922" height="878" key="MultipleFileMergeDialog" timestamp="1590574137631">
+    <state x="1" y="1" width="1915" height="880" key="MergeDialog/0.0.1920.882@0.0.1920.882" timestamp="1590577691584" />
+    <state x="-3" y="1" width="1922" height="878" key="MultipleFileMergeDialog" timestamp="1590577693732">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="-3" y="1" width="1922" height="878" key="MultipleFileMergeDialog/0.0.1920.882@0.0.1920.882" timestamp="1590574137631" />
+    <state x="-3" y="1" width="1922" height="878" key="MultipleFileMergeDialog/0.0.1920.882@0.0.1920.882" timestamp="1590577693732" />
     <state x="654" y="68" key="RollbackChangesDialog" timestamp="1590572876005">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
