@@ -44,7 +44,7 @@
     "build-test:all": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['demo', 'dev', 'stage', 'prod']).stopOnError()\"",
     "build-test:ci": "node ./env/scripts/run.js \"require('./env/scripts').testCiAll(['dev']).stopOnError()\"",
 
-    "coverage:mocha:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/tests').coverageMocha('dev').stopOnError()\"",
+    "coverage:mocha:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/tests').coverageMocha('dev').stopOnError()\""
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
