@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="" />
+    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -318,7 +322,7 @@
       <workItem from="1590459238370" duration="10835000" />
       <workItem from="1590492426641" duration="5972000" />
       <workItem from="1590521762170" duration="5000" />
-      <workItem from="1590521808093" duration="15116000" />
+      <workItem from="1590521808093" duration="15448000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -439,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590570787647</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Precommit OK.">
+      <created>1590571665630</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1590571665630</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +481,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Users location filter completed" />
     <MESSAGE value="Google/Floor map markers is completed" />
     <MESSAGE value="Users dialogs in process..." />
     <MESSAGE value="v0.0.18" />
@@ -495,7 +505,8 @@
     <MESSAGE value="Fix travis" />
     <MESSAGE value="Travis OK." />
     <MESSAGE value="Lint fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lint fixes" />
+    <MESSAGE value="Precommit OK." />
+    <option name="LAST_COMMIT_MESSAGE" value="Precommit OK." />
   </component>
   <component name="WindowStateProjectService">
     <state x="617" y="103" key="#ESLint" timestamp="1590559295519">
@@ -506,10 +517,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1590476699437" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590570785684">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590571663566">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590570785684" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590571663566" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590561042146">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
