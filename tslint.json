@@ -82,6 +82,7 @@
 			"node_modules",
 			"tmp",
 			"**/*olyfill**"
-		]
+		],
+		"project": "tsconfig.eslint.json"
 	}
 }

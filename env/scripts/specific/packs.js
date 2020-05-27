@@ -77,7 +77,7 @@ const packChrome = singleCall(async appConfigType => {
 })
 
 const runChrome = singleCall(async appConfigType => {
-
+	// empty
 })
 
 module.exports = {

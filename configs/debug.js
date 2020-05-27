@@ -1,4 +1,3 @@
-/* tslint:disable:no-var-requires */
 const base = require('./base')
 
 module.exports = {
