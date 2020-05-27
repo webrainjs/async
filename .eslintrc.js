@@ -31,7 +31,7 @@ module.exports = {
 	},
 
 	parser       : 'babel-eslint',
-	// parser       : '@typescript-eslint/parser',
+	// parser       : '@typescript-eslint/parser', // incorrect fix ";(value as any)" and many other problems (v3.0.1)
 	parserOptions: {
 		ecmaVersion                : 6,
 		sourceType                 : 'module',
