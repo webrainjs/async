@@ -146,6 +146,7 @@
     "tslint-eslint-rules": "^5.4.0",
     "tslint-no-circular-imports": "^0.7.0",
     "tslint-sonarts": "^1.9.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "webrain": "^1.0.1-a"
   }
 }
