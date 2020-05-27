@@ -1,17 +1,22 @@
-/* eslint-disable */
-
 module.exports = {
-	extends: ['pro'],
-	rules    : {
+	'extends': [
+		'pro',
+		'plugin:@typescript-eslint/recommended',
+		// 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+	],
+	rules: {
 		// Temporary disable: TypeError: Cannot read property 'value' of null (waiting for update babel-eslint)
-		'template-curly-spacing': 'off',
-		'object-curly-spacing': 'off',
-		"indent": "off",
-		"prefer-destructuring": "off",
-		"no-sync": "off",
-		"no-warning-comments": "warn",
-		"array-bracket-newline": "off",
-		"require-atomic-updates": "off",
+		'template-curly-spacing'     : 'off',
+		'object-curly-spacing'       : 'off',
+		indent                       : 'off',
+		'prefer-destructuring'       : 'off',
+		'no-sync'                    : 'off',
+		'no-warning-comments'        : 'warn',
+		'array-bracket-newline'      : 'off',
+		'require-atomic-updates'     : 'off',
+		'sort-imports'               : 'off',
+		'lines-between-class-members': 'off',
+		'no-new-wrappers'            : 'off',
 	},
 
 	env: {
@@ -20,6 +25,7 @@ module.exports = {
 	},
 
 	parser       : 'babel-eslint',
+	// parser       : '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion                : 6,
 		sourceType                 : 'module',
@@ -28,9 +34,11 @@ module.exports = {
 		babelOptions               : {
 			configFile: './env/babel/configs/minimal.js'
 		},
+		project: 'tsconfig.eslint.json',
 	},
 
 	plugins: [
+		'@typescript-eslint',
 		'sonarjs',
 		'html'
 	],

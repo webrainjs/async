@@ -19,49 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/env/chrome/app/.eslintrc" afterDir="false" />
+    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="Lint fixes">
+      <change afterPath="$PROJECT_DIR$/tsconfig.eslint.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/debug.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/debug.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/demo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/preprod.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/preprod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/stage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Info.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Info.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/chrome/app/js/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/chrome/app/js/background.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/chrome/app/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/chrome/app/js/init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/chrome/app/manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/chrome/app/manifest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/chrome/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/chrome/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/electron/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/electron/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/electron/pack/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/electron/pack/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/assert.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/assert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/log.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/open-window.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/open-window.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/postcss.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/postcss.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/svelte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/sapper/watcher-base.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/sapper/watcher-base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/sapper/watcher-ext.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/sapper/watcher-ext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/browser/browser-debug/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/modules/browser/browser-debug/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/visibility.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/visibility.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/templates/buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/templates/buttons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/performance/browser/css/selectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/performance/browser/css/selectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/performance/browser/isBrowser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/performance/browser/isBrowser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/performance/node/isNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/performance/node/isNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/browser/env/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/browser/env/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/browser/isBrowser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/browser/isBrowser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/common/env/modules.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/env/modules.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/isNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/isNode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/intern/helpers/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/.eslintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/run.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/run.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tslint.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +83,7 @@
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/env/chrome/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -135,11 +103,12 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -360,7 +329,7 @@
       <workItem from="1590459238370" duration="10835000" />
       <workItem from="1590492426641" duration="5972000" />
       <workItem from="1590521762170" duration="5000" />
-      <workItem from="1590521808093" duration="4561000" />
+      <workItem from="1590521808093" duration="11586000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -453,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590521703103</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Lint fixes">
+      <created>1590552725497</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1590552725497</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,18 +488,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="Lint fixes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="617" y="103" key="#ESLint" timestamp="1590067356069">
+    <state x="617" y="103" key="#ESLint" timestamp="1590559295519">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="617" y="103" key="#ESLint/0.0.1920.882@0.0.1920.882" timestamp="1590067356069" />
+    <state x="617" y="103" key="#ESLint/0.0.1920.882@0.0.1920.882" timestamp="1590559295519" />
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590476699437">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1590476699437" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590521691814">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590556397374">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590521691814" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590556397374" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590503586067">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -600,6 +576,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="666" y="68" key="RollbackChangesDialog/0.0.1920.882@0.0.1920.882" timestamp="1590395668389" />
+    <state x="343" y="0" key="SettingsEditor" timestamp="1590560026125">
+      <screen x="0" y="0" width="1920" height="882" />
+    </state>
+    <state x="343" y="0" key="SettingsEditor/0.0.1920.882@0.0.1920.882" timestamp="1590560026125" />
     <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590551645780">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

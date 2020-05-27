@@ -1,6 +1,6 @@
 import Command, {SetContextMethod} from '@theintern/leadfoot/Command'
-import {assert, delay} from "./base";
-import {Func} from "./contracts";
+import {assert, delay} from './base'
+import {Func} from './contracts'
 
 function isIterable(value: any): boolean {
 	return value != null
@@ -21,44 +21,6 @@ export function isThenable(value: any): boolean {
 	return value != null
 		&& typeof value === 'object'
 		&& typeof value.then === 'function'
-}
-
-export function getRoot(): Command<any> {
-	let root
-	let parent = run(o => o)
-	do {
-		root = parent
-		parent = root.parent
-	} while (parent)
-
-	return root
-}
-
-export function isRoot(): boolean {
-	const context = run(o => o).context
-	return context.length === 0
-}
-
-export function runWithCommand(func: () => any, command: Command<any>, newCommandTimeout?: number, newFindTimeout?: number) {
-	return resolveFunc(func, new State(
-		command,
-		newCommandTimeout || getCurrentState().commandTimeout,
-		newFindTimeout || getCurrentState().findTimeout,
-	))
-}
-
-export function runWithRootCommand(func: () => any) {
-	return runWithCommand(func, getRoot())
-}
-
-function assertInstanceOf(object, _class: Function) {
-	if (!(object instanceof _class)) {
-		throw new Error(`object is not ${_class.name}: ${
-			typeof object === 'object'
-				? object && (object as any).constructor.name
-				: object
-			}`)
-	}
 }
 
 class State {
@@ -103,6 +65,49 @@ class State {
 	}
 }
 
+export function getRoot(): Command<any> {
+	let root
+	let parent = run(o => o)
+	do {
+		root = parent
+		parent = root.parent
+	} while (parent)
+
+	return root
+}
+
+export function isRoot(): boolean {
+	const context = run(o => o).context
+	return context.length === 0
+}
+
+export function runWithCommand(
+	func: () => any, command: Command<any>,
+	newCommandTimeout?: number,
+	newFindTimeout?: number,
+) {
+	return resolveFunc(func, new State(
+		command,
+		newCommandTimeout || getCurrentState().commandTimeout,
+		newFindTimeout || getCurrentState().findTimeout,
+	))
+}
+
+export function runWithRootCommand(func: () => any) {
+	return runWithCommand(func, getRoot())
+}
+
+// tslint:disable-next-line:ban-types
+function assertInstanceOf(object, _class: Function) {
+	if (!(object instanceof _class)) {
+		throw new Error(`object is not ${_class.name}: ${
+			typeof object === 'object'
+				? object && (object as any).constructor.name
+				: object
+			}`)
+	}
+}
+
 const TIMEOUT = new String('Timeout')
 
 export const usingFindTimeout = iter(function* usingFindTimeout(
@@ -130,7 +135,7 @@ function commandIsAwaited(command: Command<any>) {
 
 async function waitCommand(command: Command<any>, timeout: number) {
 	if (!('result' in command)) {
-		;(command as any).result = (async function () {
+		(command as any).result = (async function() {
 			if (command.context && command.parent) {
 				throw new Error('command is already awaited')
 			}
@@ -145,13 +150,13 @@ async function waitCommand(command: Command<any>, timeout: number) {
 					throw new Error(`command is not awaited; timeout = ${timeout}`)
 				}
 
-				result = await resolveValue(result)
+				result = await resolveValue(result);
 
-				;(command as any).result = result
+				(command as any).result = result
 
 				return result
 			} catch (error) {
-				;(command as any).result = void 0
+				(command as any).result = void 0
 				throw error
 			}
 		})()
@@ -176,9 +181,9 @@ export function getCurrentState() {
 export function onPushFindFilter(description: string) {
 	const command = run(o => o)
 	if (!(command as any).filters) {
-		;(command as any).filters = [description]
+		(command as any).filters = [description]
 	} else {
-		;(command as any).filters = [...(command as any).filters, description]
+		(command as any).filters = [...(command as any).filters, description]
 	}
 }
 
@@ -188,7 +193,7 @@ export function onReleaseFindFilter() {
 	if (len <= 0) {
 		throw new Error('Call end without find')
 	}
-	;(command as any).filters = (command as any).filters.slice(0, len - 1)
+	(command as any).filters = (command as any).filters.slice(0, len - 1)
 }
 
 export function getCurrentFilters() {
@@ -209,7 +214,7 @@ export function run(func: (command: Command<any>) => Command<any>, parentCommand
 	let newCommand = func(state.command)
 	if (newCommand !== state.command || parentCommand) {
 		if (parentCommand) {
-			newCommand = new Command(state.command, function (setContext) {
+			newCommand = new Command(state.command, function(setContext) {
 				setContext(parentCommand.context)
 			})
 		}
@@ -221,7 +226,7 @@ export function run(func: (command: Command<any>) => Command<any>, parentCommand
 		// 	return value
 		// })
 
-		;(newCommand as any).filters = (oldCommand as any).filters
+		; (newCommand as any).filters = (oldCommand as any).filters
 	}
 
 	state.command = newCommand
@@ -229,7 +234,7 @@ export function run(func: (command: Command<any>) => Command<any>, parentCommand
 	return state.command
 }
 
-export async function resolveAll(values: Array<any>, state?: State) {
+export async function resolveAll(values: any[], state?: State) {
 	if (state == null) {
 		state = getCurrentState()
 	}
@@ -239,7 +244,7 @@ export async function resolveAll(values: Array<any>, state?: State) {
 export function iter<TThis, TArgs extends any[], TValue = void>(
 	func: Func<TThis, TArgs, TValue>,
 ): Func<TThis, TArgs, TValue> {
-	return function () {
+	return function() {
 		const result = func.apply(this, arguments)
 		if (isIterator(result)) {
 			result.name = func.name
@@ -292,7 +297,7 @@ export function resolveFunc(func: () => any, state?: State): Promise<any> {
 }
 
 export async function resolveIterator(iterator: Iterator<any>, state?: State): Promise<any> {
-	let time0 = Date.now()
+	const time0 = Date.now()
 
 	let isError
 	let value = void 0
