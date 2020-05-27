@@ -106,7 +106,7 @@
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Build Test Dev">
+  <component name="RunManager" selected="Mocha.Watch">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -296,6 +296,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
+        <item itemvalue="Mocha.webdriver.intern" />
+        <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
       </list>
