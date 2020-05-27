@@ -1,8 +1,8 @@
-import Command from "@theintern/leadfoot/Command";
-import {assert, end, findBase, iter, run, usingFindTimeout} from "./index";
-import Element from "@theintern/leadfoot/Element";
-import {assertCount} from "./assert";
-import {delay} from "webrain";
+import Command from '@theintern/leadfoot/Command'
+import Element from '@theintern/leadfoot/Element'
+import {delay} from 'webrain'
+import {assertCount} from './assert'
+import {assert, end, findBase, iter, run, usingFindTimeout} from './index'
 
 // docs:
 // https://theintern.io/docs.html#Leadfoot/2/api/Command/command-1
@@ -64,19 +64,18 @@ export const switchToCommand = iter(function *switchToCommand(
 	return yield run(o => o, command)
 })
 
-
 export const filter = iter(function *filter(predicate: (element, index) => boolean) {
 	const prevCommand = run(o => o)
 	yield end()
 
-	const result = yield run(o => o.then(function (_, setContext) {
+	const result = yield run(o => o.then(function(_, setContext) {
 		const newContext = prevCommand.context.filter(predicate)
 		setContext(newContext)
 		return newContext
 	}))
 
 	const command = run(o => o)
-	;(command as any).filters = (prevCommand as any).filters
+	; (command as any).filters = (prevCommand as any).filters
 
 	return result
 })
@@ -86,8 +85,8 @@ export const findMerge = iter(function* findMerge(
 	mergeContexts: (...contexts: Element[][]) => Element | Element[] | null | undefined
 		= concatDistinct,
 ) {
-	let contexts = []
-	let filters = []
+	const contexts = []
+	const filters = []
 	for (let i = 0, len = finds.length; i < len; i++) {
 		const prev = run(o => o)
 
@@ -104,14 +103,14 @@ export const findMerge = iter(function* findMerge(
 
 	const prev = run(o => o)
 
-	const result = yield run(o => o.then(function (_, setContext) {
+	const result = yield run(o => o.then(function(_, setContext) {
 		const newContext = asArray(mergeContexts(...contexts))
 		setContext(newContext)
 		return newContext
 	}))
 
 	const command = run(o => o)
-	;(command as any).filters = [...(prev as any).filters || [], filters.filter(o => o && o.length)]
+	; (command as any).filters = [...(prev as any).filters || [], filters.filter(o => o && o.length)]
 
 	return result
 })
@@ -131,7 +130,6 @@ export const findMerge = iter(function* findMerge(
 //
 // 	return false
 // })
-
 
 export const wait = iter(function *wait(func: () => boolean|Iterator<any, boolean>, maxDelay: number, delayPerIteration?: number) {
 	if (!delayPerIteration) {
@@ -206,7 +204,7 @@ export const findFirstOrEmpty = iter(function *findFirstOrEmpty(
 ) {
 	return yield findMerge(
 		[
-			() => findAll(selectorOrArray, indexOrArray, waitTime)
+			() => findAll(selectorOrArray, indexOrArray, waitTime),
 		],
 		o => o.length > 0 ? o[0] : null,
 	)
@@ -219,7 +217,7 @@ export const findLastOrEmpty = iter(function *findLastOrEmpty(
 ) {
 	return yield findMerge(
 		[
-			() => findAll(selectorOrArray, indexOrArray, waitTime)
+			() => findAll(selectorOrArray, indexOrArray, waitTime),
 		],
 		o => o.length > 0 ? o[o.length - 1] : null,
 	)

@@ -1,4 +1,4 @@
-import {iter, run} from "./run";
+import {iter, run} from './run'
 
 /* tslint:disable */
 

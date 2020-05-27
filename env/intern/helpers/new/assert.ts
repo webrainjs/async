@@ -1,8 +1,8 @@
-import {findAll, findFirst, findSingle, wait} from "./find";
-import {assert, getCurrentState, getTextSingle, getValueSingle, iter, run} from "./index";
-import {end} from "./find-base";
+import {findAll, findFirst, findSingle, wait} from './find'
+import {end} from './find-base'
+import {assert, getCurrentState, getTextSingle, getValueSingle, iter, run} from './index'
 
-export const assertCount = iter(function* assertCount(
+export const assertCount = iter(function *assertCount(
 	countOrFunc: number | ((count: number) => boolean),
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
@@ -25,7 +25,7 @@ export const assertCount = iter(function* assertCount(
 	yield end()
 })
 
-export const assertSingle = iter(function* assertSingle(
+export const assertSingle = iter(function *assertSingle(
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,
@@ -34,7 +34,7 @@ export const assertSingle = iter(function* assertSingle(
 	yield end()
 })
 
-export const assertFirst = iter(function* assertFirst(
+export const assertFirst = iter(function *assertFirst(
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,
@@ -43,7 +43,7 @@ export const assertFirst = iter(function* assertFirst(
 	yield end()
 })
 
-export const assertWait = iter(function* assertWait(
+export const assertWait = iter(function *assertWait(
 	func: () => boolean|Iterator<any, boolean>,
 	timeout?: number,
 	description?: string,

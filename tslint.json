@@ -68,7 +68,8 @@
 		"no-invariant-return": false,
 		"no-dead-store": false,
 		"no-construct": false,
-		"use-primitive-type": false
+		"use-primitive-type": false,
+		"no-var-requires": false
 	},
 	"rulesDirectory": [
 		"node_modules/tslint-eslint-rules/dist/rules"

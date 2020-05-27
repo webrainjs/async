@@ -1,6 +1,6 @@
 import {cssToXPath} from '../../../../modules/common/css-to-xpath'
 import {assert} from './base'
-import {findFirst, wait} from './find'
+import {wait} from './find'
 import {getCurrentState, iter, onPushFindFilter, onReleaseFindFilter, run} from './run'
 // const cssToXPath = require('css-to-xpath')
 
@@ -20,7 +20,7 @@ function prepareSelector(selector: string) {
 	return selector
 }
 
-export const findBase = iter(function* findBase(
+export const findBase = iter(function *findBase(
 	selector: string,
 	firstOnly?: boolean,
 ) {
@@ -57,7 +57,7 @@ export const findBase = iter(function* findBase(
 		assert.ok(items.length > 0, `findBase(firstOnly) not found: ${selector}`)
 	}
 
-	yield run(o => o.then(function(_, setContext) {
+	yield run(o => o.then(function (_, setContext) {
 		setContext(items)
 		return items
 	}))

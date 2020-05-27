@@ -1,7 +1,7 @@
-import {iter, run} from "./run";
-import {loadScript} from "./load-script";
-import {assert} from "./base";
-import {end} from "./find-base";
+import {assert} from './base'
+import {end} from './find-base'
+import {loadScript} from './load-script'
+import {iter, run} from './run'
 
 const {getComponentName, getComponentUrl} = require('../../../rollup/helpers')
 
@@ -27,7 +27,7 @@ function _appendSvelteComponent(componentClass, containerCssClass, props, callba
 			props: props,
 			error: {
 				message: ex.toString(),
-				stack: ex.stack
+				stack  : ex.stack
 			}
 		}));
 	}

@@ -6,5 +6,6 @@ __sapper__
 **/polyfill*/**
 src/assets/**/*
 static
+*.ts
 **/v8/**/runtime.js
 env/logger/server/**/*

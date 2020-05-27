@@ -1,7 +1,7 @@
-import {isRoot, iter, run} from "./run";
-import {assert} from "./base";
-import {findSingle} from "./find";
-import {end} from "./find-base";
+import {assert} from './base'
+import {findSingle} from './find'
+import {end} from './find-base'
+import {isRoot, iter, run} from './run'
 
 export const getTextSingle = iter(function *getTextSingle() {
 	const texts = yield run(o => o.getVisibleText())

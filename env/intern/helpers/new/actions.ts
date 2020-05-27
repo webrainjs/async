@@ -5,7 +5,7 @@ import {end} from './find-base'
 import {getValueSingle} from './get'
 import {iter, run} from './run'
 
-export const findAction = iter(function* findAction(
+export const findAction = iter(function *findAction(
 	action: () => any,
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
@@ -22,7 +22,7 @@ export const findAction = iter(function* findAction(
 	return yield result
 })
 
-export const click = iter(function* click(
+export const click = iter(function *click(
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,
@@ -30,12 +30,12 @@ export const click = iter(function* click(
 	return yield findAction(() => run(o => o.click()), selectorOrArray, indexOrArray, waitTime)
 })
 
-export const pressKeys = iter(function* pressKeys(keys: string | string[]) {
+export const pressKeys = iter(function *pressKeys(keys: string | string[]) {
 	return yield run(o => o.pressKeys(keys))
 })
 
 /** @deprecated Not worked correctly - the value restored sometimes after clear and switch focus to other element */
-const clearValue = iter(function* clearValue(
+export const clearValue = iter(function *clearValue(
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,
@@ -44,7 +44,7 @@ const clearValue = iter(function* clearValue(
 	yield assertValue(o => !o)
 })
 
-export const clearTextInput = iter(function* clearTextInput(
+export const clearTextInput = iter(function *clearTextInput(
 	selectorOrArray?: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,

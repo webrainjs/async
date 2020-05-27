@@ -1,11 +1,10 @@
-import {iter, run} from "./run";
-import {delay, pathToUrl, runInWindow} from "./base";
-import {getAllLogs, printDebugInfo} from "./log";
-import {loadScript} from "./load-script";
-import {TLogPredicate, TLog} from "./contracts";
-import {end, findBase} from "./find-base";
-import {findSingle} from "./find";
-import {assertWait} from "./assert";
+import {assertWait} from './assert'
+import {pathToUrl, runInWindow} from './base'
+import {TLog, TLogPredicate} from './contracts'
+import {end, findBase} from './find-base'
+import {loadScript} from './load-script'
+import {getAllLogs, printDebugInfo} from './log'
+import {iter, run} from './run'
 const intern = require('intern').default
 const {assert: assertBase} = intern.getPlugin('chai')
 
@@ -95,7 +94,7 @@ export const testPage = iter(function *testPage(func: () => any, errorPredicate:
 
 export const testPageWithPolyfill = iter(function *testPageWithPolyfill(func: () => any, errorPredicate: TLogPredicate) {
 	return yield testPage(
-		function* _testPageWithPolyfill() {
+		function *_testPageWithPolyfill() {
 			yield loadScript(pathToUrl('static/libs/polyfill.js'))
 			yield checkLogs(errorPredicate)
 			yield func

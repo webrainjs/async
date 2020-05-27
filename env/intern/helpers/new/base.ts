@@ -1,10 +1,10 @@
-import {iter, run} from "./run";
+import {iter, run} from './run'
 
 const intern = require('intern').default
 const path = require('path')
 export const {assert} = intern.getPlugin('chai')
 export const {registerSuite} = intern.getInterface('object')
-import keys from "@theintern/leadfoot/keys";
+import keys from '@theintern/leadfoot/keys'
 export {keys}
 
 if (!process.env.APP_CONFIG) {

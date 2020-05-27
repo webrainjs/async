@@ -1,7 +1,7 @@
+import {LogEntry} from '@theintern/leadfoot/index'
 import browserDebug from '../../../../modules/browser/browser-debug/index'
-import {iter, resolveAll, run, runWithRootCommand} from "./run";
-import {LogEntry} from "@theintern/leadfoot/index";
-import {TLogPredicate, TLog} from "./contracts";
+import {TLog, TLogPredicate} from './contracts'
+import {iter, resolveAll, run, runWithRootCommand} from './run'
 
 export const getAllLogs = iter(function *getAllLogs(): Iterator<any, TLog[]> {
 	const logTypes: string[] = yield run(o => o.getAvailableLogTypes())
@@ -23,7 +23,7 @@ export const getAllLogs = iter(function *getAllLogs(): Iterator<any, TLog[]> {
 				}
 				return log
 			})
-		}))
+		})),
 	)
 
 	return result
@@ -55,13 +55,13 @@ export const logRemote = iter(function *logRemote(prefix: string, remoteGetDataS
 })
 
 export const getHtml = iter(function *getHtml(): Iterator<any, string> {
-	return yield run(o => o.execute(function () {
+	return yield run(o => o.execute(function() {
 		return new XMLSerializer().serializeToString(document)
 	})
 })
 
 export const getUserAgent = iter(function *getUserAgent(): Iterator<any, string> {
-	return yield run(o => o.execute(function () {
+	return yield run(o => o.execute(function() {
 		return navigator.userAgent
 	}))
 })
@@ -75,13 +75,13 @@ export const printDebugInfo = iter(function *printDebugInfo(): Iterator<any, voi
 		getAllLogs,
 		getUserAgent,
 		getHtml,
-		getDebugInfo
+		getDebugInfo,
 	].map(runWithRootCommand))) as any
 
 	console.debug(`--------------- Debug Info: ---------------\n${JSON.stringify({
 		logs,
 		userAgent,
 		html: (html || '').substring(0, 1000),
-		debugInfo
+		debugInfo,
 	}, null, 4)}\n---------------   Error:   ---------------`)
 })

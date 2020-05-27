@@ -1,5 +1,5 @@
-import {iter, run} from "./run";
-import {end} from "./find-base";
+import {end} from './find-base'
+import {iter, run} from './run'
 
 /* tslint:disable */
 
@@ -20,9 +20,9 @@ function remoteLoadScript(scriptUrl, callback) {
 	} catch (ex) {
 		callback(JSON.stringify({
 			error: {
-				url: scriptUrl,
+				url    : scriptUrl,
 				message: ex.toString(),
-				stack: ex.stack
+				stack  : ex.stack
 			}
 		}));
 	}
