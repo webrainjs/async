@@ -1,3 +1,5 @@
+require('./helpers/new/globals')
+
 require('./helpers/base')
 require('./helpers/load-script')
 require('./helpers/open-window')

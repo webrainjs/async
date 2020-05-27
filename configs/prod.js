@@ -5,8 +5,8 @@ module.exports = {
 	// base
 	packageName: base.packageName,
 
-	type  : 'prod',
-	tests : {
+	type : 'prod',
+	tests: {
 		intern: {
 			staticPort: 3015,
 			serverPort: 3025,

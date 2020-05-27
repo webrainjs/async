@@ -16,7 +16,7 @@ function appendSvelteComponent(componentClass, containerCssClass, props, callbac
 
 		var component = new window[componentClass]({
 			target: container,
-			props
+			props: props
 		});
 
 		callback();

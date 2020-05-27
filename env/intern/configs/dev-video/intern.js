@@ -1,4 +1,4 @@
-import {serverIp, staticPort} from '../constants'
+import {sapperPort as staticPort, serverIp} from '../constants'
 
 export default {
 	environments: [
@@ -80,5 +80,6 @@ export default {
 		//			"browserName": "opera",
 		//			"operaOptions": {"binary": "/usr/bin/opera"}
 		//		}
-	]
+	],
+	serverUrl: `http://${serverIp}:${staticPort}`,
 }

@@ -4,18 +4,18 @@ const specific = require('./specific')
 
 // region Specific
 
-const test = singleCall(async appConfigType => {
-	await specific.tests.testIntern(appConfigType)
+const test = singleCall(async (appConfigType, options = {}) => {
+	await specific.tests.testIntern(appConfigType, options)
 	await Promise.all([
 		common.lint(),
-		specific.tests.coverage(appConfigType),
+		specific.tests.coverage(appConfigType, options),
 	])
 })
 
-const testCi = singleCall(async appConfigType => {
+const testCi = singleCall(async (appConfigType, options = {}) => {
 	await Promise.all([
 		common.lint(),
-		specific.tests.coverage(appConfigType),
+		specific.tests.coverage(appConfigType, options),
 	])
 })
 
@@ -23,34 +23,39 @@ const testCi = singleCall(async appConfigType => {
 
 // region All
 
-const buildAll = singleCall((...appConfigTypes) => Promise.all(
+const buildAll = singleCall(appConfigTypes => Promise.all(
 	appConfigTypes.map(appConfigType => specific.builds.build(appConfigType, {intern: false}))
 ))
 
-const testInternAll = singleCall((...appConfigTypes) => Promise.all(
-	appConfigTypes.map(appConfigType => specific.tests.testIntern(appConfigType))
+const testInternAll = singleCall((appConfigTypes, options = {}) => Promise.all(
+	appConfigTypes.map(appConfigType => specific.tests.testIntern(appConfigType, options))
 ))
 
-const testAll = singleCall(async (...appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
-	await testInternAll(...appConfigTypes)
+const testAll = singleCall(async (appConfigTypes, options = {}) => {
+	if (options.build !== false) {
+		await Promise.all([
+			common.lint(),
+			buildAll(appConfigTypes),
+		])
+	}
+
+	await testInternAll(appConfigTypes, options)
 
 	await Promise.all(
-		appConfigTypes.map(appConfigType => test(appConfigType))
+		appConfigTypes.map(appConfigType => test(appConfigType, options))
 	)
 })
 
-const testCiAll = singleCall(async (...appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(...appConfigTypes),
-	])
+const testCiAll = singleCall(async (appConfigTypes, options = {}) => {
+	if (options.build !== false) {
+		await Promise.all([
+			common.lint(),
+			buildAll(appConfigTypes),
+		])
+	}
 
 	await Promise.all(
-		appConfigTypes.map(appConfigType => testCi(appConfigType))
+		appConfigTypes.map(appConfigType => testCi(appConfigType, options))
 	)
 })
 

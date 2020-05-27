@@ -5,7 +5,7 @@ module.exports = {
 	// base
 	packageName: `${base.packageName}-preprod`,
 
-	type: 'preprod',
+	type : 'preprod',
 	tests: {
 		intern: {
 			staticPort: 3014,

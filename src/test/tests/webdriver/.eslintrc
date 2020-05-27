@@ -7,8 +7,7 @@
 		"intern": true,
 		"assert": false,
 		"expect": false,
-		"pathToUrl": true,
-		"delay": true
+		"pathToUrl": true
 	},
 	"rules": {
 		"object-shorthand": "off",

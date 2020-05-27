@@ -1,4 +1,7 @@
 {
+	"rules": {
+		"no-shadow": "off"
+	},
 	"globals": {
 		"pathToUrl": true
 	}

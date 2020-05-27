@@ -9,7 +9,7 @@ const postcss = require('./postcss')
 
 const transformJsToCss = toCachedFunc(
 	({content}) => content,
-	async function({content, filename}) {
+	async function ({content, filename}) {
 		// console.log(`sveltePreprocess: ${filename}\r\n${content}`)
 		const parsed = await postcss.convert.jsToCss(content, filename)
 
@@ -53,6 +53,7 @@ function rollupCommon(options = {}) {
 		}
 	}
 
+	// eslint-disable-next-line no-unused-vars
 	const {babelrc} = options
 	delete options.babelrc
 
@@ -113,6 +114,9 @@ function rollupCommon(options = {}) {
 		},
 		onwarn(warning, onwarn) {
 			if (warning.code === 'css-unused-selector') {
+				return false
+			}
+			if (warning.code === 'unused-export-let') {
 				return false
 			}
 			return onwarn(warning)

@@ -1,86 +1,86 @@
-/* eslint-disable no-extra-parens,prefer-destructuring */
+/* eslint-disable */
+// no-extra-parens,prefer-destructuring
 
 export function getDebugInfo() {
 	if (typeof window === 'undefined') {
-		return null
+		return null;
 	}
 
-	const result = {
+	var result = {
 		userAgent: navigator.userAgent
-	}
+	};
 
 	// performance.timing (deprecated)
 	// https://www.w3.org/TR/navigation-timing/
 	// Performance.timeOrigin (new)
 	// https://w3c.github.io/navigation-timing/
-	let timing = performance.getEntriesByType && performance.getEntriesByType('navigation')[0]
-		|| performance.getEntries && performance.getEntries().filter(o => o.entryType === 'navigation')[0]
+
+	var timing = performance.getEntriesByType && performance.getEntriesByType('navigation')[0] || performance.getEntries && performance.getEntries().filter(function (o) {
+		return o.entryType === 'navigation';
+	})[0];
 
 	if (timing) {
 		result.timing = {
-			loadHtml : timing.domInteractive,
-			loadDom  : timing.loadEventEnd - timing.domInteractive,
+			loadHtml: timing.domInteractive,
+			loadDom: timing.loadEventEnd - timing.domInteractive,
 			loadTotal: timing.loadEventEnd
-		}
-	} else if ((timing = performance.timing)) {
+		};
+	} else if (timing = performance.timing) {
 		result.timing = {
-			loadHtml : timing.domInteractive - timing.navigationStart,
-			loadDom  : timing.loadEventEnd - timing.domInteractive,
+			loadHtml: timing.domInteractive - timing.navigationStart,
+			loadDom: timing.loadEventEnd - timing.domInteractive,
 			loadTotal: timing.loadEventEnd - timing.navigationStart
-		}
+		};
 	}
 
 	// Only for Chrome
 	// https://webplatform.github.io/docs/apis/timing/properties/memory/
+
 	if (performance.memory && performance.memory.usedJSHeapSize) {
 		result.memory = {
 			used: performance.memory.usedJSHeapSize
-		}
+		};
 	}
 
 	// var resources = performance.getEntriesByType && performance.getEntriesByType('resource') ||
 	// 	performance.getEntries && performance.getEntries().filter(o => o.entryType === 'resource')
 
-	const resources = performance.getEntries && performance.getEntries()
+	var resources = performance.getEntries && performance.getEntries();
 
 	if (resources) {
-		result.resources = resources
-			.map(o => {
-				const resource = {
-					url: o.name
-				}
+		result.resources = resources.map(function (o) {
+			var resource = {
+				url: o.name
+			};
+			var time = o.responseEnd && (o.domainLookupStart || o.startTime || o.fetchStart) ? o.responseEnd - (o.domainLookupStart || o.startTime || o.fetchStart) : o.duration;
 
-				const time = o.responseEnd && (o.domainLookupStart || o.startTime || o.fetchStart)
-					? o.responseEnd - (o.domainLookupStart || o.startTime || o.fetchStart)
-					: o.duration
+			if (time != null) {
+				resource.time = time;
+			}
 
-				if (time != null) {
-					resource.time = time
-				}
+			if (o.initiatorType) {
+				resource.initiator = o.initiatorType;
+			}
 
-				if (o.initiatorType) {
-					resource.initiator = o.initiatorType
-				}
+			var size = o.transferSize || o.encodedBodySize;
 
-				const size = o.transferSize || o.encodedBodySize
+			if (size) {
+				resource.size = size;
+			}
 
-				if (size) {
-					resource.size = size
-				}
+			return resource;
+		}).sort(function (o1, o2) {
+			var i;
 
-				return resource
-			})
-			.sort((o1, o2) => {
-				let i
-				if ((i = (o2.size || 0) - (o1.size || 0)) !== 0) {
-					return i
-				}
+			if ((i = (o2.size || 0) - (o1.size || 0)) !== 0) {
+				return i;
+			}
 
-				return (o2.time || 0) - (o1.time || 0)
-			})
+			return (o2.time || 0) - (o1.time || 0);
+		});
 	}
 
-	return result
+	return result;
 }
 
 export default {

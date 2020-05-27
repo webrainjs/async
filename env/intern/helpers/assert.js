@@ -1,4 +1,3 @@
-import browserDebug from '../../../modules/browser/browser-debug'
 const intern = require('intern').default
 const {assert} = intern.getPlugin('chai')
 require('./log')
