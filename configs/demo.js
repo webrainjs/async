@@ -10,14 +10,14 @@ module.exports = {
 	logUrls    : base.logUrls,
 	installer  : base.installer,
 
-	type  : 'demo',
-	dev: {
+	type: 'demo',
+	dev : {
 		devPage : false,
 		devTools: {
 			openAtStart: false,
 		},
 	},
-	tests : {
+	tests: {
 		intern: {
 			staticPort: 3011,
 			serverPort: 3021,

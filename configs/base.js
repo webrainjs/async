@@ -8,7 +8,7 @@ module.exports = {
 	logUrls    : [
 		// 'http://app-template.logger.com/log.php', // TODO
 	],
-	installer  : {
+	installer: {
 		electronVersion: '6.0.11',
 		nodeVersion    : '12.4.0',
 	},

@@ -1,6 +1,5 @@
 const watcherBase = require('./watcher-base')
 const chokidar = require('chokidar')
-const globby = require('globby')
 
 module.exports.watch = function watch(opts) {
 	const watcher = watcherBase.watch(opts)

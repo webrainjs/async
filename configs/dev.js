@@ -10,13 +10,13 @@ module.exports = {
 	logUrls    : base.logUrls,
 	installer  : base.installer,
 
-	type  : 'dev',
-	dev   : {
-		devPage           : true,
+	type: 'dev',
+	dev : {
+		devPage : true,
 		devTools: {
 			openAtStart: false,
 		},
-		devBuild       : false,
+		devBuild: false,
 	},
 	tests: {
 		intern: {

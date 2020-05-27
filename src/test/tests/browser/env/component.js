@@ -11,7 +11,7 @@ describe('browser > env > component', function () {
 	function createComponent(props) {
 		return new Component({
 			target: document.querySelector('test'),
-			props  : {...props},
+			props : {...props},
 		})
 	}
 

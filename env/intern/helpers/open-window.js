@@ -1,4 +1,3 @@
-const intern = require('intern').default
 const Command = require('@theintern/leadfoot/Command').default
 
 /* eslint-disable */

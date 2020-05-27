@@ -3,7 +3,6 @@
 
 const globby = require('globby')
 const path = require('path')
-const fs = require('fs')
 const thisPackage = require('../../package')
 const rollupPlugins  = require('../rollup/plugins.js')
 const {writeTextFile, writeTextFileSync} = require('../common/helpers')

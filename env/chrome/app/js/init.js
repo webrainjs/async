@@ -1,8 +1,8 @@
 function webviewController(webview) {
-	window.addEventListener('message', function(e) {
+	window.addEventListener('message', function (e) {
 		console.debug(e.data)
 		if (e.data === 'minimize') {
-			chrome.app.window.current().minimize();
+			chrome.app.window.current().minimize()
 		}
 	})
 
@@ -12,4 +12,5 @@ function webviewController(webview) {
 	})
 }
 
+// eslint-disable-next-line no-undef
 webviewController(webview)

@@ -2,7 +2,6 @@ const path = require('path')
 const svelte  = require('rollup-plugin-svelte')
 const sveltePreprocess = require('svelte-preprocess')
 const svelteThemesPreprocess = require('svelte-themes-preprocess').default
-const babel = require('@babel/core')
 const babelConfigMinimal = require('../babel/configs/minimal')
 const {toCachedFunc} = require('./helpers')
 const {normalizePath} = require('../common/helpers')
@@ -67,6 +66,7 @@ function rollupCommon(options = {}) {
 		}
 	}
 
+	// eslint-disable-next-line no-unused-vars
 	const {babelrc} = options
 	delete options.babelrc
 

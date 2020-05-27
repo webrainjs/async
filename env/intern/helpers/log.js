@@ -69,16 +69,16 @@ Command.prototype.logThis = function (prefix, transformFunc) {
 
 Command.prototype.getHtml = function () {
 	return this
-		// eslint-disable-next-line no-undef
 		.execute(function () {
+			// eslint-disable-next-line no-undef
 			return new XMLSerializer().serializeToString(document)
 		})
 }
 
 Command.prototype.getUserAgent = function () {
 	return this
-		// eslint-disable-next-line no-undef
 		.execute(function () {
+			// eslint-disable-next-line no-undef
 			return navigator.userAgent
 		})
 }

@@ -54,7 +54,7 @@ const base = ({
 		...templates.contentCenter,
 		...(noWrap && templates.noWrap()),
 		display: `inline-flex`,
-		width: `auto`,
+		width  : `auto`,
 
 		// 'text-transform': `uppercase`,
 		// 'font-weight'   : `bold`,
@@ -71,7 +71,7 @@ const base = ({
 				color: disabled.colorBorder || colorBorder,
 				width: disabled.borderWidth || borderWidth,
 			}),
-			opacity: disabled.opacity,
+			opacity         : disabled.opacity,
 			'pointer-events': `none`,
 		},
 		'&:hover': {

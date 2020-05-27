@@ -5,9 +5,13 @@ module.exports = {
 	rules    : {
 		// Temporary disable: TypeError: Cannot read property 'value' of null (waiting for update babel-eslint)
 		'template-curly-spacing': 'off',
+		'object-curly-spacing': 'off',
 		"indent": "off",
 		"prefer-destructuring": "off",
 		"no-sync": "off",
+		"no-warning-comments": "warn",
+		"array-bracket-newline": "off",
+		"require-atomic-updates": "off",
 	},
 
 	env: {

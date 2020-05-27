@@ -98,7 +98,7 @@ describe('browser > css > selectors', function () {
 
 	function testSelector(selector) {
 		const time = calcPerformance(() => document.body.querySelectorAll(selector), 0)
-		console.log(selector + '\t' + time)
+		console.log(`${selector}\t${time}`)
 	}
 
 	it('isBrowser', function () {

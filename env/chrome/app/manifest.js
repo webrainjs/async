@@ -1,4 +1,4 @@
-/* eslint-disable array-bracket-newline */
+/* eslint-disable array-bracket-newline,no-process-env */
 if (!process.env.APP_CONFIG) {
 	console.error('Environment variable APP_CONFIG is not defined', __filename)
 	throw new Error('Environment variable APP_CONFIG is not defined')

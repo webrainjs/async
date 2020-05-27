@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow,global-require,object-property-newline,no-process-env,array-bracket-newline */
 const path = require('path')
 const fs = require('fs')
-const {build} = require('../common/build')
-const rollupPlugins = require('../rollup/plugins')
+// const {build} = require('../common/build')
+// const rollupPlugins = require('../rollup/plugins')
 const manifest = require('./app/manifest')
 const globby = require('globby')
 

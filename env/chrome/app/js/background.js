@@ -1,4 +1,5 @@
-function windowOpen(url, name, options, callback) {
+/* eslint-disable default-case */
+function windowOpen(url, _name, options, callback) {
 	// docs: https://developer.chrome.com/apps/app_window#method-create
 	chrome.app.window.create('index.html', options, appWindow => {
 		appWindow.contentWindow.addEventListener('DOMContentLoaded', function () {
@@ -27,7 +28,9 @@ function windowOpen(url, name, options, callback) {
 
 			appWindow.contentWindow.webview.src = url
 
-			callback && callback(appWindow)
+			if (callback) {
+				callback(appWindow)
+			}
 		})
 	})
 }
@@ -36,7 +39,6 @@ function windowOpen(url, name, options, callback) {
 let entryToLoad = null
 
 function init(launchData) {
-	const fileEntry = null
 	if (launchData && launchData.items && launchData.items.length > 0) {
 		entryToLoad = launchData.items[0].entry
 	}

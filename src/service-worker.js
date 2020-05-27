@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* global self, caches, fetch */
 // @ts-ignore
 import {files, shell, timestamp} from 'SAPPER_MODULE/service-worker'
 import {logger} from './main/browser/log/LoggerBrowser'
@@ -35,13 +37,11 @@ const init = () => {
 		event.waitUntil(catchLog(caches.keys()
 			.then(async keys => {
 				// delete old caches
-				for (const key of keys) {
-					if (key !== ASSETS) {
-						await caches.delete(key)
-					}
-				}
+				await Promise.all(Object.keys(keys)
+					.filter(key => key !== ASSETS)
+					.map(key => caches.delete(key)))
 
-				self.clients.claim()
+				await self.clients.claim()
 			})))
 	})
 

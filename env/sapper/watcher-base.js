@@ -55,6 +55,7 @@ module.exports.watch = function watch(opts) {
 			console.log(`\n${colors.bold().cyan(changed)} changed. rebuilding...`)
 		})
 		watcher.on('error', event => {
+			// eslint-disable-next-line prefer-template
 			console.log(colors.red(`✗ ${event.type} (${event.error.code})\n`
 				+ (event.error.loc && `${event.error.loc.file}:${event.error.loc.line}:${event.error.loc.column}]\n` || '')
 				+ `${event.error.message}\n\n`

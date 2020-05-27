@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow,global-require,object-property-newline,no-process-env */
 const path = require('path')
-const fs = require('fs')
 const {build} = require('../common/build')
 const rollupPlugins = require('../rollup/plugins')
 const {writeTextFile} = require('../common/helpers')

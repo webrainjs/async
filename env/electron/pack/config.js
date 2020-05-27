@@ -38,11 +38,11 @@ module.exports = {
 		],
 	},
 	mac: {
-		target    : 'dmg',
-		icon      : 'appicon.icns',
+		target  : 'dmg',
+		icon    : 'appicon.icns',
 		// "background": "res/background.png",
 		// see: https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW8
-		category  : 'public.app-category.business',
+		category: 'public.app-category.business',
 		// extraFiles: [
 		// 	`dist/${process.env.APP_CONFIG}/electron/build/pkg-scripts`,
 		// ],

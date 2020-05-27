@@ -10,8 +10,8 @@ module.exports = {
 	logUrls    : base.logUrls,
 	installer  : base.installer,
 
-	type  : 'prod',
-	tests : {
+	type : 'prod',
+	tests: {
 		intern: {
 			staticPort: 3015,
 			serverPort: 3025,

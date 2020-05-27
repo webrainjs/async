@@ -10,8 +10,8 @@ module.exports = {
 	logUrls    : base.logUrls,
 	installer  : base.installer,
 
-	type  : 'stage',
-	dev   : {
+	type: 'stage',
+	dev : {
 		devPage : false,
 		devTools: {
 			openAtStart: false,

@@ -8,12 +8,7 @@ const buildVis = singleCall(() => run(
 	'node env/libs/vis-network/build.js',
 	{env: {APP_CONFIG: 'dev'}}
 ))
-const buildWebrain = singleCall(() => run(
-	'node env/libs/webrain/build.js',
-	{env: {APP_CONFIG: 'dev'}}
-))
 const buildLibs = singleCall(() => Promise.all([
-	// buildWebrain(),
 	buildPolyfill(),
 	buildVis(),
 ]))
@@ -24,11 +19,11 @@ const build = singleCall(async () => {
 })
 
 const lintEs = singleCall(async () => {
-	await run('eslint --plugin markdown --ext js,md . ')
+	await run('eslint --plugin markdown --ext js,md .')
 })
 
 const lintTs = singleCall(async () => {
-	await run('tslint --project tsconfig.json --config tslint.json --exclude **/_trash/** src/main/**/*.ts"')
+	await run('tslint --project tsconfig.json --config tslint.json --exclude **/_trash/** src/main/**/*.ts')
 })
 
 // Warning - depcheck takes a lot of memory - 13 GB !!

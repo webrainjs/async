@@ -10,8 +10,8 @@ module.exports = {
 	logUrls    : base.logUrls,
 	installer  : base.installer,
 
-	type  : 'debug',
-	dev   : {
+	type: 'debug',
+	dev : {
 		devPage : true,
 		devTools: {
 			openAtStart: true,

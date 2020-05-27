@@ -1,4 +1,4 @@
-import templates from "../../helpers/templates";
+import templates from "../../helpers/templates"
 
 module.exports = [templates.important({
 	'.hidden': {
