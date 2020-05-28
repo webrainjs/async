@@ -24,7 +24,7 @@
 	"scripts": {
 		"precommit": "npm run build-test:ci",
 		"prepublishOnly": "npm run test:dev",
-		"ci": "npm run build-test:ci && ncat \"tmp/common/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
+		"ci": "npm run build-test:ci && ncat \"tmp/*/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
 		"lint": "node ./env/scripts/run.js \"require('./env/scripts/common').lint().stopOnError()\"",
 
 		"build:icons": "icon-gen --ico name=appicon --icns name=appicon --favicon name=favicon sizes=16,64,512 --input src/assets/icons/vector/appicon.svg --output src/assets/icons/ico",
@@ -41,6 +41,7 @@
 		"build-test:all": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['demo', 'dev', 'stage', 'prod']).stopOnError()\"",
 		"build-test:ci": "node ./env/scripts/run.js \"require('./env/scripts').testCiAll(['dev']).stopOnError()\"",
 
+		"coverage:check:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/tests').coverageCheck('dev').stopOnError()\"",
 		"coverage:mocha:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/tests').coverageMocha('dev').stopOnError()\"",
 
 		"pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev'], { test: false, build: false }).stopOnError()\"",
@@ -59,7 +60,6 @@
 		"build-pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev'], { test: false }).stopOnError()\"",
 		"build-pack:demo": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['demo'], { test: false }).stopOnError()\"",
 		"build-pack:chrome:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['chrome'], ['dev'], { test: false }).stopOnError()\"",
-
 		"test-pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev'], { build: false }).stopOnError()\"",
 		"test-pack:all": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['demo', 'dev', 'stage', 'prod'], { build: false }).stopOnError()\"",
 
@@ -122,7 +122,6 @@
 		"icon-gen": "^2.0.0",
 		"intern": "^4.4.3",
 		"ip": "^1.1.5",
-		"istanbul-combine": "^0.3.0",
 		"json5": "^2.1.0",
 		"karma": "^4.3.0",
 		"karma-browserstack-launcher": "^1.5.1",
