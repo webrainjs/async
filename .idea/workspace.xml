@@ -266,16 +266,11 @@
       <item itemvalue="Karma.Coverage" />
       <item itemvalue="Karma.Dev" />
       <item itemvalue="Karma.Performance" />
-      <item itemvalue="Karma.node &gt; styles &gt; postcss" />
       <item itemvalue="Mocha.Watch" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
       <item itemvalue="Mocha.Intern Dev" />
       <item itemvalue="Mocha.Intern Export" />
       <item itemvalue="Mocha.Intern Dev Video" />
-      <item itemvalue="Mocha.Intern Debug Video" />
-      <item itemvalue="Mocha.Intern Debug" />
-      <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
-      <item itemvalue="Mocha.webdriver.intern" />
       <item itemvalue="Node.js.Sapper Dev - DEBUG" />
       <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="npm.Test All" />
@@ -296,8 +291,13 @@
       <item itemvalue="npm.Build Pack Preprod" />
       <item itemvalue="npm.Sapper Dev Components" />
       <item itemvalue="npm.Build Pack Chrome Dev" />
+      <item itemvalue="Karma.node &gt; styles &gt; postcss" />
       <item itemvalue="npm.Build Test All" />
       <item itemvalue="npm.Build Test Dev" />
+      <item itemvalue="Mocha.Intern Debug Video" />
+      <item itemvalue="Mocha.Intern Debug" />
+      <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
+      <item itemvalue="Mocha.webdriver.intern" />
     </list>
     <recent_temporary>
       <list>
