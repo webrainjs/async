@@ -29,7 +29,7 @@
 		"precommit": "npm run build-test:ci",
 		"prepare": "npm run build:dev",
 		"prepublishOnly": "npm run test:dev",
-		"ci": "npm run build-test:ci && ncat \"tmp/common/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
+		"ci": "npm run build-test:ci && ncat \"tmp/*/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
 		"lint": "node ./env/scripts/run.js \"require('./env/scripts/common').lint().stopOnError()\"",
 
 		"build:polyfill": "node ./env/scripts/run.js \"require('./env/scripts/common').buildPolyfill().stopOnError()\"",
@@ -92,7 +92,6 @@
 		"globby": "^10.0.1",
 		"intern": "^4.4.3",
 		"ip": "^1.1.5",
-		"istanbul-combine": "^0.3.0",
 		"json5": "^2.1.0",
 		"karma": "^4.3.0",
 		"karma-browserstack-launcher": "^1.5.1",
