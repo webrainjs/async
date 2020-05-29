@@ -1,7 +1,8 @@
 /* eslint-disable prefer-template,no-sync,no-process-env,object-property-newline */
 // Karma configuration
 const helpers = require('../helpers')
-const {fileExtensions, writeTextFileSync} = require('../../common/helpers')
+const {writeTextFileSync} = require('../../common/helpers')
+const {fileExtensions} = require('../../common/constants')
 
 module.exports = function (config) {
 	helpers.configCommon(config)
