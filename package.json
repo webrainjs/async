@@ -140,7 +140,7 @@
 		"karma-safaritechpreview-launcher": "^2.0.2",
 		"kleur": "^3.0.3",
 		"lodash": "^4.17.15",
-		"mocha": "^5.2.0",
+		"mocha": "^7.2.0",
 		"ncat": "^2.0.7",
 		"nyc": "^14.1.1",
 		"perfectionist": "^2.4.0",

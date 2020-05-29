@@ -1,3 +1,4 @@
+const {deletePaths} = require('../../common/helpers')
 const {run, singleCall} = require('../helpers/helpers')
 
 const buildPolyfill = singleCall(() => run(
@@ -12,7 +13,7 @@ const buildLibs = singleCall(() => Promise.all([
 	buildPolyfill(),
 	buildVis(),
 ]))
-const clean = singleCall(() => run('shx rm -rf {*.log,__sapper__}'))
+const clean = singleCall(() => deletePaths('{*.log,__sapper__}'))
 const build = singleCall(async () => {
 	// await clean()
 	await buildLibs()

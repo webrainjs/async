@@ -1,20 +1,19 @@
 const {run, singleCall} = require('../helpers/helpers')
 const common = require('../common')
+const {reCreateDir, deletePaths} = require('../../common/helpers')
 
 const buildMjs = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/mjs/`)
-	await run(`shx mkdir -p dist/${appConfigType}/mjs/`)
+	await reCreateDir(`dist/${appConfigType}/mjs/`)
 	await run(`cpy "**/*.(css|html|svelte)" "../dist/${appConfigType}/mjs/" --parents --cwd=src`)
 	await run(`babel src -x .js -x .ts --out-dir dist/${appConfigType}/mjs/ --no-babelrc --config-file ./env/babel/configs/dist-mjs.js`)
 })
 const buildJs = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/js/`)
-	await run(`shx mkdir -p dist/${appConfigType}/js/`)
+	await reCreateDir(`dist/${appConfigType}/js/`)
 	await run(`cpy "**/*.(css|html|svelte)" "../dist/${appConfigType}/js/" --parents --cwd=src`)
 	await run(`babel src -x .js -x .ts --out-dir dist/${appConfigType}/js/ --no-babelrc --config-file ./env/babel/configs/dist-js.js`)
 })
 const buildComponents = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/components/`)
+	await deletePaths(`dist/${appConfigType}/components/`)
 	await run(
 		'rollup --config ./env/rollup/components.js',
 		{env: {APP_CONFIG: appConfigType}}
@@ -35,7 +34,7 @@ const buildSapperExport = singleCall(appConfigType => run(
 ))
 
 const buildElectron = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/electron/build/`)
+	await deletePaths(`dist/${appConfigType}/electron/build/`)
 	await run(
 		'node env/electron/build.js',
 		{env: {APP_CONFIG: appConfigType}}
@@ -44,14 +43,14 @@ const buildElectron = singleCall(async appConfigType => {
 })
 
 const buildChrome = singleCall(async appConfigType => {
-	await run(`shx rm -rf dist/${appConfigType}/chrome/build/`)
+	await deletePaths(`dist/${appConfigType}/chrome/build/`)
 	await run(
 		'node env/chrome/build.js',
 		{env: {APP_CONFIG: appConfigType}}
 	)
 })
 
-const clean = singleCall(appConfigType => run(`shx rm -rf {dist,tmp}/${appConfigType}`))
+const clean = singleCall(appConfigType => deletePaths(`{dist,tmp}/${appConfigType}`))
 const build = singleCall(async appConfigType => {
 	// await clean(appConfigType)
 	// await run('echo      │ node_modules\\core-js-pure\\stable\\set-interval.js (0.2%)\n')

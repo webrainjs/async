@@ -9,7 +9,7 @@
       <env name="APP_CONFIG" value="dev" />
     </envs>
     <ui>bdd</ui>
-    <extra-mocha-options>--opts ./env/intern/mocha.opts</extra-mocha-options>
+    <extra-mocha-options>--config ./env/intern/.mocharc.js</extra-mocha-options>
     <test-kind>PATTERN</test-kind>
     <test-pattern>./env/intern/configs/export/mocha.js</test-pattern>
     <method v="2">
