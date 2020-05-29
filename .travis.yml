@@ -13,8 +13,6 @@ matrix:
     - name: "browsers windows"
       os: "windows"
       node_js: "13.7.0"
-      deploy:
-        edge: true
 #    - name: "node old"
 #      os: "osx"
 #      node_js: "10.9.0"

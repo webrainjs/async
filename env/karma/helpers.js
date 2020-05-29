@@ -135,7 +135,7 @@ module.exports.configCommon = function (config) {
 			'karma-safari-launcher',
 			'karma-safaritechpreview-launcher',
 			'karma-opera-launcher',
-			'karma-edge-launcher',
+			'karma-edgium-launcher',
 			// 'karma-ie-launcher',
 			'karma-phantomjs-launcher',
 			'karma-electron',
