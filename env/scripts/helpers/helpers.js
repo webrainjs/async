@@ -189,6 +189,11 @@ function checkIsError(message) {
 		return false
 	}
 
+	// experimental warnings
+	if (/ExperimentalWarning: Conditional exports is an experimental feature. This feature could change at any time/.test(message)) {
+		return false
+	}
+
 	return true
 }
 

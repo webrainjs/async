@@ -19,10 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71cb9eec-028d-45dc-918e-6b269e003494" name="Default Changelist" comment="Precommit OK.">
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Merge fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,10 +256,17 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Karma.node &gt; styles &gt; postcss" />
       <item itemvalue="Mocha.Watch" />
+      <item itemvalue="Mocha.Intern Debug Video" />
+      <item itemvalue="Mocha.Intern Debug" />
+      <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
+      <item itemvalue="Mocha.webdriver.intern" />
       <item itemvalue="npm.Test Dev" />
       <item itemvalue="npm.Test All" />
       <item itemvalue="npm.Sapper Dev" />
+      <item itemvalue="npm.Build Test All" />
+      <item itemvalue="npm.Build Test Dev" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
       <item itemvalue="npm.Build Pack Demo" />
       <item itemvalue="npm.Pack All" />
@@ -288,21 +293,14 @@
       <item itemvalue="npm.Sapper Dev Components" />
       <item itemvalue="Mocha.Intern Dev Video" />
       <item itemvalue="npm.Build Pack Chrome Dev" />
-      <item itemvalue="Karma.node &gt; styles &gt; postcss" />
-      <item itemvalue="npm.Build Test All" />
-      <item itemvalue="npm.Build Test Dev" />
-      <item itemvalue="Mocha.Intern Debug Video" />
-      <item itemvalue="Mocha.Intern Debug" />
-      <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
-      <item itemvalue="Mocha.webdriver.intern" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Mocha.webdriver.intern" />
         <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
-        <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
         <item itemvalue="Mocha.webdriver.intern" />
+        <item itemvalue="Mocha.common &gt; main &gt; css-to-xpath" />
       </list>
     </recent_temporary>
   </component>
@@ -532,14 +530,14 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="686" y="209" width="801" height="463" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1920.882@0.0.1920.882" timestamp="1590645354301" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590645415752">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590730119123">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590645415752" />
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590645237030">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590730119123" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590730115245">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590645237030" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590730115245" />
     <state x="685" y="133" width="548" height="614" key="FileChooserDialogImpl" timestamp="1590645353567">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -616,14 +614,18 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="343" y="0" key="SettingsEditor/0.0.1920.882@0.0.1920.882" timestamp="1590645384320" />
-    <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590644921962">
+    <state x="-2" y="1" width="1922" height="879" key="find.popup" timestamp="1590730298761">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="-2" y="1" width="1922" height="879" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1590644921962" />
+    <state x="-2" y="1" width="1922" height="879" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1590730298761" />
     <state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1590572388504">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="687" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.882@0.0.1920.882" timestamp="1590572388504" />
+    <state x="531" y="190" key="run.anything.popup" timestamp="1590728506801">
+      <screen x="0" y="0" width="1920" height="882" />
+    </state>
+    <state x="531" y="190" key="run.anything.popup/0.0.1920.882@0.0.1920.882" timestamp="1590728506801" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
