@@ -135,7 +135,7 @@ module.exports.configCommon = function (config) {
 			'karma-safari-launcher',
 			'karma-safaritechpreview-launcher',
 			'karma-opera-launcher',
-			'karma-edgium-launcher',
+			'karma-edge-launcher',
 			// 'karma-ie-launcher',
 			'karma-phantomjs-launcher',
 			'karma-electron',
@@ -328,16 +328,7 @@ function configDetectBrowsers(config) {
 				}
 
 				return availableBrowsers
-					.filter(o => {
-						if (o.startsWith('IE') || o.startsWith('PhantomJS')){
-							return false
-						}
-						if (process.platform === 'win32' && o.startsWith('Electron')) {
-							return false
-						}
-
-						return true
-					})
+					.filter(o => !o.startsWith('IE') && !o.startsWith('PhantomJS'))
 					.map(availableBrowser => {
 						for (const key in useBrowsers) {
 							if (availableBrowser.match(useBrowsers[key])) {
