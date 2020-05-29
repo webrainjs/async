@@ -66,9 +66,24 @@ process.on('uncaughtException', err => {
 function printRunStates() {
 	for (let i = 0; i < runStates.length; i++) {
 		const state = runStates[i]
-		console.log(colors.cyan(`${state.status} (${
+
+		let message = `${state.status} (${
 			((state.timeEnd || Date.now()) - state.timeStart) / 1000
-		} sec): ${state.command}`))
+		} sec): ${state.command}`
+
+		switch (state.status) {
+			case 'RUNNED':
+				message = console.log(colors.blue(message))
+				break
+			case 'SUCCESS':
+				message = console.log(colors.cyan(message))
+				break
+			case 'ERROR':
+				message = console.error(colors.red(message))
+				break
+			default:
+				throw new Error(`Unknown status: ${state.status}`)
+		}
 	}
 }
 
