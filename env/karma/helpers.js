@@ -328,7 +328,16 @@ function configDetectBrowsers(config) {
 				}
 
 				return availableBrowsers
-					.filter(o => !o.startsWith('IE') && !o.startsWith('PhantomJS'))
+					.filter(o => {
+						if (o.startsWith('IE') || o.startsWith('PhantomJS')){
+							return false
+						}
+						if (process.platform === 'win32' && o.startsWith('Electron')) {
+							return false
+						}
+
+						return true
+					})
 					.map(availableBrowser => {
 						for (const key in useBrowsers) {
 							if (availableBrowser.match(useBrowsers[key])) {
