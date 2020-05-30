@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Fix coverage">
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Added types">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/tests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +33,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="node-module" />
+        <entry key="$PROJECT_DIR$" value="browser-helpers" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -100,17 +99,17 @@
     <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\mocha\configs\common" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\mocha\configs\no-babel" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
+    </key>
   </component>
-  <component name="RunManager" selected="Mocha.Coverage">
+  <component name="RunManager" selected="npm.Test Dev">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -224,7 +223,6 @@
     <list>
       <item itemvalue="Karma.Tests" />
       <item itemvalue="Karma.CI" />
-      <item itemvalue="Karma.Coverage" />
       <item itemvalue="Karma.Dev" />
       <item itemvalue="Karma.Performance" />
       <item itemvalue="Karma.node &gt; styles &gt; postcss" />
@@ -236,8 +234,6 @@
       <item itemvalue="Mocha.Intern Dev" />
       <item itemvalue="Mocha.Intern Export" />
       <item itemvalue="Mocha.Intern Dev Video" />
-      <item itemvalue="Node.js.Sapper Dev - DEBUG" />
-      <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="npm.Test Dev" />
       <item itemvalue="npm.Test All" />
       <item itemvalue="npm.Sapper Dev" />
@@ -251,9 +247,11 @@
       <item itemvalue="npm.Build Pack Dev" />
       <item itemvalue="npm.Pack Chrome Dev" />
       <item itemvalue="npm.Build Pack All" />
+      <item itemvalue="Node.js.Sapper Dev - DEBUG" />
       <item itemvalue="npm.Electron Export" />
       <item itemvalue="npm.Pack Dev" />
       <item itemvalue="npm.Electron Dev" />
+      <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="npm.Build Pack Prod" />
       <item itemvalue="npm.Build Pack Preprod" />
       <item itemvalue="npm.Sapper Dev Components" />
@@ -261,6 +259,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
       </list>
@@ -548,18 +547,18 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="686" y="209" width="801" height="463" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1920.882@0.0.1920.882" timestamp="1590645354301" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590773316086">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1590858720780">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590773316086" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1590858720780" />
     <state width="1081" height="582" key="DebuggerActiveHint" timestamp="1590747108043">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state width="1081" height="582" key="DebuggerActiveHint/0.0.1920.882@0.0.1920.882" timestamp="1590747108043" />
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590759410323">
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1590858717318">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590759410323" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1590858717318" />
     <state x="685" y="133" width="548" height="614" key="FileChooserDialogImpl" timestamp="1590645353567">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -669,8 +668,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/app_template$Coverage.dat" NAME="Coverage Coverage Results" MODIFIED="1590759002667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
