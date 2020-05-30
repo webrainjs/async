@@ -34,8 +34,7 @@
 
 		"build:polyfill": "node ./env/scripts/run.js \"require('./env/scripts/common').buildPolyfill().stopOnError()\"",
 		"build:libs": "node ./env/scripts/run.js \"require('./env/scripts/common').buildLibs().stopOnError()\"",
-		"build:dev": "node ./env/scripts/run.js \"require('./env/scripts').buildAll(['electron'], ['dev']).stopOnError()\"",
-
+		"build:dev": "node ./env/scripts/run.js \"require('./env/scripts').buildAll(['electron', 'dev']).stopOnError()\"",
 		"test:dev": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['dev'], { build: false }).stopOnError()\"",
 		"test:all": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['demo', 'dev', 'stage', 'prod'], { build: false }).stopOnError()\"",
 		"test:ci": "node ./env/scripts/run.js \"require('./env/scripts').testCiAll(['dev'], { build: false }).stopOnError()\"",
