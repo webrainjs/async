@@ -2,7 +2,6 @@
 const {run, singleCall} = require('../helpers/helpers')
 const builds = require('./builds')
 const {reCreateDir} = require('../../common/helpers')
-const {createDir} = require('../../common/helpers')
 const {deletePaths} = require('../../common/helpers')
 const {copyToSingleDir} = require('../../common/helpers')
 
@@ -10,7 +9,7 @@ const testMochaSrc = singleCall(async coverage => {
 	const appConfigType = 'dev'
 
 	await run(
-		`${coverage ? 'nyc ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/babel/.mocharc.js --bail "./src/test/tests/@(node|common)/**/*.*"`,
+		`${coverage ? 'nyc --all ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/babel/.mocharc.js --bail "./src/test/tests/@(node|common)/**/*.*"`,
 		{env: {APP_CONFIG: appConfigType}}
 	)
 })
@@ -20,7 +19,7 @@ const testMochaMjs = singleCall(async (appConfigType, coverage, options = {}) =>
 	}
 
 	await run(
-		`${coverage ? 'nyc ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/babel/.mocharc.js --bail "./dist/${appConfigType}/mjs/test/tests/@(node|common)/**/*.*"`,
+		`${coverage ? 'nyc --all ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/babel/.mocharc.js --bail "./dist/${appConfigType}/mjs/test/tests/@(node|common)/**/*.*"`,
 		{env: {APP_CONFIG: appConfigType}}
 	)
 })
@@ -29,8 +28,8 @@ const testMochaJs = singleCall(async (appConfigType, coverage, options = {}) => 
 		await builds.buildJs(appConfigType)
 	}
 	await run(
-		// `${coverage ? 'nyc ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/babel/.mocharc.js --bail "./dist/${appConfigType}/js/test/tests/@(node|common)/**/*.*"`,
-		`${coverage ? 'nyc ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/no-babel/.mocharc.js --bail "./dist/${appConfigType}/js/test/tests/@(node|common)/**/*.*"`,
+		// `${coverage ? 'nyc --all ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/babel/.mocharc.js --bail "./dist/${appConfigType}/js/test/tests/@(node|common)/**/*.*"`,
+		`${coverage ? 'nyc --all ' : ''}mocha --allow-natives-syntax --config ./env/mocha/configs/no-babel/.mocharc.js --bail "./dist/${appConfigType}/js/test/tests/@(node|common)/**/*.*"`,
 		{env: {APP_CONFIG: appConfigType}}
 	)
 })
