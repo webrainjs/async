@@ -1,8 +1,7 @@
-import {cssToXPath} from '../../../../modules/common/css-to-xpath'
+import {cssToXPath} from '@flemist/css-to-xpath'
 import {assert} from './base'
 import {wait} from './find'
 import {getCurrentState, iter, onPushFindFilter, onReleaseFindFilter, run} from './run'
-// const cssToXPath = require('css-to-xpath')
 
 function prepareSelector(selector: string) {
 	if (selector.startsWith('//')) {
