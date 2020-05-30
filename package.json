@@ -26,24 +26,19 @@
 		"prepublishOnly": "npm run test:dev",
 		"ci": "npm run build-test:ci && ncat \"tmp/*/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
 		"lint": "node ./env/scripts/run.js \"require('./env/scripts/common').lint().stopOnError()\"",
-
 		"build:icons": "icon-gen --ico name=appicon --icns name=appicon --favicon name=favicon sizes=16,64,512 --input src/assets/icons/vector/appicon.svg --output src/assets/icons/ico",
 		"build:polyfill": "node ./env/scripts/run.js \"require('./env/scripts/common').buildPolyfill().stopOnError()\"",
 		"build:libs": "node ./env/scripts/run.js \"require('./env/scripts/common').buildLibs().stopOnError()\"",
 		"build:electron:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/builds').buildElectron('dev').stopOnError()\"",
 		"build:dev": "node ./env/scripts/run.js \"require('./env/scripts').buildAll(['electron'], ['dev']).stopOnError()\"",
-
 		"test:dev": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['dev'], { build: false }).stopOnError()\"",
 		"test:all": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['demo', 'dev', 'stage', 'prod'], { build: false }).stopOnError()\"",
 		"test:ci": "node ./env/scripts/run.js \"require('./env/scripts').testCiAll(['dev'], { build: false }).stopOnError()\"",
-
 		"build-test:dev": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['dev']).stopOnError()\"",
 		"build-test:all": "node ./env/scripts/run.js \"require('./env/scripts').testAll(['demo', 'dev', 'stage', 'prod']).stopOnError()\"",
 		"build-test:ci": "node ./env/scripts/run.js \"require('./env/scripts').testCiAll(['dev']).stopOnError()\"",
-
 		"coverage:check:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/tests').coverageCheck('dev').stopOnError()\"",
 		"coverage:mocha:dev": "node ./env/scripts/run.js \"require('./env/scripts/specific/tests').coverageMocha('dev').stopOnError()\"",
-
 		"pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev'], { test: false, build: false }).stopOnError()\"",
 		"pack:demo": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['demo'], { test: false, build: false }).stopOnError()\"",
 		"pack:stage": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['stage'], { test: false, build: false }).stopOnError()\"",
@@ -52,7 +47,6 @@
 		"pack:chrome:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['chrome'], ['dev'], { test: false, build: false }).stopOnError()\"",
 		"pack:chrome:prod": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['chrome'], ['prod'], { test: false, build: false }).stopOnError()\"",
 		"pack:all": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['stage', 'dev'], { test: false, build: false }).stopOnError()\"",
-
 		"build-pack:all": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron', 'chrome'], ['stage', 'dev', 'demo'], { test: false }).stopOnError()\"",
 		"build-pack:prod": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron', 'chrome'], ['prod'], { test: false }).stopOnError()\"",
 		"build-pack:preprod": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['preprod'], { test: false }).stopOnError()\"",
@@ -60,16 +54,12 @@
 		"build-pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev'], { test: false }).stopOnError()\"",
 		"build-pack:demo": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['demo'], { test: false }).stopOnError()\"",
 		"build-pack:chrome:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['chrome'], ['dev'], { test: false }).stopOnError()\"",
-
 		"test-pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev'], { build: false }).stopOnError()\"",
 		"test-pack:all": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['demo', 'dev', 'stage', 'prod'], { build: false }).stopOnError()\"",
-
 		"build-test-pack:dev": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['dev']).stopOnError()\"",
 		"build-test-pack:all": "node ./env/scripts/run.js \"require('./env/scripts').packAll(['electron'], ['demo', 'dev', 'stage', 'prod']).stopOnError()\"",
-
 		"sapper:dev": "node ./env/sapper/dev.js",
 		"sapper:dev:components": "node ./env/sapper/dev-components.js",
-
 		"electron:dev": "set APP_CONFIG=debug&& electron ./src/main/node/electron/run/dev/run.js",
 		"electron:dev-vm": "set APP_CONFIG=debug&& electron ./src/main/node/electron/run/dev-vm/run.js",
 		"electron:export": "set APP_CONFIG=dev&& electron ./src/main/node/electron/run/export/run.js"
@@ -192,6 +182,6 @@
 		"sirv": "^0.4.2",
 		"spark-md5": "^3.0.0",
 		"ua-parser-js": "^0.7.21",
-		"webrain": "^1.0.2-a"
+		"webrain": "^1.0.3-a"
 	}
 }
