@@ -1,10 +1,10 @@
 /* tslint:disable:no-empty */
 import {
-	deepSubscriber,
 	DeferredCalc,
 	IUnsubscribeOrVoid,
 	ObjectSerializer,
-	RuleBuilder,
+	IRuleBuilder,
+	deepSubscriber,
 } from 'webrain'
 
 declare const chrome: any
@@ -43,7 +43,7 @@ export async function storeWindowState(name: string, win: typeof window) {
 export async function storeObject<TObject>(
 	storageKey: string,
 	object: TObject,
-	ruleBuilder: (ruleBuilder: RuleBuilder<TObject>) => RuleBuilder<any>,
+	ruleBuilder: (ruleBuilder: IRuleBuilder<TObject>) => IRuleBuilder<any>,
 ): Promise<IUnsubscribeOrVoid> {
 	if (typeof window === 'undefined') {
 		return null

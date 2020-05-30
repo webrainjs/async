@@ -3,7 +3,7 @@ const {run, singleCall} = require('../helpers/helpers')
 
 const buildTypes = singleCall(async () => {
 	await reCreateDir('dist/types')
-	await run(`tsc --outDir dist/types`)
+	await run(`tsc --outDir dist/types --declaration`)
 })
 const buildPolyfill = singleCall(() => run(
 	'node env/libs/polyfill/build.js',

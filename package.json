@@ -191,6 +191,6 @@
 		"sirv": "^0.4.2",
 		"spark-md5": "^3.0.0",
 		"ua-parser-js": "^0.7.21",
-		"webrain": "^1.0.1-a"
+		"webrain": "^1.0.2-a"
 	}
 }

@@ -12,7 +12,7 @@ export class HtmlController {
 		containerMatches: (element) => boolean,
 		eventName: string,
 		handler: (...args) => any,
-		...options
+		options?: any,
 	) {
 		const self = this
 		const _handler = function() {

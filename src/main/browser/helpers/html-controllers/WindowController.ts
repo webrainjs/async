@@ -398,20 +398,20 @@ export class WindowController extends ObservableClass {
 		this.win.addEventListener('beforeunload', onBeforeUnload)
 		this.win.addEventListener('resize', onResize)
 
-		this._setUnsubscriber('beforeunload', () => {
+		;(this as any)._setUnsubscriber('beforeunload', () => {
 			this.win.removeEventListener('beforeunload', onBeforeUnload)
 		})
-		this._setUnsubscriber('resize', () => {
+		;(this as any)._setUnsubscriber('resize', () => {
 			this.win.removeEventListener('resize', onResize)
 		})
 
-		this._setUnsubscriber('isVisible', bindVisibleChange(this.win, value => {
+		;(this as any)._setUnsubscriber('isVisible', bindVisibleChange(this.win, value => {
 			this.isVisible = value
 			if (!value) {
 				this.isFocused = false
 			}
 		}))
-		this._setUnsubscriber('isFocused', bindFocusChange(this.win, value => {
+		;(this as any)._setUnsubscriber('isFocused', bindFocusChange(this.win, value => {
 			this.isFocused = value
 		}))
 	}
@@ -421,10 +421,10 @@ export class WindowController extends ObservableClass {
 			return
 		}
 
-		this._setUnsubscriber('beforeunload', null)
-		this._setUnsubscriber('resize', null)
-		this._setUnsubscriber('isVisible', null)
-		this._setUnsubscriber('isFocused', null)
+		(this as any)._setUnsubscriber('beforeunload', null)
+		;(this as any)._setUnsubscriber('resize', null)
+		;(this as any)._setUnsubscriber('isVisible', null)
+		;(this as any)._setUnsubscriber('isFocused', null)
 	}
 
 	// endregion

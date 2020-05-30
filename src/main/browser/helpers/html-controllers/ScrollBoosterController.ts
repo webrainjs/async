@@ -1,3 +1,4 @@
+// @ts-nocheck
 // source: https://ilyashubin.github.io/scrollbooster/
 // source: https://github.com/ilyashubin/scrollbooster
 

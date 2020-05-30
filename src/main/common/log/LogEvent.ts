@@ -70,9 +70,9 @@ export class LogEvent<HandlersNames extends string|number>
 	// endregion
 
 	// region calculable
-	
+
 	// region messages
-	
+
 	private _messages: string[]
 	get messages(): string[] {
 		if (this._messages == null) {
@@ -100,9 +100,9 @@ export class LogEvent<HandlersNames extends string|number>
 	}
 
 	// endregion
-	
+
 	// region errors
-	
+
 	private _errors: Error[]
 	get errors(): Error[] {
 		if (this._errors == null) {
@@ -120,7 +120,7 @@ export class LogEvent<HandlersNames extends string|number>
 	get errorsString(): string {
 		if (this._errorsString == null) {
 			this._errorsString = this.errors
-				.map(objectToString)
+				.map(objectToString as any)
 				.join('\r\n\r\n')
 		}
 		return this._errorsString
