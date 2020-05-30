@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Merge fix" />
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Fix Intern test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,11 +166,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Karma.Coverage" />
       <item itemvalue="Karma.Tests" />
       <item itemvalue="Karma.Dev" />
       <item itemvalue="Karma.CI" />
       <item itemvalue="Karma.Performance" />
+      <item itemvalue="Mocha.Coverage" />
       <item itemvalue="Mocha.Watch" />
       <item itemvalue="Mocha.Intern Export" />
       <item itemvalue="Mocha.Intern Dev Video" />
