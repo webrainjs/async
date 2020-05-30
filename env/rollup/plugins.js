@@ -87,10 +87,6 @@ const plugins = {
 		output: {
 			max_line_len: 50,
 		},
-		sourcemap: {
-			content: 'inline',
-			url    : 'inline',
-		},
 		...options,
 	}),
 	metricStart: metric.metricStart,
