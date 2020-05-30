@@ -183,7 +183,7 @@
 	"dependencies": {
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
-		"html-escaper": "^3.0.0",
+		"html-escaper": "^2.0.2",
 		"iterare": "^1.2.0",
 		"mime": "^2.4.4",
 		"needle": "^2.4.0",
