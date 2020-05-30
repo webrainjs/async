@@ -142,7 +142,7 @@
 		"lodash": "^4.17.15",
 		"mocha": "^7.2.0",
 		"ncat": "^2.0.7",
-		"nyc": "^14.1.1",
+		"nyc": "^15.0.1",
 		"perfectionist": "^2.4.0",
 		"postcss-calc": "^7.0.1",
 		"postcss-global-nested": "^1.2.0",

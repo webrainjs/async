@@ -71,12 +71,12 @@ const coverageMerge = singleCall(async appConfigType => {
 
 	await reCreateDir(`tmp/${appConfigType}/coverage/all/lcov`)
 	await run(
-		`nyc report --all -r lcov --report-dir tmp/${appConfigType}/coverage/all/lcov --temp-dir "tmp/${appConfigType}/coverage/merge/"`,
+		`nyc report -r lcov --report-dir tmp/${appConfigType}/coverage/all/lcov --temp-dir "tmp/${appConfigType}/coverage/merge/"`,
 		{env: {APP_CONFIG: appConfigType}}
 	)
 })
 const coverageCheck = singleCall(appConfigType => run(
-	`nyc check-coverage --all --report-dir tmp/${appConfigType}/coverage/all/lcov --lines 1 --functions 1 --branches 1`,
+	`nyc check-coverage --report-dir tmp/${appConfigType}/coverage/all/lcov --lines 1 --functions 1 --branches 1`,
 	{env: {APP_CONFIG: appConfigType}}
 ))
 const coverage = singleCall(async (appConfigType, options = {}) => {
