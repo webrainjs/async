@@ -93,8 +93,12 @@ const plugins = {
 	metricEnd  : metric.metricEnd,
 }
 
-plugins.resolveWebrain = (options = {}) => plugins.resolveTs({
-	only: ['webrain', /\bwebrain\/src\/main\/.*$/],
+plugins.resolveExternal = (options = {}) => plugins.resolveTs({
+	only: [
+		'webrain',
+		/\bwebrain\/src\/main\/.*$/,
+		/@flemist\/web-logger(\/(browser|node)\/.*)?$/
+	],
 	// preferBuiltins: false,
 	...options,
 })
@@ -108,7 +112,7 @@ module.exports = {
 			plugins.replace(),
 			plugins.svelte.client(),
 			coverage && plugins.istanbul(),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
 			}),
@@ -123,7 +127,7 @@ module.exports = {
 			plugins.replace(),
 			plugins.svelte.client(),
 			coverage && plugins.istanbul(),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
 			}),
@@ -156,7 +160,7 @@ module.exports = {
 			plugins.svelte.client({
 				emitCss: false,
 			}),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
 			}),
@@ -173,7 +177,7 @@ module.exports = {
 			}),
 			plugins.postCss(),
 			plugins.svelte.client(),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
 			}),
@@ -194,7 +198,7 @@ module.exports = {
 			}),
 			plugins.postCss(),
 			plugins.svelte.server(),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.resolve(),
 			plugins.commonjs(),
 			legacy && plugins.babel.node(),
@@ -205,7 +209,7 @@ module.exports = {
 		return [
 			plugins.metricStart('serviceworker'),
 			plugins.babel.minimal(),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.resolve(),
 			plugins.replace({
 				'process.browser': true,
@@ -222,7 +226,7 @@ module.exports = {
 			plugins.replace({
 				'process.browser': true,
 			}),
-			plugins.resolveWebrain(),
+			plugins.resolveExternal(),
 			plugins.commonjs(),
 			legacy && plugins.babel.node(),
 		]
