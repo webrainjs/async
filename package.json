@@ -36,7 +36,6 @@
 		"ci": "npm run build-test:ci && ncat \"tmp/*/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
 		"lint": "node ./env/scripts/run.js \"require('./env/scripts/common').lint().stopOnError()\"",
 
-		"build:indexes": "node ./env/scripts/run.js \"require('./env/scripts/common').buildIndexes().stopOnError()\"",
 		"build:polyfill": "node ./env/scripts/run.js \"require('./env/scripts/common').buildPolyfill().stopOnError()\"",
 		"build:libs": "node ./env/scripts/run.js \"require('./env/scripts/common').buildLibs().stopOnError()\"",
 		"build:dev": "node ./env/scripts/run.js \"require('./env/scripts').buildAll(['dev']).stopOnError()\"",
@@ -88,7 +87,7 @@
 		"cpy-cli": "^3.1.1",
 		"cssnano": "^4.1.10",
 		"depcheck": "^0.9.2",
-		"electron": "^9.0.0",
+		"electron": "^8.3.0",
 		"eslint": "^7.1.0",
 		"eslint-config-pro": "^1.0.1",
 		"eslint-plugin-html": "^6.0.0",
