@@ -20,7 +20,7 @@ const buildComponents = singleCall(async appConfigType => {
 	)
 })
 
-const clean = singleCall(appConfigType => deletePaths(`{dist,tmp}/${appConfigType}`))
+const clean = singleCall(appConfigType => deletePaths(`{dist,tmp,src/node_modules/@sapper}/${appConfigType}`))
 const build = singleCall(async appConfigType => {
 	// await clean(appConfigType)
 	// await run('echo      │ node_modules\\core-js-pure\\stable\\set-interval.js (0.2%)\n')
