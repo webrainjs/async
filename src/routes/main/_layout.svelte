@@ -1,7 +1,7 @@
 <script context="module">
 	import {deepSubscriber, connectorFactory} from 'webrain'
 	import {brain} from "../../brain/facade";
-	import {logger} from "../../main/browser/log/LoggerBrowser";
+	import {logger} from "@flemist/web-logger";
 
 	// region App Init
 

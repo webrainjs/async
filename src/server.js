@@ -10,8 +10,8 @@ import express from 'express'
 import sirv from 'sirv'
 import path from 'path'
 import './initWebrain'
-import {LogLevel} from './main/common/log/contracts'
-import {logger} from './main/node/log/LoggerNode'
+import {LogLevel} from '@flemist/web-logger'
+import {logger} from '@flemist/web-logger'
 import './styles/index.jss'
 
 try {

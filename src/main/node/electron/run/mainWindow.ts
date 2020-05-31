@@ -1,12 +1,23 @@
 /* tslint:disable:no-var-requires */
 // be closed automatically when the JavaScript object is garbage collected.
-import {delay, escapeJs} from '../../../common/log/helpers'
-import {logger} from '../../log/LoggerNode'
+import {logger} from '@flemist/web-logger'
 import {WindowPosition, WindowPositioner} from '../helpers/WindowPositioner'
 import {appState} from './appState'
 import {showTray} from './tray'
 
 const { BrowserWindow } = require('electron')
+
+function delay(timeMilliseconds) {
+	return new Promise(resolve => setTimeout(resolve, timeMilliseconds))
+}
+
+function escapeJs(str: string): string {
+	return str && str
+		.replace(/[\\"']/g, '\\$&')
+		.replace(/\u0000/g, '\\0')
+		.replace(/\n/g, '\\n')
+		.replace(/\r/g, '\\r')
+}
 
 let initialized = false
 export async function createWindow(url) {

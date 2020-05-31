@@ -126,7 +126,7 @@
 <!--<script>-->
 <!--	import {onMount, onDestroy} from 'svelte'-->
 <!--	import TestView from './TestView.svelte'-->
-<!--	import {objectToString} from "../../../main/common/log/objectToString";-->
+<!--	import {objectToString} from "@flemist/web-logger";-->
 <!--	import ObjectTree from "./ObjectTree.svelte";-->
 <!--	import {getDisplayName} from "./common";-->
 <!--	import {HighlightMode} from "./WebrainGraph";-->
