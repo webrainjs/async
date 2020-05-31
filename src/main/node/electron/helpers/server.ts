@@ -1,7 +1,7 @@
 /* tslint:disable:no-var-requires no-duplicate-string */
 // @ts-ignore
 import {App} from 'electron'
-import {logger} from '@flemist/web-logger/node/mjs/index'
+import {logger} from '@flemist/web-logger/node/mjs'
 
 const { protocol, BrowserWindow, remote } = require('electron')
 const path = require('path')

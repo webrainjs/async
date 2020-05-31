@@ -1,6 +1,6 @@
 /* tslint:disable:no-var-requires */
 // be closed automatically when the JavaScript object is garbage collected.
-import {logger} from '@flemist/web-logger/node/mjs/index'
+import {logger} from '@flemist/web-logger/node/mjs'
 import {WindowPosition, WindowPositioner} from '../helpers/WindowPositioner'
 import {appState} from './appState'
 import {showTray} from './tray'

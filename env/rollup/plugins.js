@@ -95,8 +95,8 @@ const plugins = {
 
 plugins.resolveExternal = (options = {}) => plugins.resolve({
 	only: [
-		'webrain',
-		/@flemist\/web-logger(\/(browser|node)\/.*)?$/
+		// 'webrain',
+		// /@flemist\/web-logger(\/(browser|node)\/.*)?$/
 	],
 	// preferBuiltins: false,
 	...options,
