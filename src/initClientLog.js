@@ -1,4 +1,4 @@
-import {logger} from '@flemist/web-logger/browser/mjs'
+import {logger} from '@flemist/web-logger/browser/mjs/index'
 // noinspection NpmUsedModulesInstalled
 import appConfig from 'APP_CONFIG_PATH'
 

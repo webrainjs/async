@@ -1,6 +1,6 @@
 /* tslint:disable:no-var-requires */
 // @ts-ignore
-import {logger, WriteToFileHandler} from '@flemist/web-logger/node/mjs'
+import {logger, WriteToFileHandler} from '@flemist/web-logger/node/mjs/index'
 
 const {ipcMain} = require('electron')
 

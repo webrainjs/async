@@ -2,7 +2,7 @@
 /* global self, caches, fetch */
 // @ts-ignore
 import {files, shell, timestamp} from 'SAPPER_MODULE/service-worker'
-import {logger} from '@flemist/web-logger/browser/mjs'
+import {logger} from '@flemist/web-logger/browser/mjs/index'
 import './initWebrain'
 import './initClientLog'
 
