@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Added types">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,17 +96,17 @@
     <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\mocha\configs\common" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\mocha\configs\no-babel" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
-    </key>
   </component>
-  <component name="RunManager" selected="npm.Test Dev">
+  <component name="RunManager" selected="Mocha.Intern Debug">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -147,65 +144,12 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Build Test All" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build-test:all" />
-      </scripts>
-      <node-interpreter value="node" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Build Test Dev" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build-test:dev" />
-      </scripts>
-      <node-interpreter value="node" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts />
       <node-interpreter value="node" />
       <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Intern Debug Video" type="mocha-javascript-test-runner">
-      <node-interpreter>node</node-interpreter>
-      <node-options>--max-old-space-size=4096</node-options>
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs>
-        <env name="APP_CONFIG" value="dev" />
-        <env name="NODE_ENV" value="development" />
-        <env name="OVERRIDE_VIDEO_OUTPUT_DIR" value="E:/Temp/selenoid/video" />
-      </envs>
-      <ui>bdd</ui>
-      <extra-mocha-options>--config ./env/intern/.mocharc.js</extra-mocha-options>
-      <test-kind>PATTERN</test-kind>
-      <test-pattern>./env/intern/configs/debug-video/mocha.js</test-pattern>
-      <method v="2" />
-    </configuration>
-    <configuration name="Intern Debug" type="mocha-javascript-test-runner">
-      <node-interpreter>node</node-interpreter>
-      <node-options>--max-old-space-size=4096 --prof</node-options>
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs>
-        <env name="APP_CONFIG" value="dev" />
-        <env name="NODE_ENV" value="development" />
-      </envs>
-      <ui>bdd</ui>
-      <extra-mocha-options>--config ./env/intern/.mocharc.js</extra-mocha-options>
-      <test-kind>PATTERN</test-kind>
-      <test-pattern>./env/intern/configs/debug/mocha.js</test-pattern>
       <method v="2" />
     </configuration>
     <configuration default="true" type="mocha-javascript-test-runner">
@@ -234,11 +178,13 @@
       <item itemvalue="Mocha.Intern Dev" />
       <item itemvalue="Mocha.Intern Export" />
       <item itemvalue="Mocha.Intern Dev Video" />
+      <item itemvalue="Node.js.Sapper Dev - DEBUG" />
+      <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="npm.Test Dev" />
       <item itemvalue="npm.Test All" />
-      <item itemvalue="npm.Sapper Dev" />
       <item itemvalue="npm.Build Test All" />
       <item itemvalue="npm.Build Test Dev" />
+      <item itemvalue="npm.Sapper Dev" />
       <item itemvalue="npm.Build Pack Demo" />
       <item itemvalue="npm.Pack All" />
       <item itemvalue="npm.Test Pack All" />
@@ -247,11 +193,9 @@
       <item itemvalue="npm.Build Pack Dev" />
       <item itemvalue="npm.Pack Chrome Dev" />
       <item itemvalue="npm.Build Pack All" />
-      <item itemvalue="Node.js.Sapper Dev - DEBUG" />
       <item itemvalue="npm.Electron Export" />
       <item itemvalue="npm.Pack Dev" />
       <item itemvalue="npm.Electron Dev" />
-      <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="npm.Build Pack Prod" />
       <item itemvalue="npm.Build Pack Preprod" />
       <item itemvalue="npm.Sapper Dev Components" />
@@ -259,6 +203,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
@@ -539,10 +484,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="617" y="103" key="#ESLint/0.0.1920.882@0.0.1920.882" timestamp="1590559295519" />
-    <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590758988825">
+    <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590897980708">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1590758988825" />
+    <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1590897980708" />
     <state x="686" y="209" width="801" height="463" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper" timestamp="1590645354301">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
