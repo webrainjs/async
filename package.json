@@ -19,7 +19,7 @@
 	"files": [
 		"dist/**"
 	],
-    "types": "dist/types/browser/index.d.ts",
+	"types": "dist/types/browser/index.d.ts",
 	"main": "dist/dev/js/main/browser/index.js",
 	"jsnext:main": "dist/dev/mjs/main/browser/index.js",
 	"module": "dist/dev/mjs/main/browser/index.js",
