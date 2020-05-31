@@ -17,12 +17,16 @@
 	"license": "CC0-1.0",
 	"keywords": [],
 	"files": [
-		"dist/**"
+		"dist/**",
+		"browser/**/*.js",
+		"browser/**/*.d.ts",
+		"node/**/*.js",
+		"node/**/*.d.ts"
 	],
-	"types": "dist/types/browser/index.d.ts",
-	"main": "dist/dev/js/main/browser/index.js",
-	"jsnext:main": "dist/dev/mjs/main/browser/index.js",
-	"module": "dist/dev/mjs/main/browser/index.js",
+	"types": "dist/types/common/index.d.ts",
+	"main": "dist/dev/js/main/common/index.js",
+	"jsnext:main": "dist/dev/mjs/main/common/index.js",
+	"module": "dist/dev/mjs/main/common/index.js",
 	"engines": {
 		"node": ">= 8.6.0"
 	},
@@ -32,6 +36,7 @@
 		"ci": "npm run build-test:ci && ncat \"tmp/*/coverage/all/lcov/**/lcov.info\" --banner \"\" | coveralls",
 		"lint": "node ./env/scripts/run.js \"require('./env/scripts/common').lint().stopOnError()\"",
 
+		"build:indexes": "node ./env/scripts/run.js \"require('./env/scripts/common').buildIndexes().stopOnError()\"",
 		"build:polyfill": "node ./env/scripts/run.js \"require('./env/scripts/common').buildPolyfill().stopOnError()\"",
 		"build:libs": "node ./env/scripts/run.js \"require('./env/scripts/common').buildLibs().stopOnError()\"",
 		"build:dev": "node ./env/scripts/run.js \"require('./env/scripts').buildAll(['dev']).stopOnError()\"",
