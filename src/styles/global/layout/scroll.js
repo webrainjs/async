@@ -9,6 +9,10 @@ module.exports = [{
 			right : `auto`,
 			bottom: `auto`,
 		},
+		'&--smooth': {
+			'scroll-behavior'           : `smooth`,
+			'-webkit-overflow-scrolling': `touch`,
+		},
 		'&-vertical': {
 			position              : `relative`,
 			'overflow-y'          : `auto`,

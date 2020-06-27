@@ -7,12 +7,14 @@ const resolve  = require('rollup-plugin-node-resolve')
 const commonjs  = require('rollup-plugin-commonjs')
 const nycrc  = require('../../nyc.config')
 const replace = require('rollup-plugin-replace')
+const alias = require('@rollup/plugin-alias')
 const {fileExtensions} = require('../common/constants')
 const metric = require('./metric')
 const babel = require('./babel')
 const svelte = require('./svelte')
 const postcss = require('./postcss')
 const dedupe = importee => /^(svelte|@babel|core-js[^\\/]*|regenerator-runtime)([\\/]|$)/.test(importee)
+const json = require('@rollup/plugin-json')
 
 if (!process.env.APP_CONFIG) {
 	console.error('Environment variable APP_CONFIG is not defined', __filename)
@@ -28,6 +30,15 @@ const plugins = {
 	babel   : babel.rollup,
 	istanbul: (options = {}) => istanbul({
 		...nycrc,
+		...options,
+	}),
+	json: (options = {}) => json({
+		...options,
+	}),
+	alias: (options = {}) => alias({
+		entries: [
+			{ find: 'path', replacement: 'path-browserify' },
+		],
 		...options,
 	}),
 	// globals    : (options = {}) =>globals(options),
@@ -48,9 +59,9 @@ const plugins = {
 		...options,
 	}),
 	resolve: (options = {}) => resolve({
-		extensions: [...fileExtensions.js, ...fileExtensions.ts],
+		extensions    : [...fileExtensions.js, ...fileExtensions.ts],
 		dedupe,
-		// preferBuiltins      : true,
+		preferBuiltins: false,
 		// customResolveOptions: {
 		// 	// moduleDirectory: 'node_modules',
 		// 	// preserveSymlinks: false,
@@ -109,8 +120,10 @@ module.exports = {
 		return [
 			plugins.babel.minimal(),
 			plugins.replace(),
+			plugins.json(),
 			plugins.svelte.client(),
 			coverage && plugins.istanbul(),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
@@ -124,8 +137,10 @@ module.exports = {
 		return [
 			plugins.babel.minimal(),
 			plugins.replace(),
+			plugins.json(),
 			plugins.svelte.client(),
 			coverage && plugins.istanbul(),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
@@ -142,6 +157,8 @@ module.exports = {
 				compact: true,
 			}),
 			// plugins.replace(),
+			plugins.json(),
+			plugins.alias(),
 			plugins.resolve({
 				browser: true,
 			}),
@@ -156,9 +173,11 @@ module.exports = {
 		return [
 			plugins.babel.minimal(),
 			plugins.replace(),
+			plugins.json(),
 			plugins.svelte.client({
 				emitCss: false,
 			}),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
@@ -174,8 +193,10 @@ module.exports = {
 			plugins.replace({
 				'process.browser': true,
 			}),
+			plugins.json(),
 			plugins.postCss(),
 			plugins.svelte.client(),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
@@ -195,8 +216,10 @@ module.exports = {
 			plugins.replace({
 				'process.browser': false,
 			}),
+			plugins.json(),
 			plugins.postCss(),
 			plugins.svelte.server(),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.resolve(),
 			plugins.commonjs(),
@@ -208,11 +231,13 @@ module.exports = {
 		return [
 			plugins.metricStart('serviceworker'),
 			plugins.babel.minimal(),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.resolve(),
 			plugins.replace({
 				'process.browser': true,
 			}),
+			plugins.json(),
 			plugins.commonjs(),
 			legacy && plugins.babel.browser(),
 			!dev && plugins.terser(),
@@ -225,6 +250,8 @@ module.exports = {
 			plugins.replace({
 				'process.browser': true,
 			}),
+			plugins.json(),
+			plugins.alias(),
 			plugins.resolveExternal(),
 			plugins.commonjs(),
 			legacy && plugins.babel.node(),

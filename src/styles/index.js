@@ -1,4 +1,4 @@
 module.exports = [
 	require('./global/index.js'),
-	require('./at-rules.js')
+	require('./at-rules.js'),
 ]

@@ -1,4 +1,4 @@
-/* tslint:disable:no-conditional-assignment */
+/* tslint:disable:no-conditional-assignment prefer-const */
 import {
 	CalcObjectBuilder,
 	noSubscribe,

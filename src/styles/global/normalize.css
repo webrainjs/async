@@ -347,3 +347,9 @@ template {
 [hidden] {
   display: none;
 }
+
+/* see: https://stackoverflow.com/a/31831776/5221762 */
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+}

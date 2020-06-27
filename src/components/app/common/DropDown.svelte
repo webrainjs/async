@@ -34,12 +34,14 @@
 					throw new Error('Unknown align type: ' + this.align)
 			}
 
-			if (x + dropdownWidth > containerX + containerWidth - this.marginWindow) {
-				x = containerX + containerWidth - this.marginWindow - dropdownWidth
-			}
+			if (this.containerWidth != null) {
+				if (x + dropdownWidth > containerX + containerWidth - this.marginWindow) {
+					x = containerX + containerWidth - this.marginWindow - dropdownWidth
+				}
 
-			if (x < this.marginWindow) {
-				x = this.marginWindow
+				if (x < this.marginWindow) {
+					x = this.marginWindow
+				}
 			}
 
 			return x
@@ -53,18 +55,20 @@
 			let right = dropdownRect.x + dropdownRect.width
 			let bottom = dropdownRect.y + dropdownRect.height
 
-			if (left < containerRect.x + this.marginWindow) {
-				left = containerRect.x + this.marginWindow
-			}
-			if (top < containerRect.y + this.marginWindow) {
-				top = containerRect.y + this.marginWindow
-			}
+			if (containerRect != null) {
+				if (left < containerRect.x + this.marginWindow) {
+					left = containerRect.x + this.marginWindow
+				}
+				if (top < containerRect.y + this.marginWindow) {
+					top = containerRect.y + this.marginWindow
+				}
 
-			if (right > containerRect.x + containerRect.width - this.marginWindow) {
-				right = containerRect.x + containerRect.width - this.marginWindow
-			}
-			if (bottom > containerRect.y + containerRect.height - this.marginWindow) {
-				bottom = containerRect.y + containerRect.height - this.marginWindow
+				if (right > containerRect.x + containerRect.width - this.marginWindow) {
+					right = containerRect.x + containerRect.width - this.marginWindow
+				}
+				if (bottom > containerRect.y + containerRect.height - this.marginWindow) {
+					bottom = containerRect.y + containerRect.height - this.marginWindow
+				}
 			}
 
 			const dropdownSquareVisible = Math.max(0, right - left) * Math.max(0, bottom - top)
@@ -83,7 +87,9 @@
 		}
 
 		placeVertical(containerRect, controlRect, dropdownRect, y) {
-			const x = this.alignX(containerRect.x, containerRect.width,
+			const x = this.alignX(
+				containerRect == null ? null : containerRect.x,
+				containerRect == null ? null : containerRect.width,
 				controlRect.x, controlRect.width,
 				dropdownRect.width)
 
@@ -134,6 +140,7 @@
 					return this.placeTop(this.containerRect, this.controlRect, this.dropdownRect)
 				case 'bottom':
 					return this.placeBottom(this.containerRect, this.controlRect, this.dropdownRect)
+				default:
 					throw new Error('Unknown position type: ' + position)
 			}
 		}
@@ -154,8 +161,12 @@
 
 			const left = preferPlace.x
 			const top = preferPlace.y
-			const maxWidth = this.containerRect.x + this.containerRect.width - this.marginWindow - left
-			const maxHeight = this.containerRect.y + this.containerRect.height - this.marginWindow - top
+			const maxWidth = this.containerRect == null
+				? null
+				: this.containerRect.x + this.containerRect.width - this.marginWindow - left
+			const maxHeight = this.containerRect == null
+				? null
+				: this.containerRect.y + this.containerRect.height - this.marginWindow - top
 
 			return {
 				left,
@@ -183,9 +194,12 @@
 	export let align = 'start'
 	export let isContentResizable = false
 	export let debug_id = null
+	export let isButton = true
 
 	let windowWidth
 	let windowHeight
+	let windowScrollX = 0
+	let windowScrollY = 0
 
 	let control
 	let controlWidth
@@ -207,6 +221,17 @@
 		dropdown,
 	)
 
+	function onScroll() {
+		windowScrollX = window.scrollX
+		windowScrollY = window.scrollY
+		updateDropdownPosition(
+			windowWidth, windowHeight,
+			controlWidth, controlHeight,
+			dropdownWidth, dropdownHeight,
+			dropdown,
+		)
+	}
+
 	function updateDropdownPosition(
 		windowWidth, windowHeight,
 		controlWidth, controlHeight,
@@ -217,7 +242,7 @@
 			return
 		}
 
-		const containerRect = {
+		const containerRect = marginWindowPx == null ? null : {
 			x: 0, y: 0, width: windowWidth, height: windowHeight,
 		}
 		let controlRect = control.getBoundingClientRect()
@@ -248,10 +273,10 @@
 			preferPositions,
 			align,
 		})
-		.calcDropdownPosition()
+			.calcDropdownPosition()
 
-		dropdownLeft = left
-		dropdownTop = top
+		dropdownLeft = left + windowScrollX
+		dropdownTop = top + windowScrollY
 		dropdownMaxWidth = maxWidth
 		dropdownMaxHeight = maxHeight
 	}
@@ -294,9 +319,34 @@
 	bind:innerHeight="{windowHeight}"
 	on:mousedown="{clickListener}"
 	on:touchstart="{clickListener}"
+	on:scroll|capture={onScroll}
 	/>
 
-<Toggle type="checkbox" bind:checked="{showed}" {debug_id}>
+{#if isButton}
+	<Toggle type="checkbox" bind:checked="{showed}" {debug_id}>
+		{#if isContentResizable}
+			<span
+				bind:this="{control}"
+				class="control control--button"
+				bind:clientWidth={controlWidth}
+				bind:clientHeight={controlHeight}
+				>
+				<slot name="control">
+					<button style="margin: 0;">DropDown{showed ? ' showed' : ''}</button>
+				</slot>
+			</span>
+		{:else}
+			<span
+				bind:this="{control}"
+				class="control control--button"
+				>
+				<slot name="control">
+					<button style="margin: 0;">DropDown{showed ? ' showed' : ''}</button>
+				</slot>
+			</span>
+		{/if}
+	</Toggle>
+{:else}
 	{#if isContentResizable}
 		<span
 			bind:this="{control}"
@@ -318,7 +368,8 @@
 			</slot>
 		</span>
 	{/if}
-</Toggle>
+{/if}
+
 {#if showed}
 	<div
 		bind:this="{dropdown}"
@@ -340,8 +391,10 @@
 <style>
 	.control {
 		position: relative;
-		pointer-events: none;
 		overflow: hidden;
+	}
+	.control--button {
+		pointer-events: none;
 	}
 	.dropdown {
 		position: fixed;

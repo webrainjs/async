@@ -1,6 +1,7 @@
-import {logger} from '@flemist/web-logger/browser/mjs'
+import {logger, LogLevel} from '@flemist/web-logger/browser/mjs'
 // noinspection NpmUsedModulesInstalled
 import appConfig from 'APP_CONFIG_PATH'
+import {getUserAgent} from './brain/helpers/system-info'
 
 try {
 	logger.init({
@@ -32,6 +33,14 @@ try {
 
 			return true
 		},
+	})
+
+	logger.subscribe(logEvent => {
+		// eslint-disable-next-line no-undef
+		if (logEvent.level >= LogLevel.Error && typeof alert !== 'undefined' && getUserAgent().device.type) {
+			// eslint-disable-next-line no-undef,no-alert
+			alert(logEvent.consoleString)
+		}
 	})
 } catch (ex) {
 	console.error(ex)

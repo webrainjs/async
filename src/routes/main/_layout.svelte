@@ -1,7 +1,7 @@
 <script context="module">
-	import {deepSubscriber, connectorFactory} from 'webrain'
-	import {brain} from "../../brain/facade";
-	import {logger} from "@flemist/web-logger/browser/mjs";
+	import {deepSubscriber, connectorFactory, autoCalcConnect, depend} from 'webrain'
+	import {brain} from "../../brain/facade"
+	import {logger} from "@flemist/web-logger/browser/mjs"
 
 	// region App Init
 
@@ -58,7 +58,7 @@
 </script>
 
 <script>
-	import {onDestroy} from "svelte";
+	import {onMount, onDestroy} from 'svelte'
 	// import {brain} from "../../brain/facade"; // TODO
 	// noinspection NpmUsedModulesInstalled
 	import Window from '../../components/app/Window.svelte'

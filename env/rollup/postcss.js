@@ -20,6 +20,10 @@ const requireFromString = (code, filename, options) => _requireFromString(code, 
 		if (logEvent.vars && logEvent.vars.request && (
 			logEvent.vars.request.startsWith('@sapper')
 			|| logEvent.vars.request === 'encoding'
+			|| logEvent.message === 'Found filePath == false' && (
+				logEvent.filename.endsWith('.svelte.js')
+				|| logEvent.filename.endsWith('.jss.js')
+			)
 			// || logEvent.vars.request === '@babel/runtime-corejs3/package.json'
 		)) {
 			return false
