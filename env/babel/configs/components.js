@@ -15,7 +15,7 @@ module.exports = {
 	plugins: [
 		[
 			'@babel/plugin-transform-runtime', {
-				// corejs      : 3, // disable core-js here, and use full corejs lib
+				corejs      : 3, // disable core-js here, and use full corejs lib
 				// regenerator : false,
 				useESModules: true,
 			}

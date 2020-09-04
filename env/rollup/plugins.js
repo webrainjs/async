@@ -1,9 +1,10 @@
 /* eslint-disable object-curly-newline,prefer-template,no-process-env */
 const {terser} = require('rollup-plugin-terser')
 const istanbul = require('rollup-plugin-istanbul')
-// const globals = require('rollup-plugin-node-globals')
-// const builtins = require('rollup-plugin-node-builtins')
-const resolve  = require('rollup-plugin-node-resolve')
+const globals = require('rollup-plugin-node-globals')
+const builtins = require('rollup-plugin-node-builtins')
+const polyfills = require('rollup-plugin-node-polyfills')
+const resolve  = require('@rollup/plugin-node-resolve').default
 const commonjs  = require('rollup-plugin-commonjs')
 const nycrc  = require('../../nyc.config')
 const replace = require('rollup-plugin-replace')
@@ -41,8 +42,9 @@ const plugins = {
 		],
 		...options,
 	}),
-	// globals    : (options = {}) =>globals(options),
-	// builtins   : (options = {}) =>builtins(options),
+	globals    : (options = {}) => globals(options),
+	builtins: (options = {}) => builtins(options),
+	polyfills: (options = {}) => polyfills(options),
 	// resolve: (options = {}) => resolve({
 	// 	extensions: [...fileExtensions.js],
 	// 	// preferBuiltins      : true,
@@ -52,7 +54,7 @@ const plugins = {
 	// 	// },
 	// 	...options
 	// }),
-	replace: (options = {}) => replace({
+	replace : (options = {}) => replace({
 		APP_CONFIG_PATH       : require.resolve('../../configs/' + process.env.APP_CONFIG).replace(/\\/g, '/'),
 		SAPPER_MODULE         : `@sapper/${appConfig.sapper.devServer ? 'debug' : appConfig.type}`,
 		'process.env.NODE_ENV': JSON.stringify(mode),
@@ -105,7 +107,8 @@ const plugins = {
 }
 
 plugins.resolveExternal = (options = {}) => plugins.resolve({
-	only: [
+	resolveOnly: [
+		// 'util',
 		// 'webrain',
 		// /@flemist\/web-logger(\/(browser|node)\/.*)?$/
 	],
@@ -158,6 +161,7 @@ module.exports = {
 			}),
 			// plugins.replace(),
 			plugins.json(),
+			plugins.postCss(),
 			plugins.alias(),
 			plugins.resolve({
 				browser: true,
@@ -178,12 +182,13 @@ module.exports = {
 				emitCss: false,
 			}),
 			plugins.alias(),
+			plugins.builtins(),
 			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser(),
+			legacy && plugins.babel.components(),
 		]
 	},
 	client({dev = false, legacy = true}) {
@@ -194,9 +199,12 @@ module.exports = {
 				'process.browser': true,
 			}),
 			plugins.json(),
-			plugins.postCss(),
+			plugins.postCss({
+				extract: 'styles.css',
+			}),
 			plugins.svelte.client(),
 			plugins.alias(),
+			plugins.builtins(),
 			plugins.resolveExternal(),
 			plugins.resolve({
 				browser: true,
@@ -217,9 +225,9 @@ module.exports = {
 				'process.browser': false,
 			}),
 			plugins.json(),
-			plugins.postCss(),
 			plugins.svelte.server(),
 			plugins.alias(),
+			plugins.builtins(),
 			plugins.resolveExternal(),
 			plugins.resolve(),
 			plugins.commonjs(),
@@ -232,6 +240,7 @@ module.exports = {
 			plugins.metricStart('serviceworker'),
 			plugins.babel.minimal(),
 			plugins.alias(),
+			plugins.builtins(),
 			plugins.resolveExternal(),
 			plugins.resolve(),
 			plugins.replace({

@@ -1,12 +1,15 @@
 /* eslint-env browser */
 // noinspection NpmUsedModulesInstalled
 import * as sapper from 'SAPPER_MODULE/app'
+import appConfig from 'APP_CONFIG_PATH'
 import './initWebrain'
 import './initClientLog'
-import appConfig from 'APP_CONFIG_PATH'
+import './styles/index.jss'
 import {openWebrainWindow} from './components/app/Webrain'
 import {brain} from './brain/facade'
 import {createWindowController} from './main/browser/helpers/html-controllers/WindowController'
+
+// region init Chrome App:
 
 // // region for Chrome App:
 // if (!window.history.replaceState) {
@@ -55,10 +58,14 @@ if (!window.minimize) {
 	}
 }
 
-// Prevent to close window:
+// endregion
+
+// region Prevent to close window:
+
 if (window.hide || window.minimize) {
 	window.onbeforeunload = function () {
 		return (window.hide || window.minimize)() !== false || void 0
 	}
 }
 
+// endregion

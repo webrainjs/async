@@ -252,6 +252,7 @@ function iconMask({
 	size = 'contain',
 	color = `white`,
 	animation,
+	transform,
 }) {
 	return {
 		'mask-image'      : url && `url(${url})`,
@@ -264,6 +265,7 @@ function iconMask({
 		'-webkit-mask-position-x': x,
 		'-webkit-mask-position-y': y,
 		animation,
+		transform,
 	}
 }
 

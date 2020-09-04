@@ -109,16 +109,7 @@ const packAll = singleCall(async (packTypes, appConfigTypes, options) => {
 	)
 })
 
-const buildAndPackAll = singleCall(async (packTypes, appConfigTypes) => {
-	await Promise.all([
-		common.lint(),
-		buildAll(appConfigTypes),
-	])
-
-	await packAll(packTypes, appConfigTypes)
-})
-
-const testAndPackAll = singleCall(async (packTypes, appConfigTypes, options = {}) => {
+const deployAll = singleCall(async (appConfigTypes, options) => {
 	if (options.build !== false) {
 		await Promise.all([
 			common.lint(),
@@ -126,9 +117,16 @@ const testAndPackAll = singleCall(async (packTypes, appConfigTypes, options = {}
 		])
 	}
 	
-	await testInternAll(appConfigTypes, options)
+	if (options.test !== false) {
+		await testInternAll(appConfigTypes, options)
+	}
 
-	await packAll(packTypes, appConfigTypes)
+	await Promise.all(
+		appConfigTypes
+			.map(
+				appConfigType => specific.deploy.deploy(appConfigType)
+			),
+	)
 })
 
 // endregion
@@ -137,7 +135,6 @@ module.exports = {
 	buildAll,
 	testAll,
 	packAll,
-	testAndPackAll,
-	buildAndPackAll,
+	deployAll,
 	testCiAll,
 }

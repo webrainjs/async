@@ -95,6 +95,7 @@
 			label: {
 				...templates.noSelect,
 				...templates.noDrag,
+				'flex-grow': `1`,
 			},
 			'.inline': {
 				display: `inline-block`,

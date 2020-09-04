@@ -119,6 +119,7 @@
 				},
 			},
 			'.components': {
+				'font-family': fonts.regular,
 				...templates.fill,
 				'&__menu': {
 					'border-right': `solid black 1.5px`,

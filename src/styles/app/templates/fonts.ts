@@ -1,5 +1,6 @@
 /* tslint:disable:quotemark no-duplicate-string */
 import templates from '../../helpers/templates'
+import constants from '../../helpers/constants'
 
 const sourceSansPro = templates.fontFamily({
 	family: 'Source Sans Pro',
@@ -8,5 +9,6 @@ const sourceSansPro = templates.fontFamily({
 })
 
 export default {
+	...constants.fonts,
 	sourceSansPro,
 }

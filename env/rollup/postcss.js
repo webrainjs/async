@@ -1,5 +1,6 @@
 /* eslint-disable no-sync */
 const fs = require('fs')
+const path = require('path')
 const {requireFromString: _requireFromString} = require('require-from-memory')
 const postcss = require('postcss')
 const postcssRollup = require('rollup-plugin-postcss')
@@ -130,7 +131,11 @@ function rollupCommon(options = {}) {
 		// use: [['sass', nodeSassOptions]],
 		// see: https://github.com/postcss/postcss
 		plugins,
-		...options
+		...options,
+		// see this issue: https://github.com/rollup/rollup/issues/3669
+		// extract: typeof options.extract === 'string'
+		// 	? path.resolve(options.extract)
+		// 	: options.extract,
 	}
 }
 
@@ -235,11 +240,11 @@ module.exports = {
 	rollup  : {
 		common: rollupCommon,
 		sapper: (options = {}) => postcssRollup(rollupCommon({
-			extensions: ['.jss', '.scss', '.sass', '.less', '.styl'],
+			extensions: ['.css', '.jss', '.scss', '.sass', '.less', '.styl'],
 			parser    : syntax.parse,
 			requireFromString,
 			sourceMap : false, // 'inline',
-			extract   : 'static/client/styles.css',
+			extract   : true,
 			...options
 		}))
 	}

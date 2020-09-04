@@ -1,4 +1,4 @@
-<svelte:options accessors/>
+<svelte:options accessors={true} />
 
 <p count="{count}">Count: {count}</p>
 <button on:click="{() => count++}">+1</button>

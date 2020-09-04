@@ -1,4 +1,4 @@
-import {getPPI} from './ppi'
+import {getPPI} from './display'
 
 export function calcRelativeFontSize(container, coef = 1.0) {
 	const fontSize = Math.min(container.offsetWidth, container.offsetHeight) / 480 * getPPI() / 96 * 10 * coef

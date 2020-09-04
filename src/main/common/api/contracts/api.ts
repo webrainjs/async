@@ -6,7 +6,7 @@ import {
 
 export interface IApiError<TApiError> {
 	apiError?: TApiError
-	networkError: INetworkError
+	networkError?: INetworkError
 }
 
 export interface IApiRequest extends IHttpRequest {

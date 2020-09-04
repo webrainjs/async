@@ -22,7 +22,7 @@
 	    require('../../../../styles/app'),
         {
 			'.container': {
-				'font-size': `20px`,
+				'font-size': `200%`,
 				'flex-wrap': `wrap`,
 				'user-select': `none`,
 				'& > :global(*)': {
