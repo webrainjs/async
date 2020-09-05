@@ -339,7 +339,7 @@ function configDetectBrowsers(config) {
 
 						return availableBrowser
 					})
-					.concat('Electron') // Travis has error (Electron v10.1.1): Some of your tests did a full page reload!
+					// .concat('Electron') // Travis has error (Electron v10.1.1): Some of your tests did a full page reload!
 			}
 		},
 
