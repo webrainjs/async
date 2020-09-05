@@ -19,40 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Merged with app2">
-      <change afterPath="$PROJECT_DIR$/env/babel/configs/components.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.browserslistrc" beforeDir="false" afterPath="$PROJECT_DIR$/.browserslistrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/CI.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/CI.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Dev.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Performance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Performance.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tests.xml" afterDir="false" />
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Fix lint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/common/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/common/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/libs/polyfill/polyfills/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/libs/polyfill/polyfills/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/babel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/postcss.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/postcss.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/helpers/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/helpers/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nyc.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nyc.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Toggle.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Toggle.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/initClientLog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/initClientLog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/relative-font-size.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/relative-font-size.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/api/contracts/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/api/contracts/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/dev/components/_layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/dev/components/_layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/dev/components/small/icons.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/dev/components/small/icons.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/templates/fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/templates/fonts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/templates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/templates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/webdriver/env/src/component.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/webdriver/env/src/component.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +109,7 @@
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Build Test Dev">
+  <component name="RunManager" selected="Karma.CI">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -269,7 +237,7 @@
       <workItem from="1590640011412" duration="4850000" />
       <workItem from="1591082611110" duration="2080000" />
       <workItem from="1593242391373" duration="6466000" />
-      <workItem from="1599236619071" duration="3464000" />
+      <workItem from="1599236619071" duration="13487000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -502,7 +470,84 @@
       <option name="project" value="LOCAL" />
       <updated>1593263199226</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Merged with app2">
+      <created>1599247614252</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1599247614252</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Fix lint">
+      <created>1599248159616</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1599248159616</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Rollback postcss-nested to v4.2.1 due to: https://github.com/egoist/rollup-plugin-postcss/issues/205">
+      <created>1599280225124</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1599280225124</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fix travis">
+      <created>1599281082674</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1599281082674</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fix travis">
+      <created>1599282318450</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1599282318450</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Fix travis">
+      <created>1599282562006</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1599282562006</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fix travis">
+      <created>1599283693052</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1599283693052</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Fix travis: try to enable Electron in karma">
+      <created>1599284158769</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1599284158769</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Fix travis: disabled Electron in karma">
+      <created>1599284502182</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1599284502182</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Upgrade node modules">
+      <created>1599285337166</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1599285337166</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Small fixes">
+      <created>1599286395574</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1599286395574</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,12 +578,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="configure travis" />
-    <MESSAGE value="fix travis" />
-    <MESSAGE value="fix coveralls" />
-    <MESSAGE value="fix ReadMe" />
-    <MESSAGE value="TODO changed" />
-    <MESSAGE value="Remove pug" />
     <MESSAGE value="Change node version to 12.4.0" />
     <MESSAGE value="Merged with app" />
     <MESSAGE value="Merged with webrain" />
@@ -546,7 +585,6 @@
     <MESSAGE value="Travis OK." />
     <MESSAGE value="Lint fixes" />
     <MESSAGE value="Precommit OK." />
-    <MESSAGE value="Fix travis" />
     <MESSAGE value="Change karma-edge-launcher to karma-edgium-launcher" />
     <MESSAGE value="Update electron" />
     <MESSAGE value="Disabled karma electron browser for Windows" />
@@ -558,7 +596,14 @@
     <MESSAGE value="Moved logger to separated module" />
     <MESSAGE value="Fix resolveExternal" />
     <MESSAGE value="Merged with app2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged with app2" />
+    <MESSAGE value="Fix lint" />
+    <MESSAGE value="Rollback postcss-nested to v4.2.1 due to: https://github.com/egoist/rollup-plugin-postcss/issues/205" />
+    <MESSAGE value="Fix travis" />
+    <MESSAGE value="Fix travis: try to enable Electron in karma" />
+    <MESSAGE value="Fix travis: disabled Electron in karma" />
+    <MESSAGE value="Upgrade node modules" />
+    <MESSAGE value="Small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590897980708">
@@ -569,54 +614,54 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="686" y="209" width="801" height="463" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1920.882@0.0.1920.882" timestamp="1590645354301" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1599246614224">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1599286394991">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1599246614224" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1599286394991" />
     <state width="1081" height="582" key="DebuggerActiveHint" timestamp="1590747108043">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state width="1081" height="582" key="DebuggerActiveHint/0.0.1920.882@0.0.1920.882" timestamp="1590747108043" />
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1599246612244">
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1599285308130">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1599246612244" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1599285308130" />
     <state x="685" y="133" width="548" height="614" key="FileChooserDialogImpl" timestamp="1591011975833">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="685" y="133" width="548" height="614" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1591011975833" />
-    <state width="1892" height="288" key="GridCell.Tab.0.bottom" timestamp="1599246926909">
+    <state width="1892" height="350" key="GridCell.Tab.0.bottom" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="288" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1599246926909" />
-    <state width="1892" height="288" key="GridCell.Tab.0.center" timestamp="1599246926909">
+    <state width="1892" height="350" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
+    <state width="1892" height="350" key="GridCell.Tab.0.center" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="288" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1599246926909" />
-    <state width="1892" height="288" key="GridCell.Tab.0.left" timestamp="1599246926909">
+    <state width="1892" height="350" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
+    <state width="1892" height="350" key="GridCell.Tab.0.left" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="288" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1599246926909" />
-    <state width="1892" height="288" key="GridCell.Tab.0.right" timestamp="1599246926909">
+    <state width="1892" height="350" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
+    <state width="1892" height="350" key="GridCell.Tab.0.right" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="288" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1599246926909" />
-    <state width="1892" height="349" key="GridCell.Tab.1.bottom" timestamp="1590747139807">
+    <state width="1892" height="350" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
+    <state width="1892" height="350" key="GridCell.Tab.1.bottom" timestamp="1599282347494">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="349" key="GridCell.Tab.1.bottom/0.0.1920.882@0.0.1920.882" timestamp="1590747139807" />
-    <state width="1892" height="349" key="GridCell.Tab.1.center" timestamp="1590747139806">
+    <state width="1892" height="350" key="GridCell.Tab.1.bottom/0.0.1920.882@0.0.1920.882" timestamp="1599282347494" />
+    <state width="1892" height="350" key="GridCell.Tab.1.center" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="349" key="GridCell.Tab.1.center/0.0.1920.882@0.0.1920.882" timestamp="1590747139806" />
-    <state width="1892" height="349" key="GridCell.Tab.1.left" timestamp="1590747139806">
+    <state width="1892" height="350" key="GridCell.Tab.1.center/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
+    <state width="1892" height="350" key="GridCell.Tab.1.left" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="349" key="GridCell.Tab.1.left/0.0.1920.882@0.0.1920.882" timestamp="1590747139806" />
-    <state width="1892" height="349" key="GridCell.Tab.1.right" timestamp="1590747139806">
+    <state width="1892" height="350" key="GridCell.Tab.1.left/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
+    <state width="1892" height="350" key="GridCell.Tab.1.right" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="349" key="GridCell.Tab.1.right/0.0.1920.882@0.0.1920.882" timestamp="1590747139806" />
+    <state width="1892" height="350" key="GridCell.Tab.1.right/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
     <state width="1892" height="349" key="GridCell.Tab.2.bottom" timestamp="1590747139807">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -653,10 +698,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="343" y="0" key="SettingsEditor/0.0.1920.882@0.0.1920.882" timestamp="1590645384320" />
-    <state x="0" y="0" width="1920" height="882" key="find.popup" timestamp="1599246346632">
+    <state x="0" y="0" width="1920" height="882" key="find.popup" timestamp="1599284615856">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1920" height="882" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1599246346632" />
+    <state x="0" y="0" width="1920" height="882" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1599284615856" />
     <state x="531" y="190" key="run.anything.popup" timestamp="1590728506801">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
