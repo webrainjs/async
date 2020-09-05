@@ -1,6 +1,6 @@
 import Component from './src/component.svelte'
 
-describe('browser > env > component', function () {
+xdescribe('browser > env > component', function () {
 	let testElem
 
 	beforeEach(() => {
