@@ -132,7 +132,7 @@ module.exports = {
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser(),
+			legacy && plugins.babel.browserModule(),
 			!dev && plugins.terser(),
 		]
 	},
@@ -149,7 +149,7 @@ module.exports = {
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser(),
+			legacy && plugins.babel.browserModule(),
 			...getFileCodePlugins,
 			!dev && plugins.terser(),
 		]
@@ -167,7 +167,7 @@ module.exports = {
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser({
+			legacy && plugins.babel.webapp({
 				compact: true,
 			}),
 			!dev && plugins.terser(),
@@ -188,7 +188,7 @@ module.exports = {
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.components(),
+			legacy && plugins.babel.browserModule(),
 		]
 	},
 	client({dev = false, legacy = true}) {
@@ -210,7 +210,7 @@ module.exports = {
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser(),
+			legacy && plugins.babel.webapp(),
 			!dev && plugins.terser({
 				module: true,
 			}),
@@ -248,7 +248,7 @@ module.exports = {
 			}),
 			plugins.json(),
 			plugins.commonjs(),
-			legacy && plugins.babel.browser(),
+			legacy && plugins.babel.browserModule(),
 			!dev && plugins.terser(),
 			plugins.metricEnd(),
 		]
