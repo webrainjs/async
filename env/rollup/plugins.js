@@ -165,7 +165,7 @@ module.exports = {
 				browser: true,
 			}),
 			plugins.commonjs(),
-			legacy && plugins.babel.webapp({
+			legacy && plugins.babel.browserModule({
 				compact: true,
 			}),
 			!dev && plugins.terser(),

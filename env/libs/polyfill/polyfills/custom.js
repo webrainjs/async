@@ -39,10 +39,6 @@
 // import 'shimport'
 // import '@webcomponents/webcomponentsjs'
 
-import 'core-js'
-import regeneratorRuntime from '@babel/runtime/regenerator/index'
-import './unhandledrejection-polyfill'
-
 // for shimport:
 window.Map = Map
 window.Array.from = Array.from
