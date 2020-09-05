@@ -4,7 +4,9 @@
     <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
     <working-directory value="$PROJECT_DIR$" />
     <node-interpreter value="node" />
-    <envs />
+    <envs>
+      <env name="APP_CONFIG" value="dev" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>
