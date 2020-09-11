@@ -25,4 +25,4 @@ npm run electron:dev
 ```
 npm run build-pack:dev
 ```
-Wait 15 mins and take installer from the `./dist/dev/electron/pack` 
+Wait 15 mins and take the installer from the `./dist/dev/electron/pack` 
