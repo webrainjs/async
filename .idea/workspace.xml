@@ -19,10 +19,37 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="">
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Merged with app">
+      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_All.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Chrome_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Chrome_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Demo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Demo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Preprod.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Preprod.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Prod.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Prod.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Stage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Pack_Stage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Test_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Test_All.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Build_Test_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Build_Test_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Electron_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Electron_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Electron_Export.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Electron_Export.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Debug.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Debug.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Debug_Video.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Debug_Video.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Dev_Video.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Dev_Video.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Export.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Export.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Export_with_rebuild.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Intern_Export_with_rebuild.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Pack_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Pack_All.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Pack_Chrome_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Pack_Chrome_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Pack_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Pack_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Sapper_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Sapper_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Sapper_Dev_Components.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Sapper_Dev_Components.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Test_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Test_All.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Test_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Test_Dev.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Test_Pack_All.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Test_Pack_All.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Test_Pack_Dev.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Test_Pack_Dev.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/doc/Getting Started.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/doc/template/Getting Started.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/doc/Project Structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/doc/template/Project Structure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/VMware.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/VMware.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,25 +139,12 @@
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
   </component>
-  <component name="RunManager" selected="Karma.CI">
+  <component name="RunManager" selected="Mocha.Intern Dev Video">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
       <node-interpreter value="node" />
       <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="node &gt; styles &gt; postcss" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
-      <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
-      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
-      <working-directory value="$PROJECT_DIR$" />
-      <node-interpreter value="node" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file-path value="$PROJECT_DIR$/src/test/tests/node/styles/postcss.js" />
-      <test-names>
-        <test-name value="node &gt; styles &gt; postcss" />
-      </test-names>
       <method v="2" />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" path-to-node="node" node-parameters="--max-old-space-size=4096" working-dir="$PROJECT_DIR$">
@@ -171,45 +185,44 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Karma.node &gt; styles &gt; postcss" />
-      <item itemvalue="Mocha.Watch" />
-      <item itemvalue="Mocha.Coverage" />
+      <item itemvalue="Karma.Dev" />
+      <item itemvalue="Karma.Tests" />
+      <item itemvalue="Karma.Performance" />
+      <item itemvalue="Karma.CI" />
       <item itemvalue="Mocha.Intern Debug Video" />
       <item itemvalue="Mocha.Intern Debug" />
-      <item itemvalue="npm.Test Dev" />
-      <item itemvalue="npm.Test All" />
-      <item itemvalue="npm.Build Test All" />
-      <item itemvalue="npm.Build Test Dev" />
-      <item itemvalue="npm.Build Pack Stage" />
-      <item itemvalue="Node.js.Build Chrome Dev" />
-      <item itemvalue="npm.Build Pack Preprod" />
-      <item itemvalue="npm.Build Pack Prod" />
-      <item itemvalue="npm.Electron Dev" />
-      <item itemvalue="npm.Build Pack All" />
+      <item itemvalue="Mocha.Intern Dev" />
+      <item itemvalue="Mocha.Intern Dev Video" />
       <item itemvalue="Mocha.Intern Export" />
-      <item itemvalue="Karma.Dev" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
-      <item itemvalue="npm.Test Pack All" />
-      <item itemvalue="Karma.Tests" />
-      <item itemvalue="npm.Pack Dev" />
-      <item itemvalue="npm.Pack Chrome Dev" />
-      <item itemvalue="Karma.Performance" />
-      <item itemvalue="npm.Build Pack Chrome Dev" />
-      <item itemvalue="npm.Sapper Dev" />
+      <item itemvalue="Mocha.Watch" />
+      <item itemvalue="Mocha.Coverage" />
+      <item itemvalue="Node.js.Build Chrome Dev" />
       <item itemvalue="Node.js.Sapper Dev - DEBUG" />
+      <item itemvalue="npm.Electron Dev" />
+      <item itemvalue="npm.Sapper Dev" />
+      <item itemvalue="npm.Sapper Dev Components" />
+      <item itemvalue="npm.Build Pack Demo" />
+      <item itemvalue="npm.Build Dev" />
+      <item itemvalue="npm.Pack Dev" />
+      <item itemvalue="npm.Test Dev" />
       <item itemvalue="npm.Test Pack Dev" />
       <item itemvalue="npm.Build Pack Dev" />
-      <item itemvalue="Mocha.Intern Dev" />
+      <item itemvalue="npm.Build Test Dev" />
+      <item itemvalue="npm.Pack Chrome Dev" />
+      <item itemvalue="npm.Build Pack Chrome Dev" />
       <item itemvalue="npm.Electron Export" />
-      <item itemvalue="Mocha.Intern Dev Video" />
-      <item itemvalue="npm.Sapper Dev Components" />
-      <item itemvalue="Karma.CI" />
-      <item itemvalue="npm.Build Pack Demo" />
+      <item itemvalue="npm.Build Pack Stage" />
+      <item itemvalue="npm.Build Pack Preprod" />
+      <item itemvalue="npm.Build Pack Prod" />
+      <item itemvalue="npm.Test All" />
       <item itemvalue="npm.Pack All" />
+      <item itemvalue="npm.Build Test All" />
+      <item itemvalue="npm.Build Pack All" />
+      <item itemvalue="npm.Test Pack All" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
         <item itemvalue="Karma.node &gt; styles &gt; postcss" />
@@ -241,6 +254,7 @@
       <workItem from="1591082611110" duration="2080000" />
       <workItem from="1593242391373" duration="6466000" />
       <workItem from="1599236619071" duration="13487000" />
+      <workItem from="1600089629751" duration="735000" />
     </task>
     <task id="LOCAL-00001" summary="Merged with app">
       <created>1590054860575</created>
@@ -557,7 +571,21 @@
       <option name="project" value="LOCAL" />
       <updated>1599822361547</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Documenting...">
+      <created>1599838690339</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1599838690339</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Merged with app">
+      <created>1600089674654</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1600089674654</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +621,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Merged with app" />
     <MESSAGE value="Merged with webrain" />
     <MESSAGE value="Merged with webrain. Precommit OK." />
     <MESSAGE value="Travis OK." />
@@ -618,13 +645,18 @@
     <MESSAGE value="Upgrade node modules" />
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Documenting..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Documenting..." />
+    <MESSAGE value="Merged with app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged with app" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1599822360885">
+    <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600090074887">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1599822360885" />
+    <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1600090074887" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1600090089042">
+      <screen x="0" y="0" width="1920" height="882" />
+    </state>
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1600090089042" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1599285308130">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -661,10 +693,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state width="1892" height="350" key="GridCell.Tab.1.right/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
-    <state x="0" y="0" width="1920" height="882" key="find.popup" timestamp="1599837738003">
+    <state x="0" y="0" width="1920" height="882" key="find.popup" timestamp="1600090348550">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1920" height="882" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1599837738003" />
+    <state x="0" y="0" width="1920" height="882" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1600090348550" />
     <state x="539" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1599836444913">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

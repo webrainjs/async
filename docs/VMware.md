@@ -35,7 +35,7 @@
 
 * Check App signature
 ```
-codesign -dv --verbose=4 "/Applications/AlertPoint Security Dev.app"
+codesign -dv --verbose=4 "/Applications/App Template Dev.app"
 ```
 * Build
 ```
@@ -50,18 +50,18 @@ brew install node
 cd projects/nodejs/modules
 git clone https://NikolayMakhonin@github.com/NikolayMakhonin/webrain.js.git
 cd ../apps/
-git clone https://otokonoko@gitlab.com/otokonoko/alertpoint-electron.git
+git clone https://NikolayMakhonin@github.com/NikolayMakhonin/app-template.git
 mv ../../modules/webrain.js ../../modules/webrain
 ls ../../modules/
 sudo npm i
 sudo nano /etc/paths
-cd projects/nodejs/apps/alertpoint-electron/
+cd projects/nodejs/apps/app-template/
 electron ./src/main/node/electron/run/export/run.js
 sudo nano package.json
 npm run electron:export
 sudo git stash && sudo git pull && sudo npm run pack:dev
 sudo spctl --master-disable
-codesign -dv --verbose=4 "/Applications/AlertPoint Security Dev.app"
+codesign -dv --verbose=4 "/Applications/App Template Dev.app"
 ```
 * Troubleshooting
 
@@ -85,7 +85,7 @@ npm -v
 ```
 mkdir -p projects/nodejs/apps
 cd projects/nodejs/apps
-git clone https://otokanoko@gitlab.com/nikolay.makhonin/terminal.git 
+git clone https://NikolayMakhonin@github.com/NikolayMakhonin/terminal.git 
 cd terminal
 npm i --unsafe-perm=true --allow-root
 ```
