@@ -21,29 +21,17 @@
   <component name="ChangeListManager">
     <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Fix Intern test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/webapp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/deploy-config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/deploy-config.tpl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/deploy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/php/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/php/upload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/libs/polyfill/polyfills/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/libs/polyfill/polyfills/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/libs/polyfill/polyfills/unhandledrejection-polyfill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/babel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/deploy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nyc.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nyc.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/display.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/system-info.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/helpers/escape.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/buttons.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/themes/dark.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/client/images/icons/window/mac/close.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/client/images/icons/window/mac/fullscreen-enter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/client/images/icons/window/mac/fullscreen-exit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/client/images/icons/window/mac/minimize.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/client/images/icons/window/mac/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/helpers/server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/appState.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/export/app.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/init.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/mainWindow.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/remoteLogger.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/tray.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/dev/components/small/buttons.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/main/_layout.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/global/tags.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +70,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="webapp" />
+        <entry key="$PROJECT_DIR$" value="node-module" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -207,16 +195,17 @@
       <item itemvalue="Karma.Performance" />
       <item itemvalue="Mocha.Intern Debug" />
       <item itemvalue="Mocha.Intern Debug Video" />
-      <item itemvalue="Mocha.Coverage" />
-      <item itemvalue="Mocha.Watch" />
       <item itemvalue="Mocha.Intern Export" />
       <item itemvalue="Mocha.Intern Dev Video" />
       <item itemvalue="Mocha.Intern Dev" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
+      <item itemvalue="Mocha.Coverage" />
+      <item itemvalue="Mocha.Watch" />
       <item itemvalue="npm.Build Test All" />
+      <item itemvalue="npm.Test All" />
+      <item itemvalue="npm.Build Dev" />
       <item itemvalue="npm.Build Test Dev" />
       <item itemvalue="npm.Test Dev" />
-      <item itemvalue="npm.Test All" />
     </list>
   </component>
   <component name="SvnConfiguration">
