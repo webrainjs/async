@@ -10,6 +10,12 @@ module.exports = {
 	installer  : base.installer,
 
 	type: 'debug',
+	pack: {
+		mac: {
+			type    : 'dmg',
+			notarize: false,
+		},
+	},
 	dev : {
 		devPage : true,
 		devTools: {

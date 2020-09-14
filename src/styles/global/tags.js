@@ -16,6 +16,9 @@ module.exports = [
 		th: {
 			'text-align': `left`,
 		},
+		ul: {
+			margin: `initial`,
+		},
 		button: {
 			position   : `relative`,
 			'font-size': `inherit`,

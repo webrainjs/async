@@ -1,9 +1,10 @@
 /* tslint:disable:no-var-requires */
 // be closed automatically when the JavaScript object is garbage collected.
-import {logger} from '@flemist/web-logger/node/mjs'
+import {logger} from '@flemist/web-logger/node/js'
 import {WindowPosition, WindowPositioner} from '../helpers/WindowPositioner'
 import {appState} from './appState'
 import {showTray} from './tray'
+import {showAppMenu} from './menu'
 
 const { BrowserWindow } = require('electron')
 
@@ -35,6 +36,7 @@ export async function createWindow(url) {
 		width: 1200,
 		height: 700,
 		webPreferences: {
+			enableRemoteModule: true,
 			nativeWindowOpen: true,
 			nodeIntegration: false,
 			sandbox: true,
@@ -46,6 +48,8 @@ export async function createWindow(url) {
 		transparent: true,
 		backgroundColor: '#01000001',
 	})
+
+	;(appState.win as any).isMain = true
 
 	// Set options for child windows
 	appState.win.webContents.on('new-window', function(e, _url, frameName, disposition, options) {
@@ -62,7 +66,7 @@ export async function createWindow(url) {
 
 	// hide instead close
 	appState.win.on('close', function(event) {
-		if (!appState.app.isQuitting) {
+		if (!(appState.app as any).isQuitting) {
 			event.preventDefault()
 			appState.win.hide()
 			console.log('hide')
@@ -119,7 +123,7 @@ export async function createWindow(url) {
 	})
 
 	appState.app.on('before-quit', () => {
-		appState.app.isQuitting = true
+		(appState.app as any).isQuitting = true
 		console.log('before-quit')
 	})
 
@@ -136,4 +140,5 @@ export async function createWindow(url) {
 	// endregion
 
 	showTray()
+	showAppMenu()
 }

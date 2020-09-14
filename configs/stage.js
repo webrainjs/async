@@ -11,6 +11,12 @@ module.exports = {
 	installer  : base.installer,
 
 	type: 'stage',
+	pack: {
+		mac: {
+			type    : 'mas-dev',
+			notarize: true,
+		},
+	},
 	dev : {
 		devPage : false,
 		devTools: {

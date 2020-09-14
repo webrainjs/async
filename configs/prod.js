@@ -11,6 +11,12 @@ module.exports = {
 	installer  : base.installer,
 
 	type : 'prod',
+	pack: {
+		mac: {
+			type    : 'mas',
+			notarize: true,
+		},
+	},
 	tests: {
 		intern: {
 			staticPort: 3015,

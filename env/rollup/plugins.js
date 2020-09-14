@@ -261,7 +261,6 @@ module.exports = {
 			}),
 			plugins.json(),
 			plugins.alias(),
-			plugins.resolveExternal(),
 			plugins.commonjs(),
 			legacy && plugins.babel.node(),
 		]

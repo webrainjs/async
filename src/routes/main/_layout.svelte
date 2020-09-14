@@ -80,7 +80,7 @@
 	<Window
 		title="{appConfig.type === 'prod' ? '' : `${appConfig.appName} v${appConfig.appVersion}`}"
 		{openWebrainWindow}
-		minimizeInsteadClose={true}
+		hideOrMinimizeInsteadClose={true}
 		>
         <div class="fill flex flex--vertical">
         	<div class="nav flex__item--fit scroll-horizontal scrollbar--collapsed">
@@ -113,18 +113,19 @@
 		require('../../styles/app'),
 		{
 			main: {
-				'font-size': `16px`,
 				'background-color': colors.base[7],
 				'color': colors.base[16],
 			},
 			'.nav': {
-				height: `4.2em`,
+				'font-size': `160%`,
+				height: `2.2em`,
 				'background-color': colors.base[10],
 				...borders.base({
 					bottom: true,
 					color: colors.base[12],
 				}),
 				'&__list': {
+					'list-style': `none`,
 					padding: constants.space.half,
 				},
 				'&__item': {

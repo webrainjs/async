@@ -14,6 +14,8 @@ App template created based on [sapper template](https://github.com/sveltejs/sapp
     * [karma](https://karma-runner.github.io/) + [mocha](https://mochajs.org/) - for test JS modules in browsers
     * [mocha](https://mochajs.org/) - for test JS modules in Node.js 
     * [intern](https://theintern.io/) + [leadfoot](https://github.com/theintern/leadfoot) + [mocha](https://mochajs.org/) - for end-to-end UI tests
+* Create Installer
+    * [electron-builder](https://www.electron.build/)
 
 ### Architecture
 

@@ -2,7 +2,7 @@
 // @ts-ignore
 import {App, BrowserWindow, Tray} from 'electron'
 
-import {LogLevel, logger} from '@flemist/web-logger/node/mjs'
+import {LogLevel, logger} from '@flemist/web-logger/node/js'
 import {getResourcesPath, getRootPath} from '../helpers/server'
 import {appState} from './appState'
 import {createWindow as _createWindow} from './mainWindow'

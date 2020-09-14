@@ -36,7 +36,7 @@ exit 0
 
 build(
 	{
-		fileInput : path.resolve('src/main/node/electron/run/pack/app.ts'),
+		fileInput : path.resolve(`src/main/node/electron/run/pack${process.env.DEBUG_PACK ? '-debug' : ''}/app.ts`),
 		fileOutput: `dist/${process.env.APP_CONFIG}/electron/build/index.js`,
 	},
 	{

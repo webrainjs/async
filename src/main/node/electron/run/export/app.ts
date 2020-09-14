@@ -10,6 +10,15 @@ if (!process.env.APP_CONFIG) {
 
 const appConfig = require(`../../../../../../configs/${process.env.APP_CONFIG}`)
 
+appConfig.dev = {
+	errorNotifications: true,
+	devPage: true,
+	devTools: {
+		openAtStart: true,
+	},
+	devBuild: false,
+}
+
 init(app, appConfig, () => {
 	const protocolName = 'app'
 	app.setAsDefaultProtocolClient(protocolName)

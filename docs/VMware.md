@@ -68,3 +68,38 @@ codesign -dv --verbose=4 "/Applications/AlertPoint Security Dev.app"
 * EACCES: permission denied, mkdir
 https://github.com/gdotdesign/elm-github-install/issues/21#issuecomment-366789305
 sudo npm i --unsafe-perm=true --allow-root
+
+### Ubuntu
+
+* [Install node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04)
+```
+curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
+bash install_nvm.sh
+```
+Relogin
+```
+nvm install 12.17.0
+node -v
+npm -v
+```
+```
+mkdir -p projects/nodejs/apps
+cd projects/nodejs/apps
+git clone https://otokanoko@gitlab.com/nikolay.makhonin/terminal.git 
+cd terminal
+npm i --unsafe-perm=true --allow-root
+```
+
+### Create installer
+```
+sudo git checkout . && sudo git stash && sudo git pull && npm run pack:dev
+```
+
+### Install *.deb
+
+```
+sudo apt remove terminal-dev
+sudo apt autoremove
+sudo apt install "./dist/dev/electron/pack/Terminal Dev 0.0.1.deb"
+
+```

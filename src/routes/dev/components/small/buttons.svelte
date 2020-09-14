@@ -21,6 +21,9 @@
 <!--			<span class="icon icon-check">&nbsp;</span>-->
 <!--		</span>-->
 <!--	</Toggle>-->
+<!--	<button class="button flex" style="width: 10em; height: 10em;">-->
+<!--		<span class="button__icon ghost icon icon-demo-smile">&nbsp;</span>-->
+<!--	</button>-->
 </div>
 
 <style-js>

@@ -1,11 +1,3 @@
-### Create app
-
-Run in terminal:
-
-```
-npx degit NikolayMakhonin/app-template#node-module <app name> && cd <app name> && npm i
-```
-
 ### Run app in browser with dev mode
 
 ```
