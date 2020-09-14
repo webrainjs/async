@@ -6,6 +6,12 @@ module.exports = {
 	packageName: `${base.packageName}-preprod`,
 
 	type : 'preprod',
+	pack: {
+		mac: {
+			type    : 'mas-dev',
+			notarize: true,
+		},
+	},
 	tests: {
 		intern: {
 			staticPort: 3014,

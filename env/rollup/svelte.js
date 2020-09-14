@@ -130,11 +130,12 @@ module.exports = {
 		common: rollupCommon,
 		client: (options = {}) => rollupCommon({
 			hydratable: true,
-			emitCss   : true,
+			emitCss   : false,
 			babelrc   : babelConfigMinimal,
 			...options
 		}),
 		server: (options = {}) => rollupCommon({
+			emitCss : true,
 			generate: 'ssr',
 			babelrc : babelConfigMinimal,
 			...options

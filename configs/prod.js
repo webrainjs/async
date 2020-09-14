@@ -6,6 +6,12 @@ module.exports = {
 	packageName: base.packageName,
 
 	type : 'prod',
+	pack: {
+		mac: {
+			type    : 'mas',
+			notarize: true,
+		},
+	},
 	tests: {
 		intern: {
 			staticPort: 3015,

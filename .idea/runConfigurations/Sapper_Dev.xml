@@ -1,12 +1,14 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Test Dev" type="js.build_tools.npm" folderName="Dev">
+  <configuration default="false" name="Sapper Dev" type="js.build_tools.npm" folderName="_Develop">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="test:dev" />
+      <script value="sapper:dev" />
     </scripts>
     <node-interpreter value="node" />
-    <envs />
+    <envs>
+      <env name="APP_CONFIG" value="dev" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>
