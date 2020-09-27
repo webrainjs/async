@@ -7,7 +7,7 @@ const rollupPlugins = require('./env/rollup/plugins')
 const mode = process.env.NODE_ENV
 console.log(`mode = ${mode}`)
 const dev = !!(appConfig.dev && appConfig.dev.devBuild || mode === 'development')
-const legacy = true // dev || !!process.env.SAPPER_LEGACY_BUILD
+const legacy = dev || !!process.env.SAPPER_LEGACY_BUILD
 const onwarn = (warning, nextOnWarn) => {
 	return warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)
 		|| warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)

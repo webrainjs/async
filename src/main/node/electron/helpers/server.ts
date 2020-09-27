@@ -9,18 +9,22 @@ const mime = require('mime')
 const fs = require('fs')
 
 export function getResourcesPath(app: App) {
-	const resPath = app.getAppPath()
-	if (resPath.endsWith('.asar')) {
-		return resPath
+	const appPath = app.getAppPath()
+	console.log('appPath = ' + appPath)
+	if (/([\/\\]resources[\/\\]app([\/\\]|.asar)?)$/.test(appPath)) {
+		return appPath
 	}
 	return path.resolve('.')
 }
 
 export function getRootPath(app: App) {
 	const resPath = getResourcesPath(app)
-	return resPath.endsWith('.asar')
-		? path.resolve(resPath, '../../')
-		: resPath
+	console.log('resPath = ' + resPath)
+	if (/([\/\\]resources[\/\\]app([\/\\]|.asar)?)$/.test(resPath)) {
+		return path.resolve(resPath, '../../')
+	} else {
+		return resPath
+	}
 }
 
 const errorHandler = error => {

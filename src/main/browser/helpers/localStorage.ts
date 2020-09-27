@@ -5,6 +5,7 @@ import {
 	ObjectSerializer,
 	IRuleBuilder,
 	deepSubscriber,
+	delay,
 } from 'webrain'
 
 declare const chrome: any
@@ -24,20 +25,47 @@ export const localStorageWrapper = typeof chrome !== 'undefined' && chrome.stora
 export async function storeWindowState(name: string, win: typeof window) {
 	const storageKey = `window-state-${name}`
 	const stateStr: string = await localStorageWrapper.getItem(storageKey)
-	const state: any = stateStr && JSON.parse(stateStr)
+
+	let state: any = stateStr && JSON.parse(stateStr)
 	if (state) {
+		console.log('Load window state: ', state)
 		win.resizeTo(state.width, state.height)
 		win.moveTo(state.x, state.y)
 	}
-	const saveState = async () => {
-		await localStorageWrapper.setItem(storageKey, JSON.stringify({
-			x     : win.screenLeft,
-			y     : win.screenTop,
-			width : win.outerWidth,
-			height: win.outerHeight,
-		}))
+
+	refreshState()
+	console.log('After load window state: ', state)
+
+	setTimeout(() => {
+		refreshState()
+		saveState()
+	}, 2000)
+
+	function refreshState() {
+		if (!state) {
+			state = {}
+		}
+		state.x = win.screenLeft
+		state.y = win.screenTop
+		state.width = win.outerWidth
+		state.height = win.outerHeight
 	}
-	win.addEventListener('resize', saveState, false)
+
+	async function saveState() {
+		if (!state
+			|| state.x !== win.screenLeft
+			|| state.y !== win.screenTop
+			|| state.width !== win.outerWidth
+			|| state.height !== win.outerHeight
+		) {
+			const oldState = {...state}
+			refreshState()
+			await localStorageWrapper.setItem(storageKey, JSON.stringify(state))
+			console.log('Save window state: ', oldState, state)
+		}
+
+		setTimeout(saveState, 500)
+	}
 }
 
 export async function storeObject<TObject>(

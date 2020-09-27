@@ -165,6 +165,14 @@ function initWindow(window, remoteWindow) {
 		remoteWindow.minimize()
 		remoteWindow.setSkipTaskbar(true)
 	}
+	window.show = function () {
+		remoteWindow.setSkipTaskbar(false)
+		remoteWindow.show()
+		window.restoreRect()
+	}
+	window.setOpacity = function (value) {
+		remoteWindow.setOpacity(value)
+	}
 	window.restore = function () {
 		remoteWindow.setSkipTaskbar(false)
 		remoteWindow.restore()

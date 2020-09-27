@@ -118,7 +118,7 @@
 
 <div class="window flex__item--fit flex flex--vertical fill">
     <div class="window__titlebar titlebar flex">
-		{#if appConfig.type === 'dev' || osName === 'Mac OS'}
+		{#if appConfig.type === 'dev' || osName === 'Mac OS' || osName === 'Linux'}
 			<div class="titlebar__buttons flex__item--fit flex flex--align-center margin-left-half">
 				<WindowButtonsMac
 					canClose="{_canClose}"
@@ -141,7 +141,7 @@
         <div class="titlebar__title flex__item--fill flex flex--align-center">
 			<span class="text" debug_id="main-window__title">{title}</span>
         </div>
-		{#if appConfig.type === 'dev' || osName === 'Windows'}
+		{#if appConfig.type === 'dev' || osName === 'Windows' || osName !== 'Mac OS' && osName !== 'Linux'}
 			<div class="titlebar__buttons flex__item--fit flex margin-right-half">
         	<WindowButtons
         		canClose="{_canClose}"

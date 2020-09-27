@@ -32,9 +32,10 @@ module.exports = {
 	win: {
 		// target                : 'appx',
 		// target                : 'nsis',
-		target                : 'msi',
+		// target                : 'msi',
+		target                : 'portable',
 		icon                  : 'appicon.ico',
-		legalTrademarks       : 'App Template',
+		legalTrademarks       : appConfig.appName,
 		signDlls              : false,
 		// see list of servers here: https://gist.github.com/Manouchehri/fd754e402d98430243455713efada710
 		rfc3161TimeStampServer: 'http://sha256timestamp.ws.symantec.com/sha256/timestamp',
@@ -96,6 +97,9 @@ module.exports = {
 		oneClick  : true,
 		perMachine: true,
 	},
+	portable: {
+
+	},
 	linux: {
 		// target    : 'deb',
 		target    : ['AppImage', 'deb'],
@@ -114,5 +118,10 @@ module.exports = {
 	// forceCodeSigning: true,
 
 	artifactName: `${appConfig.appName} ${appConfig.appVersion}.\${ext}`,
-	compression : 'maximum', // store | normal | maximum
+
+	// store | normal | maximum
+	// !! if you use maximum compress level, then portable app will very long start
+	compression: 'store',
+
+	// asar       : false,
 }

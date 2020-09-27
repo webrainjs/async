@@ -1,11 +1,12 @@
 /* eslint-disable object-curly-newline,prefer-template,no-process-env */
+const path = require('path')
 const {terser} = require('rollup-plugin-terser')
 const istanbul = require('rollup-plugin-istanbul')
 const globals = require('rollup-plugin-node-globals')
 const builtins = require('rollup-plugin-node-builtins')
 const polyfills = require('rollup-plugin-node-polyfills')
 const resolve  = require('@rollup/plugin-node-resolve').default
-const commonjs  = require('rollup-plugin-commonjs')
+const commonjs = require('@rollup/plugin-commonjs')
 const nycrc  = require('../../nyc.config')
 const replace = require('rollup-plugin-replace')
 const alias = require('@rollup/plugin-alias')
@@ -260,9 +261,29 @@ module.exports = {
 				'process.browser': true,
 			}),
 			plugins.json(),
-			plugins.alias(),
+			// replace this custom plugin with resolve() below after this issue fixed: https://github.com/rollup/plugins/issues/581
+			{
+				name: 'custom',
+				resolveId(source, importer) {
+					// console.log('resolveId', source, importer)
+					if (/^(@flemist|@babel|core-js[^\\/]*|regenerator-runtime)([\\/]|$)/.test(source)) {
+						const resolved = require.resolve(source, {
+							paths: importer && [path.dirname(importer)],
+						})
+						// console.log('resolved', resolved)
+						return resolved
+					}
+
+					return null
+				},
+			},
+			// resolve({
+			// 	resolveOnly: [
+			// 		/^(@babel|core-js[^\\/]*|regenerator-runtime)([\\/]|$)/
+			// 	],
+			// }),
 			plugins.commonjs(),
-			legacy && plugins.babel.node(),
+			legacy && plugins.babel.electron(),
 		]
 	},
 }

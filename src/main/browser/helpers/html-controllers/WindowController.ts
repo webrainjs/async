@@ -192,7 +192,7 @@ export class WindowController extends ObservableClass {
 		this.resizable = resizable
 		this._storeWindowState = _storeWindowState
 		this.sizeController = new WindowSizeController(this)
-		this.init()
+		this.waitInit()
 	}
 
 	// region State
@@ -280,12 +280,20 @@ export class WindowController extends ObservableClass {
 
 	// region init
 
-	private async init() {
-		await this.waitLoad()
-		await this._init()
+	private _waitInitTask
+	public async waitInit() {
+		if (!this._waitInitTask) {
+			this._waitInitTask = this._init()
+		}
+		return this._waitInitTask
 	}
 
 	private async _init() {
+		await this.waitLoad()
+		await this.__init()
+	}
+
+	private async __init() {
 		if (!this.win) {
 			return
 		}

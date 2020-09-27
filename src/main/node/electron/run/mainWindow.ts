@@ -1,6 +1,7 @@
 /* tslint:disable:no-var-requires */
 // be closed automatically when the JavaScript object is garbage collected.
 import {logger} from '@flemist/web-logger/node/js'
+import {getResourcesPath, getRootPath} from '../helpers/server'
 import {WindowPosition, WindowPositioner} from '../helpers/WindowPositioner'
 import {appState} from './appState'
 import {showTray} from './tray'
@@ -33,20 +34,23 @@ export async function createWindow(url) {
 
 	// Create the browser window.
 	appState.win = new BrowserWindow({
-		width: 1200,
-		height: 700,
+		width: 1,
+		height: 1,
 		webPreferences: {
 			enableRemoteModule: true,
 			nativeWindowOpen: true,
 			nodeIntegration: false,
 			sandbox: true,
 			preload: require.resolve('./preload'),
+			// spellcheck: false, // for reduce start time
 		},
 		frame: false,
 		skipTaskbar: true,
 		// see: https://ourcodeworld.com/articles/read/315/how-to-create-a-transparent-window-with-electron-framework
 		transparent: true,
 		backgroundColor: '#01000001',
+		show: false, // window will show from template.html after page load
+		// opacity: 0.001,
 	})
 
 	;(appState.win as any).isMain = true
@@ -90,9 +94,17 @@ export async function createWindow(url) {
 	// and load the index.html of the app.
 	appState.win.loadURL(url)
 
-	new WindowPositioner(appState.win).move(WindowPosition.Center)
-
 	appState.win.webContents.on('did-finish-load', function() {
+		const winSize = appState.win.getSize()
+		console.log('winSize: ', winSize)
+		if (winSize[0] <= 100 && winSize[1] <= 100) {
+			appState.win.setSize(1000, 600)
+	new WindowPositioner(appState.win).move(WindowPosition.Center)
+		}
+
+  		appState.win.webContents.executeJavaScript(`console.log('App path:\\n${escapeJs(appState.app.getAppPath())}\\n')`)
+  		appState.win.webContents.executeJavaScript(`console.log('Resources path:\\n${escapeJs(getResourcesPath(appState.app))}\\n')`)
+  		appState.win.webContents.executeJavaScript(`console.log('Root path:\\n${escapeJs(getRootPath(appState.app))}\\n')`)
   		appState.win.webContents.executeJavaScript(`console.log('Log path:\\n${escapeJs((Object.values(logger.handlers) as any).filter(o => o.logFilePath)[0].logFilePath)}\\n')`)
 	})
 	logger.subscribe(logEvent => {

@@ -3,11 +3,11 @@
 </svelte:head>
 
 <!--<Webrain/>-->
-<TestView />
+<!--<TestView />-->
 
 <script>
 	// import Webrain from '../../components/dev/webrain/Webrain.svelte'
-	import TestView from '../../components/dev/webrain/TestView.svelte'
+	// import TestView from '../../components/dev/webrain/TestView.svelte'
 </script>
 
 <style-js>

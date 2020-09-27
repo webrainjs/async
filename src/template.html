@@ -37,9 +37,9 @@
 			},
 		};
 
-		window.asyncScripts.create('hypermd');
+		// window.asyncScripts.create('hypermd');
 		// window.asyncScripts.create('vditor');
-		window.asyncScripts.create('pouchdb');
+		// window.asyncScripts.create('pouchdb');
 	</script>
 
 	<script src="libs/polyfill.js"></script>
@@ -149,7 +149,8 @@
 
 	<!-- endregion Polyfills -->
 
-	<link rel='stylesheet' href='client/styles.css'>
+	<link rel="preload" href="client/styles.css" as="style">
+	<link rel='stylesheet' href='client/styles.css' media="none" onload="if (media !== 'all') media='all'">
 	<link rel='manifest' href='manifest.json'>
 <!--	<link rel='icon' type='image/png' href='favicon.png'>-->
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -185,6 +186,10 @@
 		/*	!*touch-action: none !important;*!*/
 		/*	!*overflow: hidden;*!*/
 		/*}*/
+
+		html {
+			background: transparent;
+		}
 
 		html, body {
 			-webkit-overflow-scrolling: touch;
@@ -250,7 +255,7 @@
 		// endregion
 	</script>
 </head>
-<body>
+<body style="display: none; opacity: 0.001;">
 	<script>
 		function isTouchDevice() {
 			const match = window.matchMedia || window.msMatchMedia;
