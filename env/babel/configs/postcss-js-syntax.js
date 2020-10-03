@@ -5,10 +5,10 @@ module.exports = {
 			'@babel/preset-env', {
 				loose  : true, // simple set property instead readonly defineProperty; +support named export for @rollup/plugin-commonjs
 				targets: {
-					node: '8.6.0'
+					node: '8.6.0',
 				},
-			}
-		]
+			},
+		],
 	],
 	plugins: [
 		'@babel/plugin-transform-typescript',
@@ -19,6 +19,6 @@ module.exports = {
 		'@babel/plugin-proposal-throw-expressions',
 		['@babel/plugin-proposal-class-properties', {loose: true}],
 		'@babel/plugin-transform-parameters',
-		'@babel/plugin-transform-async-to-generator'
-	]
+		'@babel/plugin-transform-async-to-generator',
+	],
 }

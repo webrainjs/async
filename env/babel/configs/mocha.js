@@ -10,8 +10,8 @@ module.exports = {
 				targets: {
 					node: '8.6.0',
 				},
-			}
-		]
+			},
+		],
 	],
 	plugins: [
 		'@babel/plugin-transform-typescript',
@@ -22,6 +22,6 @@ module.exports = {
 		['@babel/plugin-proposal-class-properties', {loose: true}],
 
 		// preset/env no loose:
-		['@babel/plugin-transform-classes', {loose: false}]
-	]
+		['@babel/plugin-transform-classes', {loose: false}],
+	],
 }

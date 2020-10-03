@@ -1,4 +1,4 @@
-/* eslint-disable no-process-env */
+/* eslint-disable no-process-env,func-name-matching */
 // noinspection NpmUsedModulesInstalled
 import * as sapper from 'SAPPER_MODULE/server'
 // noinspection NpmUsedModulesInstalled
@@ -44,9 +44,9 @@ server
 		compression({threshold: 0}),
 		sirv('static', {dev}),
 		// Fix sapper template.html for Chrome App
-		function (req, res, next) {
+		function useApp(req, res, next) {
 			const {end} = res
-			res.end = function (body, ...rest) {
+			res.end = function resEnd(body, ...rest) {
 				if (typeof body === 'string' && body.startsWith('<!doctype')) {
 					body = body.replace(
 						/navigator\.serviceWorker\.register\(['"][\w/]+\/service-worker\.js['"]\);?/g,

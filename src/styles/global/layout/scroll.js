@@ -2,56 +2,56 @@ import templates from '../../helpers/templates'
 
 module.exports = [{
 	'.scroll': {
-		position              : `relative`,
-		overflow              : `auto`,
+		position              : 'relative',
+		overflow              : 'auto',
 		'& > .scroll__content': {
 			...templates.fill,
-			right : `auto`,
-			bottom: `auto`,
+			right : 'auto',
+			bottom: 'auto',
 		},
 		'&--smooth': {
-			'scroll-behavior'           : `smooth`,
-			'-webkit-overflow-scrolling': `touch`,
+			'scroll-behavior'           : 'smooth',
+			'-webkit-overflow-scrolling': 'touch',
 		},
 		'&-vertical': {
-			position              : `relative`,
-			'overflow-y'          : `auto`,
-			'overflow-x'          : `hidden`,
+			position              : 'relative',
+			'overflow-y'          : 'auto',
+			'overflow-x'          : 'hidden',
 			'& > .scroll__content': {
 				...templates.fill,
-				bottom: `auto`,
+				bottom: 'auto',
 			},
 			'&--force': {
-				'overflow-y': `scroll`,
+				'overflow-y': 'scroll',
 			},
 		},
 		'&-horizontal': {
-			position              : `relative`,
-			'overflow-y'          : `hidden`,
-			'overflow-x'          : `auto`,
+			position              : 'relative',
+			'overflow-y'          : 'hidden',
+			'overflow-x'          : 'auto',
 			'& > .scroll__content': {
 				...templates.fill,
-				right: `auto`,
+				right: 'auto',
 			},
 			'&--force': {
-				'overflow-x': `scroll`,
+				'overflow-x': 'scroll',
 			},
 		},
 		'&--force': {
-			overflow: `scroll`,
+			overflow: 'scroll',
 		},
 	},
 	'.scrollbar': templates.important({
 		'&--collapsed': {
-			'scrollbar-width'     : `none`, // Firefox
-			'-ms-overflow-style'  : `none`, // IE 10+
+			'scrollbar-width'     : 'none', // Firefox
+			'-ms-overflow-style'  : 'none', // IE 10+
 			'&::-webkit-scrollbar': { // Safari and Chrome
-				display: `none`,
-				width  : `0`,
-				height : `0`,
+				display: 'none',
+				width  : '0',
+				height : '0',
 			},
 			'&::-webkit-scrollbar-corner': {
-				display: `none`,
+				display: 'none',
 			},
 		},
 	}),

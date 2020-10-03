@@ -36,5 +36,5 @@ export default {
 		output : config.serviceworker.output(),
 		plugins: rollupPlugins.serviceworker({dev, legacy}),
 		onwarn,
-	}
+	},
 }

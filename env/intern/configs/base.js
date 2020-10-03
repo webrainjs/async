@@ -13,9 +13,9 @@ export default {
 					'--incognito',
 					`--unsafely-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
 					`--unsafety-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
-					'--enable-precise-memory-info'
-				]
-			}
+					'--enable-precise-memory-info',
+				],
+			},
 		},
 		{
 			browserName           : 'chrome',
@@ -28,9 +28,9 @@ export default {
 					'--incognito',
 					`--unsafely-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
 					`--unsafety-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
-					'--enable-precise-memory-info'
-				]
-			}
+					'--enable-precise-memory-info',
+				],
+			},
 		},
 		{
 			browserName           : 'chrome',
@@ -43,9 +43,9 @@ export default {
 					'--incognito',
 					`--unsafely-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
 					`--unsafety-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
-					'--enable-precise-memory-info'
-				]
-			}
+					'--enable-precise-memory-info',
+				],
+			},
 		},
 		{
 			browserName           : 'chrome',
@@ -58,9 +58,9 @@ export default {
 					'--incognito',
 					`--unsafely-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
 					`--unsafety-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
-					'--enable-precise-memory-info'
-				]
-			}
+					'--enable-precise-memory-info',
+				],
+			},
 		},
 		{
 			browserName           : 'chrome',
@@ -73,17 +73,17 @@ export default {
 					'--incognito',
 					`--unsafely-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
 					`--unsafety-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
-					'--enable-precise-memory-info'
-				]
-			}
+					'--enable-precise-memory-info',
+				],
+			},
 		},
 		{
-			browserName: 'firefox'
+			browserName: 'firefox',
 		},
 		{
 			browserName : 'opera',
-			operaOptions: {binary: '/usr/bin/opera'}
-		}
+			operaOptions: {binary: '/usr/bin/opera'},
+		},
 	],
 
 	tunnel       : 'null',
@@ -91,7 +91,7 @@ export default {
 		pathname: '/wd/hub',
 		hostname: 'selenoid',
 		port    : 4444,
-		logLevel: 'trace'
+		logLevel: 'trace',
 	},
 	capabilities: {
 		'idle-timeout': 60000,
@@ -103,7 +103,7 @@ export default {
 
 	functionalSuites: [
 		'src/test/*/webdriver/**/*.js',
-		'!*/**/{src,assets}/**'
+		'!*/**/{src,assets}/**',
 	],
 
 	coverage: false,
@@ -112,5 +112,5 @@ export default {
 	debug    : true,
 	reporters: ['runner'],
 
-	plugins: ['env/intern/register-intern.js']
+	plugins: ['env/intern/register-intern.js'],
 }

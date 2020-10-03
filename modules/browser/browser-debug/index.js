@@ -6,5 +6,5 @@ export default {
 	getDebugInfo,
 	load,
 	getHtml,
-	validateAll
+	validateAll,
 }

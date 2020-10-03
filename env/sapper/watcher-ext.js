@@ -7,7 +7,7 @@ module.exports.watch = function watch(opts) {
 	if (opts.watchFiles) {
 		chokidar
 			.watch(opts.watchFiles, {
-				cwd: process.cwd()
+				cwd: process.cwd(),
 			})
 			.on('add', reload)
 			.on('change', reload)
@@ -17,7 +17,7 @@ module.exports.watch = function watch(opts) {
 
 	function reload() {
 		watcher.dev_server.send({
-			action: 'reload'
+			action: 'reload',
 		})
 	}
 

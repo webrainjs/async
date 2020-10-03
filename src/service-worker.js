@@ -105,7 +105,7 @@ const init = () => {
 					}
 					throw err
 				}
-			}))
+			})),
 		))
 	})
 }

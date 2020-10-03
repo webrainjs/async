@@ -10,7 +10,7 @@ module.exports = {
 	logUrls    : base.logUrls,
 	installer  : base.installer,
 
-	type : 'prod',
+	type: 'prod',
 	pack: {
 		mac: {
 			type    : 'mas',

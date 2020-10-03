@@ -12,7 +12,7 @@ const deploy = singleCall(async appConfigType => {
 	// docs: https://www.electron.build/cli
 	await run(
 		'node ./env/deploy/deploy.js',
-		{env: {APP_CONFIG: appConfigType}}
+		{env: {APP_CONFIG: appConfigType}},
 	)
 })
 

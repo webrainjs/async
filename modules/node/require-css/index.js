@@ -17,7 +17,7 @@ function cssToJs(content, filename) {
 				throw ex
 			}
 		},
-		from: filename
+		from: filename,
 	}).css
 
 	return JSON.parse(stringified)

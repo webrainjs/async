@@ -43,8 +43,8 @@ const plugins = {
 		],
 		...options,
 	}),
-	globals    : (options = {}) => globals(options),
-	builtins: (options = {}) => builtins(options),
+	globals  : (options = {}) => globals(options),
+	builtins : (options = {}) => builtins(options),
 	polyfills: (options = {}) => polyfills(options),
 	// resolve: (options = {}) => resolve({
 	// 	extensions: [...fileExtensions.js],
@@ -55,7 +55,7 @@ const plugins = {
 	// 	// },
 	// 	...options
 	// }),
-	replace : (options = {}) => replace({
+	replace  : (options = {}) => replace({
 		APP_CONFIG_PATH       : require.resolve('../../configs/' + process.env.APP_CONFIG).replace(/\\/g, '/'),
 		SAPPER_MODULE         : `@sapper/${appConfig.sapper.devServer ? 'debug' : appConfig.type}`,
 		'process.env.NODE_ENV': JSON.stringify(mode),

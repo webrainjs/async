@@ -2,7 +2,7 @@ export function load(method, url, data) {
 	const xmlhttp = new XMLHttpRequest()
 	xmlhttp.open(method, url, true)
 	return new Promise((resolve, reject) => {
-		xmlhttp.onreadystatechange = function () {
+		xmlhttp.onreadystatechange = function onreadystatechange() {
 			if (xmlhttp.readyState === 4) {
 				if (xmlhttp.status < 400) {
 					resolve(xmlhttp)
@@ -23,5 +23,5 @@ export function getHtml(win) {
 
 export default {
 	load,
-	getHtml
+	getHtml,
 }

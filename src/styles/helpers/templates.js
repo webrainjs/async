@@ -1,80 +1,80 @@
 const fontInherit = {
-	'font-style'             : `inherit`,
-	'font-variant-ligatures' : `inherit`,
-	'font-variant-caps'      : `inherit`,
-	'font-variant-numeric'   : `inherit`,
-	'font-variant-east-asian': `inherit`,
-	'font-weight'            : `inherit`,
-	'font-stretch'           : `inherit`,
-	'font-size'              : `100%`,
-	'line-height'            : `inherit`,
-	'font-family'            : `inherit`,
+	'font-style'             : 'inherit',
+	'font-variant-ligatures' : 'inherit',
+	'font-variant-caps'      : 'inherit',
+	'font-variant-numeric'   : 'inherit',
+	'font-variant-east-asian': 'inherit',
+	'font-weight'            : 'inherit',
+	'font-stretch'           : 'inherit',
+	'font-size'              : '100%',
+	'line-height'            : 'inherit',
+	'font-family'            : 'inherit',
 }
 
 const buttonAsDiv = {
-	'align-items'     : `normal`,
-	'background-color': `transparent`,
-	'background-image': `none`,
-	'box-sizing'      : `inherit`,
-	color             : `inherit`,
-	cursor            : `auto`,
-	display           : `block`,
+	'align-items'     : 'normal',
+	'background-color': 'transparent',
+	'background-image': 'none',
+	'box-sizing'      : 'inherit',
+	color             : 'inherit',
+	cursor            : 'auto',
+	display           : 'block',
 
 	...fontInherit,
 
-	'letter-spacing'        : `inherit`,
-	margin                  : `0`,
-	padding                 : `0`,
-	'text-align'            : `start`,
-	'text-indent'           : `0`,
-	'text-rendering'        : `inherit`,
-	'text-shadow'           : `inherit`,
-	'text-transform'        : `inherit`,
-	'-webkit-appearance'    : `inherit`,
-	'-webkit-font-smoothing': `inherit`,
-	'-webkit-writing-mode'  : `inherit`,
-	'word-spacing'          : `0`,
+	'letter-spacing'        : 'inherit',
+	margin                  : '0',
+	padding                 : '0',
+	'text-align'            : 'start',
+	'text-indent'           : '0',
+	'text-rendering'        : 'inherit',
+	'text-shadow'           : 'inherit',
+	'text-transform'        : 'inherit',
+	'-webkit-appearance'    : 'inherit',
+	'-webkit-font-smoothing': 'inherit',
+	'-webkit-writing-mode'  : 'inherit',
+	'word-spacing'          : '0',
 
 	// Firefox
-	border                   : `none`,
-	'-moz-appearance'        : `inherit`,
-	'-moz-osx-font-smoothing': `inherit`,
-	'-moz-user-select'       : `inherit`,
-	'overflow-clip-box'      : `inherit`,
-	'padding-block-end'      : `0`,
-	'padding-block-start'    : `0`,
-	'padding-inline-end'     : `0`,
-	'padding-inline-start'   : `0`,
-	'white-space'            : `normal`,
+	border                   : 'none',
+	'-moz-appearance'        : 'inherit',
+	'-moz-osx-font-smoothing': 'inherit',
+	'-moz-user-select'       : 'inherit',
+	'overflow-clip-box'      : 'inherit',
+	'padding-block-end'      : '0',
+	'padding-block-start'    : '0',
+	'padding-inline-end'     : '0',
+	'padding-inline-start'   : '0',
+	'white-space'            : 'normal',
 	'&::-moz-focus-inner'    : {
-		border : `0`,
-		padding: `0`,
+		border : '0',
+		padding: '0',
 	},
 
 	// IE
-	overflow: `visible`,
-	zoom    : `inherit`,
+	overflow: 'visible',
+	zoom    : 'inherit',
 
 	// Additional
-	outline: `inherit`,
-	width  : `100%`,
+	outline: 'inherit',
+	width  : '100%',
 }
 
 const textboxAsDiv = {
-	'background-color': `transparent`,
-	'background-image': `none`,
-	border            : `none`,
-	'box-sizing'      : `inherit`,
-	display           : `block`,
-	color             : `inherit`,
+	'background-color': 'transparent',
+	'background-image': 'none',
+	border            : 'none',
+	'box-sizing'      : 'inherit',
+	display           : 'block',
+	color             : 'inherit',
 
 	...fontInherit,
 	'font-family':	null,
 
-	margin              : `0`,
-	padding             : `0`,
-	'-webkit-appearance': `none`,
-	width               : `100%`,
+	margin              : '0',
+	padding             : '0',
+	'-webkit-appearance': 'none',
+	width               : '100%',
 }
 
 const anchorColor = ({
@@ -156,73 +156,73 @@ const bordersInnerShadow = ({
 
 const anchorAsDiv = {
 	...anchorColor({
-		all: `inherit`,
+		all: 'inherit',
 	}),
-	'text-decoration': `inherit`,
-	width            : `100%`,
-	display          : `block`,
+	'text-decoration': 'inherit',
+	width            : '100%',
+	display          : 'block',
 }
 
 const contentCenterButton = {
-	'align-items'    : `center`,
-	'justify-content': `center`,
-	'text-align'     : `center`,
+	'align-items'    : 'center',
+	'justify-content': 'center',
+	'text-align'     : 'center',
 }
 
 const buttonsReset = {
 	[[
-		`input[type='button']`,
-		`input[type='submit']`,
-		`input[type='reset']`,
-		`input[type='color']`,
-		`button`
+		'input[type=\'button\']',
+		'input[type=\'submit\']',
+		'input[type=\'reset\']',
+		'input[type=\'color\']',
+		'button',
 	].join(',\n\t')]: [
-		buttonAsDiv
+		buttonAsDiv,
 	],
-	[`input[type='file']::-webkit-file-upload-button`]: [
+	'input[type=\'file\']::-webkit-file-upload-button': [
 		{
 			...buttonAsDiv,
-			'&::-moz-focus-inner': null
-		}
-	]
+			'&::-moz-focus-inner': null,
+		},
+	],
 }
 
 const textboxReset = {
 	[[
-		`textarea`,
-		`input[type='text']`,
-		`input[type='email']`,
-		`input[type='password']`,
-		`select`,
-		`button`
+		'textarea',
+		'input[type=\'text\']',
+		'input[type=\'email\']',
+		'input[type=\'password\']',
+		'select',
+		'button',
 	].join(',\n\t')]: [
-		textboxAsDiv
-	]
+		textboxAsDiv,
+	],
 }
 
 const contentCenter = {
 	...contentCenterButton,
-	display: `flex`,
+	display: 'flex',
 }
 
 const contentCenterVertical = {
-	display            : `flex`,
-	'align-items'      : `center`,
-	'-webkit-box-align': `inherit`,
+	display            : 'flex',
+	'align-items'      : 'center',
+	'-webkit-box-align': 'inherit',
 }
 
 const fill = {
-	position: `absolute`,
-	top     : `0`,
-	left    : `0`,
-	right   : `0`,
-	bottom  : `0`,
+	position: 'absolute',
+	top     : '0',
+	left    : '0',
+	right   : '0',
+	bottom  : '0',
 }
 
 const inputHidden = {
-	position        : `absolute`,
-	clip            : `rect(0,0,0,0)`,
-	'pointer-events': `none`
+	position        : 'absolute',
+	clip            : 'rect(0,0,0,0)',
+	'pointer-events': 'none',
 }
 
 const aspectRatio = heightCoef => ({
@@ -237,7 +237,7 @@ function icon({
 	animation,
 }) {
 	return {
-		'background-color'     : `transparent !important`,
+		'background-color'     : 'transparent !important',
 		'background-image'     : url && `url(${url})`,
 		'background-position-x': x,
 		'background-position-y': y,
@@ -250,7 +250,7 @@ function iconMask({
 	x = 'center',
 	y = 'center',
 	size = 'contain',
-	color = `white`,
+	color = 'white',
 	animation,
 	transform,
 }) {
@@ -277,19 +277,19 @@ function noWrap({
 	const result = {}
 
 	if (ellipsis) {
-		result.overflow = `hidden`
-		result['text-overflow'] = `ellipsis`
+		result.overflow = 'hidden'
+		result['text-overflow'] = 'ellipsis'
 	}
 
 	if (maxLines === 1) {
 		Object.assign(result, {
-			'white-space': `nowrap`,
+			'white-space': 'nowrap',
 			'line-height': lineHeightEm && `${lineHeightEm}em`,
 		})
 	} else if (maxLines > 1) {
 		Object.assign(result, {
-			display             : `-webkit-box`,
-			'-webkit-box-orient': `vertical`,
+			display             : '-webkit-box',
+			'-webkit-box-orient': 'vertical',
 			'-webkit-line-clamp': `${maxLines}`,
 			'line-height'       : lineHeightEm && `${lineHeightEm}em`,
 			'max-height'        : `${maxLines * lineHeightEm}em`,
@@ -314,17 +314,17 @@ const marginAll = value => ({
 })
 
 const noSelect = {
-	'user-drag'          : `none`,
-	'user-select'        : `none`,
-	'-moz-user-select'   : `none`,
-	'-webkit-user-drag'  : `none`,
-	'-webkit-user-select': `none`,
-	'-ms-user-select'    : `none`,
+	'user-drag'          : 'none',
+	'user-select'        : 'none',
+	'-moz-user-select'   : 'none',
+	'-webkit-user-drag'  : 'none',
+	'-webkit-user-select': 'none',
+	'-ms-user-select'    : 'none',
 }
 
 const noDrag = {
-	'user-drag'        : `none`,
-	'-webkit-user-drag': `none`,
+	'user-drag'        : 'none',
+	'-webkit-user-drag': 'none',
 }
 
 function important(style) {

@@ -67,7 +67,7 @@ brain.mainWindow.win = window
 initMainWindow()
 
 if (appConfig.dev) {
-	window.addEventListener('keydown', function (e) {
+	window.addEventListener('keydown', function keydown(e) {
 		if (e.code === 'F10') {
 			openWebrainWindow()
 		}
@@ -89,7 +89,7 @@ if (!window.minimize) {
 // region Prevent to close window:
 
 if (window.hide || window.minimize) {
-	window.onbeforeunload = function () {
+	window.onbeforeunload = function onbeforeunload() {
 		return (window.hide || window.minimize)() !== false || void 0
 	}
 }

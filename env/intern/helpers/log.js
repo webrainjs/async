@@ -96,14 +96,14 @@ Command.prototype.debugInfoOnError = function () {
 			root.getAllLogs(),
 			root.getUserAgent(),
 			root.getHtml(),
-			root.getDebugInfo()
+			root.getDebugInfo(),
 		])
 			.then(([logs, userAgent, html, debugInfo]) => {
 				console.debug(`--------------- Debug Info: ---------------\n${JSON.stringify({
 					logs,
 					userAgent,
 					html: (html || '').substring(0, 1000),
-					debugInfo
+					debugInfo,
 				}, null, 4)}\n---------------   Error:   ---------------`)
 
 				return Promise.reject(err)

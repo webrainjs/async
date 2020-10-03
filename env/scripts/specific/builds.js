@@ -16,7 +16,7 @@ const buildComponents = singleCall(async appConfigType => {
 	await deletePaths(`dist/${appConfigType}/components`)
 	await run(
 		'rollup --config ./env/rollup/components.js',
-		{env: {APP_CONFIG: appConfigType}}
+		{env: {APP_CONFIG: appConfigType}},
 	)
 })
 
@@ -35,7 +35,7 @@ const buildSapperExport = singleCall(async appConfigType => {
 		{
 			env: {
 				APP_CONFIG: appConfigType,
-				PORT: require(`../../../configs/${appConfigType}`).sapper.port,
+				PORT      : require(`../../../configs/${appConfigType}`).sapper.port,
 			},
 		},
 	)
@@ -45,7 +45,7 @@ const buildElectron = singleCall(async appConfigType => {
 	await deletePaths(`dist/${appConfigType}/electron/build`)
 	await run(
 		'node env/electron/build.js',
-		{env: {APP_CONFIG: appConfigType}}
+		{env: {APP_CONFIG: appConfigType}},
 	)
 	await run(`cpy "src/main/node/electron/run/preload.js" "dist/${appConfigType}/electron/build/"`)
 })
@@ -54,7 +54,7 @@ const buildChrome = singleCall(async appConfigType => {
 	await deletePaths(`dist/${appConfigType}/chrome/build`)
 	await run(
 		'node env/chrome/build.js',
-		{env: {APP_CONFIG: appConfigType}}
+		{env: {APP_CONFIG: appConfigType}},
 	)
 })
 

@@ -9,8 +9,8 @@ module.exports = {
 				// shippedProposals: true,
 				modules: false,
 				// Use browsersList if targets is not set
-			}
-		]
+			},
+		],
 	],
 	plugins: [
 		[
@@ -18,10 +18,10 @@ module.exports = {
 				// corejs      : 3, // disable core-js here, and use full corejs lib
 				// regenerator : false,
 				useESModules: true,
-			}
+			},
 		],
 
 		// preset/env no loose:
-		['@babel/plugin-transform-classes', {loose: false}]
-	]
+		['@babel/plugin-transform-classes', {loose: false}],
+	],
 }

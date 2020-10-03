@@ -1,4 +1,4 @@
-import templates, {iconMask, icon} from "../../../helpers/templates"
+import templates, {iconMask, icon} from '../../../helpers/templates'
 import colors from '../../templates/colors'
 
 module.exports = [
@@ -8,11 +8,11 @@ module.exports = [
 				'&-window': {
 					'&-minimize': iconMask({
 						url: 'client/images/icons/window/minimize.png',
-						y  : `83%`,
+						y  : '83%',
 					}),
 					'&-maximize': iconMask({
 						url: 'client/images/icons/window/maximize.png',
-						y  : `80%`,
+						y  : '80%',
 					}),
 					'&-restore': iconMask({
 						url: 'client/images/icons/window/restore.png',
@@ -54,7 +54,7 @@ module.exports = [
 				'&-loading': icon({
 					url      : 'client/images/icons/loading.png',
 					// see also: base/at-rules.js and https://stackoverflow.com/a/16771693/5221762
-					animation: `spin 4s linear infinite`,
+					animation: 'spin 4s linear infinite',
 				}),
 			},
 

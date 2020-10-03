@@ -8,8 +8,8 @@ const babelConfigV8Trace = require('../babel/configs/v8-trace')
 const {fileExtensions} = require('../common/constants')
 
 const babelCommon = {
-	babelrc: false,
-	exclude: ['node_modules/@babel/**', 'node_modules/core-js*/**'],
+	babelrc     : false,
+	exclude     : ['node_modules/@babel/**', 'node_modules/core-js*/**'],
 	babelHelpers: 'bundled',
 }
 
@@ -19,7 +19,7 @@ const babelRollup = {
 			...babelCommon,
 			extensions: [...fileExtensions.js, ...fileExtensions.ts],
 			...babelConfigMinimal,
-			...options
+			...options,
 		}),
 		node: (options = {}) => babel({
 			...babelCommon,
@@ -37,25 +37,25 @@ const babelRollup = {
 		webapp: (options = {}) => babel({
 			...babelCommon,
 			babelHelpers: 'runtime',
-			extensions    : [...fileExtensions.js, ...fileExtensions.ts, ...fileExtensions.svelte],
+			extensions  : [...fileExtensions.js, ...fileExtensions.ts, ...fileExtensions.svelte],
 			...babelConfigWebApp,
-			...options
+			...options,
 		}),
 		browserModule: (options = {}) => babel({
 			...babelCommon,
 			babelHelpers: 'runtime',
-			extensions    : [...fileExtensions.js, ...fileExtensions.ts, ...fileExtensions.svelte],
+			extensions  : [...fileExtensions.js, ...fileExtensions.ts, ...fileExtensions.svelte],
 			...babelConfigBrowserModule,
-			...options
+			...options,
 		}),
 		v8Trace: (options = {}) => babel({
 			...babelCommon,
 			babelHelpers: 'runtime',
-			extensions    : [...fileExtensions.js, ...fileExtensions.ts],
+			extensions  : [...fileExtensions.js, ...fileExtensions.ts],
 			...babelConfigV8Trace,
-			...options
+			...options,
 		}),
-	}
+	},
 }
 
 module.exports = babelRollup

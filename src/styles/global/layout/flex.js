@@ -25,16 +25,16 @@ module.exports = [{
 				templates.important({
 					'&--align': {
 						'&-start': {
-							'place-self': `flex-start`,
+							'place-self': 'flex-start',
 						},
 						'&-center': {
-							'align-self': `center`,
+							'align-self': 'center',
 						},
 						'&-stretch': {
-							'align-self': `stretch`,
+							'align-self': 'stretch',
 						},
 						'&-end': {
-							'align-self': `flex-end`,
+							'align-self': 'flex-end',
 						},
 					},
 				}),
@@ -42,62 +42,62 @@ module.exports = [{
 		},
 		templates.important({
 			'&--center': {
-				'align-items'      : `center`,
-				'-webkit-box-align': `inherit`,
-				'justify-content'  : `center`,
+				'align-items'      : 'center',
+				'-webkit-box-align': 'inherit',
+				'justify-content'  : 'center',
 			},
 
 			'&--align': {
 				'&-start': {
-					'align-items': `flex-start`,
+					'align-items': 'flex-start',
 				},
 				'&-center': {
-					'align-items'      : `center`,
-					'-webkit-box-align': `inherit`,
+					'align-items'      : 'center',
+					'-webkit-box-align': 'inherit',
 				},
 				'&-stretch': {
-					'align-items': `stretch`,
+					'align-items': 'stretch',
 				},
 				'&-end': {
-					'align-items': `flex-end`,
+					'align-items': 'flex-end',
 				},
 			},
 
 			'&--justify': {
 				// left / top
 				'&-start': {
-					'justify-content': `flex-start`,
+					'justify-content': 'flex-start',
 				},
 				'&-center': {
-					'justify-content': `center`,
+					'justify-content': 'center',
 				},
 				'&-stretch': {
-					'justify-content': `stretch`,
+					'justify-content': 'stretch',
 				},
 				// right / bottom
 				'&-end': {
-					'justify-content': `flex-end`,
+					'justify-content': 'flex-end',
 				},
 			},
 
 			'&--inline': {
-				display: `inline-flex`,
+				display: 'inline-flex',
 			},
 
 			'&--1': {
-				flex: `1`,
+				flex: '1',
 			},
 
 			'&--2': {
-				flex: `2`,
+				flex: '2',
 			},
 
 			'&--3': {
-				flex: `3`,
+				flex: '3',
 			},
 
 			'&--4': {
-				flex: `4`,
+				flex: '4',
 			},
 			// '&__scroll': {
 			// 	...templates.fill,

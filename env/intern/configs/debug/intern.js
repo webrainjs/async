@@ -13,9 +13,9 @@ export default {
 					'--incognito',
 					`--unsafely-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
 					`--unsafety-treat-insecure-origin-as-secure=http://${serverIp}:${staticPort}`,
-					'--enable-precise-memory-info'
-				]
-			}
+					'--enable-precise-memory-info',
+				],
+			},
 		},
 		// {
 		// 	browserName: 'firefox'

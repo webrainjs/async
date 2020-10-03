@@ -9,7 +9,7 @@ const _packElectron = singleProcess(singleCall(async appConfigType => {
 	// docs: https://www.electron.build/cli
 	await run(
 		'electron-builder --config ./env/electron/pack/config.js',
-		{env: {APP_CONFIG: appConfigType}}
+		{env: {APP_CONFIG: appConfigType}},
 	)
 }))
 
@@ -42,7 +42,7 @@ const packElectron = singleCall(async appConfigType => {
 				}
 				resolve()
 			})
-		}))
+		})),
 	)
 
 	await _packElectron(appConfigType)

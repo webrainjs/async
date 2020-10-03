@@ -20,7 +20,7 @@ export class TouchToMouse {
 		preventEvents('mouseenter')
 		preventEvents('mouseout')
 
-		window.addEventListener('mouseup', function (e) {
+		window.addEventListener('mouseup', function mouseup(e) {
 			callAction(mouseUpName)
 			e.stopPropagation()
 			e.preventDefault()
@@ -28,7 +28,7 @@ export class TouchToMouse {
 		}, {bubbles: false})
 
 		function preventEvents(eventType) {
-			container.addEventListener(eventType, function (e) {
+			container.addEventListener(eventType, function listener(e) {
 				e.stopPropagation()
 				e.preventDefault()
 				return false
@@ -36,7 +36,7 @@ export class TouchToMouse {
 		}
 
 		function addListener(eventType, actionName) {
-			container.addEventListener(eventType, function (e) {
+			container.addEventListener(eventType, function listener(e) {
 				callAction(actionName)
 				e.stopPropagation()
 				e.preventDefault()
@@ -48,7 +48,7 @@ export class TouchToMouse {
 		}
 
 		function addListenerWithCoord(eventType, actionName) {
-			container.addEventListener(eventType, function (e) {
+			container.addEventListener(eventType, function listener(e) {
 				const {touches} = e
 				if (touches) {
 					const touches0 = touches[0]
@@ -100,7 +100,7 @@ export class TouchToMouse {
 				if (!target) {
 					target = document.elementFromPoint(
 						x - document.body.scrollLeft,
-						y - document.body.scrollTop
+						y - document.body.scrollTop,
 					)
 
 					while (true) {
@@ -146,7 +146,7 @@ export class TouchToMouse {
 				isVisiblePredicate = value
 			},
 			enumerable  : true,
-			configurable: false
+			configurable: false,
 		})
 	}
 
@@ -160,5 +160,5 @@ export class TouchToMouse {
 }
 
 export default {
-	TouchToMouse
+	TouchToMouse,
 }

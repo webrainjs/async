@@ -4,9 +4,9 @@ module.exports.watch = function watch(opts) {
 	return watcherExt.watch({
 		watchFiles: [
 			// 'src/styles/**/*.scss',
-			'static/*'
+			'static/*',
 		],
 		live: true,
-		...opts
+		...opts,
 	})
 }

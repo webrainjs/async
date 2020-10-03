@@ -23,7 +23,7 @@ function serveStatic(app, port, relativeUrl, dirPath, config, configGlobal) {
 	app.use(relativeUrl, express.static(staticPath, {
 		setHeaders(res) {
 			setCrossOriginHeaders(res, config, configGlobal)
-		}
+		},
 	}))
 	log.info(`Serve static files: ${configGlobal.serverUrl.match(/(https?:\/\/[^:/]+)/)[1]}:${port}${relativeUrl} => ${staticPath}`)
 }

@@ -39,7 +39,7 @@ async function validateSingle(resource) {
 	try {
 		resource.w3c = await w3c.validateW3C({
 			content: resource.content,
-			type   : resource.type
+			type   : resource.type,
 		})
 	} catch (ex) {
 		resource.error = `Error get w3c validate report for content of ${resource.url}:\r\n${ex}\r\n${ex.stack}` || ex.toString()
@@ -64,12 +64,12 @@ export async function validateAll(urlRegex) {
 			{
 				type   : 'html',
 				url    : document.location.href + '.html',
-				content: getHtml()
+				content: getHtml(),
 			},
 			...resources,
 		]
 			.filter(o => o && o.url && (!urlRegex || o.url.match(urlRegex)))
-			.map(res => validateSingle(res))
+			.map(res => validateSingle(res)),
 	))
 		.filter(o => o)
 
@@ -79,10 +79,10 @@ export async function validateAll(urlRegex) {
 
 	return {
 		total,
-		withErrors
+		withErrors,
 	}
 }
 
 export default {
-	validateAll
+	validateAll,
 }

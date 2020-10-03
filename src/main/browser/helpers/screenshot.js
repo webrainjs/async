@@ -91,7 +91,7 @@ export async function takeScreenshotCanvas() {
 	// from: https://stackoverflow.com/a/57665309/5221762
 	const video = document.createElement('video')
 	const result = await new Promise((resolve, reject) => {
-		video.onloadedmetadata = () => {
+		video.onloadedmetadata = function onloadedmetadata() {
 			video.play()
 			video.pause()
 
@@ -107,7 +107,7 @@ export async function takeScreenshotCanvas() {
 		video.srcObject = stream
 	})
 
-	stream.getTracks().forEach(function (track) {
+	stream.getTracks().forEach(track => {
 		track.stop()
 	})
 
@@ -127,7 +127,7 @@ export async function getJpegBytes(canvas) {
 	return new Promise((resolve, reject) => {
 		const fileReader = new FileReader()
 
-		fileReader.addEventListener('loadend', function () {
+		fileReader.addEventListener('loadend', function loadend() {
 			if (this.error) {
 				reject(this.error)
 				return
@@ -158,7 +158,7 @@ export async function takeScreenshotJpegBytes() {
 export function blobToCanvas(blob, maxWidth, maxHeight) {
 	return new Promise((resolve, reject) => {
 		const img = new Image()
-		img.onload = function () {
+		img.onload = function onload() {
 			const canvas = document.createElement('canvas')
 			const scale = Math.min(
 				1,

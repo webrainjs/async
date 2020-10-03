@@ -1,5 +1,5 @@
-import constants from "../../app/templates/constants"
-import templates from "../../helpers/templates"
+import constants from '../../app/templates/constants'
+import templates from '../../helpers/templates'
 
 function space({
 	type,
@@ -72,5 +72,5 @@ const rules = [
 	}, {})
 
 module.exports = [
-	templates.important(rules)
+	templates.important(rules),
 ]

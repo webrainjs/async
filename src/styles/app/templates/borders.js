@@ -1,5 +1,5 @@
 import templates from '../../helpers/templates'
-import colors from "./colors"
+import colors from './colors'
 
 const base = ({
 	all,

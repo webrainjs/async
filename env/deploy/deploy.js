@@ -19,8 +19,8 @@ async function deploy() {
 		zip_file: {
 			buffer      : zipBuffer,
 			filename    : 'deploy.zip',
-			content_type: 'application/octet-stream'
-		}
+			content_type: 'application/octet-stream',
+		},
 	}
 
 	const result = await new Promise((resolve, reject) => {
@@ -41,9 +41,9 @@ async function deploy() {
 
 				resolve({
 					response,
-					body
+					body,
 				})
-			}
+			},
 		)
 	})
 

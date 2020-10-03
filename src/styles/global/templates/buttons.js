@@ -7,7 +7,7 @@ const background = ({color}) => ({
 
 const border = ({
 	color = 'transparent',
-	width = `1.5px`,
+	width = '1.5px',
 }) => ({
 	...templates.bordersInnerShadow({
 		color,
@@ -28,7 +28,7 @@ const base = ({
 	noWrap = true,
 	colorBackground = 'transparent',
 	colorBorder = 'transparent',
-	borderWidth = `1.5px`,
+	borderWidth = '1.5px',
 	hover = {
 		opacity        : 0.75,
 		colorBackground: void 0,
@@ -53,8 +53,8 @@ const base = ({
 	{
 		...templates.contentCenter,
 		...(noWrap && templates.noWrap()),
-		display: `inline-flex`,
-		width  : `auto`,
+		display: 'inline-flex',
+		width  : 'auto',
 
 		// 'text-transform': `uppercase`,
 		// 'font-weight'   : `bold`,
@@ -72,7 +72,7 @@ const base = ({
 				width: disabled.borderWidth || borderWidth,
 			}),
 			opacity         : disabled.opacity,
-			'pointer-events': `none`,
+			'pointer-events': 'none',
 		},
 		'&:hover': {
 			...background({color: hover.colorBackground}),
@@ -91,25 +91,25 @@ const base = ({
 			opacity: active.opacity,
 		},
 
-		'user-select': `none`,
-		cursor       : `pointer`,
+		'user-select': 'none',
+		cursor       : 'pointer',
 
 		'&, &:before, &:after': {
 			...templates.transition(0.5),
 		},
 
 		'& > *': {
-			'pointer-events': `none`,
-		}
-	}
+			'pointer-events': 'none',
+		},
+	},
 ]
 
 const withText = ({
 	noWrap = true,
 	colorBackground = 'transparent',
-	colorText = Color(colorBackground).hsl().color[2] > 0.5 ? `#000` : `#fff`,
+	colorText = Color(colorBackground).hsl().color[2] > 0.5 ? '#000' : '#fff',
 	colorBorder = 'transparent',
-	borderWidth = `1.5px`,
+	borderWidth = '1.5px',
 	hover = {
 		opacity        : 0.75,
 		colorText      : void 0,
@@ -145,8 +145,8 @@ const withText = ({
 		...text({color: colorText}),
 	},
 	{
-		'padding-left' : `0.3em`,
-		'padding-right': `0.3em`,
+		'padding-left' : '0.3em',
+		'padding-right': '0.3em',
 
 		'&:disabled': {
 			...text({color: disabled.colorText}),
@@ -157,7 +157,7 @@ const withText = ({
 		'&:active': {
 			...text({color: active.colorText}),
 		},
-	}
+	},
 ]
 
 module.exports = {

@@ -13,7 +13,7 @@ module.exports = {
 		// nodeVersion    : '12.4.0',
 	},
 	sapper: {
-		devServer: (process.env.NODE_ENV || '').trim() === 'development'
+		devServer: (process.env.NODE_ENV || '').trim() === 'development',
 	},
 	tests: {
 		intern: {

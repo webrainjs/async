@@ -18,9 +18,9 @@ const transformJsToCss = toCachedFunc(
 		}
 
 		return {
-			code: parsed || ''
+			code: parsed || '',
 		}
-	}
+	},
 )
 
 function rollupCommon(options = {}) {
@@ -32,7 +32,7 @@ function rollupCommon(options = {}) {
 			// 	plugins  : postcss.plugins,
 			// 	sourceMap: false // 'inline',
 			// }
-		}
+		},
 	})
 
 	const themesPreprocess = svelteThemesPreprocess(
@@ -42,8 +42,8 @@ function rollupCommon(options = {}) {
 			lang : 'js',
 			debug: {
 				// showComponentsIds: true
-			}
-		}
+			},
+		},
 	)
 
 	const preprocessMarkup = toCachedFunc(
@@ -53,7 +53,7 @@ function rollupCommon(options = {}) {
 			content = content.replace(/^<script-ts>/mg, '<script lang="ts">')
 			content = content.replace(/^(<\/?(?:style|script))-(?:jss?|ts)\b/mg, '$1')
 			return content
-		}
+		},
 	)
 
 	const preprocess = {
@@ -61,9 +61,9 @@ function rollupCommon(options = {}) {
 		markup({content, ...others}) {
 			return themesPreprocess.markup({
 				content: preprocessMarkup(content),
-				...others
+				...others,
 			})
-		}
+		},
 	}
 
 	// eslint-disable-next-line no-unused-vars
@@ -86,7 +86,7 @@ function rollupCommon(options = {}) {
 				const result = await preprocess.style({
 					content,
 					filename,
-					...others
+					...others,
 				})
 
 				// see this bug: https://github.com/sveltejs/svelte/issues/4313
@@ -145,13 +145,13 @@ module.exports = {
 			hydratable: true,
 			emitCss   : false,
 			babelrc   : babelConfigMinimal,
-			...options
+			...options,
 		}),
 		server: (options = {}) => rollupCommon({
 			emitCss : true,
 			generate: 'ssr',
 			babelrc : babelConfigMinimal,
-			...options
-		})
-	}
+			...options,
+		}),
+	},
 }

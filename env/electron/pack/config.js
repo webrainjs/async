@@ -12,11 +12,11 @@ const appConfig = require(`../../../configs/${process.env.APP_CONFIG}`)
 console.log(`DEBUG_PACK = "${process.env.DEBUG_PACK}"`)
 
 module.exports = {
-	appId      : appConfig.appId,
-	productName: appConfig.appName,
+	appId       : appConfig.appId,
+	productName : appConfig.appName,
 	buildVersion: Math.floor(new Date() / 60000).toString(),
-	copyright  : 'Copyrights © 2020 App Template. All rights reserved.',
-	directories: {
+	copyright   : 'Copyrights © 2020 App Template. All rights reserved.',
+	directories : {
 		buildResources: '.',
 		output        : `dist/${process.env.APP_CONFIG}/electron/pack`,
 	},
@@ -48,10 +48,10 @@ module.exports = {
 		target: appConfig.pack.mac.type === 'mas' && process.env.DEBUG_PACK
 			? 'mas-dev'
 			: appConfig.pack.mac.type,
-		icon    : 'appicon.icns',
+		icon               : 'appicon.icns',
 		// "background": "res/background.png",
 		// see: https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW8
-		category: 'public.app-category.business',
+		category           : 'public.app-category.business',
 		hardenedRuntime    : true,
 		gatekeeperAssess   : false,
 		entitlements       : 'env/app-store/mac/entitlements.mac.plist',

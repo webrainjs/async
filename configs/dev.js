@@ -17,7 +17,7 @@ module.exports = {
 			notarize: false,
 		},
 	},
-	dev : {
+	dev: {
 		devPage : true,
 		devTools: {
 			openAtStart: false,

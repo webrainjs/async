@@ -45,8 +45,8 @@ build(
 			format   : 'cjs',
 			sourcemap: false,
 			exports  : 'named',
-		}
-	}
+		},
+	},
 )
 	.then(() => {
 		console.log('electron build completed')

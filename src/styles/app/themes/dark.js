@@ -1,7 +1,7 @@
 module.exports = (componentId = '') => [
 	{
-		".theme-test": {
-			background: `black`,
+		'.theme-test': {
+			background: 'black',
 		},
 	},
 ]

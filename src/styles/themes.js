@@ -1,3 +1,3 @@
 module.exports = (componentId = '') => ([
-	require('./app/themes.js')(componentId)
+	require('./app/themes.js')(componentId),
 ])

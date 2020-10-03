@@ -2,5 +2,5 @@
 // at-rules should be loaded outside svelte
 
 module.exports = [
-	require('./app/at-rules')
+	require('./app/at-rules'),
 ]

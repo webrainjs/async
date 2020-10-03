@@ -7,11 +7,11 @@ const buildTypes = singleCall(async () => {
 })
 const buildPolyfill = singleCall(() => run(
 	'node env/libs/polyfill/build.js',
-	{env: {APP_CONFIG: 'dev'}}
+	{env: {APP_CONFIG: 'dev'}},
 ))
 const buildVis = singleCall(() => run(
 	'node env/libs/vis-network/build.js',
-	{env: {APP_CONFIG: 'dev'}}
+	{env: {APP_CONFIG: 'dev'}},
 ))
 const buildLibs = singleCall(() => Promise.all([
 	buildPolyfill(),

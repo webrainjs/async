@@ -14,8 +14,8 @@ module.exports = {
 	version         : appConfig.appVersion,
 	app             : {
 		background: {
-			scripts: ['js/background.js']
-		}
+			scripts: ['js/background.js'],
+		},
 	},
 
 	// Recommended
@@ -29,7 +29,7 @@ module.exports = {
 		'32' : 'img/icons/appicon32.png',
 		'60' : 'img/icons/appicon60.png',
 		'64' : 'img/icons/appicon64.png',
-		'90' : 'img/icons/appicon90.png'
+		'90' : 'img/icons/appicon90.png',
 	},
 
 	// Optional
@@ -50,5 +50,5 @@ module.exports = {
 				accessible_resources: ['*.*'],
 			},
 		],
-	}
+	},
 }

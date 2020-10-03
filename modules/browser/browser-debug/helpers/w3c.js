@@ -29,13 +29,13 @@ export async function validateW3C(options) {
 	// xhr.setRequestHeader('User-Agent', 'Validator.nu/LV http://validator.w3.org/services')
 
 	const responseJson = await new Promise((resolve, reject) => {
-		xhr.ontimeout = function () {
+		xhr.ontimeout = function ontimeout() {
 			reject(`validateW3C: The request for ${w3cValidatorUrl} timed out.`)
 		}
-		xhr.onerror = function () {
+		xhr.onerror = function onerror() {
 			reject('validateW3C: Error during the request')
 		}
-		xhr.onreadystatechange = function () {
+		xhr.onreadystatechange = function onreadystatechange() {
 			if (this.readyState !== 4) {
 				return
 			}
@@ -67,5 +67,5 @@ export async function validateW3C(options) {
 }
 
 export default {
-	validateW3C
+	validateW3C,
 }

@@ -3,7 +3,7 @@ import templates from '../../helpers/templates'
 module.exports = [
 	{
 		'.fill': {
-			...templates.fill
+			...templates.fill,
 		},
 	},
 	templates.important({
@@ -67,37 +67,37 @@ module.exports = [
 			},
 		},
 		'.wrap': {
-			'white-space': `normal`,
+			'white-space': 'normal',
 		},
 		'.overflow': {
 			'&-hidden': {
-				overflow: `hidden`,
+				overflow: 'hidden',
 			},
 			'&-visible': {
-				overflow: `visible`,
+				overflow: 'visible',
 			},
 		},
 		'.position': {
 			'&-relative': {
-				position: `relative`,
+				position: 'relative',
 			},
 		},
 		'.float': {
 			'&-left': {
-				'float': `left`,
+				'float': 'left',
 			},
 			'&-right': {
-				'float': `right`,
+				'float': 'right',
 			},
 			'&-clear': {
 				'&-left': {
-					clear: `left`,
+					clear: 'left',
 				},
 				'&-right': {
-					clear: `right`,
+					clear: 'right',
 				},
 				'&-both': {
-					clear: `both`,
+					clear: 'both',
 				},
 			},
 		},

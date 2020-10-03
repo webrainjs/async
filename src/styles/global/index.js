@@ -4,10 +4,10 @@ module.exports = [
 	require('./layout'),
 	{
 		'.design-image': {
-			transform        : `translate(-10%, -10%) scale(0.80)`,
-			width            : `fit-content`,
-			height           : `fit-content`,
-			'image-rendering': `pixelated`,
-		}
-	}
+			transform        : 'translate(-10%, -10%) scale(0.80)',
+			width            : 'fit-content',
+			height           : 'fit-content',
+			'image-rendering': 'pixelated',
+		},
+	},
 ]

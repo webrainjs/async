@@ -11,5 +11,5 @@ module.exports = {
 	username: 'username',
 	password: 'password',
 	url     : 'https://my.site.com/app/upload.php',
-	dir     : path.resolve(`dist/${appConfig.type}/sapper/export`)
+	dir     : path.resolve(`dist/${appConfig.type}/sapper/export`),
 }

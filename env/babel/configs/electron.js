@@ -6,17 +6,17 @@ module.exports = {
 				loose  : true, // simple set property instead readonly defineProperty; +support named export for @rollup/plugin-commonjs
 				modules: false,
 				targets: {
-					node: '12.16.3' // for electron 10
+					node: '12.16.3', // for electron 10
 				},
-			}
-		]
+			},
+		],
 	],
 	plugins: [
 		[
 			'@babel/plugin-transform-runtime', {
 				corejs      : 3,
 				useESModules: true,
-			}
+			},
 		],
-	]
+	],
 }
