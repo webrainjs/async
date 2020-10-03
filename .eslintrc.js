@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const svelteCompiler = require('svelte/compiler')
+
 module.exports = {
 	'extends': [
 		'pro',
@@ -37,7 +40,7 @@ module.exports = {
 	// parser       : 'babel-eslint',
 	parser       : '@typescript-eslint/parser',
 	parserOptions: {
-		ecmaVersion                : 6,
+		ecmaVersion                : '2020',
 		sourceType                 : 'module',
 		allowImportExportEverywhere: false,
 		codeFrame                  : true,
@@ -51,6 +54,7 @@ module.exports = {
 		'@typescript-eslint',
 		'sonarjs',
 		'html',
+		'svelte3',
 	],
 	settings: {
 		'html/indent'           : '+tab',
@@ -76,6 +80,24 @@ module.exports = {
 			parser       : 'espree',
 			parserOptions: {
 				ecmaVersion: 5,
+			},
+		},
+		{
+			files    : ['**/*.svelte'],
+			processor: 'svelte3/svelte3',
+			parser   : 'espree',
+			env      : {
+				browser: true,
+				node   : false,
+			},
+			settings: {
+				'svelte3/preprocess': content => {
+					content = content.replace(/<style-jss?(\s[^]*?)?>.*?<\/style-jss?>/sg, '')
+					return content
+				},
+			},
+			rules: {
+				'unused-export-let': 'off',
 			},
 		},
 	],
