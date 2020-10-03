@@ -71,6 +71,8 @@ module.exports = {
 				'prefer-rest-params': 'off',
 				'no-var'            : 'off',
 				'vars-on-top'       : 'off',
+				strict              : ['error', 'global'],
+				'comma-dangle'      : 'off',
 			},
 			env: {
 				browser: true,
@@ -80,6 +82,7 @@ module.exports = {
 			parser       : 'espree',
 			parserOptions: {
 				ecmaVersion: 5,
+				sourceType : 'script',
 			},
 		},
 		{

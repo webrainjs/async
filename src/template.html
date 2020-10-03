@@ -11,28 +11,31 @@
 	<!-- region Libs -->
 
 	<script>
+		'use strict';
+
 		window.asyncScripts = {
 			scripts: {},
-			create: function () {
+			create : function create() {
 				for (var i = 0, len = arguments.length; i < len; i++) {
-					var name = arguments[i]
+					var name = arguments[i];
 					var resolve;
 					var reject;
+					// eslint-disable-next-line no-loop-func,no-undef,func-names
 					var promise = new Promise(function (_resolve, _reject) {
 						resolve = _resolve;
 						reject = _reject;
 					});
 					this.scripts[name] = {
 						resolve: resolve,
-						reject: reject,
+						reject : reject,
 						promise: promise,
-					}
+					};
 				}
 			},
-			onload: function(name) {
+			onload: function onload(name) {
 				this.scripts[name].resolve(true);
 			},
-			onerror: function(name, event) {
+			onerror: function onerror(name, event) {
 				this.scripts[name].reject(event);
 			},
 		};
@@ -54,74 +57,78 @@
 	<!-- region Error handling -->
 
 	<script>
-		function subscribeUnhandledErrors() {
-			"use strict";
-			// eslint-disable-next-line no-eval
-			var origEval = window.eval;
-			// eslint-disable-next-line no-eval
-			delete window.eval;
-			// eslint-disable-next-line no-eval
-			window.eval = function (str) {
-				if (str.indexOf('async function') >= 0) {
-					return origEval.call(window, str);
-				}
+		'use strict';
 
-				try {
-					return origEval.call(window, str);
-				} catch (ex) {
-					console.error(ex, str);
-					throw ex;
-				}
-			};
-
-			// function errorHandler(...args) {
-			// 	console.error('Unhandled rejection: ', ...args);
-			// }
-
-			function errorHandler() {
-				var len = arguments.length;
-				var args = new Array(len);
-
-				for (var i = 0; i < len; i++) {
-					var arg = arguments[i];
-					arg = (typeof PromiseRejectionEvent !== 'undefined'
-						? arg instanceof PromiseRejectionEvent && arg.reason
-						: arg.reason)
-						|| arg;
-
-					if (arg instanceof Error) {
-						var obj = {};
-						for (var key in arg) {
-							obj[key] = arg[key];
-						}
-						obj.origErrorObject = arg;
-						arg = obj;
+		(function initErrorHandler() {
+			function subscribeUnhandledErrors() {
+				// eslint-disable-next-line no-eval
+				var origEval = window.eval;
+				// eslint-disable-next-line no-eval
+				delete window.eval;
+				// eslint-disable-next-line no-eval,func-name-matching
+				window.eval = function _eval(str) {
+					if (str.indexOf('async function') >= 0) {
+						return origEval.call(window, str);
 					}
 
-					args[i] = arg;
+					try {
+						return origEval.call(window, str);
+					} catch (ex) {
+						console.error(ex, str);
+						throw ex;
+					}
+				};
+
+				// function errorHandler(...args) {
+				// 	console.error('Unhandled rejection: ', ...args);
+				// }
+
+				function errorHandler() {
+					var len = arguments.length;
+					var args = new Array(len);
+
+					for (var i = 0; i < len; i++) {
+						var arg = arguments[i];
+						arg = (typeof PromiseRejectionEvent !== 'undefined'
+							? arg instanceof PromiseRejectionEvent && arg.reason
+							: arg.reason)
+							|| arg;
+
+						if (arg instanceof Error) {
+							var obj = {};
+							// eslint-disable-next-line guard-for-in
+							for (var key in arg) {
+								obj[key] = arg[key];
+							}
+							obj.origErrorObject = arg;
+							arg = obj;
+						}
+
+						args[i] = arg;
+					}
+
+					// eslint-disable-next-line prefer-spread
+					console.error.apply(console, ['Unhandled rejection: '].concat(args));
+					// alert(['Unhandled rejection: '].concat(args))
 				}
 
-				// eslint-disable-next-line prefer-spread
-				console.error.apply(console, ['Unhandled rejection: '].concat(args));
-				// alert(['Unhandled rejection: '].concat(args))
+				window.addEventListener('unhandledrejection', errorHandler);
+
+				window.onunhandledrejection = errorHandler;
+
+				window.onerror = errorHandler;
+
+				return function unsubscribe() {
+					window.removeEventListener('unhandledrejection', errorHandler);
+					window.onunhandledrejection = null;
+					window.onerror = null;
+					// eslint-disable-next-line no-eval
+					window.eval = origEval;
+				};
 			}
 
-			window.addEventListener('unhandledrejection', errorHandler);
-
-			window.onunhandledrejection = errorHandler;
-
-			window.onerror = errorHandler;
-
-			return function () {
-				window.removeEventListener('unhandledrejection', errorHandler);
-				window.onunhandledrejection = null;
-				window.onerror = null;
-				// eslint-disable-next-line no-eval
-				window.eval = origEval;
-			};
-		}
-
-		window.unsubscribeUnhandledErrors = subscribeUnhandledErrors();
+			window.unsubscribeUnhandledErrors = subscribeUnhandledErrors();
+		})();
 	</script>
 
 	<!-- endregion Polyfills -->
@@ -129,7 +136,7 @@
 	<!-- region Service Worker issue -->
 
 	<script>
-		(function () {
+		// (function () {
 			// Suppress serviceWorker.register errors for non https protocol, because electron allowServiceWorkers is not worked
 			// see: https://github.com/electron/electron/issues/9663
 
@@ -144,7 +151,7 @@
 			// 	}
 			// 	return origRegister.apply(navigator.serviceWorker, arguments);
 			// };
-		})();
+		// })();
 	</script>
 
 	<!-- endregion Polyfills -->
@@ -158,13 +165,19 @@
 	<!-- region Remove index.html from url -->
 
 	<script>
-		(function() {
+		'use strict';
+
+		(function fixHistory() {
 			var indexFile = 'index.html';
 			function endsWith(str, suffix) {
 				return str.indexOf(suffix, str.length - suffix.length) !== -1;
 			}
 			if (endsWith(window.location.href, '/' + indexFile)) {
-				window.history.pushState({}, null, window.location.href.substring(0, window.location.href.length - indexFile.length));
+				window.history.pushState(
+					{},
+					null,
+					window.location.href.substring(0, window.location.href.length - indexFile.length)
+				);
 			}
 		})();
 	</script>
@@ -246,47 +259,53 @@
 	</style>
 
 	<script>
+		'use strict';
+
 		// region Disable zoom
 
-		document.addEventListener('gesturestart', function (e) {
-			e.preventDefault()
-		})
+		document.addEventListener('gesturestart', function gesturestart(e) {
+			e.preventDefault();
+		});
 
 		// endregion
 	</script>
 </head>
 <body style="display: none; opacity: 0.001;">
 	<script>
-		function isTouchDevice() {
-			const match = window.matchMedia || window.msMatchMedia;
+		'use strict';
 
-			if (match) {
-				const mq = match('(pointer:coarse)');
-				return mq.matches;
+		(function initPage() {
+			function isTouchDevice() {
+				var match = window.matchMedia || window.msMatchMedia;
+
+				if (match) {
+					var mq = match('(pointer:coarse)');
+					return mq.matches;
+				}
+
+				return false;
 			}
 
-			return false;
-		}
+			var initialFontSize = parseFloat(getComputedStyle(document.body).fontSize.match(/[\d.]+/)[0]);
 
-		var initialFontSize = parseFloat(getComputedStyle(document.body).fontSize.match(/[\d.]+/)[0]);
-
-		function updateFontSize() {
-			var fontSize= initialFontSize;
-			fontSize /= 1.6; // normalize font-size: 16px -> 10px
-			if (isTouchDevice()) {
-				// alert('is touch device')
-				fontSize /= 1.6; // fontSize /= viewport-scale
+			function updateFontSize() {
+				var fontSize = initialFontSize;
+				fontSize /= 1.6; // normalize font-size: 16px -> 10px
+				if (isTouchDevice()) {
+					// alert('is touch device')
+					fontSize /= 1.6; // fontSize /= viewport-scale
+				}
+				document.body.style.fontSize = fontSize + 'px';
 			}
-			document.body.style.fontSize = fontSize + 'px';
-		}
 
-		window.addEventListener('resize', updateFontSize);
+			window.addEventListener('resize', updateFontSize);
 
-		updateFontSize();
+			updateFontSize();
 
-		// window.document.body.addEventListener('touchforcechange', e => {
-		// 	e.preventDefault()
-		// });
+			// window.document.body.addEventListener('touchforcechange', e => {
+			// 	e.preventDefault()
+			// });
+		})();
 	</script>
 
 	<!-- The application will be rendered inside this element,

@@ -23,7 +23,7 @@
 <span class:hasError>
 	<img
 		bind:this="{img}"
-		...attrs
+		{...attrs}
 		on:error="{() => { hasError = true }}"
 		on:load="{() => { hasError = false }}"
 	/>
