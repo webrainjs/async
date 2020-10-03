@@ -86,7 +86,12 @@ module.exports = {
 			},
 		},
 		{
-			files    : ['**/*.svelte'],
+			files: ['**/*.svelte'],
+			rules: {
+				'unused-export-let'     : 'off',
+				'a11y-missing-attribute': 'off',
+				'a11y-img-redundant-alt': 'off',
+			},
 			processor: 'svelte3/svelte3',
 			parser   : 'espree',
 			env      : {
@@ -98,9 +103,6 @@ module.exports = {
 					content = content.replace(/<style-jss?(\s[^]*?)?>.*?<\/style-jss?>/sg, '')
 					return content
 				},
-			},
-			rules: {
-				'unused-export-let': 'off',
 			},
 		},
 	],
