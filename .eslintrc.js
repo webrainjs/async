@@ -1,12 +1,12 @@
 module.exports = {
 	'extends': [
 		'pro',
-		'plugin:@typescript-eslint/recommended',
+		// 'plugin:@typescript-eslint/recommended',
 		// 'plugin:@typescript-eslint/recommended-requiring-type-checking',
 	],
 	rules: {
 		// Temporary disable: TypeError: Cannot read property 'value' of null (waiting for update babel-eslint)
-		'template-curly-spacing'                           : 'off',
+		// 'template-curly-spacing'                           : 'off',
 		'object-curly-spacing'                             : 'off',
 		indent                                             : 'off',
 		'prefer-destructuring'                             : 'off',
@@ -24,37 +24,36 @@ module.exports = {
 		'@typescript-eslint/no-this-alias'                 : 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'arrow-body-style'                                 : 'off',
-		'object-shorthand'                                 : 'off'
+		'object-shorthand'                                 : 'off',
 	},
 
 	env: {
 		node: true,
-		es6 : true
+		es6 : true,
 	},
 
-	parser       : 'babel-eslint',
-	// parser       : '@typescript-eslint/parser', // incorrect fix ";(value as any)" and many other problems (v3.0.1)
+	// parser       : 'babel-eslint',
+	parser       : '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion                : 6,
 		sourceType                 : 'module',
 		allowImportExportEverywhere: false,
 		codeFrame                  : true,
-		babelOptions               : {
-			configFile: './env/babel/configs/minimal.js'
-		},
-		project: 'tsconfig.eslint.json',
+		project                    : 'tsconfig.eslint.json',
+		// babelOptions               : {
+		// 	configFile: './env/babel/configs/minimal.js'
+		// },
 	},
 
 	plugins: [
 		'@typescript-eslint',
-		// '@typescript-eslint/tslint',
 		'sonarjs',
-		'html'
+		'html',
 	],
 	settings: {
 		'html/indent'           : '+tab',
 		'html/report-bad-indent': 'error',
-		'html/html-extensions'  : ['.html', '.svelte']
+		'html/html-extensions'  : ['.html', '.svelte'],
 	},
 
 	overrides: [
@@ -65,17 +64,17 @@ module.exports = {
 				'semi-style'        : ['error', 'last'],
 				'prefer-rest-params': 'off',
 				'no-var'            : 'off',
-				'vars-on-top'       : 'off'
+				'vars-on-top'       : 'off',
 			},
 			env: {
 				browser: true,
 				es6    : false,
-				node   : false
+				node   : false,
 			},
 			parser       : 'espree',
 			parserOptions: {
-				ecmaVersion: 5
-			}
-		}
-	]
+				ecmaVersion: 5,
+			},
+		},
+	],
 }

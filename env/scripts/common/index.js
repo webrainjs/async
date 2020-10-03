@@ -24,20 +24,15 @@ const build = singleCall(() => Promise.all([
 	buildLibs(),
 ]))
 
-const lintEs = singleCall(async () => {
-	await run('eslint --plugin markdown --ext js,md .')
-})
-
-const lintTs = singleCall(async () => {
-	await run('tslint --project tsconfig.json --config tslint.json --exclude **/_trash/** src/main/**/*.ts')
+const lintEs = singleCall(async ({fix} = {}) => {
+	await run('eslint --plugin markdown --ext js,md .' + (fix ? ' --no-eslintrc -c eslintrc.fix.js --fix' : ''))
 })
 
 // Warning - depcheck takes a lot of memory - 13 GB !!
 // const npmCheck = singleCall(() => run('depcheck --ignores="*,@babel/*,@types/*,@metahub/karma-rollup-preprocessor,karma-*,@sapper/*,rdtsc,tslint-eslint-rules,electron,APP_CONFIG_PATH,SAPPER_MODULE,caniuse-lite,browserslist" --ignore-dirs=__sapper__,_trash,dist,docs,static,tmp'))
-const lint = singleCall(() => Promise.all([
+const lint = singleCall((options) => Promise.all([
 	// npmCheck(),
-	lintEs(),
-	lintTs(),
+	lintEs(options),
 ]))
 
 module.exports = {
