@@ -24,65 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/brain/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/@types/test/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/@types/test/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/assert-base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/assert-base.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/assert.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/assert.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/base.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/find-base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/find-base.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/find.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/find.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/globals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/globals.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/load-script.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/load-script.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/log.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/log.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/open-window.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/open-window.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/run.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/run.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/svelte.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/svelte.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brain/facade.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/brain/facade.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brain/helpers/system-info.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brain/system-info.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ComponentWindow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ComponentWindow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/fullscreenStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/fullscreenStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/notifications/NotificationWindow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/notifications/NotificationWindow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/notifications/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/notifications/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dev/webrain/TestObject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dev/webrain/TestObject.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/api/FetchHttpClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/api/FetchHttpClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/audio.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/audio.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/HtmlController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/HtmlController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/ScrollBoosterController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/ScrollBoosterController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/ScrollDragController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/ScrollDragController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/WindowController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/html-controllers/WindowController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/localStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/localStorage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/api/Api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/api/Api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/helpers/WindowPositioner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/helpers/WindowPositioner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/helpers/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/helpers/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/export/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/export/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/init.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/mainWindow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/mainWindow.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/menu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/menu.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/remoteLogger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/remoteLogger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/node/electron/run/tray.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/node/electron/run/tray.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/templates/fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/templates/fonts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/colors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/colors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/fonts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/env/postcss/postcss.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/env/postcss/postcss.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/styles/postcss.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/styles/postcss.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/v8/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/v8/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/v8/parser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/v8/parser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/v8/src/helpers/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/v8/src/helpers/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/v8/src/helpers/node_4_9_1/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/v8/src/helpers/node_4_9_1/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/v8/src/helpers/node_latest/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/v8/src/helpers/node_latest/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/webdriver/env/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/webdriver/env/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/webdriver/helpers/appConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/webdriver/helpers/appConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/webdriver/main/app/1_base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/webdriver/main/app/1_base.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app/Window.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/Window.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,14 +229,7 @@
       <workItem from="1601208130625" duration="1814000" />
       <workItem from="1601357729400" duration="1266000" />
       <workItem from="1601691610779" duration="59000" />
-      <workItem from="1601695149932" duration="10061000" />
-    </task>
-    <task id="LOCAL-00004" summary="Merged with app">
-      <created>1590056323744</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1590056323744</updated>
+      <workItem from="1601695149932" duration="10615000" />
     </task>
     <task id="LOCAL-00005" summary="Merged with app">
       <created>1590058128111</created>
@@ -631,7 +567,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601698691759</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Lint fixes">
+      <created>1601706093977</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1601706093977</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,9 +633,9 @@
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Documenting..." />
     <MESSAGE value="Merged with app" />
-    <MESSAGE value="Lint fixes" />
     <MESSAGE value="Lint config updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lint config updated" />
+    <MESSAGE value="Lint fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lint fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600090074887">
@@ -703,10 +646,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="651" y="253" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.882@0.0.1920.882" timestamp="1601696016833" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1601698691172">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1601706093062">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601698691172" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601706093062" />
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1601697356159">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -743,10 +686,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state width="1892" height="350" key="GridCell.Tab.1.right/0.0.1920.882@0.0.1920.882" timestamp="1599282347493" />
-    <state x="0" y="0" width="1920" height="882" key="find.popup" timestamp="1601704544968">
+    <state x="0" y="0" width="1920" height="882" key="find.popup" timestamp="1601706612544">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1920" height="882" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1601704544968" />
+    <state x="0" y="0" width="1920" height="882" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1601706612544" />
     <state x="539" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1599836444913">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

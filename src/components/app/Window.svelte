@@ -5,7 +5,7 @@
 	import ToggleFullscreen from "../common/ToggleFullscreen.svelte";
 	import appConfig from 'APP_CONFIG_PATH'
 	import WindowButtons from "./common/WindowButtons.svelte";
-	import {getUserAgent} from "../../brain/helpers/system-info";
+	import {getUserAgent} from '../../main/browser/helpers/system-info'
 	import WindowButtonsMac from "./common/WindowButtonsMac.svelte";
 
 	const pageStore = stores()
