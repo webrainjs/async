@@ -23,131 +23,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Merged with app">
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/configs/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modules/node/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/node/.eslintrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/debug.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/debug.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/demo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/preprod.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/preprod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/stage.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/stage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/.eslintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/browser-module.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/browser-module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/dist-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/dist-js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/electron.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/electron.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/minimal.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/minimal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/node.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/postcss-js-syntax.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/postcss-js-syntax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/v8-trace.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/v8-trace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/configs/webapp.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/configs/webapp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/babel/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/babel/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/chrome/app/manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/chrome/app/manifest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/common/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/common/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/common/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/common/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/deploy-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/deploy/deploy-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/deploy-config.tpl.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/deploy/deploy-config.tpl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/deploy/deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/deploy/deploy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/electron/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/electron/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/electron/pack/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/electron/pack/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/debug-video/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/debug-video/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/debug/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/debug/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/debug/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/debug/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/dev-video/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/dev-video/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/dev-video/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/dev-video/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/dev/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/dev/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/dev/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/dev/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/export-coverage/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/export-coverage/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/export-coverage/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/export-coverage/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/export/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/export/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/export/mocha.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/export/mocha.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/log.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/mocha-helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/mocha-helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/modules/intern-express/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/modules/intern-express/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/js-transform-watcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/js-transform-watcher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/configs/ci.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/ci.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/configs/coverage.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/coverage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/configs/dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/configs/performance.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/performance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/configs/tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/modules/karma-custom-launcher/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/modules/karma-custom-launcher/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/modules/karma-express/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/modules/karma-express/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/karma/modules/karma-unshift-files/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/modules/karma-unshift-files/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/libs/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/libs/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/babel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/components.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/components.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/metric.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/metric.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/postcss.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/postcss.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/svelte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/sapper/watcher-custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/sapper/watcher-custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/sapper/watcher-ext.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/sapper/watcher-ext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/helpers/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/helpers/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/run.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/run.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/builds.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/builds.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/deploy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/packs.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/packs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/specific/tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/specific/tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/load.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/validate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/w3c.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/browser/browser-debug/helpers/w3c.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/browser/browser-debug/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/browser/browser-debug/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/node/require-css/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/node/require-css/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nyc.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nyc.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/screenshot.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/screenshot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/browser/helpers/touchMouse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/browser/helpers/touchMouse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/helpers/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/helpers/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/animations/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/animations/sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/at-rules/animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/at-rules/animations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/base/tags.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/base/tags.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/borders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/components/small/borders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/components/small/buttons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/fonts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/components/small/fonts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/components/small/icons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/components/small/scrollbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/components/small/scrollbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/templates/borders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/templates/borders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/app/themes/dark.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/app/themes/dark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/at-rules.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/at-rules.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/flex.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/flex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/icons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/others.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/others.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/scroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/scroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/spaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/spaces.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/tables.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/layout/visibility.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/layout/visibility.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/tags.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/tags.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/templates/buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/templates/buttons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/templates/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/templates/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global/templates/scrollbars.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global/templates/scrollbars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/layouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/layouts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/helpers/templates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/helpers/templates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/themes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/themes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/.eslintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/common/env/src/module1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/env/src/module1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/common/env/src/module2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/env/src/module2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/node/env/postcss/assets/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/node/env/postcss/assets/style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/webdriver/env/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/webdriver/env/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/tests/webdriver/env/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/webdriver/env/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.eslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.eslint.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/.eslintrc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +84,7 @@
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/modules/node" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -228,16 +109,16 @@
     <property name="ts.external.directory.path" value="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\docs" />
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\babel\configs" />
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\mocha\configs\common" />
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\mocha\configs\no-babel" />
-      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\docs\doc\template" />
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\modules\node" />
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\src\main\node" />
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\configs" />
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\docs" />
+      <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\babel\configs" />
     </key>
   </component>
   <component name="RunManager" selected="Mocha.Intern Dev Video">
@@ -351,21 +232,7 @@
       <workItem from="1601208130625" duration="1814000" />
       <workItem from="1601357729400" duration="1266000" />
       <workItem from="1601691610779" duration="59000" />
-      <workItem from="1601695149932" duration="2072000" />
-    </task>
-    <task id="LOCAL-00001" summary="Merged with app">
-      <created>1590054860575</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1590054860575</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Merged with app">
-      <created>1590054926098</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1590054926098</updated>
+      <workItem from="1601695149932" duration="3528000" />
     </task>
     <task id="LOCAL-00003" summary="Change node version to 12.4.0">
       <created>1590055591221</created>
@@ -689,7 +556,28 @@
       <option name="project" value="LOCAL" />
       <updated>1601211263945</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Lint config updated">
+      <created>1601697405090</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1601697405090</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Lint config updated">
+      <created>1601697438682</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1601697438682</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Lint fixes">
+      <created>1601697451648</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1601697451648</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,10 +613,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Merged with webrain" />
     <MESSAGE value="Merged with webrain. Precommit OK." />
     <MESSAGE value="Travis OK." />
-    <MESSAGE value="Lint fixes" />
     <MESSAGE value="Precommit OK." />
     <MESSAGE value="Change karma-edge-launcher to karma-edgium-launcher" />
     <MESSAGE value="Update electron" />
@@ -750,7 +636,9 @@
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Documenting..." />
     <MESSAGE value="Merged with app" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged with app" />
+    <MESSAGE value="Lint config updated" />
+    <MESSAGE value="Lint fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lint fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600090074887">
@@ -761,14 +649,14 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="651" y="253" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.882@0.0.1920.882" timestamp="1601696016833" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1601696964949">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1601697450718">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601696964949" />
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1601696885613">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601697450718" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog" timestamp="1601697356159">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1601696885613" />
+    <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1601697356159" />
     <state width="1892" height="350" key="GridCell.Tab.0.bottom" timestamp="1599282347493">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

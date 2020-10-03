@@ -9,6 +9,7 @@
 		"array-bracket-newline": "off",
 	  	"new-cap": "off",
 	  	"curly": "off",
-	  	"object-property-newline": "off"
+	  	"object-property-newline": "off",
+		"@typescript-eslint/no-var-requires": "off"
 	}
 }

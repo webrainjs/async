@@ -5,26 +5,8 @@ module.exports = {
 		// 'plugin:@typescript-eslint/recommended-requiring-type-checking',
 	],
 	rules: {
-		// Temporary disable: TypeError: Cannot read property 'value' of null (waiting for update babel-eslint)
-		// 'template-curly-spacing'                           : 'off',
-		'object-curly-spacing'                             : 'off',
-		indent                                             : 'off',
-		'prefer-destructuring'                             : 'off',
-		'no-sync'                                          : 'off',
-		'no-warning-comments'                              : 'warn',
-		'array-bracket-newline'                            : 'off',
-		'require-atomic-updates'                           : 'off',
-		'sort-imports'                                     : 'off',
-		'lines-between-class-members'                      : 'off',
-		'no-new-wrappers'                                  : 'off',
-		'generator-star-spacing'                           : ['error', {before: true, after: false}],
-		'object-property-newline'                          : 'off',
-		'@typescript-eslint/ban-ts-comment'                : 'off',
-		'@typescript-eslint/no-var-requires'               : 'off',
-		'@typescript-eslint/no-this-alias'                 : 'off',
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
-		'arrow-body-style'                                 : 'off',
-		'object-shorthand'                                 : 'off',
+		// '@typescript-eslint/no-var-requires': 'off',
+		'@typescript-eslint/no-unused-vars': 'off',
 	},
 
 	env: {
