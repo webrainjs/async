@@ -2,7 +2,14 @@ import Command from '@theintern/leadfoot/Command'
 import Element from '@theintern/leadfoot/Element'
 import {delay} from 'webrain'
 import {assertCount} from './assert'
-import {assert, end, findBase, iter, run, usingFindTimeout} from './index'
+import {
+	assert,
+	end,
+	findBase,
+	iter,
+	run,
+	usingFindTimeout,
+} from './index'
 
 // docs:
 // https://theintern.io/docs.html#Leadfoot/2/api/Command/command-1
@@ -68,7 +75,7 @@ export const filter = iter(function *filter(predicate: (element, index) => boole
 	const prevCommand = run(o => o)
 	yield end()
 
-	const result = yield run(o => o.then(function(_, setContext) {
+	const result = yield run(o => o.then(function (_, setContext) {
 		const newContext = prevCommand.context.filter(predicate)
 		setContext(newContext)
 		return newContext
@@ -80,7 +87,7 @@ export const filter = iter(function *filter(predicate: (element, index) => boole
 	return result
 })
 
-export const findMerge = iter(function* findMerge(
+export const findMerge = iter(function *findMerge(
 	finds: Array<() => any>,
 	mergeContexts: (...contexts: Element[][]) => Element | Element[] | null | undefined
 		= concatDistinct,
@@ -103,7 +110,7 @@ export const findMerge = iter(function* findMerge(
 
 	const prev = run(o => o)
 
-	const result = yield run(o => o.then(function(_, setContext) {
+	const result = yield run(o => o.then(function (_, setContext) {
 		const newContext = asArray(mergeContexts(...contexts))
 		setContext(newContext)
 		return newContext
@@ -223,7 +230,7 @@ export const findLastOrEmpty = iter(function *findLastOrEmpty(
 	)
 })
 
-export const findSingle = iter(function* findSingle(
+export const findSingle = iter(function *findSingle(
 	selectorOrArray: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,
@@ -233,7 +240,7 @@ export const findSingle = iter(function* findSingle(
 	return result
 })
 
-export const findFirst = iter(function* findFirst(
+export const findFirst = iter(function *findFirst(
 	selectorOrArray: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,
@@ -243,7 +250,7 @@ export const findFirst = iter(function* findFirst(
 	return result
 })
 
-export const findLast = iter(function* findLast(
+export const findLast = iter(function *findLast(
 	selectorOrArray: string | string[],
 	indexOrArray?: number | number[],
 	waitTime?: number,

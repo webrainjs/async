@@ -1,4 +1,4 @@
-/* eslint-disable global-require,object-property-newline,no-process-env */
+/* eslint-disable global-require,object-property-newline,no-process-env,@typescript-eslint/no-var-requires */
 import config from 'sapper/config/rollup.js'
 import pkg from './package.json'
 const appConfig = require(`./configs/${process.env.APP_CONFIG}`)

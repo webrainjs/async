@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import {
 	CalcObjectBuilder,
 	delay,
@@ -17,7 +18,7 @@ function waitProperty<
 	predicate: (value: TValue) => boolean,
 ): Promise<void> {
 	if (predicate(object[propertyName as any])) {
-		return
+		return null
 	}
 
 	return new Promise((resolve, reject) => {
@@ -129,7 +130,7 @@ export class AudioPlayer extends ObservableClass {
 						throw new Error(`Unknown file format: ${source}`)
 					}
 					source = {
-						src: source,
+						src   : source,
 						format: `audio/${ext}`,
 					}
 				}
@@ -229,7 +230,7 @@ export class AudioPlayer extends ObservableClass {
 
 	public async play(waitEnd: boolean = true) {
 		if (!this._audio) {
-			return
+			return null
 		}
 
 		this.init()
@@ -251,7 +252,7 @@ export class AudioPlayer extends ObservableClass {
 
 	public pause() {
 		if (!this._audio) {
-			return
+			return null
 		}
 
 		console.debug('AudioPlayer: pause()')
@@ -260,7 +261,7 @@ export class AudioPlayer extends ObservableClass {
 
 	public resume(waitEnd: boolean = true) {
 		if (!this._audio) {
-			return
+			return null
 		}
 
 		return this._play(waitEnd)
@@ -320,7 +321,7 @@ export class AudioQueue {
 
 	public async play(source: string|AudioPlayer) {
 		if (!source) {
-			return
+			return null
 		}
 
 		if (!(source instanceof AudioPlayer)) {
@@ -332,7 +333,7 @@ export class AudioQueue {
 		this._queue.delete(source)
 		this._queue.add(source)
 
-		return await this._play()
+		return this._play()
 	}
 
 	private _playThenable: Promise<void>

@@ -26,12 +26,12 @@ export function init(app: App, appConfig: any, prepareStartUrl: () => string) {
 	})
 	// app.setPath('userData', path.resolve(process.cwd(), 'tmp/electron/userData'))
 	logger.init({
-		appName    : appState.appConfig.appName,
-		appVersion : appState.appConfig.appVersion,
-		logUrls    : appState.appConfig.logUrls,
-		appState   : {...appState.appConfig},
-		logDir     : path.resolve(appState.app.getPath('userData'), 'logs'),
-		logFileName: 'node.log',
+		appName          : appState.appConfig.appName,
+		appVersion       : appState.appConfig.appVersion,
+		logUrls          : appState.appConfig.logUrls,
+		appState         : {...appState.appConfig},
+		logDir           : path.resolve(appState.app.getPath('userData'), 'logs'),
+		logFileName      : 'node.log',
 		writeToFileLevels: LogLevel.Any,
 	})
 	bindRemoteLogger('node')

@@ -5,7 +5,7 @@ function palette(baseColor: string, minLight: number = 5) {
 	const hsl = Color(baseColor).hsl().color
 	const h = hsl[0]
 	const s = hsl[1]
-	const coef = Math.pow(minLight / 100, 1 / 15)
+	const coef = (minLight / 100) ** (1 / 15)
 
 	const result = []
 	result[0] = '#000'

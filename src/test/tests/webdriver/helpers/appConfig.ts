@@ -4,4 +4,5 @@ if (!process.env.APP_CONFIG) {
 	throw new Error('Environment variable APP_CONFIG is not defined')
 }
 
+// eslint-disable-next-line global-require
 export default require(`../../../../../configs/${process.env.APP_CONFIG}`)

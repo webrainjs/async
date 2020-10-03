@@ -34,9 +34,9 @@ export class ScrollBoosterController extends HtmlController {
 
 		const defaults = {
 			handleMatches: props.viewportMatches,
-			bounce: true,
-			friction: 0.05,
-			bounceForce: 0.1,
+			bounce       : true,
+			friction     : 0.05,
+			bounceForce  : 0.1,
 			textSelection: false,
 			emulateScroll: false,
 			onUpdate(data) {
@@ -51,9 +51,9 @@ export class ScrollBoosterController extends HtmlController {
 			shouldScroll(data, event) {
 				if (props.noDragMatches && props.noDragMatches(event.target)) {
 					return false
-				} else {
-					return true
 				}
+
+				return true
 			},
 			onClick(data, event) {
 				if (props.noDragMatches && props.noDragMatches(event.target)) {
@@ -82,25 +82,25 @@ export class ScrollBoosterController extends HtmlController {
 		this.textSelection = this.props.textSelection
 
 		this.viewport = {
-			width: 0,
+			width : 0,
 			height: 0,
 		}
 		this.content = {
-			width: 0,
+			width : 0,
 			height: 0,
 		}
 		this.boundX = {
 			from: 0,
-			to: 0,
+			to  : 0,
 		}
 		this.boundY = {
 			from: 0,
-			to: 0,
+			to  : 0,
 		}
 
 		this.mode = {
-			x: this.props.mode === 'x',
-			y: this.props.mode === 'y',
+			x : this.props.mode === 'x',
+			y : this.props.mode === 'y',
 			xy: this.props.mode !== 'x' && this.props.mode !== 'y',
 		}
 
@@ -174,10 +174,10 @@ export class ScrollBoosterController extends HtmlController {
 
 		// stop update loop if nothing moves
 		if (
-			!this.isDragging &&
-			!this.isScrolling &&
-			Math.abs(this.velocity.x) < 0.1 &&
-			Math.abs(this.velocity.y) < 0.1
+			!this.isDragging
+			&& !this.isScrolling
+			&& Math.abs(this.velocity.x) < 0.1
+			&& Math.abs(this.velocity.y) < 0.1
 		) {
 			this.isRunning = false
 		}
@@ -291,18 +291,18 @@ export class ScrollBoosterController extends HtmlController {
 	 */
 	public getUpdate() {
 		return {
-			isRunning: this.isRunning,
-			isDragging: this.isDragging,
+			isRunning  : this.isRunning,
+			isDragging : this.isDragging,
 			isScrolling: this.isScrolling,
-			position: {
+			position   : {
 				x: -this.position.x,
 				y: -this.position.y,
 			},
 			dragOffsetPosition: this.dragOffsetPosition,
-			viewport: { ...this.viewport },
-			content: { ...this.content },
-			viewportElement: this.props.viewport,
-			contentElement: this.props.content,
+			viewport          : { ...this.viewport },
+			content           : { ...this.content },
+			viewportElement   : this.props.viewport,
+			contentElement    : this.props.content,
 		}
 	}
 
@@ -364,7 +364,7 @@ export class ScrollBoosterController extends HtmlController {
 			let clientX
 			let clientY
 
-			isTouch =  !!(event.touches && event.touches[0])
+			isTouch = !!(event.touches && event.touches[0])
 
 			if (isTouch) {
 				pageX = event.touches[0].pageX
@@ -400,9 +400,9 @@ export class ScrollBoosterController extends HtmlController {
 				const clickedNode = textNodeFromPoint(event.target, clientX, clientY)
 				if (clickedNode) {
 					return
-				} else {
-					clearTextSelection()
 				}
+
+				clearTextSelection()
 			}
 
 			this.isDragging = true
@@ -460,7 +460,9 @@ export class ScrollBoosterController extends HtmlController {
 			this.run()
 
 			clearTimeout(scrollTimer)
-			scrollTimer = setTimeout(() => this.isScrolling = false, 80)
+			scrollTimer = setTimeout(() => {
+				this.isScrolling = false
+			}, 80)
 
 			event.preventDefault()
 		}

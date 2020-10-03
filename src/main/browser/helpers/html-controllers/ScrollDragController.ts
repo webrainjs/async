@@ -72,11 +72,11 @@ export class ScrollDragController extends HtmlController {
 				|| Math.abs(this._lastClientY - event.clientY) > this._throttlePixels
 			)
 		) {
-			this._moved = true;
-			(this._scroller = scroll._scroller || scroll).scrollLeft -=
-				this._newScrollX = (- this._lastClientX + (this._lastClientX = event.clientX))
-			this._scroller.scrollTop -=
-				this._newScrollY = (- this._lastClientY + (this._lastClientY = event.clientY))
+			this._moved = true
+;(this._scroller = scroll._scroller || scroll).scrollLeft
+				-= this._newScrollX = (-this._lastClientX + (this._lastClientX = event.clientX))
+			this._scroller.scrollTop
+				-= this._newScrollY = (-this._lastClientY + (this._lastClientY = event.clientY))
 			if (scroll === document.body) {
 				(this._scroller = document.documentElement).scrollLeft -= this._newScrollX
 				this._scroller.scrollTop -= this._newScrollY

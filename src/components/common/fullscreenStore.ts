@@ -79,14 +79,12 @@ export function fullscreenStore(elem) {
 			if (isFullscreen(elem) !== false) {
 				exitFullscreen(elem)
 			}
-		} else {
-			if (isFullscreen(elem) !== true) {
-				enterFullscreen(elem)
-			}
+		} else if (isFullscreen(elem) !== true) {
+			enterFullscreen(elem)
 		}
 	}
 
-	store.toggle = function() {
+	store.toggle = function toggle() {
 		if (isFullscreen(elem) === true) {
 			exitFullscreen(elem)
 		} else {
@@ -97,8 +95,7 @@ export function fullscreenStore(elem) {
 	const eventHandler = () => {
 		set(isFullscreen(elem))
 	}
-
-	['', 'webkit', 'moz', 'ms'].forEach(
+;['', 'webkit', 'moz', 'ms'].forEach(
 		prefix => document.addEventListener(prefix + 'fullscreenchange', eventHandler, false),
 	)
 

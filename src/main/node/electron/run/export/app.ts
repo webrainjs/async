@@ -12,8 +12,8 @@ const appConfig = require(`../../../../../../configs/${process.env.APP_CONFIG}`)
 
 appConfig.dev = {
 	errorNotifications: true,
-	devPage: true,
-	devTools: {
+	devPage           : true,
+	devTools          : {
 		openAtStart: true,
 	},
 	devBuild: false,

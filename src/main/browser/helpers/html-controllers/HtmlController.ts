@@ -15,12 +15,12 @@ export class HtmlController {
 		options?: any,
 	) {
 		const self = this
-		const _handler = function() {
+		function _handler() {
 			let container
 			if (containerMatches) {
 				container = getPatentElement(arguments[0].target, containerMatches)
 				if (!container) {
-					return
+					return null
 				}
 
 				arguments[0].container = container

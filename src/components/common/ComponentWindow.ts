@@ -26,7 +26,7 @@ export class ComponentWindow {
 			const destroy = await this.attachComponent({
 				windowController,
 				componentClass: this._componentClass,
-				options: {
+				options       : {
 					...this._options,
 					props: this._props,
 				},
@@ -44,6 +44,7 @@ export class ComponentWindow {
 	private _component
 
 	// async needed for bypass slows down performance on electron
+	// eslint-disable-next-line require-await
 	private async attachComponent({
 		windowController,
 		componentClass,
@@ -53,10 +54,11 @@ export class ComponentWindow {
 		componentClass: new (...args: any[]) => any,
 		options: any,
 	}) {
+		// eslint-disable-next-line new-cap
 		const component = new componentClass({
 			...options,
 			target: (windowController.win as any).container,
-			props: {
+			props : {
 				win: windowController.win,
 				...options && options.props,
 			},

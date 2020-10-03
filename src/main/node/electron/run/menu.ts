@@ -4,11 +4,11 @@ import {appState} from './appState'
 
 export function showAppMenu() {
 	const appMenuItem = new MenuItem({
-		label: appState.app.getName(),
+		label  : appState.app.getName(),
 		submenu: [
 			{ role: 'hide' },
 			{
-				label: `Quit ${appState.app.getName()}`,
+				label      : `Quit ${appState.app.getName()}`,
 				accelerator: 'CmdOrCtrl+Q',
 				click() {
 					appState.quit()
@@ -18,11 +18,11 @@ export function showAppMenu() {
 	})
 
 	const windowMenuItem = new MenuItem({
-		role: 'window',
+		role   : 'window',
 		submenu: [
 			{ role: 'minimize' },
 			{
-				label: 'Close Window',
+				label      : 'Close Window',
 				accelerator: 'CmdOrCtrl+W',
 				click() {
 					appState.app.hide()

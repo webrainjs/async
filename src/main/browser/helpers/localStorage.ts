@@ -10,8 +10,8 @@ import {
 
 declare const chrome: any
 
-export const localStorageWrapper = typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local &&
-	{
+export const localStorageWrapper = typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local
+	&& {
 		getItem: (key: string) => new Promise<string>(resolve => {
 			chrome.storage.local.get([key], result => resolve(result[key]))
 		}),
@@ -93,8 +93,8 @@ export async function storeObject<TObject>(
 			this.done()
 		},
 		options: {
-			throttleTime: 1000,
-			maxThrottleTime: 10000,
+			throttleTime      : 1000,
+			maxThrottleTime   : 10000,
 			minTimeBetweenCalc: 5000,
 		},
 	})

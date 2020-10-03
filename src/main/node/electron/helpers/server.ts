@@ -11,7 +11,7 @@ const fs = require('fs')
 export function getResourcesPath(app: App) {
 	const appPath = app.getAppPath()
 	console.log('appPath = ' + appPath)
-	if (/([\/\\]resources[\/\\]app([\/\\]|.asar)?)$/.test(appPath)) {
+	if (/([/\\]resources[/\\]app([/\\]|.asar)?)$/.test(appPath)) {
 		return appPath
 	}
 	return path.resolve('.')
@@ -20,11 +20,11 @@ export function getResourcesPath(app: App) {
 export function getRootPath(app: App) {
 	const resPath = getResourcesPath(app)
 	console.log('resPath = ' + resPath)
-	if (/([\/\\]resources[\/\\]app([\/\\]|.asar)?)$/.test(resPath)) {
+	if (/([/\\]resources[/\\]app([/\\]|.asar)?)$/.test(resPath)) {
 		return path.resolve(resPath, '../../')
-	} else {
-		return resPath
 	}
+
+	return resPath
 }
 
 const errorHandler = error => {
@@ -63,14 +63,14 @@ class ServeStatic {
 		]
 
 		protocol.registerSchemesAsPrivileged([{
-			scheme: this.protocol,
+			scheme    : this.protocol,
 			privileges: {
-				standard: true,
-				secure: true,
+				standard           : true,
+				secure             : true,
 				allowServiceWorkers: true, // is not worked: https://github.com/electron/electron/issues/9663
-				supportFetchAPI: true,
+				supportFetchAPI    : true,
 				// bypassCSP: true,
-				corsEnabled: true,
+				corsEnabled        : true,
 			},
 		}])
 
@@ -186,9 +186,9 @@ class ServeStatic {
 			}
 
 			callback({
-				path: filePath,
+				path   : filePath,
 				headers: {
-					'Content-Type': mime.getType(path.extname(filePath)) + '; charset=utf-8',
+					'Content-Type'           : mime.getType(path.extname(filePath)) + '; charset=utf-8',
 					'Content-Security-Policy': "default-src * 'unsafe-inline' 'unsafe-eval' blob: data:",
 						// 'unsafe-eval' - for webrain optimizations (createFunction(...))
 				},

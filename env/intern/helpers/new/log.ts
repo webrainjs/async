@@ -6,10 +6,10 @@ import {iter, resolveAll, run, runWithRootCommand} from './run'
 export const getAllLogs = iter(function *getAllLogs(): Iterator<any, TLog[]> {
 	const logTypes: string[] = yield run(o => o.getAvailableLogTypes())
 	const result: TLog[][] = yield resolveAll(logTypes
-		.map(logType => runWithRootCommand(function* _getAllLogs() {
+		.map(logType => runWithRootCommand(function *_getAllLogs() {
 			const logs = yield run(o => o.getLogsFor(logType))
 			return logs.map((log: LogEntry) => {
-				;(log as any).type = logType
+				(log as any).type = logType
 				try {
 					const message = JSON.parse(log.message)
 					const keys = Object.keys(message)
@@ -40,28 +40,31 @@ export const printAllLogs = iter(function *printAllLogs(predicate: TLogPredicate
 	}
 })
 
-/* tslint:disable */
+/* eslint-disable */
 
 function dataToLog(getDataScript) {
 	var data = eval(getDataScript)
 	return data
 }
 
-/* tslint:enable */
+/* eslint-enable */
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const logRemote = iter(function *logRemote(prefix: string, remoteGetDataScript: Function|string) {
 	const log = yield run(o => o.execute(dataToLog, [`(${remoteGetDataScript.toString()})();`]))
 	console.log(prefix, log)
 })
 
 export const getHtml = iter(function *getHtml(): Iterator<any, string> {
-	return yield run(o => o.execute(function() {
+	return yield run(o => o.execute(function () {
+		// eslint-disable-next-line no-undef
 		return new XMLSerializer().serializeToString(document)
 	}))
 })
 
 export const getUserAgent = iter(function *getUserAgent(): Iterator<any, string> {
-	return yield run(o => o.execute(function() {
+	return yield run(o => o.execute(function () {
+		// eslint-disable-next-line no-undef
 		return navigator.userAgent
 	}))
 })

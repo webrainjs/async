@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import path from 'path'
 import fs from 'fs'
 const postcss = require(path.resolve('env/rollup/postcss'))

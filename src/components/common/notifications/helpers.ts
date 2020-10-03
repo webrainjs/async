@@ -19,13 +19,13 @@ export function showNotificationWindowFactory<TProps extends object>({
 			if (!win) {
 				win = new ComponentWindow({
 					windowControllerFactory: new WindowControllerFactory({
-						windowFeatures: 'width=110,height=110,' +
-							'titlebar=no,resizable=no,movable=yes,alwaysOnTop=yes,fullscreenable=no,' +
-							'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,' +
-							'dialog=yes,modal=yes,dependent=yes',
+						windowFeatures: 'width=110,height=110,'
+							+ 'titlebar=no,resizable=no,movable=yes,alwaysOnTop=yes,fullscreenable=no,'
+							+ 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,'
+							+ 'dialog=yes,modal=yes,dependent=yes',
 						...windowOptions,
 						windowControllerOptions: {
-							windowName: componentClass.name,
+							windowName      : componentClass.name,
 							storeWindowState: false,
 							...windowOptions.windowControllerOptions,
 						},
@@ -93,10 +93,14 @@ export function showNotificationFactory<TProps extends object>(options: {
 }) {
 	if (typeof window !== 'undefined' && (window as any).isElectron && options.notificationWindow) {
 		return showNotificationWindowFactory(options.notificationWindow)
-	} else if (options.notificationApi) {
+	}
+
+	if (options.notificationApi) {
 		const showNotification = showNotificationApiFactory({
 			defaultOptions: options.notificationApi.defaultOptions,
 		})
 		return async (props: TProps) => showNotification(props && await options.notificationApi.getOptions(props))
 	}
+
+	return null
 }

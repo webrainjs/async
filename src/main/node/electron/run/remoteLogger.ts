@@ -8,7 +8,7 @@ export function bindRemoteLogger(logFileNameDefault: string) {
 	ipcMain.addListener('logger_setFileName', (event, value) => {
 		const handler = (logger.handlers.writeToFile as WriteToFileHandler)
 		handler.logFileName = value
-			? value.replace(/[^\w.\-]+/, '_')
+			? value.replace(/[^\w.-]+/, '_')
 			: logFileNameDefault
 	})
 	ipcMain.addListener('logger_writeToFile', (event, logEvents: any[]) => {

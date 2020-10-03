@@ -42,10 +42,10 @@ function bindVisibleChange(window: Window, handler: (visible: boolean) => void) 
 		const v = 'visible'
 		const h = 'hidden'
 		const evtMap = {
-			focus: v,
-			focusin: v,
+			focus   : v,
+			focusin : v,
 			pageshow: v,
-			blur: h,
+			blur    : h,
 			focusout: h,
 			pagehide: h,
 		}
@@ -59,7 +59,7 @@ function bindVisibleChange(window: Window, handler: (visible: boolean) => void) 
 	}
 
 	// set the initial state (but only if browser supports the Page Visibility API)
-	if (window.document[hidden] !== undefined) {
+	if (window.document[hidden] !== void 0) {
 		onchange({type: window.document[hidden] ? 'blur' : 'focus'})
 	}
 
@@ -131,7 +131,9 @@ export class WindowSizeController {
 				this.height = this.winController.win.outerHeight
 				this.lastResizeTime = Date.now()
 			} else {
-				if (this.winController.win.outerWidth !== this.width || this.winController.win.outerHeight !== this.height) {
+				if (this.winController.win.outerWidth !== this.width
+					|| this.winController.win.outerHeight !== this.height
+				) {
 					this.winController.win.resizeTo(this.width, this.height)
 				}
 			}
@@ -142,7 +144,7 @@ export class WindowSizeController {
 
 	public resizeToInner(width: number, height: number) {
 		if (!this.winController.isOpened) {
-			return
+			return null
 		}
 
 		return this.resizeToOuter(width + this.borderWidth, height + this.borderHeight)
@@ -150,7 +152,7 @@ export class WindowSizeController {
 
 	public resizeToOuter(width: number, height: number) {
 		if (!this.winController.isOpened) {
-			return
+			return null
 		}
 
 		// chrome has window width/height limitation = 211/103px
@@ -201,12 +203,12 @@ export class WindowController extends ObservableClass {
 		const {win} = this
 		if (!windowIsDestroyed(win)) {
 			return false
-		} else {
-			if (win && win.close) {
-				win.close()
-			}
-			return true
 		}
+
+		if (win && win.close) {
+			win.close()
+		}
+		return true
 	}
 
 	public isLoaded: boolean
@@ -269,7 +271,7 @@ export class WindowController extends ObservableClass {
 	}
 
 	private _waitLoadTask
-	public async waitLoad() {
+	public waitLoad() {
 		if (!this._waitLoadTask) {
 			this._waitLoadTask = this._waitLoad()
 		}
@@ -281,7 +283,7 @@ export class WindowController extends ObservableClass {
 	// region init
 
 	private _waitInitTask
-	public async waitInit() {
+	public waitInit() {
 		if (!this._waitInitTask) {
 			this._waitInitTask = this._init()
 		}
@@ -512,10 +514,10 @@ export function createWindowController(win: Window, options: IWindowControllerOp
 	}
 
 	Object.defineProperty(win, WINDOW_STATE_PROPERTY_NAME, {
-		enumerable: false,
+		enumerable  : false,
 		configurable: false,
-		writable: false,
-		value: controller = new WindowController(win, options),
+		writable    : false,
+		value       : controller = new WindowController(win, options),
 	})
 
 	return controller
@@ -542,15 +544,15 @@ export class WindowControllerFactory {
 	// resizable=no is not worked in browsers because: https://stackoverflow.com/a/15481333/5221762
 	constructor({
 		// docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/open#Window_features
-		windowFeatures = 'width=600,height=400,' +
-		 'titlebar=no,resizable=yes,movable=yes,alwaysOnTop=yes,fullscreenable=yes,' +
-		 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,' +
-		 'dialog=yes,modal=yes,dependent=yes',
+		windowFeatures = 'width=600,height=400,'
+			+ 'titlebar=no,resizable=yes,movable=yes,alwaysOnTop=yes,fullscreenable=yes,'
+			+ 'location=no,toolbar=no,scrollbars=no,menubar=no,status=no,directories=no,'
+			+ 'dialog=yes,modal=yes,dependent=yes',
 		windowControllerOptions,
 		replace = true,
 	}: IWindowControllerFactoryOptions) {
 		this._windowControllerOptions = windowControllerOptions
-		this._windowOptions = [ 'about:blank', this._windowControllerOptions.windowName, windowFeatures, replace ]
+		this._windowOptions = ['about:blank', this._windowControllerOptions.windowName, windowFeatures, replace]
 	}
 
 	// region get or create windowController

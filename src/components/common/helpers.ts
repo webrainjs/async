@@ -1,3 +1,4 @@
+/* eslint-disable array-element-newline */
 export function timeToString(time) {
 	if (time == null) {
 		return '--:--:--'

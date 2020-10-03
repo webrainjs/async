@@ -42,7 +42,7 @@ export function showTray() {
 		// 	},
 		// },
 		{
-			id: 'show',
+			id   : 'show',
 			label: 'Show',
 			click(item, window, event) {
 				appState.win.show()
@@ -50,7 +50,7 @@ export function showTray() {
 			},
 		},
 		{
-			id: 'signin',
+			id   : 'signin',
 			label: 'Sign in',
 			click(item, window, event) {
 				appState.win.show()
@@ -58,7 +58,7 @@ export function showTray() {
 			},
 		},
 		{
-			id: 'signout',
+			id   : 'signout',
 			label: 'Sign out',
 			click(item, window, event) {
 				appState.win.show()
@@ -67,7 +67,7 @@ export function showTray() {
 		},
 		{ type: 'separator' },
 		{
-			id: 'quit',
+			id   : 'quit',
 			label: 'Quit',
 			click(item, window, event) {
 				appState.quit()

@@ -5,8 +5,28 @@ module.exports = {
 		// 'plugin:@typescript-eslint/recommended-requiring-type-checking',
 	],
 	rules: {
+		// web app only
+		'require-await': 'off',
+		'prefer-const' : 'off',
+		'no-lonely-if' : 'off',
+
+		// all
 		// '@typescript-eslint/no-var-requires': 'off',
-		'@typescript-eslint/no-unused-vars': 'off',
+		'no-empty-function'                   : 'warn',
+		'@typescript-eslint/no-empty-function': 'warn',
+		'no-control-regex'                    : 'off',
+		yoda                                  : 'off',
+		'@typescript-eslint/no-unused-vars'   : 'off',
+		'@typescript-eslint/no-shadow'        : [
+			'error',
+			{
+				builtinGlobals                            : false,
+				hoist                                     : 'never',
+				allow                                     : [],
+				ignoreTypeValueShadow                     : false,
+				ignoreFunctionTypeParameterNameValueShadow: true,
+			},
+		],
 	},
 
 	env: {

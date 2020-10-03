@@ -48,7 +48,7 @@ export const checkAfterTestPage = iter(function *checkAfterTestPage(errorPredica
 
 // region isNewWindow
 
-/* tslint:disable */
+/* eslint-disable */
 
 function _isNewWindow(id) {
 	if (window[id]) {
@@ -59,7 +59,7 @@ function _isNewWindow(id) {
 	return true
 }
 
-/* tslint:enable */
+/* eslint-enable */
 
 const isNewWindowId = 'cd546a3c65304683a2c76c4db720997f'
 

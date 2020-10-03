@@ -6,7 +6,7 @@ import {
 	testPage,
 	registerSuite,
 } from '../../../../../../env/intern/helpers/new/index'
-import {errorPredicate} from "../../helpers/helpers";
+import {errorPredicate} from '../../helpers/helpers'
 
 registerSuite('main > sapper > routes > base', {
 	'base'() {
@@ -17,19 +17,19 @@ registerSuite('main > sapper > routes > base', {
 		return this.remote
 
 		// this.timeout = 180000
-		return runTest(this.remote, 10000, 5000, function* _1_base() {
+		return runTest(this.remote, 10000, 5000, function *_1_base() {
 			yield openWindow(425, 882)
 			yield openWindow(425, 882)
 			yield getWithInternPort('/app/dev')
 			yield testPage(
-				function* _testPage() {
+				function *_testPage() {
 					yield testNavigate(
 						null, o => o.pathname,
-						'/app/dev/components', 2000
+						'/app/dev/components', 2000,
 					)
 				},
-				errorPredicate
+				errorPredicate,
 			)
 		})
-	}
+	},
 })

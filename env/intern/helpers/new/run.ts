@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import Command, {SetContextMethod} from '@theintern/leadfoot/Command'
 import {assert, delay} from './base'
 import {Func} from './contracts'
@@ -97,7 +98,7 @@ export function runWithRootCommand(func: () => any) {
 	return runWithCommand(func, getRoot())
 }
 
-// tslint:disable-next-line:ban-types
+// eslint-disable-next-line @typescript-eslint/ban-types
 function assertInstanceOf(object, _class: Function) {
 	if (!(object instanceof _class)) {
 		throw new Error(`object is not ${_class.name}: ${
@@ -110,7 +111,7 @@ function assertInstanceOf(object, _class: Function) {
 
 const TIMEOUT = new String('Timeout')
 
-export const usingFindTimeout = iter(function* usingFindTimeout(
+export const usingFindTimeout = iter(function *usingFindTimeout(
 	func: () => any,
 	timeout: number,
 ) {
@@ -130,12 +131,12 @@ function commandIsAwaited(command: Command<any>) {
 	return !command.parent
 		|| 'result' in command
 		&& !isThenable((command as any).result)
-	 	&& !isIterator((command as any).result)
+		&& !isIterator((command as any).result)
 }
 
 async function waitCommand(command: Command<any>, timeout: number) {
 	if (!('result' in command)) {
-		(command as any).result = (async function() {
+		(command as any).result = (async function () {
 			if (command.context && command.parent) {
 				throw new Error('command is already awaited')
 			}
@@ -150,9 +151,8 @@ async function waitCommand(command: Command<any>, timeout: number) {
 					throw new Error(`command is not awaited; timeout = ${timeout}`)
 				}
 
-				result = await resolveValue(result);
-
-				(command as any).result = result
+				result = await resolveValue(result)
+;(command as any).result = result
 
 				return result
 			} catch (error) {
@@ -214,7 +214,7 @@ export function run(func: (command: Command<any>) => Command<any>, parentCommand
 	let newCommand = func(state.command)
 	if (newCommand !== state.command || parentCommand) {
 		if (parentCommand) {
-			newCommand = new Command(state.command, function(setContext) {
+			newCommand = new Command(state.command, function (setContext) {
 				setContext(parentCommand.context)
 			})
 		}
@@ -244,7 +244,7 @@ export async function resolveAll(values: any[], state?: State) {
 export function iter<TThis, TArgs extends any[], TValue = void>(
 	func: Func<TThis, TArgs, TValue>,
 ): Func<TThis, TArgs, TValue> {
-	return function() {
+	return function () {
 		const result = func.apply(this, arguments)
 		if (isIterator(result)) {
 			result.name = func.name

@@ -1,5 +1,12 @@
 import {IObservable, ISubject, Subject} from 'webrain'
-import {IApi, IApiRequest, IApiRequestArgs, IApiResponse, INetworkEvent, NetworkEventType} from './contracts/api'
+import {
+	IApi,
+	IApiRequest,
+	IApiRequestArgs,
+	IApiResponse,
+	INetworkEvent,
+	NetworkEventType,
+} from './contracts/api'
 import {HttpDataType, IHttpClient, NetworkErrorType} from './contracts/http'
 import {toFormData, toFormUrlEncoded} from './helpers'
 import {NetworkError} from './NetworkError'
@@ -52,7 +59,8 @@ export class Api<TError> implements IApi<TError> {
 					break
 				case HttpDataType.MultipartFormData:
 					request.data = toFormData(request.data)
-					// request.headers['Content-Type'] = 'multipart/form-data; boundary="d0987012-5c8b-471d-b79b-81fabac23628"'
+					// request.headers['Content-Type']
+					// 	= 'multipart/form-data; boundary="d0987012-5c8b-471d-b79b-81fabac23628"'
 					break
 				case HttpDataType.Json:
 					request.data = JSON.stringify(request.data)
@@ -114,7 +122,7 @@ export class Api<TError> implements IApi<TError> {
 			})
 
 			let result
-			// tslint:disable-next-line:no-small-switch
+			// eslint-disable-next-line default-case
 			switch (request.responseDataType) {
 				case HttpDataType.Json:
 					result = JSON.parse(response.data)
@@ -166,13 +174,14 @@ export class Api<TError> implements IApi<TError> {
 			if (typeof data === 'string') {
 				try {
 					data = JSON.parse(data)
-					// tslint:disable-next-line:no-empty
-				} catch { }
+				} catch {
+					// empty
+				}
 			}
 
 			{
 				const apiError = {
-					apiError: data,
+					apiError    : data,
 					networkError: err,
 				}
 

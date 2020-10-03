@@ -10,7 +10,9 @@ import {showAppMenu} from './menu'
 const { BrowserWindow } = require('electron')
 
 function delay(timeMilliseconds) {
-	return new Promise(resolve => setTimeout(resolve, timeMilliseconds))
+	return new Promise(resolve => {
+		setTimeout(resolve, timeMilliseconds)
+	})
 }
 
 function escapeJs(str: string): string {
@@ -34,29 +36,29 @@ export async function createWindow(url) {
 
 	// Create the browser window.
 	appState.win = new BrowserWindow({
-		width: 1,
-		height: 1,
+		width         : 1,
+		height        : 1,
 		webPreferences: {
 			enableRemoteModule: true,
-			nativeWindowOpen: true,
-			nodeIntegration: false,
-			sandbox: true,
-			preload: require.resolve('./preload'),
+			nativeWindowOpen  : true,
+			nodeIntegration   : false,
+			sandbox           : true,
+			preload           : require.resolve('./preload'),
 			// spellcheck: false, // for reduce start time
 		},
-		frame: false,
-		skipTaskbar: true,
+		frame          : false,
+		skipTaskbar    : true,
 		// see: https://ourcodeworld.com/articles/read/315/how-to-create-a-transparent-window-with-electron-framework
-		transparent: true,
+		transparent    : true,
 		backgroundColor: '#01000001',
-		show: false, // window will show from template.html after page load
+		show           : false, // window will show from template.html after page load
 		// opacity: 0.001,
 	})
 
 	;(appState.win as any).isMain = true
 
 	// Set options for child windows
-	appState.win.webContents.on('new-window', function(e, _url, frameName, disposition, options) {
+	appState.win.webContents.on('new-window', function newWindow(e, _url, frameName, disposition, options) {
 		options.show = false
 		options.opacity = 0.01
 		options.focusable = false
@@ -69,7 +71,7 @@ export async function createWindow(url) {
 	})
 
 	// hide instead close
-	appState.win.on('close', function(event) {
+	appState.win.on('close', function close(event) {
 		if (!(appState.app as any).isQuitting) {
 			event.preventDefault()
 			appState.win.hide()
@@ -94,18 +96,18 @@ export async function createWindow(url) {
 	// and load the index.html of the app.
 	appState.win.loadURL(url)
 
-	appState.win.webContents.on('did-finish-load', function() {
+	appState.win.webContents.on('did-finish-load', function didFinishLoad() {
 		const winSize = appState.win.getSize()
 		console.log('winSize: ', winSize)
 		if (winSize[0] <= 100 && winSize[1] <= 100) {
 			appState.win.setSize(1000, 600)
-	new WindowPositioner(appState.win).move(WindowPosition.Center)
+			new WindowPositioner(appState.win).move(WindowPosition.Center)
 		}
 
-  		appState.win.webContents.executeJavaScript(`console.log('App path:\\n${escapeJs(appState.app.getAppPath())}\\n')`)
-  		appState.win.webContents.executeJavaScript(`console.log('Resources path:\\n${escapeJs(getResourcesPath(appState.app))}\\n')`)
-  		appState.win.webContents.executeJavaScript(`console.log('Root path:\\n${escapeJs(getRootPath(appState.app))}\\n')`)
-  		appState.win.webContents.executeJavaScript(`console.log('Log path:\\n${escapeJs((Object.values(logger.handlers) as any).filter(o => o.logFilePath)[0].logFilePath)}\\n')`)
+		appState.win.webContents.executeJavaScript(`console.log('App path:\\n${escapeJs(appState.app.getAppPath())}\\n')`)
+		appState.win.webContents.executeJavaScript(`console.log('Resources path:\\n${escapeJs(getResourcesPath(appState.app))}\\n')`)
+		appState.win.webContents.executeJavaScript(`console.log('Root path:\\n${escapeJs(getRootPath(appState.app))}\\n')`)
+		appState.win.webContents.executeJavaScript(`console.log('Log path:\\n${escapeJs((Object.values(logger.handlers) as any).filter(o => o.logFilePath)[0].logFilePath)}\\n')`)
 	})
 	logger.subscribe(logEvent => {
 		if (appState.win) {

@@ -1,6 +1,13 @@
 import {findAll, findFirst, findSingle, wait} from './find'
 import {end} from './find-base'
-import {assert, getCurrentState, getTextSingle, getValueSingle, iter, run} from './index'
+import {
+	assert,
+	getCurrentState,
+	getTextSingle,
+	getValueSingle,
+	iter,
+	run,
+} from './index'
 
 export const assertCount = iter(function *assertCount(
 	countOrFunc: number | ((count: number) => boolean),

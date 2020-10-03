@@ -25,7 +25,7 @@ const build = singleCall(() => Promise.all([
 ]))
 
 const lintEs = singleCall(async ({fix} = {}) => {
-	await run('eslint --plugin markdown --ext js,md .' + (fix ? ' --no-eslintrc -c eslintrc.fix.js --fix' : ''))
+	await run('eslint --plugin markdown --ext js,ts,md .' + (fix ? ' --no-eslintrc -c eslintrc.fix.js --fix' : ''))
 })
 
 // Warning - depcheck takes a lot of memory - 13 GB !!

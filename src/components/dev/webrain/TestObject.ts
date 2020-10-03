@@ -35,7 +35,7 @@ new CalcObjectBuilder(TestObject.prototype)
 	)
 	.nestedCalc('time', null,
 		calcPropertyFactoryX({
-			*calcFunc() {
+			calcFunc() {
 				const state = this
 				const input = state._this.input
 				let value = state.value

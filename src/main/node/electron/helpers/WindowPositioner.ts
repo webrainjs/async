@@ -42,7 +42,7 @@ export class WindowPositioner {
 
 	constructor(browserWindow: BrowserWindow|BrowserWindowProxy|Window) {
 		this.browserWindow = browserWindow
-		this.electronScreen = screen || window.screen
+		this.electronScreen = screen // || window.screen
 	}
 
 	private _getCoords(position: WindowPosition, trayPosition?: Rectangle, margin?: number) {
@@ -142,9 +142,9 @@ export class WindowPositioner {
 	private _getScreenSize(trayPosition?: Rectangle) {
 		if (trayPosition) {
 			return this.electronScreen.getDisplayMatching(trayPosition).workArea
-		} else {
-			return this.electronScreen.getDisplayNearestPoint(this.electronScreen.getCursorScreenPoint()).workArea
 		}
+
+		return this.electronScreen.getDisplayNearestPoint(this.electronScreen.getCursorScreenPoint()).workArea
 	}
 
 	public move(position: WindowPosition, trayPos?: Rectangle, margin?: number) {

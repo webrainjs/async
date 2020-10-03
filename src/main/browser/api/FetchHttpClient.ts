@@ -31,12 +31,12 @@ export class FetchHttpClient implements IHttpClient {
 
 			const response = await fetchExt(request.url, {
 				timeout: request.timeout,
-				method: request.method,
+				method : request.method,
 				headers: request.headers,
-				cache: request.cache ? 'default' : 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-				body: request.data, // body data type must match "Content-Type" header
+				cache  : request.cache ? 'default' : 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+				body   : request.data, // body data type must match "Content-Type" header
 
-				mode: 'cors', // no-cors, cors, *same-origin
+				mode    : 'cors', // no-cors, cors, *same-origin
 				// credentials: 'same-origin', // include, *same-origin, omit
 				redirect: 'error', // manual, *follow, error
 				referrer: '', // no-referrer, *client
@@ -53,7 +53,7 @@ export class FetchHttpClient implements IHttpClient {
 			}
 
 			return {
-				statusCode: response.status,
+				statusCode      : response.status,
 				data,
 				originalResponse: response,
 			}
@@ -61,7 +61,7 @@ export class FetchHttpClient implements IHttpClient {
 			throw new NetworkError({
 				message: 'Init fetch error',
 				request,
-				error: err,
+				error  : err,
 			})
 		}
 	}
