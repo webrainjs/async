@@ -30,7 +30,7 @@ module.exports = function (config) {
 			helpers.concatJsFiles(
 				`${helpers.paths.tmp}/karma/tests.js`,
 				`src/test/tests/{common,browser}/**/*{${[...fileExtensions.js, ...fileExtensions.ts].join(',')}}`,
-				`!*/**/{src,assets,js}/**/*{${[...fileExtensions.js, ...fileExtensions.ts].join(',')}}`
+				`!*/**/{src,assets,js}/**/*{${[...fileExtensions.js, ...fileExtensions.ts].join(',')}}`,
 			),
 			// ...helpers.watchPatterns(
 			// 	`src/test/tests/{common,browser}/**/*{${[...fileExtensions.js, ...fileExtensions.ts].join(',')}}`,
@@ -44,15 +44,15 @@ module.exports = function (config) {
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
-			[`${helpers.paths.tmp}/karma/tests.js`]: ['rollup', 'writeToFile']
+			[`${helpers.paths.tmp}/karma/tests.js`]: ['rollup', 'writeToFile'],
 		},
 
 		rollupPreprocessor: {
 			plugins: helpers.rollup.plugins.karma({dev: true, legacy: true, coverage: false}),
 			output : {
 				format   : 'iife',
-				sourcemap: true // 'inline',
-			}
+				sourcemap: true, // 'inline',
+			},
 		},
 
 		// test results reporter to use
@@ -72,6 +72,6 @@ module.exports = function (config) {
 
 		// Concurrency level
 		// how many browser should be started simultaneous
-		concurrency: Infinity
+		concurrency: Infinity,
 	})
 }

@@ -8,7 +8,7 @@ const plugins = require('./plugins')
 
 export default globby.sync([
 	'src/main/**/*.svelte',
-	'src/test/*/webdriver/**/src/*.svelte'
+	'src/test/*/webdriver/**/src/*.svelte',
 ])
 	.map(file => ({
 		input : file,
@@ -22,5 +22,5 @@ export default globby.sync([
 			footer   : '}).call(window);',
 			sourcemap: true,
 		},
-		plugins: plugins.components({dev: false, legacy: true})
+		plugins: plugins.components({dev: false, legacy: true}),
 	}))

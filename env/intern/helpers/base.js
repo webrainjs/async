@@ -16,7 +16,7 @@ global.pathToUrl = function (...concatPaths) {
 	const relativeUrl = `/${
 		path.relative(
 			process.cwd(),
-			path.resolve(...concatPaths)
+			path.resolve(...concatPaths),
 		)
 			.replace(/\\/g, '/')
 			.replace(/^\//, '')
@@ -51,7 +51,7 @@ Command.prototype.getWithInternPort = function (relativeUrl) {
 		process.env.NODE_ENV === 'development'
 			? appConfig.sapper.port
 			: appConfig.tests.intern.staticPort,
-		relativeUrl
+		relativeUrl,
 	)
 }
 

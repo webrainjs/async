@@ -7,7 +7,7 @@ global.intern = intern
 export function configure(configChanges = {}) {
 	intern.configure({
 		...config,
-		...configChanges
+		...configChanges,
 	})
 }
 
@@ -29,5 +29,5 @@ export function runTests() {
 
 export default {
 	configure,
-	runTests
+	runTests,
 }

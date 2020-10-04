@@ -189,23 +189,23 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Karma.Tests" />
       <item itemvalue="Karma.Dev" />
-      <item itemvalue="Karma.CI" />
+      <item itemvalue="Karma.Tests" />
       <item itemvalue="Karma.Performance" />
-      <item itemvalue="Mocha.Intern Debug" />
+      <item itemvalue="Karma.CI" />
       <item itemvalue="Mocha.Intern Debug Video" />
+      <item itemvalue="Mocha.Intern Debug" />
       <item itemvalue="Mocha.Intern Export" />
-      <item itemvalue="Mocha.Intern Dev Video" />
-      <item itemvalue="Mocha.Intern Dev" />
       <item itemvalue="Mocha.Intern Export with rebuild" />
-      <item itemvalue="Mocha.Coverage" />
+      <item itemvalue="Mocha.Intern Dev" />
+      <item itemvalue="Mocha.Intern Dev Video" />
       <item itemvalue="Mocha.Watch" />
-      <item itemvalue="npm.Build Test All" />
+      <item itemvalue="Mocha.Coverage" />
       <item itemvalue="npm.Test All" />
+      <item itemvalue="npm.Build Test All" />
       <item itemvalue="npm.Build Dev" />
-      <item itemvalue="npm.Build Test Dev" />
       <item itemvalue="npm.Test Dev" />
+      <item itemvalue="npm.Build Test Dev" />
     </list>
   </component>
   <component name="SvnConfiguration">

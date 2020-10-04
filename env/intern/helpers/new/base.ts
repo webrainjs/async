@@ -18,7 +18,7 @@ export function pathToUrl(...concatPaths: string[]): string {
 	const relativeUrl = `/${
 		path.relative(
 			process.cwd(),
-			path.resolve(...concatPaths)
+			path.resolve(...concatPaths),
 		)
 			.replace(/\\/g, '/')
 			.replace(/^\//, '')
@@ -40,7 +40,7 @@ export const getWithInternPort = iter(function *getWithInternPort(relativeUrl: s
 		process.env.NODE_ENV === 'development'
 			? appConfig.sapper.port
 			: appConfig.tests.intern.staticPort,
-		relativeUrl
+		relativeUrl,
 	)
 })
 

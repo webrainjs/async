@@ -7,16 +7,16 @@ export default {
 		{
 			name   : 'jsoncoverage',
 			options: {
-				directory: `tmp/${appConfigType}/coverage/intern/json`
-			}
+				directory: `tmp/${appConfigType}/coverage/intern/json`,
+			},
 		},
 		{
 			name   : 'htmlcoverage',
 			options: {
-				directory: `tmp/${appConfigType}/coverage/intern/html`
-			}
+				directory: `tmp/${appConfigType}/coverage/intern/html`,
+			},
 		},
-		'runner'
+		'runner',
 	],
 
 	plugins: [
@@ -27,10 +27,10 @@ export default {
 		// 		servers: [
 		// 			{
 		// 				port : staticPort,
-		// 				inits: [['/app', `dist/${appConfigType}/sapper/export/app`]]
-		// 			}
-		// 		]
-		// 	}
-		// }
+		// 				inits: [['/app', `dist/${appConfigType}/sapper/export/app`]],
+		// 			},
+		// 		],
+		// 	},
+		// },
 	]
 }

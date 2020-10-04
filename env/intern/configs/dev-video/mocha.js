@@ -13,7 +13,7 @@ configure({
 	...config,
 	functionalSuites: [
 		'src/test/*/webdriver/**/*.{js,ts}',
-		'!*/**/{src,assets}/**'
+		'!*/**/{src,assets}/**',
 	],
 })
 runTests()

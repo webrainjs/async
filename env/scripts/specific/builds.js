@@ -16,7 +16,7 @@ const buildComponents = singleCall(async appConfigType => {
 	await deletePaths(`dist/${appConfigType}/components`)
 	await run(
 		'rollup --config ./env/rollup/components.js',
-		{env: {APP_CONFIG: appConfigType}}
+		{env: {APP_CONFIG: appConfigType}},
 	)
 })
 

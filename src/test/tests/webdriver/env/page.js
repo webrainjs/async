@@ -1,8 +1,8 @@
+// docs: https://theintern.io/docs.html#Leadfoot/2/api/Command/command-1
+import keys from '@theintern/leadfoot/keys'
 const {registerSuite} = intern.getInterface('object')
 const {assert} = intern.getPlugin('chai')
 
-// docs: https://theintern.io/docs.html#Leadfoot/2/api/Command/command-1
-const keys = require('@theintern/leadfoot/keys')
 registerSuite('env > page', {
 	'load local'() {
 		return this.remote
@@ -29,5 +29,5 @@ registerSuite('env > page', {
 				.then(value => {
 					assert.strictEqual(value, '')
 				}))
-	}
+	},
 })

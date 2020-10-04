@@ -17,5 +17,5 @@ registerSuite('env > component', {
 				.findByCssSelector('p[count="1000"]')
 				// .findByCssSelector('p[value="4"]')
 				.end())
-	}
+	},
 })

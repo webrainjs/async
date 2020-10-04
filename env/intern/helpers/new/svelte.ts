@@ -5,35 +5,35 @@ import {iter, run} from './run'
 
 const {getComponentName, getComponentUrl} = require('../../../rollup/helpers')
 
-/* tslint:disable */
+/* eslint-disable */
 
 function _appendSvelteComponent(componentClass, containerCssClass, props, callback) {
 	try {
-		var container = document.createElement('div');
-		container.className = containerCssClass;
-		document.body.appendChild(container);
+		var container = document.createElement('div')
+		container.className = containerCssClass
+		document.body.appendChild(container)
 
 		// @ts-ignore
 		var component = new window[componentClass]({
 			target: container,
-			props
-		});
+			props,
+		})
 
-		callback();
+		callback()
 	} catch (ex) {
 		callback(JSON.stringify({
 			containerCssClass: containerCssClass,
-			componentClass: componentClass,
-			props: props,
-			error: {
+			componentClass   : componentClass,
+			props            : props,
+			error            : {
 				message: ex.toString(),
-				stack  : ex.stack
-			}
-		}));
+				stack  : ex.stack,
+			},
+		}))
 	}
 }
 
-/* tslint:enable */
+/* eslint-enable */
 
 export const appendSvelteComponent = iter(function *appendSvelteComponent(
 	componentConcatPaths: string[],

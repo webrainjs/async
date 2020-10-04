@@ -8,7 +8,7 @@ function prepareSelector(selector: string) {
 		return selector
 	}
 
-	selector = selector.replace(/@([\w\-]+)/g, '[debug_id="$1"]')
+	selector = selector.replace(/@([\w-]+)/g, '[debug_id="$1"]')
 
 	if (/:(has|contains)\(/.test(selector)) {
 		const prevSelector = selector

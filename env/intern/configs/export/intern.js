@@ -9,10 +9,10 @@ export default {
 		// 		servers: [
 		// 			{
 		// 				port : staticPort,
-		// 				inits: [['/app', `dist/${appConfigType}/sapper/export/app`]]
-		// 			}
-		// 		]
-		// 	}
-		// }
-	]
+		// 				inits: [['/app', `dist/${appConfigType}/sapper/export/app`]],
+		// 			},
+		// 		],
+		// 	},
+		// },
+	],
 }

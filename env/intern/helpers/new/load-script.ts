@@ -1,34 +1,34 @@
 import {end} from './find-base'
 import {iter, run} from './run'
 
-/* tslint:disable */
+/* eslint-disable */
 
 function remoteLoadScript(scriptUrl, callback) {
 	try {
-		var script = window.document.createElement('script');
+		var script = window.document.createElement('script')
 		script.onload = function () {
-			callback();
-		};
+			callback()
+		}
 		script.onerror = function (err) {
 			// @ts-ignore
 			var errStr = err && err.stack || err && err.toString() || err + ''
-			console.error(errStr);
-			callback(errStr);
-		};
-		script.src = scriptUrl;
-		document.head.appendChild(script);
+			console.error(errStr)
+			callback(errStr)
+		}
+		script.src = scriptUrl
+		document.head.appendChild(script)
 	} catch (ex) {
 		callback(JSON.stringify({
 			error: {
 				url    : scriptUrl,
 				message: ex.toString(),
-				stack  : ex.stack
-			}
-		}));
+				stack  : ex.stack,
+			},
+		}))
 	}
 }
 
-/* tslint:enable */
+/* eslint-enable */
 
 export const loadScript = iter(function *loadScript(scriptUrl: string, timeOut?: number) {
 	yield run(o => o.setExecuteAsyncTimeout(timeOut || 10000))
