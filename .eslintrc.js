@@ -54,7 +54,7 @@ module.exports = {
 		'@typescript-eslint',
 		'sonarjs',
 		'html',
-		'svelte3',
+		// 'svelte3', // TODO uncomment it after this pull merged: https://github.com/sveltejs/eslint-plugin-svelte3/pull/74
 	],
 	settings: {
 		'html/indent'           : '+tab',
@@ -88,9 +88,7 @@ module.exports = {
 		{
 			files: ['**/*.svelte'],
 			rules: {
-				'unused-export-let'     : 'off',
-				'a11y-missing-attribute': 'off',
-				'a11y-img-redundant-alt': 'off',
+
 			},
 			processor: 'svelte3/svelte3',
 			parser   : 'espree',
@@ -102,6 +100,13 @@ module.exports = {
 				'svelte3/preprocess': content => {
 					content = content.replace(/<style-jss?(\s[^]*?)?>.*?<\/style-jss?>/sg, '')
 					return content
+				},
+				'svelte3/ignore-warnings': warn => {
+					return warn.code === 'unused-export-let'
+						|| warn.code === 'a11y-missing-attribute'
+						|| warn.code === 'a11y-img-redundant-alt'
+						|| warn.code === 'a11y-label-has-associated-control'
+						|| warn.code === 'a11y-media-has-caption'
 				},
 			},
 		},
