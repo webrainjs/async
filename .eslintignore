@@ -8,6 +8,6 @@ src/assets/**/*
 static
 **/v8/**/runtime.js
 docs/**/*
-browser/**/*.js
-node/**/*.js
+browser/**/*
+node/**/*
 env/logger/server/**/*
