@@ -23,9 +23,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Lint fixes completed">
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/scripts/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +84,7 @@
     <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/routes/dev/tests.svelte" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/node/electron/run/mainWindow.ts" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -246,14 +248,7 @@
       <workItem from="1601691610779" duration="59000" />
       <workItem from="1601695149932" duration="16045000" />
       <workItem from="1601716299612" duration="5114000" />
-      <workItem from="1601730023764" duration="7413000" />
-    </task>
-    <task id="LOCAL-00009" summary="Merged with webrain">
-      <created>1590400135134</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1590400135134</updated>
+      <workItem from="1601730023764" duration="9121000" />
     </task>
     <task id="LOCAL-00010" summary="Merged with webrain. Precommit OK.">
       <created>1590478823293</created>
@@ -591,7 +586,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601751142696</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Lint fixes completed">
+      <created>1601785961555</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1601785961555</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,7 +629,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Precommit OK." />
     <MESSAGE value="Change karma-edge-launcher to karma-edgium-launcher" />
     <MESSAGE value="Update electron" />
     <MESSAGE value="Disabled karma electron browser for Windows" />
@@ -652,7 +653,8 @@
     <MESSAGE value="Lint fixes" />
     <MESSAGE value="Try to add svelte eslint: not now" />
     <MESSAGE value="Added svelte eslint. Lint fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added svelte eslint. Lint fixes" />
+    <MESSAGE value="Lint fixes completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lint fixes completed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="614" y="103" key="#ESLint" timestamp="1601730229636">
@@ -675,10 +677,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="651" y="253" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.882@0.0.1920.882" timestamp="1601730650956" />
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1601785876877">
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2" timestamp="1601785960939">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601785876877" />
+    <state x="0" y="0" width="1919" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601785960939" />
     <state width="1843" height="581" key="DebuggerActiveHint" timestamp="1601784278582">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -687,26 +689,26 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="0" y="2" width="1920" height="879" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1601697356159" />
-    <state x="686" y="134" key="FileChooserDialogImpl" timestamp="1601785317251">
+    <state x="686" y="134" key="FileChooserDialogImpl" timestamp="1601786896631">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="686" y="134" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1601785317251" />
-    <state width="1892" height="298" key="GridCell.Tab.0.bottom" timestamp="1601785618469">
+    <state x="686" y="134" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1601786896631" />
+    <state width="1892" height="238" key="GridCell.Tab.0.bottom" timestamp="1601787025651">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="298" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601785618469" />
-    <state width="1892" height="298" key="GridCell.Tab.0.center" timestamp="1601785618469">
+    <state width="1892" height="238" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601787025651" />
+    <state width="1892" height="238" key="GridCell.Tab.0.center" timestamp="1601787025651">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="298" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1601785618469" />
-    <state width="1892" height="298" key="GridCell.Tab.0.left" timestamp="1601785618468">
+    <state width="1892" height="238" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1601787025651" />
+    <state width="1892" height="238" key="GridCell.Tab.0.left" timestamp="1601787025650">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="298" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1601785618468" />
-    <state width="1892" height="298" key="GridCell.Tab.0.right" timestamp="1601785618469">
+    <state width="1892" height="238" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1601787025650" />
+    <state width="1892" height="238" key="GridCell.Tab.0.right" timestamp="1601787025651">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="298" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1601785618469" />
+    <state width="1892" height="238" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1601787025651" />
     <state width="1892" height="267" key="GridCell.Tab.1.bottom" timestamp="1601784335610">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

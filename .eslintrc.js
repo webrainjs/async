@@ -9,27 +9,10 @@ module.exports = {
 	],
 	rules: {
 		// web app only
-		'require-await': 'off',
-		'prefer-const' : 'off',
-		'no-lonely-if' : 'off',
-
-		// all
-		// '@typescript-eslint/no-var-requires': 'off',
-		'no-empty-function'                   : 'warn',
-		'@typescript-eslint/no-empty-function': 'warn',
-		'no-control-regex'                    : 'off',
-		yoda                                  : 'off',
-		'@typescript-eslint/no-unused-vars'   : 'off',
-		'@typescript-eslint/no-shadow'        : [
-			'error',
-			{
-				builtinGlobals                            : false,
-				hoist                                     : 'never',
-				allow                                     : [],
-				ignoreTypeValueShadow                     : false,
-				ignoreFunctionTypeParameterNameValueShadow: true,
-			},
-		],
+		'require-await'                    : 'off',
+		'prefer-const'                     : 'off',
+		'no-lonely-if'                     : 'off',
+		'@typescript-eslint/no-unused-vars': 'off',
 	},
 
 	env: {
@@ -54,7 +37,7 @@ module.exports = {
 		'@typescript-eslint',
 		'sonarjs',
 		'html',
-		// 'svelte3', // TODO uncomment it after this pull merged: https://github.com/sveltejs/eslint-plugin-svelte3/pull/74
+		'svelte3',
 	],
 	settings: {
 		'html/indent'           : '+tab',
@@ -85,30 +68,31 @@ module.exports = {
 				sourceType : 'script',
 			},
 		},
-		{
-			files: ['**/*.svelte'],
-			rules: {
-
-			},
-			processor: 'svelte3/svelte3',
-			parser   : 'espree',
-			env      : {
-				browser: true,
-				node   : false,
-			},
-			settings: {
-				'svelte3/preprocess': content => {
-					content = content.replace(/<style-jss?(\s[^]*?)?>.*?<\/style-jss?>/sg, '')
-					return content
-				},
-				'svelte3/ignore-warnings': warn => {
-					return warn.code === 'unused-export-let'
-						|| warn.code === 'a11y-missing-attribute'
-						|| warn.code === 'a11y-img-redundant-alt'
-						|| warn.code === 'a11y-label-has-associated-control'
-						|| warn.code === 'a11y-media-has-caption'
-				},
-			},
-		},
+		// TODO uncomment it after this pull merged: https://github.com/sveltejs/eslint-plugin-svelte3/pull/74
+		// {
+		// 	files: ['**/*.svelte'],
+		// 	rules: {
+		//
+		// 	},
+		// 	processor: 'svelte3/svelte3',
+		// 	parser   : 'espree',
+		// 	env      : {
+		// 		browser: true,
+		// 		node   : false,
+		// 	},
+		// 	settings: {
+		// 		'svelte3/preprocess': content => {
+		// 			content = content.replace(/<style-jss?(\s[^]*?)?>.*?<\/style-jss?>/sg, '')
+		// 			return content
+		// 		},
+		// 		'svelte3/ignore-warnings': warn => {
+		// 			return warn.code === 'unused-export-let'
+		// 				|| warn.code === 'a11y-missing-attribute'
+		// 				|| warn.code === 'a11y-img-redundant-alt'
+		// 				|| warn.code === 'a11y-label-has-associated-control'
+		// 				|| warn.code === 'a11y-media-has-caption'
+		// 		},
+		// 	},
+		// },
 	],
 }

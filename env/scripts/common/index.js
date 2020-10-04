@@ -25,7 +25,8 @@ const build = singleCall(() => Promise.all([
 ]))
 
 const lintEs = singleCall(async ({fix} = {}) => {
-	await run('eslint --plugin markdown --ext js,ts,md,html,svelte .' + (fix ? ' --no-eslintrc -c eslintrc.fix.js --fix' : ''))
+	// TODO add svelte extension after this pull merged: https://github.com/sveltejs/eslint-plugin-svelte3/pull/74
+	await run('eslint --plugin markdown --ext js,ts,md,html .' + (fix ? ' --no-eslintrc -c eslintrc.fix.js --fix' : ''))
 })
 
 // Warning - depcheck takes a lot of memory - 13 GB !!
