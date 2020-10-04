@@ -48,9 +48,9 @@ function rollupCommon(options = {}) {
 	const preprocess = {
 		markup({content}) {
 			return {
-				code: preprocessMarkup(content)
+				code: preprocessMarkup(content),
 			}
-		}
+		},
 	}
 
 	// eslint-disable-next-line no-unused-vars

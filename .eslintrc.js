@@ -8,11 +8,7 @@ module.exports = {
 		// 'plugin:@typescript-eslint/recommended-requiring-type-checking',
 	],
 	rules: {
-		// web app only
-		'require-await'                    : 'off',
-		'prefer-const'                     : 'off',
-		'no-lonely-if'                     : 'off',
-		'@typescript-eslint/no-unused-vars': 'off',
+
 	},
 
 	env: {

@@ -152,7 +152,7 @@ async function waitCommand(command: Command<any>, timeout: number) {
 				}
 
 				result = await resolveValue(result)
-;(command as any).result = result
+				;(command as any).result = result
 
 				return result
 			} catch (error) {
