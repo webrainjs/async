@@ -9,5 +9,6 @@ module.exports = {
 		'func-names'                        : 'off',
 		'no-promise-executor-return'        : 'off',
 		'max-len'                           : 'off',
+		'require-await'                     : 'off',
 	},
 }

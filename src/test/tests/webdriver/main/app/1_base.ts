@@ -6,7 +6,7 @@ import {
 	testPage,
 	registerSuite,
 } from '../../../../../../env/intern/helpers/new/index'
-import {errorPredicate} from '../../helpers/helpers'
+import {errorPredicate} from '../../src/helpers/helpers'
 
 registerSuite('main > sapper > routes > base', {
 	'base'() {
