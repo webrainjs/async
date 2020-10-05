@@ -24,9 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Lint fixes">
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/.eslintrc.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="browser-helpers" />
+        <entry key="$PROJECT_DIR$" value="node-module" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -123,7 +121,7 @@
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\env\chrome\app" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Intern Dev Video">
+  <component name="RunManager" selected="npm.Lint">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -693,22 +691,22 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="686" y="134" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1601786896631" />
-    <state width="1892" height="238" key="GridCell.Tab.0.bottom" timestamp="1601787025651">
+    <state width="1892" height="238" key="GridCell.Tab.0.bottom" timestamp="1601833364385">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="238" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601787025651" />
-    <state width="1892" height="238" key="GridCell.Tab.0.center" timestamp="1601787025651">
+    <state width="1892" height="238" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601833364385" />
+    <state width="1892" height="238" key="GridCell.Tab.0.center" timestamp="1601833364385">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="238" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1601787025651" />
-    <state width="1892" height="238" key="GridCell.Tab.0.left" timestamp="1601787025650">
+    <state width="1892" height="238" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1601833364385" />
+    <state width="1892" height="238" key="GridCell.Tab.0.left" timestamp="1601833364384">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="238" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1601787025650" />
-    <state width="1892" height="238" key="GridCell.Tab.0.right" timestamp="1601787025651">
+    <state width="1892" height="238" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1601833364384" />
+    <state width="1892" height="238" key="GridCell.Tab.0.right" timestamp="1601833364385">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="238" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1601787025651" />
+    <state width="1892" height="238" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1601833364385" />
     <state width="1892" height="267" key="GridCell.Tab.1.bottom" timestamp="1601784335610">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
