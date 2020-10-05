@@ -11,56 +11,7 @@
 
 # Description
 
-For quickly create NodeJs module with svelte components using these commands (just copy/paste it to the console):
-
-# Create app ot module from template
-
-(Create new clear empty repository before)
-
-Config:
-
-```cmd
-(
-SET TEMPLATE_BRANCH=browser-helpers
-SET TEMPLATE_REPO=https://github.com/NikolayMakhonin/app-template.git
-SET /p DIR_NAME=Enter project directory name:
-SET /p YOUR_REPO_URL=Enter your new clear repository url:
-)
- 
-```
-
-Install:
-
-```cmd
-git clone --origin template --branch %TEMPLATE_BRANCH% %TEMPLATE_REPO% %DIR_NAME%
-cd %DIR_NAME%
-git branch -m %TEMPLATE_BRANCH% master
-git tag -a -m "New project from template \"%TEMPLATE_BRANCH%\"" v0.0.0
-git remote set-url --push template no_push
-git remote add origin %YOUR_REPO_URL%
-git checkout -b develop
-git push --all origin
-git push --tags origin
-git branch -u origin/develop develop
-git branch -u origin/master master
- 
-```
-
-Or you can just clone repository without history using this command:
-```bash
-npx degit NikolayMakhonin/app-template#browser-helpers <app name> && cd <app name> && npm i && npm run test
-```
-
-# Documentation
-
-## Terminal App
-* [Implementation](docs/doc/app/Implementation.md)
-
-## Template
-* [Getting Started](docs/doc/template/Getting Started.md)
-* [Architecture](docs/doc/template/Architecture.md)
-* [Project Structure](docs/doc/template/Project Structure.md)
-* [Testing](docs/doc/template/Testing.md)
+Powerful JavaScript async helpers
 
 <!--
 
@@ -75,14 +26,14 @@ npx degit NikolayMakhonin/app-template#browser-helpers <app name> && cd <app nam
 
 [CC0-1.0](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/app-template.svg
-[npm-url]: https://npmjs.org/package/app-template
-[node-version-image]: https://img.shields.io/node/v/app-template.svg
+[npm-image]: https://img.shields.io/npm/v/@webrainjs/async.svg
+[npm-url]: https://npmjs.org/package/@webrainjs/async
+[node-version-image]: https://img.shields.io/node/v/@webrainjs/async.svg
 [node-version-url]: https://nodejs.org/en/download/
-[travis-image]: https://travis-ci.org/NikolayMakhonin/app-template.svg?branch=browser-helpers
-[travis-url]: https://travis-ci.org/NikolayMakhonin/app-template?branch=browser-helpers
-[coveralls-image]: https://coveralls.io/repos/github/NikolayMakhonin/app-template/badge.svg?branch=browser-helpers
-[coveralls-url]: https://coveralls.io/github/NikolayMakhonin/app-template?branch=browser-helpers
-[downloads-image]: https://img.shields.io/npm/dm/app-template.svg
-[downloads-url]: https://npmjs.org/package/app-template
-[npm-url]: https://npmjs.org/package/app-template
+[travis-image]: https://travis-ci.org/webrainjs/async.svg?branch=browser-helpers
+[travis-url]: https://travis-ci.org/webrainjs/async?branch=browser-helpers
+[coveralls-image]: https://coveralls.io/repos/github/webrainjs/async/badge.svg?branch=browser-helpers
+[coveralls-url]: https://coveralls.io/github/webrainjs/async?branch=browser-helpers
+[downloads-image]: https://img.shields.io/npm/dm/@webrainjs/async.svg
+[downloads-url]: https://npmjs.org/package/@webrainjs/async
+[npm-url]: https://npmjs.org/package/@webrainjs/async
