@@ -1,1 +1,3 @@
-// declare const assert = chai.assert
+import chai from 'chai'
+
+declare const assert = chai.assert
