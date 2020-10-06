@@ -138,7 +138,6 @@ module.exports.configCommon = function (config) {
 			'karma-edge-launcher',
 			// 'karma-ie-launcher',
 			'karma-phantomjs-launcher',
-			'karma-electron',
 
 			'karma-mocha',
 			'karma-rollup-preprocessor',
@@ -203,7 +202,7 @@ module.exports.configCommon = function (config) {
 			'E2E_Chromium39',
 			'E2E_Chromium44',
 			'E2E_ChromeLatest',
-			'Electron',
+			'ChromeDev',
 		],
 
 		// Firefox:
@@ -339,7 +338,6 @@ function configDetectBrowsers(config) {
 
 						return availableBrowser
 					})
-					// .concat('Electron') // Travis has error (Electron v10.1.1): Some of your tests did a full page reload!
 			},
 		},
 

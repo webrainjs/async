@@ -13,8 +13,7 @@ module.exports = function (config) {
 			// 'E2E_Chromium39',
 			// 'E2E_Chromium44',
 			// 'E2E_ChromeLatest',
-			// 'ChromeDev',
-			'Electron',
+			'ChromeDev',
 		],
 
 		browserNoActivityTimeout: 300000,

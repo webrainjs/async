@@ -19,18 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Fix Intern test">
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+    <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="Deleted electron">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/configs/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/configs/export-coverage/intern.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/configs/export-coverage/intern.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/intern/helpers/new/run.ts" beforeDir="false" afterPath="$PROJECT_DIR$/env/intern/helpers/new/run.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/rollup/svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/svelte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/scripts/common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/scripts/common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/babel/configs/electron.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/karma/configs/dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/karma/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/rollup/babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/rollup/babel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/helpers/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/helpers/helpers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +64,7 @@
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="node-module" />
+        <entry key="$PROJECT_DIR$" value="webapp" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -146,7 +141,7 @@
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Build Test Dev">
+  <component name="RunManager" selected="Karma.Dev">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -209,6 +204,7 @@
       <item itemvalue="npm.Build Dev" />
       <item itemvalue="npm.Build Test Dev" />
       <item itemvalue="npm.Test Dev" />
+      <item itemvalue="npm.Lint" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -236,6 +232,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601794804537</updated>
       <workItem from="1601794806624" duration="774000" />
+      <workItem from="1601956704446" duration="299000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -369,18 +366,18 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1601794790425" />
-    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2" timestamp="1599287744014">
+    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2" timestamp="1601894950006">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1599287744014" />
+    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601894950006" />
     <state width="490" height="552" key="Diff.GoToChangePopup" timestamp="1599288597495">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state width="490" height="552" key="Diff.GoToChangePopup/0.0.1920.882@0.0.1920.882" timestamp="1599288597495" />
-    <state x="0" y="0" width="1921" height="881" key="DiffContextDialog" timestamp="1599289086628">
+    <state x="0" y="0" width="1920" height="881" key="DiffContextDialog" timestamp="1601894942604">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="0" y="0" width="1921" height="881" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1599289086628" />
+    <state x="0" y="0" width="1920" height="881" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1601894942604" />
     <state x="686" y="134" key="FileChooserDialogImpl" timestamp="1601795293694">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -465,5 +462,9 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="-1" y="1" width="1920" height="879" key="VcsDiffUtil.ChangesDialog/0.0.1920.882@0.0.1920.882" timestamp="1599289083931" />
+    <state x="6" y="5" width="1911" height="875" key="find.popup" timestamp="1601894864408">
+      <screen x="0" y="0" width="1920" height="882" />
+    </state>
+    <state x="6" y="5" width="1911" height="875" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1601894864408" />
   </component>
 </project>
