@@ -16,8 +16,8 @@ module.exports = function (config) {
 			'ChromeDev',
 		],
 
-		browserNoActivityTimeout: 300000,
-		browserDisconnectTimeout: 300000,
+		browserNoActivityTimeout: 900000,
+		browserDisconnectTimeout: 900000,
 		// browserSocketTimeout: 900000,
 		// captureTimeout: 900000,
 		// processKillTimeout: 2000,
