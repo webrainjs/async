@@ -13,13 +13,12 @@ module.exports = function (config) {
 			// 'E2E_Chromium39',
 			// 'E2E_Chromium44',
 			// 'E2E_ChromeLatest',
-			// 'ChromeDev',
-			'Firefox',
+			'ChromeDev',
 		],
 
 		browserNoActivityTimeout: 300000,
 		browserDisconnectTimeout: 300000,
-		browserSocketTimeout: 120000,
+		browserSocketTimeout    : 300000,
 		// captureTimeout: 900000,
 		// processKillTimeout: 2000,
 
