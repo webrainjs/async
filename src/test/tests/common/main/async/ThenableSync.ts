@@ -16,7 +16,8 @@ describe('common > main > helpers > ThenableSync', function () {
 	const testId = Math.random().toString(36)
 
 	it('variants', function () {
-		console.log('common > main > helpers > ThenableSync > variants start: ' + testId)
+		const timeStart = Date.now()
+		console.log(`common > main > helpers > ThenableSync > variants start (${testId}): ${0}`)
 
 		testThenableSync({
 			exclude: o => {
@@ -36,7 +37,7 @@ describe('common > main > helpers > ThenableSync', function () {
 			actions: null,
 		})
 
-		console.log('common > main > helpers > ThenableSync > variants end: ' + testId)
+		console.log(`common > main > helpers > ThenableSync > variants start (${testId}): ${Date.now() - timeStart}`)
 	})
 	//
 	// it('variants', function() {
