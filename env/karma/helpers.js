@@ -137,7 +137,6 @@ module.exports.configCommon = function (config) {
 			'karma-opera-launcher',
 			'karma-edge-launcher',
 			// 'karma-ie-launcher',
-			'karma-phantomjs-launcher',
 
 			'karma-mocha',
 			'karma-rollup-preprocessor',
