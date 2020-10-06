@@ -13,7 +13,11 @@ describe('common > main > helpers > ThenableSync', function () {
 		console.log('Total ThenableSync tests >= ' + TestThenableSync.totalTests)
 	})
 
+	const testId = Math.random().toString(36)
+
 	it('variants', function () {
+		console.log('common > main > helpers > ThenableSync > variants start: ' + testId)
+
 		testThenableSync({
 			exclude: o => {
 				if (o.thenValue0 === ValueType.IteratorThrow && o.thenValue1 === ValueType.IteratorThrow) {
@@ -31,6 +35,8 @@ describe('common > main > helpers > ThenableSync', function () {
 			},
 			actions: null,
 		})
+
+		console.log('common > main > helpers > ThenableSync > variants end: ' + testId)
 	})
 	//
 	// it('variants', function() {
