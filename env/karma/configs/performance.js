@@ -13,10 +13,10 @@ module.exports = function (config) {
 			'Firefox',
 		],
 
-		browserNoActivityTimeout: 300000,
-		browserDisconnectTimeout: 300000,
-		browserSocketTimeout    : 300000,
-		captureTimeout          : 300000,
+		browserNoActivityTimeout: 900000,
+		browserDisconnectTimeout: 900000,
+		browserSocketTimeout    : 900000,
+		captureTimeout          : 900000,
 		// processKillTimeout: 2000,
 
 		// list of files / patterns to load in the browser
