@@ -428,7 +428,7 @@ export class TestThenableSync extends TestVariants<
 		value       : ['v'], // , void 0, ITERABLE, ITERATOR_GENERATOR],
 		createValue0: Object.values(ValueType),
 		thenValue0  : Object.values(ValueType),
-		thenThrow0  : [false, true],
+		thenThrow0  : [false], // [false, true],
 		thenType0   : Object.values(ThenType),
 
 		createValue1: Object.values(ValueType),

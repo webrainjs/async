@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoTestManager">
+    <enabled-run-configurations>
+      <run-configuration type="JavaScriptTestRunnerKarma" name="Dev" />
+    </enabled-run-configurations>
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -26,7 +31,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d52e1996-07d3-4492-b0b2-6fba29f4b076" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.browserslistrc" beforeDir="false" afterPath="$PROJECT_DIR$/.browserslistrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/karma/configs/dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/env/karma/configs/dev.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/tests/common/main/async/ThenableSync.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/main/async/ThenableSync.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/tests/common/main/async/src/TestThenableSync.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/tests/common/main/async/src/TestThenableSync.ts" afterDir="false" />
     </list>
     <list id="c16d74f5-5037-4534-9dd1-cca2acb7964b" name="Revert &quot;Fix travis&quot;" comment="Revert &quot;Fix travis&quot;&#10;&#10;This reverts commit b08b66bc" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,12 +113,12 @@
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="auto.test.manager.delay" value="1000" />
+    <property name="auto.test.manager.delay" value="2000" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.17.0" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$USER_HOME$/AppData/Roaming/npm/node_modules/gulp" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -144,7 +153,7 @@
       <recent name="L:\Work\_GIT\GitHub\NodeJs\templates\app-template\browser\mjs" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Watch">
+  <component name="RunManager" selected="Karma.Dev">
     <configuration default="true" type="JavaScriptTestRunnerKarma">
       <config-file value="$PROJECT_DIR$/env/karma/configs/dev.js" />
       <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
@@ -304,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601975449529</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Debug">
+      <created>1601975598768</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601975598768</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,10 +459,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="409" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.882@0.0.1920.882" timestamp="1601895449062" />
-    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2" timestamp="1601975443107">
+    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2" timestamp="1601975593417">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601975443107" />
+    <state x="65" y="0" width="1583" height="882" key="CommitChangelistDialog2/0.0.1920.882@0.0.1920.882" timestamp="1601975593417" />
     <state width="490" height="552" key="Diff.GoToChangePopup" timestamp="1599288597495">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -455,42 +471,42 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="0" y="0" width="1921" height="881" key="DiffContextDialog/0.0.1920.882@0.0.1920.882" timestamp="1599289086628" />
-    <state x="686" y="134" key="FileChooserDialogImpl" timestamp="1601964721658">
+    <state x="686" y="134" key="FileChooserDialogImpl" timestamp="1601977553518">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="686" y="134" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1601964721658" />
-    <state width="1892" height="214" key="GridCell.Tab.0.bottom" timestamp="1601975581550">
+    <state x="686" y="134" key="FileChooserDialogImpl/0.0.1920.882@0.0.1920.882" timestamp="1601977553518" />
+    <state width="1892" height="267" key="GridCell.Tab.0.bottom" timestamp="1601983782975">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601975581550" />
-    <state width="1892" height="214" key="GridCell.Tab.0.center" timestamp="1601975581549">
+    <state width="1892" height="267" key="GridCell.Tab.0.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601983782975" />
+    <state width="1892" height="267" key="GridCell.Tab.0.center" timestamp="1601983782974">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1601975581549" />
-    <state width="1892" height="214" key="GridCell.Tab.0.left" timestamp="1601975581549">
+    <state width="1892" height="267" key="GridCell.Tab.0.center/0.0.1920.882@0.0.1920.882" timestamp="1601983782974" />
+    <state width="1892" height="267" key="GridCell.Tab.0.left" timestamp="1601983782974">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1601975581549" />
-    <state width="1892" height="214" key="GridCell.Tab.0.right" timestamp="1601975581550">
+    <state width="1892" height="267" key="GridCell.Tab.0.left/0.0.1920.882@0.0.1920.882" timestamp="1601983782974" />
+    <state width="1892" height="267" key="GridCell.Tab.0.right" timestamp="1601983782974">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1601975581550" />
-    <state width="1892" height="214" key="GridCell.Tab.1.bottom" timestamp="1601969718332">
+    <state width="1892" height="267" key="GridCell.Tab.0.right/0.0.1920.882@0.0.1920.882" timestamp="1601983782974" />
+    <state width="1892" height="267" key="GridCell.Tab.1.bottom" timestamp="1601983782975">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.1.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601969718332" />
-    <state width="1892" height="214" key="GridCell.Tab.1.center" timestamp="1601969718332">
+    <state width="1892" height="267" key="GridCell.Tab.1.bottom/0.0.1920.882@0.0.1920.882" timestamp="1601983782975" />
+    <state width="1892" height="267" key="GridCell.Tab.1.center" timestamp="1601983782975">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.1.center/0.0.1920.882@0.0.1920.882" timestamp="1601969718332" />
-    <state width="1892" height="214" key="GridCell.Tab.1.left" timestamp="1601969718331">
+    <state width="1892" height="267" key="GridCell.Tab.1.center/0.0.1920.882@0.0.1920.882" timestamp="1601983782975" />
+    <state width="1892" height="267" key="GridCell.Tab.1.left" timestamp="1601983782975">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.1.left/0.0.1920.882@0.0.1920.882" timestamp="1601969718331" />
-    <state width="1892" height="214" key="GridCell.Tab.1.right" timestamp="1601969718332">
+    <state width="1892" height="267" key="GridCell.Tab.1.left/0.0.1920.882@0.0.1920.882" timestamp="1601983782975" />
+    <state width="1892" height="267" key="GridCell.Tab.1.right" timestamp="1601983782975">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state width="1892" height="214" key="GridCell.Tab.1.right/0.0.1920.882@0.0.1920.882" timestamp="1601969718332" />
+    <state width="1892" height="267" key="GridCell.Tab.1.right/0.0.1920.882@0.0.1920.882" timestamp="1601983782975" />
     <state width="1892" height="238" key="GridCell.Tab.2.bottom" timestamp="1601959855290">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
@@ -543,10 +559,10 @@
       <screen x="0" y="0" width="1920" height="882" />
     </state>
     <state x="-1" y="1" width="1920" height="879" key="VcsDiffUtil.ChangesDialog/0.0.1920.882@0.0.1920.882" timestamp="1599289083931" />
-    <state x="5" y="5" width="1909" height="874" key="find.popup" timestamp="1601969340262">
+    <state x="5" y="5" width="1909" height="874" key="find.popup" timestamp="1601980679725">
       <screen x="0" y="0" width="1920" height="882" />
     </state>
-    <state x="5" y="5" width="1909" height="874" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1601969340262" />
+    <state x="5" y="5" width="1909" height="874" key="find.popup/0.0.1920.882@0.0.1920.882" timestamp="1601980679725" />
     <state x="539" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1601953576364">
       <screen x="0" y="0" width="1920" height="882" />
     </state>

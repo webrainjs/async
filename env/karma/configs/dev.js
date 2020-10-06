@@ -19,7 +19,7 @@ module.exports = function (config) {
 
 		browserNoActivityTimeout: 300000,
 		browserDisconnectTimeout: 300000,
-		// browserSocketTimeout: 900000,
+		browserSocketTimeout: 120000,
 		// captureTimeout: 900000,
 		// processKillTimeout: 2000,
 

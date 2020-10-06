@@ -37,7 +37,7 @@ describe('common > main > helpers > ThenableSync', function () {
 			actions: null,
 		})
 
-		console.log(`common > main > helpers > ThenableSync > variants start (${testId}): ${Date.now() - timeStart}`)
+		console.log(`common > main > helpers > ThenableSync > variants end (${testId}): ${Date.now() - timeStart}`)
 	})
 	//
 	// it('variants', function() {
