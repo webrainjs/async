@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unused-vars
-const svelteCompiler = require('svelte/compiler')
+// TODO uncomment it after this pull merged: https://github.com/sveltejs/eslint-plugin-svelte3/pull/74
+// const svelteCompiler = require('svelte/compiler')
 
 module.exports = {
 	'extends': [
